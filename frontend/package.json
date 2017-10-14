@@ -21,7 +21,9 @@
     "webpack": "^3.7.1",
     "webpack-dev-server": "^2.9.0",
     "transform-runtime": "^0.0.0",
-    "jsx-control-statements": "^3.2.5"
+    "jsx-control-statements": "^3.2.5",
+    "style-loader": "^0.18.2",
+    "css-loader": "^0.28.4"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -30,6 +32,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-async-await": "^1.0.1"
+    "redux-async-await": "^1.0.1",
+    "react-bootstrap": "^0.31.2"
   }
 }

@@ -1,0 +1,15 @@
+.navCenter {
+  margin-top: 0.7em;
+}
+
+.navBar {
+  background-color: #0c0742;
+}
+
+.span {
+  color: white;
+}
+
+.span:hover {
+  color: silver;
+}
