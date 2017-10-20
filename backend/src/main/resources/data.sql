@@ -1,5 +1,2 @@
-INSERT INTO absence (id, description) VALUES ('GO', 'Godišnji odmor');
-INSERT INTO absence (id, description) VALUES ('BO', 'Bolovanje');
-INSERT INTO absence (id, description) VALUES ('HO', 'Home office');
-INSERT INTO absence (id, description) VALUES ('RO', 'Roaming');
-INSERT INTO absence (id, description) VALUES ('OO', 'Out of office');
+Insert into building (id, address) values (0, 'ivana');
+Insert into building (id, address) values (1, 'justice');
