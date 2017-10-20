@@ -17,6 +17,8 @@ public class Building {
 
   private String landlord;
 
+  private Float funds;
+
   @OneToMany (mappedBy = "id", cascade = CascadeType.ALL)
   private Set<Apartment> apartments;
 
@@ -24,9 +26,10 @@ public class Building {
   public Building() {
   }
 
-  public Building(Long id, String address, String landlord) {
+  public Building(Long id, String address, String landlord, Float funds) {
     this.id = id;
     this.address = address;
     this.landlord = landlord;
+    this.funds = funds;
   }
 }

@@ -15,6 +15,7 @@
         <constraints nullable="false"/>
       </column>
       <column name="landlord" type="varchar(255)"/>
+      <column name="funds" type="decimal"></column>
     </createTable>
 
     <createTable tableName="apartment">
