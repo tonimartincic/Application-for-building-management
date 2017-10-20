@@ -37,6 +37,21 @@
        constraintName="fk_apartment_building_id"
        referencedTableName="building"
        referencedColumnNames="id"/>
+
+    <createTable tableName="app_user">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"></constraints>
+      </column>
+      <column name="privilege" type="varchar(255)">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="apartment_id" type="bigint">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="reminder" type="boolean" defaultValue="false">
+        <constraints nullable="false"></constraints>
+      </column>
+    </createTable>
   </changeSet>
 
 </databaseChangeLog>
