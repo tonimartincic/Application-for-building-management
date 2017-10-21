@@ -6,7 +6,6 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
   <changeSet id="1" author="imrsic">
-
     <createTable tableName="building">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"/>
@@ -15,7 +14,7 @@
         <constraints nullable="false"/>
       </column>
       <column name="landlord" type="varchar(255)"/>
-      <column name="funds" type="decimal"></column>
+      <column name="funds" type="decimal"/>
     </createTable>
 
     <createTable tableName="apartment">
@@ -23,10 +22,10 @@
         <constraints primaryKey="true" />
       </column>
       <column name="building_id" type="bigint">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="area" type="int">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="contact" type="varchar(255)">
       </column>
@@ -40,17 +39,26 @@
        referencedColumnNames="id"/>
 
     <createTable tableName="app_user">
-      <column name="id" type="bigint">
-        <constraints primaryKey="true"></constraints>
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="first_name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="mail" type="varchar(255)">
+        <constraints nullable="false"/>
       </column>
       <column name="privilege" type="varchar(255)">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="apartment_id" type="bigint">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="reminder" type="boolean" defaultValue="false">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
     </createTable>
   </changeSet>
@@ -58,42 +66,45 @@
   <changeSet id="2" author="imrsic">
     <createTable tableName="user_notification">
       <column name="id" type="bigint" autoIncrement="true">
-        <constraints primaryKey="true"></constraints>
+        <constraints primaryKey="true"/>
       </column>
       <column name="description" type="varchar(255)">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="user_id" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
 
   <changeSet id="3" author="mcurlin">
-
     <createTable tableName="payment_order">
       <column name="id" type="bigint" autoIncrement="true">
-        <constraints primaryKey="true"></constraints>
+        <constraints primaryKey="true"/>
       </column>
       <column name="amount" type="decimal(10,2)">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="payer" type="bigint">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="description" type="varchar(255)">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="payment_due" type="date">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="day_of_payment" type="date">
-        <constraints nullable="true"></constraints>
+        <constraints nullable="true"/>
       </column>
       <column name="reciever" type="bigint">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="reciever_type" type="varchar(255)">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="payer_type" type="varchar(255)">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
     </createTable>
 
