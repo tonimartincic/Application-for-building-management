@@ -13,6 +13,7 @@ public class Building {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   private String address;
 
   private String landlord;
@@ -21,7 +22,6 @@ public class Building {
 
   @OneToMany (mappedBy = "id", cascade = CascadeType.ALL)
   private Set<Apartment> apartments;
-
 
   public Building() {
   }

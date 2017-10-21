@@ -20,7 +20,6 @@ public class Apartment {
 
   private String contact;
 
-
   public Apartment(Long id, Building building, Integer area, String contact) {
     this.id = id;
     this.building = building;
