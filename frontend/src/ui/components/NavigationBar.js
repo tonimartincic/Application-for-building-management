@@ -24,7 +24,7 @@ class NavigationBar extends Component {
             href='/'
           >
             <span className={styles.span}>
-              App
+              Oglasna ploča
             </span>
           </NavItem>
 
