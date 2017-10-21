@@ -1,6 +1,5 @@
 package hr.fer.opp.eureka.controller;
 
-
 import hr.fer.opp.eureka.domain.Cost;
 import hr.fer.opp.eureka.service.CostService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +16,7 @@ public class CostController {
   public CostController(CostService costService) {
     this.costService = costService;
   }
+  
   @GetMapping("/api/costs")
   public List<Cost> getAllCosts() {
     return this.costService.getAll();
