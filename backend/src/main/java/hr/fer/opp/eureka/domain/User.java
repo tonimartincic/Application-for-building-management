@@ -16,6 +16,10 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private String firstName;
+
+  private String lastName;
+
   private String privilege;
 
   private Long apartmentId;
@@ -31,8 +35,17 @@ public class User {
   public User() {
   }
 
-  public User(Long id, String privilege, Long apartmentId, Boolean reminder) {
+  public User(
+    Long id,
+    String firstName,
+    String lastName,
+    String privilege,
+    Long apartmentId,
+    Boolean reminder) {
+
     this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.privilege = privilege;
     this.apartmentId = apartmentId;
     this.reminder = reminder;

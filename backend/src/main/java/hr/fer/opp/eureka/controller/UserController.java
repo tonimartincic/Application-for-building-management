@@ -22,12 +22,11 @@ public class UserController {
 
   @GetMapping ("/api/users")
   public List<User> getAllUsers() {
-    List<User> temp = this.userService.getAll();
-    return temp;
+    return this.userService.getAll();
   }
 
   @GetMapping ("/api/users/{id}")
-  public User getUserById(@PathVariable final String id) {
+  public User getUserById(@PathVariable final Long id) {
     return this.userService.getUserById(id);
   }
 }
