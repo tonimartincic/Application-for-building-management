@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 
 class SecondComponent extends Component {
   render() {
-    return <span>SecondComponent</span>;
+    return <Button>SecondComponent</Button>;
   }
 }
 
