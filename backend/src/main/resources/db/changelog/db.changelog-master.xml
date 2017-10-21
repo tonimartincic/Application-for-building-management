@@ -40,7 +40,7 @@
        referencedColumnNames="id"/>
 
     <createTable tableName="app_user">
-      <column name="id" type="varchar(255)">
+      <column name="id" type="bigint">
         <constraints primaryKey="true"></constraints>
       </column>
       <column name="privilege" type="varchar(255)">
@@ -64,6 +64,35 @@
         <constraints nullable="false"></constraints>
       </column>
       <column name="user_id" type="varchar(255)">
+
+  <changeSet id="3" author="mcurlin">
+
+    <createTable tableName="payment_order">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"></constraints>
+      </column>
+      <column name="amount" type="decimal(10,2)">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="payer" type="bigint">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="description" type="varchar(255)">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="payment_due" type="date">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="day_of_payment" type="date">
+        <constraints nullable="true"></constraints>
+      </column>
+      <column name="reciever" type="bigint">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="reciever_type" type="varchar(255)">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="payer_type" type="varchar(255)">
         <constraints nullable="false"></constraints>
       </column>
     </createTable>
@@ -76,4 +105,35 @@
       referencedColumnNames="id"/>
   </changeSet>
 
+  <changeSet id="4" author="mcavalli">
+    <createTable tableName="cost">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="amount" type="decimal(20, 2)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="isUrgent" type="boolean">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="varchar(255)">
+      </column>
+      <column name="status" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="creator_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_on" type="date">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseTableName="cost"
+      baseColumnNames="creator_id"
+      constraintName="fk_cost_app_user_id"
+      referencedTableName="app_user"
+      referencedColumnNames="id"/>
+  </changeSet>
 </databaseChangeLog>

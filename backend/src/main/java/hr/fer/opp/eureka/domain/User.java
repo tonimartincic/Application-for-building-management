@@ -3,7 +3,9 @@ package hr.fer.opp.eureka.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -11,7 +13,8 @@ import java.util.List;
 public class User {
 
   @Id
-  private String id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
   private String privilege;
 
@@ -22,10 +25,13 @@ public class User {
   @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
   private List<UserNotification> userNotificationList;
 
+  @OneToMany (mappedBy = "creator", cascade = CascadeType.ALL)
+  private Set<Cost> costs;
+
   public User() {
   }
 
-  public User(String id, String privilege, Long apartmentId, Boolean reminder) {
+  public User(Long id, String privilege, Long apartmentId, Boolean reminder) {
     this.id = id;
     this.privilege = privilege;
     this.apartmentId = apartmentId;
