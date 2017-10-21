@@ -19,7 +19,7 @@ public class User {
 
   private Boolean reminder;
 
-  @OneToMany (mappedBy = "id", cascade = CascadeType.ALL)
+  @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
   private List<UserNotification> userNotificationList;
 
   public User() {
