@@ -64,6 +64,8 @@
         <constraints nullable="false"></constraints>
       </column>
       <column name="user_id" type="varchar(255)">
+    </createTable>
+  </changeSet>
 
   <changeSet id="3" author="mcurlin">
 
@@ -133,6 +135,28 @@
       baseTableName="cost"
       baseColumnNames="creator_id"
       constraintName="fk_cost_app_user_id"
+      referencedTableName="app_user"
+      referencedColumnNames="id"/>
+  </changeSet>
+
+  <changeSet id="5" author="ibiskup">
+
+    <createTable tableName="snow_clearing_schedule">
+      <column name="clearing_date" type="date">
+        <constraints primaryKey="true"></constraints>
+      </column>
+      <column name="clearing_id" type="bigint">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="ask_change" type="boolean" defaultValue="false">
+        <constraints nullable="false"></constraints>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseTableName="snow_clearing_schedule"
+      baseColumnNames="clearing_id"
+      constraintName="fk_snow_clearing_schedule_user_id"
       referencedTableName="app_user"
       referencedColumnNames="id"/>
   </changeSet>
