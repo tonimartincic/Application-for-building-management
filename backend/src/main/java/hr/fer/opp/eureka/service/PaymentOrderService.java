@@ -9,5 +9,4 @@ public interface PaymentOrderService {
   List<PaymentOrder> getAll();
 
   PaymentOrder getUserById(Long id);
-
 }
