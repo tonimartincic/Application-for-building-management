@@ -40,7 +40,7 @@
        referencedColumnNames="id"/>
 
     <createTable tableName="app_user">
-      <column name="id" type="varchar(255)">
+      <column name="id" type="bigint">
         <constraints primaryKey="true"></constraints>
       </column>
       <column name="privilege" type="varchar(255)">
@@ -55,4 +55,36 @@
     </createTable>
   </changeSet>
 
+  <changeSet id="2" author="mcavalli">
+    <createTable tableName="cost">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="amount" type="decimal(20, 2)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="isUrgent" type="boolean">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="varchar(255)">
+      </column>
+      <column name="status" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="creator_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_on" type="date">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseTableName="cost"
+      baseColumnNames="creator_id"
+      constraintName="fk_cost_app_user_id"
+      referencedTableName="app_user"
+      referencedColumnNames="id"/>
+
+  </changeSet>
 </databaseChangeLog>
