@@ -1,6 +1,5 @@
 package hr.fer.opp.eureka.service.impl;
 
-
 import hr.fer.opp.eureka.domain.PaymentOrder;
 import hr.fer.opp.eureka.repository.PaymentOrderRepostiory;
 import hr.fer.opp.eureka.service.PaymentOrderService;
@@ -36,7 +35,4 @@ public class PaymentOrderImpl implements PaymentOrderService {
   public PaymentOrder getUserById(Long id) {
     return paymentOrderRepostiory.findById(id);
   }
-
-
-
 }
