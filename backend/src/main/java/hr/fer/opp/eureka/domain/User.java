@@ -1,13 +1,32 @@
 package hr.fer.opp.eureka.domain;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Data
+@Table (name = "app_user")
 public class User {
 
-  String id;
+  @Id
+  private String id;
 
-  String role;
+  private String privilege;
 
-  public User(String id, String role) {
+  private Long apartmentId;
+
+  private Boolean reminder;
+
+  public User() {
+  }
+
+  public User(String id, String privilege, Long apartmentId, Boolean reminder) {
     this.id = id;
-    this.role = role;
+    this.privilege = privilege;
+    this.apartmentId = apartmentId;
+    this.reminder = reminder;
   }
 }

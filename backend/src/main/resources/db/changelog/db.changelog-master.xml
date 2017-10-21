@@ -5,14 +5,52 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-  <changeSet id="1" author="lzugaj">
+  <changeSet id="1" author="imrsic">
 
-    <createTable tableName="absence">
-      <column name="id" type="varchar(255)">
+    <createTable tableName="building">
+      <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"/>
       </column>
-      <column name="description" type="varchar(255)">
+      <column name="address" type="varchar(255)">
         <constraints nullable="false"/>
+      </column>
+      <column name="landlord" type="varchar(255)"/>
+      <column name="funds" type="decimal"></column>
+    </createTable>
+
+    <createTable tableName="apartment">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="building_id" type="bigint">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="area" type="int">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="contact" type="varchar(255)">
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+       baseTableName="apartment"
+       baseColumnNames="building_id"
+       constraintName="fk_apartment_building_id"
+       referencedTableName="building"
+       referencedColumnNames="id"/>
+
+    <createTable tableName="app_user">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"></constraints>
+      </column>
+      <column name="privilege" type="varchar(255)">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="apartment_id" type="bigint">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="reminder" type="boolean" defaultValue="false">
+        <constraints nullable="false"></constraints>
       </column>
     </createTable>
   </changeSet>
