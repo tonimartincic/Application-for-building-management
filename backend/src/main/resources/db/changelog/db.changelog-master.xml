@@ -55,4 +55,25 @@
     </createTable>
   </changeSet>
 
+  <changeSet id="2" author="imrsic">
+    <createTable tableName="user_notification">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"></constraints>
+      </column>
+      <column name="description" type="varchar(255)">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="user_id" type="varchar(255)">
+        <constraints nullable="false"></constraints>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseTableName="user_notification"
+      baseColumnNames="user_id"
+      constraintName="fk_user_notification_user_id"
+      referencedTableName="app_user"
+      referencedColumnNames="id"/>
+  </changeSet>
+
 </databaseChangeLog>
