@@ -3,6 +3,8 @@ package hr.fer.opp.eureka.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,6 +21,9 @@ public class User {
   private Long apartmentId;
 
   private Boolean reminder;
+
+  @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
+  private List<UserNotification> userNotificationList;
 
   @OneToMany (mappedBy = "creator", cascade = CascadeType.ALL)
   private Set<Cost> costs;

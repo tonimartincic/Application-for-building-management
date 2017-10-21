@@ -55,7 +55,17 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="2" author="mcurlin">
+  <changeSet id="2" author="imrsic">
+    <createTable tableName="user_notification">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"></constraints>
+      </column>
+      <column name="description" type="varchar(255)">
+        <constraints nullable="false"></constraints>
+      </column>
+      <column name="user_id" type="varchar(255)">
+
+  <changeSet id="3" author="mcurlin">
 
     <createTable tableName="payment_order">
       <column name="id" type="bigint" autoIncrement="true">
@@ -87,9 +97,15 @@
       </column>
     </createTable>
 
+    <addForeignKeyConstraint
+      baseTableName="user_notification"
+      baseColumnNames="user_id"
+      constraintName="fk_user_notification_user_id"
+      referencedTableName="app_user"
+      referencedColumnNames="id"/>
   </changeSet>
 
-  <changeSet id="3" author="mcavalli">
+  <changeSet id="4" author="mcavalli">
     <createTable tableName="cost">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"/>
@@ -119,6 +135,5 @@
       constraintName="fk_cost_app_user_id"
       referencedTableName="app_user"
       referencedColumnNames="id"/>
-
   </changeSet>
 </databaseChangeLog>
