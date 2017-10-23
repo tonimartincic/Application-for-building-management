@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class BuildingServiceImpl implements BuildingService {
 
+  @Autowired
   BuildingRepository buildingRepository;
 
   @Autowired

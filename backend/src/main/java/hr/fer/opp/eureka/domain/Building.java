@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
 @Table(name = "building")
 public class Building {
 
@@ -31,5 +30,45 @@ public class Building {
     this.address = address;
     this.landlord = landlord;
     this.funds = funds;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getLandlord() {
+    return landlord;
+  }
+
+  public void setLandlord(String landlord) {
+    this.landlord = landlord;
+  }
+
+  public Float getFunds() {
+    return funds;
+  }
+
+  public void setFunds(Float funds) {
+    this.funds = funds;
+  }
+
+  public Set<Apartment> getApartments() {
+    return apartments;
+  }
+
+  public void setApartments(Set<Apartment> apartments) {
+    this.apartments = apartments;
   }
 }

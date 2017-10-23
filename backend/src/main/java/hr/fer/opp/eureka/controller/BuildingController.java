@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 public class BuildingController {
 
+  @Autowired
   BuildingService buildingService;
 
   @Autowired

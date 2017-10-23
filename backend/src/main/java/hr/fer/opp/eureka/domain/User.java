@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
 @Table (name = "app_user")
 public class User {
 
@@ -23,6 +22,70 @@ public class User {
   private String privilege;
 
   private Long apartmentId;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getPrivilege() {
+    return privilege;
+  }
+
+  public void setPrivilege(String privilege) {
+    this.privilege = privilege;
+  }
+
+  public Long getApartmentId() {
+    return apartmentId;
+  }
+
+  public void setApartmentId(Long apartmentId) {
+    this.apartmentId = apartmentId;
+  }
+
+  public Boolean getReminder() {
+    return reminder;
+  }
+
+  public void setReminder(Boolean reminder) {
+    this.reminder = reminder;
+  }
+
+  public List<UserNotification> getUserNotificationList() {
+    return userNotificationList;
+  }
+
+  public void setUserNotificationList(List<UserNotification> userNotificationList) {
+    this.userNotificationList = userNotificationList;
+  }
+
+  public Set<Cost> getCosts() {
+    return costs;
+  }
+
+  public void setCosts(Set<Cost> costs) {
+    this.costs = costs;
+  }
 
   private Boolean reminder;
 
