@@ -1,5 +1,6 @@
 package hr.fer.opp.eureka.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,8 +21,10 @@ public class PaymentOrder {
 
   private String description;
 
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate paymentDue;
 
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate dayOfPayment;
 
   private Long reciever;
