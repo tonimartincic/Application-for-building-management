@@ -1,4 +1,4 @@
-package hr.fer.opp.eureka.service.impl;
+package hr.fer.opp.eureka.service;
 
 import java.util.List;
 

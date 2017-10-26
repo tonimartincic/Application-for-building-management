@@ -1,8 +1,6 @@
 package hr.fer.opp.eureka.domain;
 
-
 import lombok.Data;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,17 +24,14 @@ public class Announcement {
   @JoinColumn(name ="creator")
   private User user;
 
+  public Announcement(){
+  }
+
   public Announcement( User user, Long id, LocalDate expirationDate, String content) {
     this.user=user;
     this.id = id;
     this.creationDate= LocalDate.now();
     this.expirationDate=expirationDate;
     this.content=content;
-
   }
-
-  public Announcement(){
-
-  }
-
 }

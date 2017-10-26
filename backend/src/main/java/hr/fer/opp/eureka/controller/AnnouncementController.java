@@ -1,7 +1,7 @@
 package hr.fer.opp.eureka.controller;
 
 import hr.fer.opp.eureka.domain.Announcement;
-import hr.fer.opp.eureka.service.impl.AnnouncementService;
+import hr.fer.opp.eureka.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
