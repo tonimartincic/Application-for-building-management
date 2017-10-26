@@ -3,8 +3,7 @@ import * as types from '../actions/actionTypes';
 
 export default async function getBuildingInfo () {
   try {
-    const response = await axios.get('api/buildings');
-    debugger;
+    const response = await axios.get('api/buildings/1');
     return {
       type: types.FETCH_BUILDING_INFO_SUCCESS,
       data: Object.assign(
