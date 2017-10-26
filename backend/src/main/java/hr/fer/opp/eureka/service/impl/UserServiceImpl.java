@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-  UserRepository userRepository;
+  private final UserRepository userRepository;
 
   @Autowired
   public UserServiceImpl(UserRepository userRepository) {
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User getUserById(String id) {
+  public User getUserById(Long id) {
     return userRepository.findById(id);
   }
 }
