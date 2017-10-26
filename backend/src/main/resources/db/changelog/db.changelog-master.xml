@@ -77,7 +77,33 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="3" author="mcurlin">
+  <changeSet id="3" author="lhrgovic">
+    <createTable tableName="announcement">
+      <column name="post_id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="creationDate" type="timestamp" defaultValueComputed="current_timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="expirationDate" type="timestamp">
+        <constraints nullable="true"/>
+      </column>
+      <column name="creator" type="bigint">
+      </column>
+      <column name="content" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseTableName="announcement"
+      baseColumnNames="post_id"
+      constraintName="fk_announcement_creator_id"
+      referencedTableName="app_user"
+      referencedColumnNames="id"/>
+  </changeSet>
+
+  <changeSet id="4" author="mcurlin">
     <createTable tableName="payment_order">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"/>
@@ -116,7 +142,7 @@
       referencedColumnNames="id"/>
   </changeSet>
 
-  <changeSet id="4" author="mcavalli">
+  <changeSet id="5" author="mcavalli">
     <createTable tableName="cost">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"/>
@@ -148,7 +174,7 @@
       referencedColumnNames="id"/>
   </changeSet>
 
-  <changeSet id="5" author="ibiskup">
+  <changeSet id="6" author="ibiskup">
 
     <createTable tableName="snow_clearing_schedule">
       <column name="clearing_date" type="date">
