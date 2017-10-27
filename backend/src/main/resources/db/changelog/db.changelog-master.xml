@@ -152,13 +152,13 @@
 
     <createTable tableName="snow_clearing_schedule">
       <column name="clearing_date" type="date">
-        <constraints primaryKey="true"></constraints>
+        <constraints primaryKey="true"/>
       </column>
       <column name="clearing_id" type="bigint">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
       <column name="ask_change" type="boolean" defaultValue="false">
-        <constraints nullable="false"></constraints>
+        <constraints nullable="false"/>
       </column>
     </createTable>
 
