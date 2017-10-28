@@ -1,3 +1,10 @@
+Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Ivan','Biška','ivan.biska@fer.hr','admin',1,false);
+Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Ivana','Mršić','ivana.mrsic@fer.hr','admin',2,false);
+Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Luka','Hrgović','luka.hrgovic@fer.hr','admin',3,false);
+Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Marko','Cavalli','marko.cavalli@fer.hr','admin',4,false);
+Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Marko','Ćurlin','marko.curlin@fer.hr','admin',5,false);
+Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Toni','Martinčić','toni.martincic@fer.hr','admin',6,false);
+
 Insert into building (address, landlord, funds) values ('Ilica 256', 1, 100532.52);
 Insert into building (address, landlord, funds) values ('Ožujska BB', 2, 54625.32);
 Insert into building (address, landlord, funds) values ('Savska 56', 3, 15456.23);
@@ -10,13 +17,6 @@ Insert into apartment (building_id, area, contact) values (3, 60);
 Insert into apartment (building_id, area, contact) values (1, 54);
 Insert into apartment (building_id, area, contact) values (2, 67);
 Insert into apartment (building_id, area, contact) values (4, 225.65);
-
-Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Ivan','Biška','ivan.biska@fer.hr','admin',1,false);
-Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Ivana','Mršić','ivana.mrsic@fer.hr','admin',2,false);
-Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Luka','Hrgović','luka.hrgovic@fer.hr','admin',3,false);
-Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Marko','Cavalli','marko.cavalli@fer.hr','admin',4,false);
-Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Marko','Ćurlin','marko.curlin@fer.hr','admin',5,false);
-Insert into app_user (first_name,last_name,mail,privilege,apartment_id,reminder ) values ('Toni','Martinčić','toni.martincic@fer.hr','admin',6,false);
 
 Insert into user_notification (description, user_id) values ('Sutra ste na rasporedu za čišćenje snijega',1);
 Insert into user_notification (description, user_id) values ('Niste podmirili dugovanje za prošli mjesec',2);
