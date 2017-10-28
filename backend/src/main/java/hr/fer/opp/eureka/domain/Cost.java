@@ -1,12 +1,9 @@
 package hr.fer.opp.eureka.domain;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Data
 @Table(name = "cost")
 public class Cost {
 
@@ -16,17 +13,17 @@ public class Cost {
 
   @ManyToOne
   @JoinColumn (name = "creator_id")
-  private User creator;
+  private final User creator;
 
-  private Double amount;
+  private final Double amount;
 
-  private String description;
+  private final String description;
 
   private LocalDate createdOn;
 
-  private Boolean isUrgent;
+  private final Boolean isUrgent;
 
-  private String status;
+  private final String status;
 
   public Cost(User creator, Double amount, String description, Boolean isUrgent, String status) {
     this.creator = creator;
@@ -34,5 +31,41 @@ public class Cost {
     this.description = description;
     this.isUrgent = isUrgent;
     this.status = status;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public User getCreator() {
+    return creator;
+  }
+
+  public Double getAmount() {
+    return amount;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public LocalDate getCreatedOn() {
+    return createdOn;
+  }
+
+  public void setCreatedOn(LocalDate createdOn) {
+    this.createdOn = createdOn;
+  }
+
+  public Boolean getUrgent() {
+    return isUrgent;
+  }
+
+  public String getStatus() {
+    return status;
   }
 }

@@ -1,11 +1,8 @@
 package hr.fer.opp.eureka.domain;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
-@Data
 @Table (name = "user_notification")
 public class UserNotification {
 
@@ -25,6 +22,30 @@ public class UserNotification {
   public UserNotification(Long id, String description, User user) {
     this.id = id;
     this.description = description;
+    this.user = user;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
     this.user = user;
   }
 }

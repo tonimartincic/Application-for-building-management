@@ -1,17 +1,14 @@
 package hr.fer.opp.eureka.domain;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
-@Data
 @Table (name = "apartment")
 public class Apartment {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private final Long id;
 
   @ManyToOne
   @JoinColumn (name = "owner_id")
@@ -19,13 +16,33 @@ public class Apartment {
 
   @ManyToOne
   @JoinColumn (name = "building_id")
-  private Building building;
+  private final Building building;
 
-  private Double area;
+  private final Double area;
 
   public Apartment(Long id, Building building, Double area) {
     this.id = id;
     this.building = building;
     this.area = area;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public User getOwner() {
+    return owner;
+  }
+
+  public void setOwner(User owner) {
+    this.owner = owner;
+  }
+
+  public Building getBuilding() {
+    return building;
+  }
+
+  public Double getArea() {
+    return area;
   }
 }
