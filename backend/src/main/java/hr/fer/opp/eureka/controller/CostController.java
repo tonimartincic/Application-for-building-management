@@ -2,9 +2,7 @@ package hr.fer.opp.eureka.controller;
 
 import hr.fer.opp.eureka.domain.Cost;
 import hr.fer.opp.eureka.service.CostService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +24,10 @@ public class CostController {
   public Cost getCostById(@PathVariable final Long id) {
     return this.costService.getCostById(id);
   }
+
+  @PostMapping ("/api/costs")
+  public Cost addNewCost(@RequestBody final Cost cost) {
+    return costService.addNewCost(cost);
+  }
+
 }
