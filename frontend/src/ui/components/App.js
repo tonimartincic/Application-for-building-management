@@ -5,7 +5,7 @@ import getBuildingInfo from '../../actionCreators/buildingInfoActionCreator';
 
 class App extends Component {
   componentDidMount() {
-    this.props.getBuildingInfo();
+    this.props.getBuildingInfo(1);
   }
 
   render() {
@@ -21,7 +21,7 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getBuildingInfo : () => dispatch(getBuildingInfo()),
+    getBuildingInfo : buildingId => dispatch(getBuildingInfo(buildingId)),
   };
 }
 

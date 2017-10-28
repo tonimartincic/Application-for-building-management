@@ -1,9 +1,9 @@
 import axios from 'axios';
 import * as types from '../actions/actionTypes';
 
-export default async function getBuildingInfo () {
+export default async function getBuildingInfo(buildingId) {
   try {
-    const response = await axios.get('api/buildings/1');
+    const response = await axios.get(`api/buildings/${buildingId}`);
     return {
       type: types.FETCH_BUILDING_INFO_SUCCESS,
       data: Object.assign(
