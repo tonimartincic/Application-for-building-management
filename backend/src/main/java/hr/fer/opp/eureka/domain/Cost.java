@@ -1,5 +1,7 @@
 package hr.fer.opp.eureka.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -19,6 +21,7 @@ public class Cost {
 
   private String description;
 
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate createdOn;
 
   private Boolean isUrgent;

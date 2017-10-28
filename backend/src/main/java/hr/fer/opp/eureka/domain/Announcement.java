@@ -1,5 +1,7 @@
 package hr.fer.opp.eureka.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -11,8 +13,10 @@ public class Announcement {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate creationDate;
 
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate expirationDate;
 
   private String content;
