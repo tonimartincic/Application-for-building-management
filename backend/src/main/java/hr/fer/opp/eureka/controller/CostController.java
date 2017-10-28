@@ -29,5 +29,4 @@ public class CostController {
   public Cost addNewCost(@RequestBody final Cost cost) {
     return costService.addNewCost(cost);
   }
-
 }

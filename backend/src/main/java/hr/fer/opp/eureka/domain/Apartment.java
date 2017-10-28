@@ -8,7 +8,7 @@ public class Apartment {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private final Long id;
+  private Long id;
 
   @ManyToOne
   @JoinColumn (name = "owner_id")
@@ -16,9 +16,12 @@ public class Apartment {
 
   @ManyToOne
   @JoinColumn (name = "building_id")
-  private final Building building;
+  private Building building;
 
-  private final Double area;
+  private Double area;
+
+  public Apartment() {
+  }
 
   public Apartment(Long id, Building building, Double area) {
     this.id = id;
