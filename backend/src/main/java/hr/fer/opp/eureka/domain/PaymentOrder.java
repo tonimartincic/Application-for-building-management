@@ -1,12 +1,10 @@
 package hr.fer.opp.eureka.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Data
 @Entity
 @Table (name = "payment_order")
 public class PaymentOrder {
@@ -53,6 +51,78 @@ public class PaymentOrder {
     this.payerId = payerId;
     this.payerType = payerType;
     this.receiverId = receiverId;
+    this.receiverType = receiverType;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Double getAmount() {
+    return amount;
+  }
+
+  public void setAmount(Double amount) {
+    this.amount = amount;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public LocalDate getPaymentDue() {
+    return paymentDue;
+  }
+
+  public void setPaymentDue(LocalDate paymentDue) {
+    this.paymentDue = paymentDue;
+  }
+
+  public LocalDate getDayOfPayment() {
+    return dayOfPayment;
+  }
+
+  public void setDayOfPayment(LocalDate dayOfPayment) {
+    this.dayOfPayment = dayOfPayment;
+  }
+
+  public Long getPayerId() {
+    return payerId;
+  }
+
+  public void setPayerId(Long payerId) {
+    this.payerId = payerId;
+  }
+
+  public String getPayerType() {
+    return payerType;
+  }
+
+  public void setPayerType(String payerType) {
+    this.payerType = payerType;
+  }
+
+  public Long getReceiverId() {
+    return receiverId;
+  }
+
+  public void setReceiverId(Long receiverId) {
+    this.receiverId = receiverId;
+  }
+
+  public String getReceiverType() {
+    return receiverType;
+  }
+
+  public void setReceiverType(String receiverType) {
     this.receiverType = receiverType;
   }
 }
