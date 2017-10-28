@@ -9,4 +9,8 @@ public interface CostService {
   List<Cost> getAll();
 
   Cost getById(Long id);
+
+  Cost addNewCost(Cost cost);
+
+  void handleUrgentCosts();
 }

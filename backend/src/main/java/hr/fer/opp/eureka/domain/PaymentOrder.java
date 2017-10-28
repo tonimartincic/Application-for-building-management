@@ -45,7 +45,7 @@ public class PaymentOrder {
     String payerType,
     Long receiverId,
     String receiverType) {
-
+  
     this.amount = amount;
     this.description = description;
     this.paymentDue = paymentDue;
