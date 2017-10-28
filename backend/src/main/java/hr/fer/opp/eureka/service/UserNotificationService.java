@@ -9,4 +9,6 @@ public interface UserNotificationService {
   List<UserNotification> getAllNotificationsForCurrentUser(Long userId);
 
   List<UserNotification> getAll();
+
+  UserNotification add(UserNotification userNotification);
 }

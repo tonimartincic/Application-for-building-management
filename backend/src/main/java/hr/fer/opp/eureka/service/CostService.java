@@ -10,7 +10,8 @@ public interface CostService {
 
   Cost getById(Long id);
 
-  Cost addNewCost(Cost cost);
+  Cost add(Cost cost);
 
   void handleUrgentCosts();
+
 }

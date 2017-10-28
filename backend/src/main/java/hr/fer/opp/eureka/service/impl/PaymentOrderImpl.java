@@ -28,4 +28,9 @@ public class PaymentOrderImpl implements PaymentOrderService {
   public PaymentOrder getById(Long id) {
     return paymentOrderRepository.findById(id);
   }
+
+  @Override
+  public PaymentOrder add(PaymentOrder paymentOrder) {
+    return this.paymentOrderRepository.save(paymentOrder);
+  }
 }

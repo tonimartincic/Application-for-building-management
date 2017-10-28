@@ -33,6 +33,11 @@ public class SnowClearingScheduleServiceImpl implements SnowClearingScheduleServ
   }
 
   @Override
+  public SnowClearingSchedule add(SnowClearingSchedule snowClearingSchedule) {
+    return this.snowClearingScheduleRepository.save(snowClearingSchedule);
+  }
+
+  @Override
   public void createSchedule(LocalDate from, LocalDate to) {
     List<SnowClearingSchedule> snowClearingSchedules = new ArrayList<>();
     List<User> userList = new ArrayList<>();

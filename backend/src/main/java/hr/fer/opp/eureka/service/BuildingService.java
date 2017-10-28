@@ -9,4 +9,6 @@ public interface BuildingService {
   List<Building> getAll();
 
   Building getById(Long id);
+
+  Building add(Building building);
 }

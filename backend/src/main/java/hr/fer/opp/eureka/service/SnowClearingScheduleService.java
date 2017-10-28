@@ -10,4 +10,6 @@ public interface SnowClearingScheduleService {
   List<SnowClearingSchedule> getAll();
 
   void createSchedule(LocalDate from, LocalDate to);
+
+  SnowClearingSchedule add(SnowClearingSchedule snowClearingSchedule);
 }
