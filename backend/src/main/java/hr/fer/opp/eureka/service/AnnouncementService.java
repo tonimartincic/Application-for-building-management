@@ -1,13 +1,13 @@
 package hr.fer.opp.eureka.service;
 
-import java.util.List;
-
 import hr.fer.opp.eureka.domain.Announcement;
+
+import java.util.List;
 
 public interface AnnouncementService {
 
   List<Announcement> getAll();
 
-  Announcement getUserById(Long id);
+  Announcement getById(Long id);
 
 }

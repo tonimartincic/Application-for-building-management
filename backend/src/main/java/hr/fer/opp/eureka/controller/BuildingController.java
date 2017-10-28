@@ -12,10 +12,10 @@ import java.util.List;
 @RestController
 public class BuildingController {
 
-  BuildingService buildingService;
+  private final BuildingService buildingService;
 
   @Autowired
-  public BuildingController(BuildingService buildingService) {
+  public BuildingController(final BuildingService buildingService) {
     this.buildingService = buildingService;
   }
 

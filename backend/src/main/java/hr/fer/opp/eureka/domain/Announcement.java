@@ -1,9 +1,9 @@
 package hr.fer.opp.eureka.domain;
 
 import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -27,11 +27,11 @@ public class Announcement {
   public Announcement(){
   }
 
-  public Announcement( User user, Long id, LocalDate expirationDate, String content) {
-    this.user=user;
+  public Announcement(User user, Long id, LocalDate expirationDate, String content) {
+    this.user = user;
     this.id = id;
-    this.creationDate= LocalDate.now();
-    this.expirationDate=expirationDate;
-    this.content=content;
+    creationDate = LocalDate.now();
+    this.expirationDate = expirationDate;
+    this.content = content;
   }
 }

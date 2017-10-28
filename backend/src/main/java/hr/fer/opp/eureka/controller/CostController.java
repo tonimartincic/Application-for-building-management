@@ -17,12 +17,12 @@ public class CostController {
   
   @GetMapping("/api/costs")
   public List<Cost> getAllCosts() {
-    return this.costService.getAll();
+    return costService.getAll();
   }
 
   @GetMapping ("/api/costs/{id}")
-  public Cost getCostById(@PathVariable final Long id) {
-    return this.costService.getCostById(id);
+  public Cost getCostById(@PathVariable Long id) {
+    return costService.getById(id);
   }
 
   @PostMapping ("/api/costs")

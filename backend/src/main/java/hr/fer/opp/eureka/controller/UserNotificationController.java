@@ -12,20 +12,20 @@ import java.util.List;
 @RestController
 public class UserNotificationController {
 
-  UserNotificationService userNotificationService;
+  private final UserNotificationService userNotificationService;
 
   @Autowired
   public UserNotificationController(UserNotificationService userNotificationService) {
     this.userNotificationService = userNotificationService;
   }
 
-  @GetMapping ("/api/notfications")
+  @GetMapping ("/api/user-notifications")
   public List<UserNotification> getAllNotifications() {
     return userNotificationService.getAll();
   }
 
-  @GetMapping ("/api/notifications/{id}")
-  public List<UserNotification> getAllNotificationsForUser (@PathVariable final String id) {
+  @GetMapping ("/api/user-notifications/{id}")
+  public List<UserNotification> getAllNotificationsForUser (@PathVariable Long id) {
     return userNotificationService.getAllNotificationsForCurrentUser(id);
   }
 }

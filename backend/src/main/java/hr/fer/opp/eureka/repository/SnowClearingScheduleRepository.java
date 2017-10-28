@@ -7,5 +7,5 @@ import java.time.LocalDate;
 
 public interface SnowClearingScheduleRepository extends CrudRepository<SnowClearingSchedule, Long> {
 
-  SnowClearingSchedule findByClearing_date(LocalDate date);
+  SnowClearingSchedule findByClearingDate(LocalDate date);
 }

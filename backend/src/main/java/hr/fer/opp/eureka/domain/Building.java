@@ -16,7 +16,9 @@ public class Building {
 
   private String address;
 
-  private String landlord;
+  @ManyToOne
+  @JoinColumn (name = "landlord")
+  private User landlord;
 
   private Float funds;
 
@@ -26,7 +28,7 @@ public class Building {
   public Building() {
   }
 
-  public Building(Long id, String address, String landlord, Float funds) {
+  public Building(Long id, String address, User landlord, Float funds) {
     this.id = id;
     this.address = address;
     this.landlord = landlord;
