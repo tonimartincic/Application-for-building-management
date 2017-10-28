@@ -22,6 +22,8 @@ public class User {
 
   private String lastName;
 
+  private String mail;
+
   private String privilege;
 
   private Boolean reminder;
@@ -45,12 +47,14 @@ public class User {
     Long id,
     String firstName,
     String lastName,
+    String mail,
     String privilege,
     Boolean reminder) {
 
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.mail=mail;
     this.privilege = privilege;
     this.reminder = reminder;
   }
