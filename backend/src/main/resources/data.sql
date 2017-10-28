@@ -44,11 +44,11 @@ Insert into payment_order (amount, payer, description, payment_due, day_of_payme
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
 150000.23, true, 'popravak krova', 'odabir ponude', 1, parsedatetime('01.12.15', 'dd.MM.yy'));
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
-250.65, true, 'troškovi čišćenja', 'plaćeno', 2, parsedatetime('28.09.17', 'dd.MM.yy'));
+250.65, false, 'troškovi čišćenja', 'plaćeno', 2, parsedatetime('28.09.17', 'dd.MM.yy'));
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
-75.45, true, 'uvođenje video nadzora', 'odabir ponude', 1, parsedatetime('01.01.15', 'dd.MM.yy'));
+75.45, false, 'uvođenje video nadzora', 'odabir ponude', 1, parsedatetime('01.01.15', 'dd.MM.yy'));
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
-150000.65, true, 'redovan servis dizala', 'skupljanje sredstava', 1, parsedatetime('08.06.16', 'dd.MM.yy'));
+150000.65, false, 'redovan servis dizala', 'skupljanje sredstava', 1, parsedatetime('08.06.16', 'dd.MM.yy'));
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
 150000.65, true, 'nova garažna vrata', 'sredstva skupljena', 1, parsedatetime('02.08.16', 'dd.MM.yy'));
 
