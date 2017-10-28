@@ -123,10 +123,10 @@
       <column name="day_of_payment" type="date">
         <constraints nullable="true"/>
       </column>
-      <column name="reciever" type="bigint">
+      <column name="receiver" type="bigint">
         <constraints nullable="false"/>
       </column>
-      <column name="reciever_type" type="varchar(255)">
+      <column name="receiver_type" type="varchar(255)">
         <constraints nullable="false"/>
       </column>
       <column name="payer_type" type="varchar(255)">
