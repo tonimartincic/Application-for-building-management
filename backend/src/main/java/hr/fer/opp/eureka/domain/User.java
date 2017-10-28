@@ -3,7 +3,6 @@ package hr.fer.opp.eureka.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-
 import java.util.List;
 import java.util.Set;
 
@@ -14,6 +13,9 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  private Set<Announcement> announcementSet;
 
   private String firstName;
 

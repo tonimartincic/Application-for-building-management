@@ -98,7 +98,7 @@ public class PaymentOrder {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate dayOfPayment;
 
-  private Long reciever;
+  private Long receiver;
 
   private String payerType;
 
@@ -107,13 +107,13 @@ public class PaymentOrder {
   public PaymentOrder() {
   }
 
-  public PaymentOrder(Double amount, Long payer, String description, LocalDate paymentDue, LocalDate dayOfPayment, Long reciever, String payerType, String receiverType) {
+  public PaymentOrder(Double amount, Long payer, String description, LocalDate paymentDue, LocalDate dayOfPayment, Long receiver, String payerType, String receiverType) {
     this.amount = amount;
     this.payer = payer;
     this.description = description;
     this.paymentDue = paymentDue;
     this.dayOfPayment = dayOfPayment;
-    this.reciever = reciever;
+    this.receiver = receiver;
     this.payerType = payerType;
     this.receiverType = receiverType;
   }

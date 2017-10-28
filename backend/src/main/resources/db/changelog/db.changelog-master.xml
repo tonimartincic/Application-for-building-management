@@ -77,7 +77,33 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="3" author="mcurlin">
+  <changeSet id="3" author="lhrgovic">
+    <createTable tableName="announcement">
+      <column name="post_id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="creationDate" type="timestamp" defaultValueComputed="current_timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="expirationDate" type="timestamp">
+        <constraints nullable="true"/>
+      </column>
+      <column name="creator" type="bigint">
+      </column>
+      <column name="content" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseTableName="announcement"
+      baseColumnNames="post_id"
+      constraintName="fk_announcement_creator_id"
+      referencedTableName="app_user"
+      referencedColumnNames="id"/>
+  </changeSet>
+
+  <changeSet id="4" author="mcurlin">
     <createTable tableName="payment_order">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"/>
@@ -97,10 +123,10 @@
       <column name="day_of_payment" type="date">
         <constraints nullable="true"/>
       </column>
-      <column name="reciever" type="bigint">
+      <column name="receiver" type="bigint">
         <constraints nullable="false"/>
       </column>
-      <column name="reciever_type" type="varchar(255)">
+      <column name="receiver_type" type="varchar(255)">
         <constraints nullable="false"/>
       </column>
       <column name="payer_type" type="varchar(255)">
@@ -116,7 +142,7 @@
       referencedColumnNames="id"/>
   </changeSet>
 
-  <changeSet id="4" author="mcavalli">
+  <changeSet id="5" author="mcavalli">
     <createTable tableName="cost">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"/>
@@ -144,6 +170,28 @@
       baseTableName="cost"
       baseColumnNames="creator_id"
       constraintName="fk_cost_app_user_id"
+      referencedTableName="app_user"
+      referencedColumnNames="id"/>
+  </changeSet>
+
+  <changeSet id="6" author="ibiskup">
+
+    <createTable tableName="snow_clearing_schedule">
+      <column name="clearing_date" type="date">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="clearing_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ask_change" type="boolean" defaultValue="false">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint
+      baseTableName="snow_clearing_schedule"
+      baseColumnNames="clearing_id"
+      constraintName="fk_snow_clearing_schedule_user_id"
       referencedTableName="app_user"
       referencedColumnNames="id"/>
   </changeSet>
