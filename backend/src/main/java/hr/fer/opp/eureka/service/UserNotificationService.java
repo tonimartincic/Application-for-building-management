@@ -6,8 +6,7 @@ import java.util.List;
 
 public interface UserNotificationService {
 
-  List<UserNotification> getAllNotificationsForCurrentUser(String userId);
+  List<UserNotification> getAllNotificationsForCurrentUser(Long userId);
 
   List<UserNotification> getAll();
-
 }

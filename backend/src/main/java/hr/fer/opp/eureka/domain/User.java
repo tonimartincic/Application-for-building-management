@@ -24,8 +24,6 @@ public class User {
 
   private String privilege;
 
-  private Long apartmentId;
-
   private Boolean reminder;
 
   @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
@@ -33,6 +31,12 @@ public class User {
 
   @OneToMany (mappedBy = "creator", cascade = CascadeType.ALL)
   private Set<Cost> costs;
+
+  @OneToMany (mappedBy = "landlord", cascade = CascadeType.ALL)
+  private Set<Building> buildings;
+
+  @OneToMany (mappedBy = "owner", cascade = CascadeType.ALL)
+  private Set<Apartment> apartments;
 
   public User() {
   }
@@ -42,14 +46,12 @@ public class User {
     String firstName,
     String lastName,
     String privilege,
-    Long apartmentId,
     Boolean reminder) {
 
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.privilege = privilege;
-    this.apartmentId = apartmentId;
     this.reminder = reminder;
   }
 }

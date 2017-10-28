@@ -6,8 +6,7 @@ import java.util.List;
 
 public interface ApartmentService {
 
-  Apartment getById(Long id);
-
   List<Apartment> getAll();
 
+  Apartment getById(Long id);
 }

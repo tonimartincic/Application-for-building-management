@@ -16,7 +16,7 @@ public class AnnouncementController {
 
   @Autowired
   public AnnouncementController(AnnouncementService announcementService){
-    this.announcementService=announcementService;
+    this.announcementService = announcementService;
   }
 
   @GetMapping("/api/announcements")
@@ -25,8 +25,7 @@ public class AnnouncementController {
   }
 
   @GetMapping("api/announcements/{id}")
-  public Announcement getAnnouncementById(@PathVariable final Long id){
-    return this.announcementService.getUserById(id);
+  public Announcement getAnnouncementById(@PathVariable Long id){
+    return announcementService.getById(id);
   }
-
 }

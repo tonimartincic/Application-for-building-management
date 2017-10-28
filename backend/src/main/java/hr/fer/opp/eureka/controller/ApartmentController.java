@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 public class ApartmentController {
 
-  ApartmentService apartmentService;
+  private final ApartmentService apartmentService;
 
   @Autowired
   public ApartmentController(ApartmentService apartmentService) {
@@ -20,12 +20,12 @@ public class ApartmentController {
   }
 
   @GetMapping("/api/apartments")
-  public List<Apartment> getAllBuildings() {
-    return this.apartmentService.getAll();
+  public List<Apartment> getAllApartments() {
+    return apartmentService.getAll();
   }
 
   @GetMapping ("/api/apartments/{id}")
-  public Apartment getApartmentById(@PathVariable final Long id) {
-    return this.apartmentService.getById(id);
+  public Apartment getApartmentById(@PathVariable Long id) {
+    return apartmentService.getById(id);
   }
 }

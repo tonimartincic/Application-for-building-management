@@ -1,5 +1,6 @@
 package hr.fer.opp.eureka.service.impl;
 
+import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.SnowClearingSchedule;
 import hr.fer.opp.eureka.domain.User;
 import hr.fer.opp.eureka.repository.SnowClearingScheduleRepository;
@@ -17,6 +18,7 @@ import java.util.List;
 public class SnowClearingScheduleServiceImpl implements SnowClearingScheduleService {
 
   private final SnowClearingScheduleRepository snowClearingScheduleRepository;
+
   private final UserRepository userRepository;
 
   @Autowired
@@ -27,14 +29,7 @@ public class SnowClearingScheduleServiceImpl implements SnowClearingScheduleServ
 
   @Override
   public List<SnowClearingSchedule> getAll() {
-    List<SnowClearingSchedule> temp = new ArrayList<>();
-    Iterable<SnowClearingSchedule> allSnowClearingSchedule = snowClearingScheduleRepository.findAll();
-
-    for (SnowClearingSchedule scs : allSnowClearingSchedule) {
-      temp.add(scs);
-    }
-
-    return temp;
+    return Lists.newArrayList(snowClearingScheduleRepository.findAll());
   }
 
   @Override

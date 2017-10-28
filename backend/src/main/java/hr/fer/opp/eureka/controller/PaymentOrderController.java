@@ -25,7 +25,7 @@ public class PaymentOrderController {
   }
 
   @GetMapping ("api/payment-orders/{id}")
-  public PaymentOrder getPaymentOrderById(@PathVariable final Long id) {
-    return this.paymentOrderService.getUserById(id);
+  public PaymentOrder getPaymentOrderById(@PathVariable Long id) {
+    return paymentOrderService.getById(id);
   }
 }

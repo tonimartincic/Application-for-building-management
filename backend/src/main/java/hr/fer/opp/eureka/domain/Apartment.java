@@ -14,17 +14,18 @@ public class Apartment {
   private Long id;
 
   @ManyToOne
+  @JoinColumn (name = "owner_id")
+  private User owner;
+
+  @ManyToOne
   @JoinColumn (name = "building_id")
   private Building building;
 
-  private Integer area;
+  private Double area;
 
-  private String contact;
-
-  public Apartment(Long id, Building building, Integer area, String contact) {
+  public Apartment(Long id, Building building, Double area) {
     this.id = id;
     this.building = building;
     this.area = area;
-    this.contact = contact;
   }
 }
