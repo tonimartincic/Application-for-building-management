@@ -1,5 +1,5 @@
 Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Ivan','Biška','ivan.biska@fer.hr','admin',false);
-Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Ivana','Mršić','ivana.mrsic@fer.hr','admin',false);
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivana','Mršić','ivana.mrsic@fer.hr','admin',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Luka','Hrgović','luka.hrgovic@fer.hr','admin',false);
 Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Marko','Cavalli','marko.cavalli@fer.hr','admin',false);
 Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Marko','Ćurlin','marko.curlin@fer.hr','admin',false);

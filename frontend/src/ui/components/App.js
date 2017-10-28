@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Button} from 'react-bootstrap';
+import NavigationBar from './NavigationBar';
+
 class App extends Component {
   render() {
-    return <Button>
-                   App </Button>
+    return (
+    <div>
+        <NavigationBar/>
+    </div>
+    )
   }
 }
 

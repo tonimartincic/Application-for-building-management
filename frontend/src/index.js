@@ -6,6 +6,7 @@ import NavigationBar from './ui/components/NavigationBar';
 import App from './ui/components/App';
 import FirstComponent from './ui/components/FirstComponent';
 import SecondComponent from 'ui/components/SecondComponent';
+import Login from './ui/components/Login';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
@@ -14,10 +15,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <div>
-          <NavigationBar />
-        </div>
-        <Route exact path='/' component={App} />
+        <Route exact path='/' component={Login} />
+        <Route path ='/app' component={App}/>
         <Route path='/first-page' component={FirstComponent} />
         <Route path='/second-page' component={SecondComponent} />
       </div>

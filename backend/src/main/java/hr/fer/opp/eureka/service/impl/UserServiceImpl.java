@@ -28,4 +28,9 @@ public class UserServiceImpl implements UserService {
   public User getById(Long id) {
     return userRepository.findById(id);
   }
+
+  @Override
+  public User validateUser(String mail, String password) {
+    return userRepository.findByMailAndPassword(mail, password);
+  }
 }

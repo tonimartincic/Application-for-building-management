@@ -20,8 +20,8 @@ class NavigationBar extends Component {
         <Nav className={styles.navCenter}>
           <NavItem
             componentClass={Link}
-            to='/'
-            href='/'
+            to='/app'
+            href='/app'
           >
             <span className={styles.span}>
               Oglasna ploča
