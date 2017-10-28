@@ -54,7 +54,7 @@ public class User {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.mail=mail;
+    this.mail = mail;
     this.privilege = privilege;
     this.reminder = reminder;
   }
