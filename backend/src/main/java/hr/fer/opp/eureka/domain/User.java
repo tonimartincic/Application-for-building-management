@@ -1,5 +1,7 @@
 package hr.fer.opp.eureka.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -12,9 +14,6 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-  private Set<Announcement> announcementSet;
-
   private String firstName;
 
   private String lastName;
@@ -25,16 +24,24 @@ public class User {
 
   private Boolean reminder;
 
-  @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
+  @JsonIgnore
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  private Set<Announcement> announcementSet;
+
+  @JsonIgnore
+  @OneToMany (mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<UserNotification> userNotificationList;
 
-  @OneToMany (mappedBy = "creator", cascade = CascadeType.ALL)
+  @JsonIgnore
+  @OneToMany (mappedBy = "creator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<Cost> costs;
 
-  @OneToMany (mappedBy = "landlord", cascade = CascadeType.ALL)
+  @JsonIgnore
+  @OneToMany (mappedBy = "landlord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<Building> buildings;
 
-  @OneToMany (mappedBy = "owner", cascade = CascadeType.ALL)
+  @JsonIgnore
+  @OneToMany (mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<Apartment> apartments;
 
   public User() {
@@ -54,6 +61,7 @@ public class User {
     this.mail=mail;
     this.privilege = privilege;
     this.reminder = reminder;
+    this.mail = mail;
   }
 
   public Long getId() {

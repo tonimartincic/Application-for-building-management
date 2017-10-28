@@ -1,5 +1,8 @@
 package hr.fer.opp.eureka.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -19,6 +22,11 @@ public class Building {
 
   private Float funds;
 
+  @JsonIgnore
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  private Set<Announcement> announcementSet;
+
+  @JsonIgnore
   @OneToMany (mappedBy = "id", cascade = CascadeType.ALL)
   private Set<Apartment> apartments;
 
