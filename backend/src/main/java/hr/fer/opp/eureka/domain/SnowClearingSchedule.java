@@ -11,13 +11,16 @@ public class SnowClearingSchedule {
 
   @Id
   @JsonFormat(pattern = "dd-MM-yyyy")
-  private final LocalDate clearingDate;
+  private LocalDate clearingDate;
 
   @ManyToOne
   @JoinColumn(name = "clearing_id")
-  private final User user;
+  private User user;
 
-  private final Boolean askChange;
+  private Boolean askChange;
+
+  public SnowClearingSchedule() {
+  }
 
   public SnowClearingSchedule(LocalDate clearingDate, User user, Boolean askChange) {
     this.clearingDate = clearingDate;

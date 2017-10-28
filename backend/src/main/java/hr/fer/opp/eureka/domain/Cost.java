@@ -13,17 +13,20 @@ public class Cost {
 
   @ManyToOne
   @JoinColumn (name = "creator_id")
-  private final User creator;
+  private User creator;
 
-  private final Double amount;
+  private Double amount;
 
-  private final String description;
+  private String description;
 
   private LocalDate createdOn;
 
-  private final Boolean isUrgent;
+  private Boolean isUrgent;
 
-  private final String status;
+  private String status;
+
+  public Cost() {
+  }
 
   public Cost(User creator, Double amount, String description, Boolean isUrgent, String status) {
     this.creator = creator;
