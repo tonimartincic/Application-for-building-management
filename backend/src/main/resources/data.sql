@@ -11,12 +11,24 @@ Insert into building (address, landlord, funds) values ('Savska 56', 3, 15456.23
 Insert into building (address, landlord, funds) values ('Vukovarska 1a', 4, -5947.65);
 Insert into building (address, landlord, funds) values ('Lastovska 23', 4, 15.01);
 
+<<<<<<< HEAD
 Insert into apartment (building_id, area, contact) values (1, 25.23);
 Insert into apartment (building_id, area, contact) values (2, 56.50);
 Insert into apartment (building_id, area, contact) values (3, 60);
 Insert into apartment (building_id, area, contact) values (1, 54);
 Insert into apartment (building_id, area, contact) values (2, 67);
 Insert into apartment (building_id, area, contact) values (4, 225.65);
+=======
+
+Insert into apartment (building_id, area) values (1, 25.23);
+Insert into apartment (building_id, area) values (2, 56.50);
+Insert into apartment (building_id, area) values (3, 60);
+Insert into apartment (building_id, area) values (1, 54);
+Insert into apartment (building_id, area) values (2, 67);
+Insert into apartment (building_id, area) values (4, 225.65);
+
+
+>>>>>>> 10f35bbf27f6a8cfbdcf51a11f00d993920a3085
 
 Insert into user_notification (description, user_id) values ('Sutra ste na rasporedu za čišćenje snijega',1);
 Insert into user_notification (description, user_id) values ('Niste podmirili dugovanje za prošli mjesec',2);
@@ -44,11 +56,11 @@ Insert into payment_order (amount, payer, description, payment_due, day_of_payme
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
 150000.23, true, 'popravak krova', 'odabir ponude', 1, parsedatetime('01.12.15', 'dd.MM.yy'));
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
-250.65, true, 'troškovi čišćenja', 'plaćeno', 2, parsedatetime('28.09.17', 'dd.MM.yy'));
+250.65, false, 'troškovi čišćenja', 'plaćeno', 2, parsedatetime('28.09.17', 'dd.MM.yy'));
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
-75.45, true, 'uvođenje video nadzora', 'odabir ponude', 1, parsedatetime('01.01.15', 'dd.MM.yy'));
+75.45, false, 'uvođenje video nadzora', 'odabir ponude', 1, parsedatetime('01.01.15', 'dd.MM.yy'));
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
-150000.65, true, 'redovan servis dizala', 'skupljanje sredstava', 1, parsedatetime('08.06.16', 'dd.MM.yy'));
+150000.65, false, 'redovan servis dizala', 'skupljanje sredstava', 1, parsedatetime('08.06.16', 'dd.MM.yy'));
 Insert into cost (amount, isUrgent, description, status, creator_id, created_on) values (
 150000.65, true, 'nova garažna vrata', 'sredstva skupljena', 1, parsedatetime('02.08.16', 'dd.MM.yy'));
 
