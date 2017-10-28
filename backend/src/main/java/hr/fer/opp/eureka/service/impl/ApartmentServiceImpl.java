@@ -29,4 +29,9 @@ public class ApartmentServiceImpl implements ApartmentService {
   public Apartment getById(Long id) {
     return apartmentRepository.findById(id);
   }
+
+  @Override
+  public Apartment add(Apartment apartment) {
+    return this.apartmentRepository.save(apartment);
+  }
 }

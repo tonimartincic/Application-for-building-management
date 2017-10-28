@@ -9,4 +9,6 @@ public interface PaymentOrderService {
   List<PaymentOrder> getAll();
 
   PaymentOrder getById(Long id);
+
+  PaymentOrder add(PaymentOrder paymentOrder);
 }

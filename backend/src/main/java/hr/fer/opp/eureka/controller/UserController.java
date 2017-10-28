@@ -3,9 +3,7 @@ package hr.fer.opp.eureka.controller;
 import hr.fer.opp.eureka.domain.User;
 import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,10 @@ public class UserController {
   @GetMapping ("/api/users/{id}")
   public User getUserById(@PathVariable Long id) {
     return userService.getById(id);
+  }
+
+  @PostMapping("/api/users")
+  public User addNewUser(@RequestBody final User user) {
+    return userService.add(user);
   }
 }

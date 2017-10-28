@@ -27,6 +27,6 @@ public class CostController {
 
   @PostMapping ("/api/costs")
   public Cost addNewCost(@RequestBody final Cost cost) {
-    return costService.addNewCost(cost);
+    return costService.add(cost);
   }
 }

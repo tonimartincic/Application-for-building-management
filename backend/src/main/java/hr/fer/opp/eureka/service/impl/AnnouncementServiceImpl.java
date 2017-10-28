@@ -28,4 +28,10 @@ public class AnnouncementServiceImpl implements AnnouncementService {
   public Announcement getById(Long id) {
     return announcementRepository.findById(id);
   }
+
+  @Override
+  public Announcement add(Announcement announcement) {
+    return this.announcementRepository.save(announcement);
+  }
+
 }

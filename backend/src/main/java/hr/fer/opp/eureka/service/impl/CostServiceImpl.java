@@ -31,7 +31,7 @@ public class CostServiceImpl implements CostService {
   }
 
   @Override
-  public Cost addNewCost(Cost cost) {
+  public Cost add(Cost cost) {
     /*if(cost.getIsUrgent()==true){//dodaj u hitne troskove
       cost.setStatus("U obradi.");
       handleUrgentCosts();
