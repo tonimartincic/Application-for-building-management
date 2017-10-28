@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import fetchAnnouncements from '../../actionCreators/announcementsActionCreators';
 import Announcement from "./Announcement";
+import {Col, Grid, Row} from 'react-bootstrap';
 
 class AnnouncementBoard extends Component {
   componentDidMount() {
@@ -11,14 +12,18 @@ class AnnouncementBoard extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.announcements.map((announcement, index) => (
-          <Announcement
-            key={index}
-            announcement={announcement}
-          />
-        ))}
-      </div>
+      <Grid>
+        <Row>
+          <Col md={8} mdOffset={2}>
+            {this.props.announcements.map((announcement, index) => (
+              <Announcement
+                key={index}
+                announcement={announcement}
+              />
+            ))}
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }
