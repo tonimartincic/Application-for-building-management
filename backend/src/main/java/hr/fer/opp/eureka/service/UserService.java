@@ -11,4 +11,6 @@ public interface UserService {
   User getById(Long id);
 
   User validateUser(String mail, String password);
+
+  User add(User user);
 }

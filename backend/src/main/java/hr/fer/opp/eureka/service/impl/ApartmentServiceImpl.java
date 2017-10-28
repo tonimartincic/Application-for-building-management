@@ -21,11 +21,17 @@ public class ApartmentServiceImpl implements ApartmentService {
 
   @Override
   public List<Apartment> getAll() {
-    return Lists.newArrayList(apartmentRepository.findAll());
+    List<Apartment> apartments = Lists.newArrayList(apartmentRepository.findAll());
+    return apartments;
   }
 
   @Override
   public Apartment getById(Long id) {
     return apartmentRepository.findById(id);
+  }
+
+  @Override
+  public Apartment add(Apartment apartment) {
+    return this.apartmentRepository.save(apartment);
   }
 }

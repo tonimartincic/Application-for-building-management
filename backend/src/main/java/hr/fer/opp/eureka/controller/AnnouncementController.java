@@ -1,11 +1,10 @@
 package hr.fer.opp.eureka.controller;
 
 import hr.fer.opp.eureka.domain.Announcement;
+import hr.fer.opp.eureka.domain.Cost;
 import hr.fer.opp.eureka.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +26,10 @@ public class AnnouncementController {
   @GetMapping("api/announcements/{id}")
   public Announcement getAnnouncementById(@PathVariable Long id){
     return announcementService.getById(id);
+  }
+
+  @PostMapping("/api/announcements")
+  public Announcement addNewAnnouncement(@RequestBody final Announcement announcement) {
+    return announcementService.add(announcement);
   }
 }

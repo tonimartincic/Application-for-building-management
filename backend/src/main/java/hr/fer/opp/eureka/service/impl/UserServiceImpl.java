@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
   public User validateUser(String mail, String password) {
     return userRepository.findByMailAndPassword(mail, password);
   }
+
+  @Override
+  public User add(User user) {
+    return this.userRepository.save(user);
+  }
 }

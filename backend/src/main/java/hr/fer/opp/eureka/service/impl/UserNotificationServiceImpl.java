@@ -34,4 +34,9 @@ public class UserNotificationServiceImpl implements UserNotificationService {
     User user = userRepository.findById(userId);
     return userNotificationRepository.findByUser(user);
   }
+
+  @Override
+  public UserNotification add(UserNotification userNotification) {
+    return this.userNotificationRepository.save(userNotification);
+  }
 }

@@ -3,9 +3,7 @@ package hr.fer.opp.eureka.controller;
 import hr.fer.opp.eureka.domain.Building;
 import hr.fer.opp.eureka.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,10 @@ public class BuildingController {
   @GetMapping ("/api/buildings/{id}")
   public Building getBuildingById(@PathVariable final Long id) {
     return this.buildingService.getById(id);
+  }
+
+  @PostMapping("/api/buildings")
+  public Building addNewBuilding(@RequestBody final Building building) {
+    return buildingService.add(building);
   }
 }
