@@ -13,7 +13,7 @@
       <column name="address" type="varchar(255)">
         <constraints nullable="false"/>
       </column>
-      <column name="landlord" type="varchar(255)"/>
+      <column name="landlord" type="bigint"/>
       <column name="funds" type="decimal"/>
     </createTable>
 
@@ -24,10 +24,8 @@
       <column name="building_id" type="bigint">
         <constraints nullable="false"/>
       </column>
-      <column name="area" type="int">
+      <column name="area" type="decimal">
         <constraints nullable="false"/>
-      </column>
-      <column name="contact" type="varchar(255)">
       </column>
     </createTable>
 
@@ -71,7 +69,7 @@
       <column name="description" type="varchar(255)">
         <constraints nullable="false"/>
       </column>
-      <column name="user_id" type="varchar(255)">
+      <column name="user_id" type="bigint">
         <constraints nullable="false"/>
       </column>
     </createTable>
@@ -82,10 +80,10 @@
       <column name="post_id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"/>
       </column>
-      <column name="creationDate" type="timestamp" defaultValueComputed="current_timestamp">
+      <column name="creationDate" type="date">
         <constraints nullable="false"/>
       </column>
-      <column name="expirationDate" type="timestamp">
+      <column name="expirationDate" type="date">
         <constraints nullable="true"/>
       </column>
       <column name="creator" type="bigint">
@@ -180,7 +178,7 @@
       <column name="clearing_date" type="date">
         <constraints primaryKey="true"/>
       </column>
-      <column name="clearing_id" type="bigint">
+      <column name="user_id" type="bigint">
         <constraints nullable="false"/>
       </column>
       <column name="ask_change" type="boolean" defaultValue="false">
@@ -190,7 +188,7 @@
 
     <addForeignKeyConstraint
       baseTableName="snow_clearing_schedule"
-      baseColumnNames="clearing_id"
+      baseColumnNames="user_id"
       constraintName="fk_snow_clearing_schedule_user_id"
       referencedTableName="app_user"
       referencedColumnNames="id"/>
