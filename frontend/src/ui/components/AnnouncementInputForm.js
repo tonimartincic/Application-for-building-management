@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Col, Grid, Row, Button, Well} from 'react-bootstrap';
-import DatePicker from 'react-bootstrap-date-picker';
+import {Button, Col, Grid, Row, Well} from 'react-bootstrap';
 import styles from './announcementInputForm.css';
-import * as constants from '../../constants/values';
 
 class AnnouncementInputForm extends Component {
   constructor(props) {
@@ -18,19 +16,11 @@ class AnnouncementInputForm extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  onChangeExpirationDate = (value) => {
-    this.setState({
-      expirationDate: value,
-    });
-  };
-
-
   handleSubmit(event) {
     event.preventDefault();
 
     this.props.setEditAbsenceButtonClicked(this.state.selectedAbsence.id, false);
   }
-
 
   handleChange = (event) => {
     this.setState({
@@ -43,7 +33,6 @@ class AnnouncementInputForm extends Component {
       content: '',
     });
   }
-
 
   render() {
     return (
@@ -61,15 +50,6 @@ class AnnouncementInputForm extends Component {
                     type='text'
                     value={this.state.content}
                     onChange={this.handleChange}
-                  />
-
-                  <DatePicker
-                    value={this.state.expirationDate}
-                    dateFormat='DD-MM-YYYY'
-                    weekStartsOn={1}
-                    dayLabels={constants.datePickerDayNames}
-                    monthLabels={constants.monthNames}
-                    onChange={this.onChangeExpirationDate}
                   />
 
                   <section className={styles.sectionButtons}>
@@ -96,4 +76,3 @@ class AnnouncementInputForm extends Component {
 }
 
 export default AnnouncementInputForm;
-
