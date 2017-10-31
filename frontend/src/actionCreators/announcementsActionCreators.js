@@ -16,3 +16,24 @@ export default async function fetchAnnouncements() {
     };
   }
 }
+
+export async function addNewAnnouncement(content, expirationDate) {
+  try {
+    const announcement =  {
+      content: content,
+      expirationDate: expirationDate
+    }
+
+    const response = await axios.post('/api/announcements', announcement);
+
+    return {
+      type: types.ADD_NEW_ANNOUNCEMENTS_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.ADD_NEW_ANNOUNCEMENTS_FAILURE,
+      data: err,
+    };
+  }
+}

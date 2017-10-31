@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import {Col, Grid, Row} from 'react-bootstrap';
 import fetchAnnouncements from '../../actionCreators/announcementsActionCreators';
 import Announcement from "./Announcement";
-import {Col, Grid, Row} from 'react-bootstrap';
+import AnnouncementInputForm from "./AnnouncementInputForm";
+import * as dateUtil from '../../utils/DateUtil';
 
 class AnnouncementBoard extends Component {
   componentDidMount() {
@@ -18,10 +20,20 @@ class AnnouncementBoard extends Component {
             {this.props.announcements.map((announcement, index) => (
               <Announcement
                 key={index}
-                announcement={announcement}
+                content={announcement.content}
+                firstName={announcement.user.firstName}
+                lastName={announcement.user.lastName}
+                creationDate={dateUtil.constructDateString(
+                  announcement.creationDate.dayOfMonth,
+                  announcement.creationDate.monthValue,
+                  announcement.creationDate.year
+                )}
               />
             ))}
           </Col>
+        </Row>
+        <Row>
+          <AnnouncementInputForm/>
         </Row>
       </Grid>
     )
