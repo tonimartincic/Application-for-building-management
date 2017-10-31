@@ -1,0 +1,15 @@
+.textarea {
+  width: 100%;
+}
+
+.sectionButtons {
+  text-align: right;
+}
+
+.button {
+  margin-left: 10px;
+}
+
+.sectionHeader {
+  margin-bottom: 10px;
+}
