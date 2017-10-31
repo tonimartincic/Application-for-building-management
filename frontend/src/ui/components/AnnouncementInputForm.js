@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Button, Col, Grid, Row, Well} from 'react-bootstrap';
+import {connect} from 'react-redux';
 import styles from './announcementInputForm.css';
+import {addNewAnnouncement} from '../../actionCreators/announcementsActionCreators';
 
 class AnnouncementInputForm extends Component {
   constructor(props) {
@@ -19,7 +21,12 @@ class AnnouncementInputForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    this.props.setEditAbsenceButtonClicked(this.state.selectedAbsence.id, false);
+    this.props.addNewAnnouncement(this.state.content, this.state.expirationDate);
+
+    this.setState({
+      content: '',
+      expirationDate: null,
+    });
   }
 
   handleChange = (event) => {
@@ -75,4 +82,16 @@ class AnnouncementInputForm extends Component {
   }
 }
 
-export default AnnouncementInputForm;
+function mapStateToProps(state) {
+  return {
+    announcements: state.announcements
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addNewAnnouncement: (content, expirationDate) => dispatch(addNewAnnouncement(content, expirationDate))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AnnouncementInputForm);

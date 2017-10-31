@@ -5,7 +5,7 @@ import {Col, Grid, Row} from 'react-bootstrap';
 import fetchAnnouncements from '../../actionCreators/announcementsActionCreators';
 import Announcement from "./Announcement";
 import AnnouncementInputForm from "./AnnouncementInputForm";
-import * as dateUtil from '../../utils/dateUtil';
+import * as dateUtil from '../../utils/DateUtil';
 
 class AnnouncementBoard extends Component {
   componentDidMount() {

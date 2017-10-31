@@ -17,17 +17,22 @@ export default async function fetchAnnouncements() {
   }
 }
 
-export async function addNewAnnouncement() {
+export async function addNewAnnouncement(content, expirationDate) {
   try {
-    const response = await axios.get('/api/announcements');
+    const announcement =  {
+      content: content,
+      expirationDate: expirationDate
+    }
+
+    const response = await axios.post('/api/announcements', announcement);
 
     return {
-      type: types.FETCH_ANNOUNCEMENTS_SUCCESS,
+      type: types.ADD_NEW_ANNOUNCEMENTS_SUCCESS,
       data: response.data,
     };
   } catch (err) {
     return {
-      type: types.FETCH_ANNOUNCEMENTS_FAILURE,
+      type: types.ADD_NEW_ANNOUNCEMENTS_FAILURE,
       data: err,
     };
   }
