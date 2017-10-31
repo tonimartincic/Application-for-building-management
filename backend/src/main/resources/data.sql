@@ -24,10 +24,12 @@ Insert into user_notification (description, user_id) values ('Imate nepodmirene 
 Insert into user_notification (description, user_id) values ('Termin čišćenja snijega uspješno zamijenjen',4);
 
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('01.10.17', 'dd.MM.yy'), parsedatetime('02.10.17', 'dd.MM.yy'), 4, 'Pronađeni ključevi');
-Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('29.09.17', 'dd.MM.yy'), parsedatetime('03.10.17', 'dd.MM.yy'), 2, 'Izgubio ključeve');
+Insert into announcement (creation_date, creator, content) values (parsedatetime('29.09.17', 'dd.MM.yy'), 2, 'Izgubio ključeve');
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('02.09.17', 'dd.MM.yy'), parsedatetime('02.10.17', 'dd.MM.yy'), 5, 'Tražim zamjenu termina za čišćenje snijega');
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), parsedatetime('30.10.17', 'dd.MM.yy'), 1, 'Objavljen raspored čišćenja snijega');
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), parsedatetime('28.10.17', 'dd.MM.yy'), 2, 'Sastanak sljedeći tjedan u utorak u 18:00');
+Insert into announcement (creation_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), 3, 'Jel hoće tko na pivu u utorak u 18:00');
+Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), parsedatetime('28.10.17', 'dd.MM.yy'), 3, 'Jel hoće tko na pivu u srijedu u 18:00');
 
 Insert into payment_order (amount, payer_id, description, payment_due, day_of_payment, receiver_id, receiver_type, payer_type) values (
 101.25, 1, 'pričuva', parsedatetime('02.10.17', 'dd.MM.yy'),parsedatetime('01.10.17', 'dd.MM.yy'), 1, 'building','user');
