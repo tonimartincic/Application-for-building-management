@@ -30,12 +30,14 @@ class Announcement extends Component {
         />
         <Well>
           <Row>
-            <Button onClick={() => {
-              this.setValueOfDeleteAnnouncementButtonClicked(true);
-            }}
-            >
-              <span className='glyphicon glyphicon-trash' />
-            </Button>
+            <section className={styles.sectionHeader}>
+              <Button onClick={() => {
+                this.setValueOfDeleteAnnouncementButtonClicked(true);
+              }}
+              >
+                <span className='glyphicon glyphicon-trash' />
+              </Button>
+            </section>
           </Row>
           <Row>
             <Col md={12}>
