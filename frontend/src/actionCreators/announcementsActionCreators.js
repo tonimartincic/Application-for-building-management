@@ -22,7 +22,7 @@ export async function addNewAnnouncement(content, expirationDate) {
     const announcement =  {
       content: content,
       expirationDate: expirationDate
-    }
+    };
 
     const response = await axios.post('/api/announcements', announcement);
 
@@ -33,6 +33,22 @@ export async function addNewAnnouncement(content, expirationDate) {
   } catch (err) {
     return {
       type: types.ADD_NEW_ANNOUNCEMENTS_FAILURE,
+      data: err,
+    };
+  }
+}
+
+export async function deleteAnnouncement(id) {
+  try {
+    await axios.delete('/api/announcements/' + id);
+
+    return {
+      type: types.DELETE_ANNOUNCEMENTS_SUCCESS,
+      id,
+    };
+  } catch (err) {
+    return {
+      type: types.DELETE_ANNOUNCEMENTS_FAILURE,
       data: err,
     };
   }

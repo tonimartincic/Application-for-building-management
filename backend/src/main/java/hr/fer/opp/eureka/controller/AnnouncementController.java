@@ -32,4 +32,9 @@ public class AnnouncementController {
   public Announcement addNewAnnouncement(@RequestBody final Announcement announcement) {
     return announcementService.add(announcement);
   }
+
+  @DeleteMapping("api/announcements/{id}")
+  public void deleteAnnouncementById(@PathVariable Long id){
+    announcementService.deleteById(id);
+  }
 }
