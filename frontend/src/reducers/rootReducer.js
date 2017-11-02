@@ -7,8 +7,10 @@ import paymentOrdersReducer from "./paymentOrdersReducer";
 import snowClearingSchedulesReducer from "./snowClearingSchedulesReducer";
 import userNotificationsReducer from "./userNotificationsReducer";
 import usersReducer from "./usersReducer";
+import loginReducer from "./loginReducer";
 
 const rootReducer = combineReducers({
+  userData: loginReducer,
   announcements: announcementsReducer,
   apartments: apartmentsReducer,
   buildings: buildingsReducer,
@@ -16,7 +18,7 @@ const rootReducer = combineReducers({
   paymentOrders: paymentOrdersReducer,
   snowClearingSchedules: snowClearingSchedulesReducer,
   userNotifications: userNotificationsReducer,
-  users: usersReducer
+  users: usersReducer,
 });
 
 export default rootReducer;
