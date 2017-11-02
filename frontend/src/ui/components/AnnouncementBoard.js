@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Col, Grid, Row} from 'react-bootstrap';
 import fetchAnnouncements from '../../actionCreators/announcementsActionCreators';
+import {deleteAnnouncement} from '../../actionCreators/announcementsActionCreators';
 import Announcement from "./Announcement";
 import AnnouncementInputForm from "./AnnouncementInputForm";
 import * as dateUtil from '../../utils/DateUtil';
@@ -20,6 +21,7 @@ class AnnouncementBoard extends Component {
             {this.props.announcements.map((announcement, index) => (
               <Announcement
                 key={index}
+                id={announcement.id}
                 content={announcement.content}
                 firstName={announcement.user.firstName}
                 lastName={announcement.user.lastName}
@@ -28,6 +30,7 @@ class AnnouncementBoard extends Component {
                   announcement.creationDate.monthValue,
                   announcement.creationDate.year
                 )}
+                deleteAnnouncement={() => this.props.deleteAnnouncement(announcement.id)}
               />
             ))}
           </Col>
@@ -48,7 +51,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchAnnouncements: () => dispatch(fetchAnnouncements())
+    fetchAnnouncements: () => dispatch(fetchAnnouncements()),
+    deleteAnnouncement: (id) => dispatch(deleteAnnouncement(id))
   };
 }
 

@@ -11,4 +11,6 @@ public interface AnnouncementService {
   Announcement getById(Long id);
 
   Announcement add(Announcement announcement);
+
+  void deleteById(Long id);
 }
