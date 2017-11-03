@@ -1,0 +1,7 @@
+.navBar > a > span {
+  display: none;
+}
+
+.navBar > a {
+  background-color: transparent !important;
+}

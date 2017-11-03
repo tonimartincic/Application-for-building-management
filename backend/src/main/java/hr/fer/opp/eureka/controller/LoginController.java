@@ -20,6 +20,7 @@ public class LoginController {
 
   @PostMapping("api/login")
   public User validateUser (@RequestBody final User user) {
-    return userService.validateUser(user.getMail(), user.getPassword());
+    User userTemp = userService.validateUser(user.getMail(), user.getPassword());
+    return userTemp;
   }
 }

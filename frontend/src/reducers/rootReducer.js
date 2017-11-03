@@ -8,6 +8,7 @@ import snowClearingSchedulesReducer from "./snowClearingSchedulesReducer";
 import userNotificationsReducer from "./userNotificationsReducer";
 import usersReducer from "./usersReducer";
 import loginReducer from "./loginReducer";
+import userInfoReducer from './userInfoReducer';
 
 const rootReducer = combineReducers({
   userData: loginReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   snowClearingSchedules: snowClearingSchedulesReducer,
   userNotifications: userNotificationsReducer,
   users: usersReducer,
+  userInfoClicked: userInfoReducer,
 });
 
 export default rootReducer;

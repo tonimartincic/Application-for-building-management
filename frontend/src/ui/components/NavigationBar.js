@@ -3,6 +3,7 @@ import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import styles from './navigationBar.css';
+import UserInfo from './UserInfo';
 
 class NavigationBar extends Component {
   render() {
@@ -10,7 +11,7 @@ class NavigationBar extends Component {
       <Navbar className={styles.navBar} >
         <Navbar.Header className={styles.navCenter}>
           <Navbar.Brand>
-            <Link to='/'>
+            <Link to='/app'>
               <span className={styles.span}>
                 Eureka
               </span>
@@ -46,7 +47,12 @@ class NavigationBar extends Component {
             <span className={styles.span}>
               Second page
             </span>
-          </NavItem>
+          </NavItem >
+          <Nav >
+            <NavItem >
+              <UserInfo />
+            </NavItem>
+          </Nav>
         </Nav>
       </Navbar>
     );

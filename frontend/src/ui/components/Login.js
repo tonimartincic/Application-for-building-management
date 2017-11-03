@@ -21,13 +21,16 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
+    debugger;
     this.props.validateUser(this.state.userId, this.state.password);
 
-    this.setState({
-      userId: '',
-      password: null,
-    });
+    this.checkLogin();
+  };
+
+  checkLogin = () => {
+    if (this.props.userData.id !== null) {
+      this.props.history.push('/app');
+    }
   };
 
   handleChangeUserId = (event) => {
@@ -53,6 +56,7 @@ class Login extends Component {
 
 
   render() {
+    this.checkLogin();
     return (
       <div>
         <Well>

@@ -4,19 +4,16 @@ import * as types from '../actions/actionTypes';
 export default async function validateUser(userId, password) {
   try {
     const user = {
-      id: userId,
+      id: 0,
+      mail: userId,
       firstName: null,
       lastName: null,
-      mail: null,
       privilege: null,
       reminder: false,
       password: password,
     };
 
     const response = await axios.post('/api/login', user);
-
-
-    debugger;
 
     return {
       type: types.VALIDATE_USER_SUCCESS,

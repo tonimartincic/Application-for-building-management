@@ -8,6 +8,7 @@ const initialState = {
     reminder: false,
     password: null,
   },
+  userInfoClicked: false,
   users: [],
   apartments: [],
   buildings: [],

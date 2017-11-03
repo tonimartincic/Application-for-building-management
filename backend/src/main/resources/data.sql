@@ -1,9 +1,9 @@
-Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Ivan','Biška','ivan.biska@fer.hr','admin',false);
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivan','Biška','ivan.biska@fer.hr','admin',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivana','Mršić','ivana.mrsic@fer.hr','admin',false, 'pass');
-Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Luka','Hrgović','luka.hrgovic@fer.hr','admin',false);
-Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Marko','Cavalli','marko.cavalli@fer.hr','admin',false);
-Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Marko','Ćurlin','marko.curlin@fer.hr','admin',false);
-Insert into app_user (first_name,last_name,mail,privilege,reminder ) values ('Toni','Martinčić','toni.martincic@fer.hr','admin',false);
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Luka','Hrgović','luka.hrgovic@fer.hr','admin',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Cavalli','marko.cavalli@fer.hr','admin',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Ćurlin','marko.curlin@fer.hr','admin',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Toni','Martinčić','toni.martincic@fer.hr','admin',false, 'pass');
 
 Insert into building (address, landlord, funds) values ('Ilica 256', 1, 100532.52);
 Insert into building (address, landlord, funds) values ('Ožujska BB', 2, 54625.32);
