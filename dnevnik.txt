@@ -1,0 +1,22 @@
+1.sastanak – 18.10.2017.
+
+Prisutni:  Ivan Biškup, Marko Cavalli, Marko Æurlin, Luka Hrgoviæ, Toni Martinèiæ, Ivana Mršiæ
+Sažetak: Instaliravanje svih potrebnih tehnologija za rad na projektu. Kloniranje projekta s Gitlaba u lokalni repozitorij. 
+
+
+2. sastanak – 21.10.2017.
+
+Prisutni: Ivan Biškup, Marko Cavalli, Marko Æurlin, Luka Hrgoviæ, Toni Martinèiæ, Ivana Mršiæ
+Sažetak: Uèenje korištenja Gitlaba, Spring Boota. Rasprava i prouèavanje projektnog zadatka. Poèetak rada na bazi podataka i backendu.
+
+
+3. sastanak – 28.10.2017.
+
+Prisutni: Ivan Biškup, Marko Cavalli, Marko Æurlin, Luka Hrgoviæ, Toni Martinèiæ, Ivana Mršiæ
+Sažetak: Uèenje Reacta i Reduxa. Rad na backendu, poèetak rada na frontendu i poèetak pisanja dokumentacije.
+
+
+4. sastanak – 4.11.2017.
+
+Prisutni: Ivan Biškup, Marko Cavalli, Marko Æurlin, Luka Hrgoviæ, Toni Martinèiæ, Ivana Mršiæ
+Sažetak: 
