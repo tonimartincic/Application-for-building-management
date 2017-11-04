@@ -8,8 +8,17 @@ class Announcement extends Component {
     super(props);
 
     this.state = ({
+      editAnnouncementButtonClicked: false,
       deleteAnnouncementButtonClicked: false,
     });
+  }
+
+  setValueOfEditAnnouncementButtonClicked = (value) => {
+    this.setState(
+      {
+        editAnnouncementButtonClicked: value,
+      },
+    );
   }
 
   setValueOfDeleteAnnouncementButtonClicked = (value) => {
@@ -29,31 +38,38 @@ class Announcement extends Component {
           deleteAnnouncement={this.props.deleteAnnouncement}
         />
         <Well>
-          <Row>
-            <section className={styles.sectionHeader}>
-              <Button onClick={() => {
-                this.setValueOfDeleteAnnouncementButtonClicked(true);
-              }}
-              >
-                <span className='glyphicon glyphicon-trash' />
-              </Button>
-            </section>
-          </Row>
-          <Row>
-            <Col md={12}>
-              <span>{this.props.content}</span>
-            </Col>
-          </Row>
-          <section className={styles.sectionFooter}>
-            <Row>
-              <Col md={4}>
-                <span>{this.props.firstName} {this.props.lastName}</span>
-              </Col>
-              <Col md={4} mdOffset={4}>
-                <span className={styles.creationDateSpan}>{this.props.creationDate}</span>
-              </Col>
-            </Row>
-          </section>
+          <Choose>
+            <When condition={this.state.editAnnouncementButtonClicked}>
+              <EditAbsenceFormContainer />
+            </When>
+            <Otherwise>
+              <Row>
+                <section className={styles.sectionHeader}>
+                  <Button onClick={() => {
+                    this.setValueOfDeleteAnnouncementButtonClicked(true);
+                  }}
+                  >
+                    <span className='glyphicon glyphicon-trash' />
+                  </Button>
+                </section>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <span>{this.props.content}</span>
+                </Col>
+              </Row>
+              <section className={styles.sectionFooter}>
+                <Row>
+                  <Col md={4}>
+                    <span>{this.props.firstName} {this.props.lastName}</span>
+                  </Col>
+                  <Col md={4} mdOffset={4}>
+                    <span className={styles.creationDateSpan}>{this.props.creationDate}</span>
+                  </Col>
+                </Row>
+              </section>
+            </Otherwise>
+          </Choose>
         </Well>
       </section>
     )
