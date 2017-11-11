@@ -125,13 +125,6 @@ public class User {
     this.lastName = lastName;
   }
 
-  public String getMail() {
-    return mail;
-  }
-
-  public void setMail(String mail) {
-    this.mail = mail;
-  }
 
   public Set<PaymentOrder> getPaymentOrdersToPay() {
     return paymentOrdersToPay;
