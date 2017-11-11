@@ -28,8 +28,8 @@ public class SnowClearingScheduleController {
     snowClearingScheduleService.createSchedule(LocalDate.parse(from), LocalDate.parse(to));
   }
 
-  @PostMapping("/api/snow-clearing-schedules")
-  public SnowClearingSchedule addNewSnowClearingSchedule(@RequestBody SnowClearingSchedule snowClearingSchedule) {
+/*  @PostMapping("/api/snow-clearing-schedules")
+  public SnowClearingSchedule addNewSnowClearingSchedule(@RequestBody final SnowClearingSchedule snowClearingSchedule) {
     return snowClearingScheduleService.add(snowClearingSchedule);
-  }
+  }*/
 }
