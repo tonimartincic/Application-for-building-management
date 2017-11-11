@@ -1,0 +1,19 @@
+.sectionAnnouncement {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.sectionFooter {
+  margin-top: 20px;
+  color: gray;
+}
+
+.sectionHeader {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  float: right;
+}
+
+.creationDateSpan {
+  float: right;
+}

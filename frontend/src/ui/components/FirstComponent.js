@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Button} from 'react-bootstrap';
 
 class FirstComponent extends Component {
   render() {
@@ -8,4 +8,3 @@ class FirstComponent extends Component {
 }
 
 export default FirstComponent;
-
