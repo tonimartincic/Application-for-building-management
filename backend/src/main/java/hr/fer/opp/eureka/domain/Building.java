@@ -78,4 +78,14 @@ public class Building {
   public void setApartments(Set<Apartment> apartments) {
     this.apartments = apartments;
   }
+
+  public Set<Announcement> getAnnouncementSet() {
+    return announcementSet;
+  }
+
+  public void setAnnouncementSet(Set<Announcement> announcementSet) {
+    this.announcementSet = announcementSet;
+  }
+
+
 }

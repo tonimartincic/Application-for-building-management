@@ -39,4 +39,16 @@ public class SnowClearingSchedule {
   public Boolean getAskChange() {
     return askChange;
   }
+
+  public void setClearingDate(LocalDate clearingDate) {
+    this.clearingDate = clearingDate;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public void setAskChange(Boolean askChange) {
+    this.askChange = askChange;
+  }
 }

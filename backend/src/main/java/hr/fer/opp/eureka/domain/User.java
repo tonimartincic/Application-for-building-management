@@ -44,6 +44,14 @@ public class User {
   @OneToMany (mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<Apartment> apartments;
 
+  @JsonIgnore
+  @OneToMany (mappedBy = "payer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Set<PaymentOrder> paymentOrdersToPay;
+
+  @JsonIgnore
+  @OneToMany (mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Set<PaymentOrder> paymentOrdersToReceive;
+
   public User() {
   }
 
@@ -94,6 +102,30 @@ public class User {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+  public String getMail() {
+    return mail;
+  }
+
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+  public Set<PaymentOrder> getPaymentOrdersToPay() {
+    return paymentOrdersToPay;
+  }
+
+  public void setPaymentOrdersToPay(Set<PaymentOrder> paymentOrdersToPay) {
+    this.paymentOrdersToPay = paymentOrdersToPay;
+  }
+
+  public Set<PaymentOrder> getPaymentOrdersToReceive() {
+    return paymentOrdersToReceive;
+  }
+
+  public void setPaymentOrdersToReceive(Set<PaymentOrder> paymentOrdersToReceive) {
+    this.paymentOrdersToReceive = paymentOrdersToReceive;
   }
 
   public String getPrivilege() {

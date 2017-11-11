@@ -48,4 +48,16 @@ public class Apartment {
   public Double getArea() {
     return area;
   }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setBuilding(Building building) {
+    this.building = building;
+  }
+
+  public void setArea(Double area) {
+    this.area = area;
+  }
 }

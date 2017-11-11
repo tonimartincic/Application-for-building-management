@@ -74,4 +74,24 @@ public class Cost {
   public String getStatus() {
     return status;
   }
+
+  public void setCreator(User creator) {
+    this.creator = creator;
+  }
+
+  public void setAmount(Double amount) {
+    this.amount = amount;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public void setUrgent(Boolean urgent) {
+    isUrgent = urgent;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
 }

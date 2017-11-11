@@ -23,13 +23,13 @@ public class PaymentOrder {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate dayOfPayment;
 
-  private Long payerId;
+  @ManyToOne
+  @JoinColumn (name = "payer")
+  private User payer;
 
-  private String payerType;
-
-  private Long receiverId;
-
-  private String receiverType;
+  @ManyToOne
+  @JoinColumn (name = "receiver")
+  private User receiver;
 
   public PaymentOrder() {
   }
@@ -39,19 +39,15 @@ public class PaymentOrder {
     String description,
     LocalDate paymentDue,
     LocalDate dayOfPayment,
-    Long payerId,
-    String payerType,
-    Long receiverId,
-    String receiverType) {
+    User payer,
+    User receiver) {
   
     this.amount = amount;
     this.description = description;
     this.paymentDue = paymentDue;
     this.dayOfPayment = dayOfPayment;
-    this.payerId = payerId;
-    this.payerType = payerType;
-    this.receiverId = receiverId;
-    this.receiverType = receiverType;
+    this.payer = payer;
+    this.receiver = receiver;
   }
 
   public Long getId() {
@@ -94,35 +90,19 @@ public class PaymentOrder {
     this.dayOfPayment = dayOfPayment;
   }
 
-  public Long getPayerId() {
-    return payerId;
+  public User getPayer() {
+    return payer;
   }
 
-  public void setPayerId(Long payerId) {
-    this.payerId = payerId;
+  public void setPayer(User payer) {
+    this.payer = payer;
   }
 
-  public String getPayerType() {
-    return payerType;
+  public User getReceiver() {
+    return receiver;
   }
 
-  public void setPayerType(String payerType) {
-    this.payerType = payerType;
-  }
-
-  public Long getReceiverId() {
-    return receiverId;
-  }
-
-  public void setReceiverId(Long receiverId) {
-    this.receiverId = receiverId;
-  }
-
-  public String getReceiverType() {
-    return receiverType;
-  }
-
-  public void setReceiverType(String receiverType) {
-    this.receiverType = receiverType;
+  public void setReceiver(User receiver) {
+    this.receiver = receiver;
   }
 }
