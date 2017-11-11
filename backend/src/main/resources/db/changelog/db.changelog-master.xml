@@ -201,4 +201,10 @@
       referencedTableName="app_user"
       referencedColumnNames="id"/>
   </changeSet>
+
+  <changeSet id="7" author="imrsic">
+    <addColumn tableName="app_user">
+      <column name="password" type="varchar(255)"></column>
+    </addColumn>
+  </changeSet>
 </databaseChangeLog>

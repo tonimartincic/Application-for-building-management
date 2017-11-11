@@ -24,6 +24,8 @@ public class User {
 
   private Boolean reminder;
 
+  private String password;
+
   @JsonIgnore
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private Set<Announcement> announcementSet;
@@ -55,13 +57,30 @@ public class User {
   public User() {
   }
 
+  public String getMail() {
+    return mail;
+  }
+
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
   public User(
     Long id,
     String firstName,
     String lastName,
     String mail,
     String privilege,
-    Boolean reminder) {
+    Boolean reminder,
+    String password) {
 
     this.id = id;
     this.firstName = firstName;
@@ -70,6 +89,8 @@ public class User {
     this.privilege = privilege;
     this.reminder = reminder;
     this.mail = mail;
+    this.password = password;
+
   }
 
   public Long getId() {
