@@ -57,22 +57,6 @@ public class User {
   public User() {
   }
 
-  public String getMail() {
-    return mail;
-  }
-
-  public void setMail(String mail) {
-    this.mail = mail;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
   public User(
     Long id,
     String firstName,
@@ -188,5 +172,21 @@ public class User {
 
   public void setApartments(Set<Apartment> apartments) {
     this.apartments = apartments;
+  }
+
+  public String getMail() {
+    return mail;
+  }
+
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 }

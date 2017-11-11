@@ -53,8 +53,8 @@ Insert into cost (amount, is_urgent, description, status, creator_id, created_on
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
 150000.65, true, 'nova garažna vrata', 'sredstva skupljena', 1, parsedatetime('02.08.16', 'dd.MM.yy'));
 
-Insert into snow_clearing_schedule (clearing_date, clearing_id, ask_change) values (parsedatetime('02.01.16', 'dd.MM.yy'), 1, false);
-Insert into snow_clearing_schedule (clearing_date, clearing_id, ask_change) values (parsedatetime('03.02.17', 'dd.MM.yy'), 2, false);
-Insert into snow_clearing_schedule (clearing_date, clearing_id, ask_change) values (parsedatetime('02.02.16', 'dd.MM.yy'), 1, false);
-Insert into snow_clearing_schedule (clearing_date, clearing_id, ask_change) values (parsedatetime('01.04.15', 'dd.MM.yy'), 2, true);
-Insert into snow_clearing_schedule (clearing_date, clearing_id, ask_change) values (parsedatetime('22.01.15', 'dd.MM.yy'), 2, true);
+Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('02.01.16', 'dd.MM.yy'), 1, false);
+Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('03.02.17', 'dd.MM.yy'), 2, false);
+Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('02.02.16', 'dd.MM.yy'), 1, false);
+Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('01.04.15', 'dd.MM.yy'), 2, true);
+Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('22.01.15', 'dd.MM.yy'), 2, true);
