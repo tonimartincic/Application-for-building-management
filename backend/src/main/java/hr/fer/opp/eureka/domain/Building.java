@@ -90,6 +90,4 @@ public class Building {
   public void setAnnouncementSet(Set<Announcement> announcementSet) {
     this.announcementSet = announcementSet;
   }
-
-
 }
