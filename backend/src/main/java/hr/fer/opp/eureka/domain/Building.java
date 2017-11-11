@@ -19,6 +19,10 @@ public class Building {
   @JoinColumn (name = "landlord")
   private User landlord;
 
+  @ManyToOne
+  @JoinColumn (name = "manager")
+  private User manager;
+
   private Float funds;
 
   @JsonIgnore

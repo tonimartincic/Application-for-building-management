@@ -14,6 +14,7 @@
         <constraints nullable="false"/>
       </column>
       <column name="landlord" type="bigint"/>
+      <column name="manager" type="bigint"/>
       <column name="funds" type="decimal"/>
     </createTable>
 
