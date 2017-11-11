@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import NavigationBar from './ui/components/NavigationBar';
+import App from './ui/components/App';
 import AnnouncementBoard from './ui/components/AnnouncementBoard';
 import SecondComponent from 'ui/components/SecondComponent';
 import Login from './ui/components/Login';

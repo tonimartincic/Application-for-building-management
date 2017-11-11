@@ -9,6 +9,7 @@ import userNotificationsReducer from "./userNotificationsReducer";
 import usersReducer from "./usersReducer";
 import loginReducer from "./loginReducer";
 import userInfoReducer from './userInfoReducer';
+import userSettingsReducer from './userSettingsReducer';
 
 const rootReducer = combineReducers({
   userData: loginReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   userNotifications: userNotificationsReducer,
   users: usersReducer,
   userInfoClicked: userInfoReducer,
+  userSettingsClicked: userSettingsReducer,
 });
 
 export default rootReducer;

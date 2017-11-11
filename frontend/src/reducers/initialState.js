@@ -9,6 +9,7 @@ const initialState = {
     password: null,
   },
   userInfoClicked: false,
+  userSettingsClicked: false,
   users: [],
   apartments: [],
   buildings: [],

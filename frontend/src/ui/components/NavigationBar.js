@@ -21,8 +21,8 @@ class NavigationBar extends Component {
         <Nav className={styles.navCenter}>
           <NavItem
             componentClass={Link}
-            to='/app'
-            href='/app'
+            to='/board'
+            href='/board'
           >
             <span className={styles.span}>
               Oglasna ploča

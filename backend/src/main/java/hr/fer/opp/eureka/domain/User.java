@@ -40,7 +40,11 @@ public class User {
 
   @JsonIgnore
   @OneToMany (mappedBy = "landlord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<Building> buildings;
+  private Set<Building> landlordBuildingSet;
+
+  @JsonIgnore
+  @OneToMany (mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Set<Building> managerBuildingSet;
 
   @JsonIgnore
   @OneToMany (mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -55,22 +59,6 @@ public class User {
   private Set<PaymentOrder> paymentOrdersToReceive;
 
   public User() {
-  }
-
-  public String getMail() {
-    return mail;
-  }
-
-  public void setMail(String mail) {
-    this.mail = mail;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public User(
@@ -125,13 +113,6 @@ public class User {
     this.lastName = lastName;
   }
 
-  public String getMail() {
-    return mail;
-  }
-
-  public void setMail(String mail) {
-    this.mail = mail;
-  }
 
   public Set<PaymentOrder> getPaymentOrdersToPay() {
     return paymentOrdersToPay;
@@ -181,19 +162,43 @@ public class User {
     this.costs = costs;
   }
 
-  public Set<Building> getBuildings() {
-    return buildings;
-  }
-
-  public void setBuildings(Set<Building> buildings) {
-    this.buildings = buildings;
-  }
-
   public Set<Apartment> getApartments() {
     return apartments;
   }
 
   public void setApartments(Set<Apartment> apartments) {
     this.apartments = apartments;
+  }
+
+  public String getMail() {
+    return mail;
+  }
+
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Set<Building> getLandlordBuildingSet() {
+    return landlordBuildingSet;
+  }
+
+  public void setLandlordBuildingSet(Set<Building> landlordBuildingSet) {
+    this.landlordBuildingSet = landlordBuildingSet;
+  }
+
+  public Set<Building> getManagerBuildingSet() {
+    return managerBuildingSet;
+  }
+
+  public void setManagerBuildingSet(Set<Building> managerBuildingSet) {
+    this.managerBuildingSet = managerBuildingSet;
   }
 }

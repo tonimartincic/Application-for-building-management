@@ -14,6 +14,7 @@
         <constraints nullable="false"/>
       </column>
       <column name="landlord" type="bigint"/>
+      <column name="manager" type="bigint"/>
       <column name="funds" type="decimal"/>
     </createTable>
 
@@ -182,7 +183,7 @@
 
   <changeSet id="6" author="ibiskup">
 
-    <createTable tableName="snow_clearing_schedule">
+    <createTable tableName="snow_clearing_date">
       <column name="clearing_date" type="date">
         <constraints primaryKey="true"/>
       </column>
@@ -195,9 +196,9 @@
     </createTable>
 
     <addForeignKeyConstraint
-      baseTableName="snow_clearing_schedule"
+      baseTableName="snow_clearing_date"
       baseColumnNames="user_id"
-      constraintName="fk_snow_clearing_schedule_user_id"
+      constraintName="fk_snow_clearing_date_user_id"
       referencedTableName="app_user"
       referencedColumnNames="id"/>
   </changeSet>

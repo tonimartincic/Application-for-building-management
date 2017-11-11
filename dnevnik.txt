@@ -20,3 +20,8 @@ Sažetak: Uèenje Reacta i Reduxa. Rad na backendu, poèetak rada na frontendu i po
 
 Prisutni: Ivan Biškup, Marko Cavalli, Marko Æurlin, Luka Hrgoviæ, Toni Martinèiæ, Ivana Mršiæ
 Sažetak: 
+
+5. sastanak – 11.11.2017.
+
+Prisutni: Ivan Biškup, Marko Cavalli, Marko Æurlin, Luka Hrgoviæ, Toni Martinèiæ, Ivana Mršiæ
+Sažetak: Rad na dokumentaciji, ostali zahtjevi, svrha, opæi prioriteti, skica sustava, dijagram razreda s opisom, dijagram objekata.

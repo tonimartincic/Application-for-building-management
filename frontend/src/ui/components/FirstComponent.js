@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
+import NavigationBar from "./NavigationBar";
 
 class FirstComponent extends Component {
   render() {
-    return <Button>FirstComponent</Button>;
+    return (
+      <div>
+        <NavigationBar/>
+        <Button>FirstComponent</Button>
+      </div>
+    );
   }
 }
 

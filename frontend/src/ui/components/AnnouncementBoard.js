@@ -7,6 +7,7 @@ import {deleteAnnouncement} from '../../actionCreators/announcementsActionCreato
 import Announcement from "./Announcement";
 import AnnouncementInputForm from "./AnnouncementInputForm";
 import * as dateUtil from '../../utils/DateUtil';
+import NavigationBar from "./NavigationBar";
 
 class AnnouncementBoard extends Component {
   componentDidMount() {
@@ -15,30 +16,33 @@ class AnnouncementBoard extends Component {
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col md={8} mdOffset={2}>
-            {this.props.announcements.map((announcement, index) => (
-              <Announcement
-                key={index}
-                id={announcement.id}
-                content={announcement.content}
-                firstName={announcement.user.firstName}
-                lastName={announcement.user.lastName}
-                creationDate={dateUtil.constructDateString(
-                  announcement.creationDate.dayOfMonth,
-                  announcement.creationDate.monthValue,
-                  announcement.creationDate.year
-                )}
-                deleteAnnouncement={() => this.props.deleteAnnouncement(announcement.id)}
-              />
-            ))}
-          </Col>
-        </Row>
-        <Row>
-          <AnnouncementInputForm/>
-        </Row>
-      </Grid>
+      <div>
+        <NavigationBar/>
+        <Grid>
+          <Row>
+            <Col md={8} mdOffset={2}>
+              {this.props.announcements.map((announcement, index) => (
+                <Announcement
+                  key={index}
+                  id={announcement.id}
+                  content={announcement.content}
+                  firstName={announcement.user.firstName}
+                  lastName={announcement.user.lastName}
+                  creationDate={dateUtil.constructDateString(
+                    announcement.creationDate.dayOfMonth,
+                    announcement.creationDate.monthValue,
+                    announcement.creationDate.year
+                  )}
+                  deleteAnnouncement={() => this.props.deleteAnnouncement(announcement.id)}
+                />
+              ))}
+            </Col>
+          </Row>
+          <Row>
+            <AnnouncementInputForm/>
+          </Row>
+        </Grid>
+      </div>
     )
   }
 }

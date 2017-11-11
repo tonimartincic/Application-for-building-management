@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "snow_clearing_schedule")
-public class SnowClearingSchedule {
+@Table(name = "snow_clearing_date")
+public class SnowClearingDate {
 
   @Id
   @JsonFormat(pattern = "dd-MM-yyyy")
@@ -19,10 +19,10 @@ public class SnowClearingSchedule {
 
   private Boolean askChange;
 
-  public SnowClearingSchedule() {
+  public SnowClearingDate() {
   }
 
-  public SnowClearingSchedule(LocalDate clearingDate, User user, Boolean askChange) {
+  public SnowClearingDate(LocalDate clearingDate, User user, Boolean askChange) {
     this.clearingDate = clearingDate;
     this.user = user;
     this.askChange = askChange;
