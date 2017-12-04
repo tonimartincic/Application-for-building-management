@@ -5,6 +5,7 @@ import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -15,6 +16,11 @@ public class UserController {
   @Autowired
   public UserController(UserService userService) {
     this.userService = userService;
+  }
+
+  @GetMapping ("/api/users/logged")
+  public User getLoggedUser(Principal principal) {
+    return userService.getByMail(principal.getName());
   }
 
   @GetMapping ("/api/users")

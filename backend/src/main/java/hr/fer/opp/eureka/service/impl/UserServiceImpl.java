@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
   public User add(User user) {
     return this.userRepository.save(user);
   }
+
+  @Override
+  public User getByMail(String mail) {
+    return this.userRepository.findByMail(mail);
+  }
 }

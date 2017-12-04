@@ -60,38 +60,38 @@ class Login extends Component {
     return (
       <div>
         <Well>
-          <Row>
-            <Col md = {1} mdOffset={2}>
-            <section>
-              <span>Korisnicko ime:</span>
-            </section>
-            </Col>
-            <Col md = {5}>
-            <FormControl
-              type="text"
-              value={this.state.userId}
-              placeholder="Korisničko ime"
-              onChange={this.handleChangeUserId}
-            />
-            </Col>
-          </Row>
-          <Row>
-            <Col md = {1} mdOffset={2}>
-            <section>
-              <span>Lozinka:</span>
-            </section>
-            </Col>
-          <Col md = {5}>
+          <form>
+            <Row>
+              <Col md = {1} mdOffset={2}>
+              <section>
+                <span>Korisnicko ime:</span>
+              </section>
+              </Col>
+              <Col md = {5}>
               <FormControl
-                type="password"
-                value={this.state.password}
-                placeholder="Lozinka"
-                onChange={this.handleChangePass}
+                type="text"
+                value={this.state.userId}
+                placeholder="Korisničko ime"
+                onChange={this.handleChangeUserId}
               />
-          </Col>
-          </Row>
-          <Row>
-            <form>
+              </Col>
+            </Row>
+            <Row>
+              <Col md = {1} mdOffset={2}>
+              <section>
+                <span>Lozinka:</span>
+              </section>
+              </Col>
+            <Col md = {5}>
+                <FormControl
+                  type="password"
+                  value={this.state.password}
+                  placeholder="Lozinka"
+                  onChange={this.handleChangePass}
+                />
+            </Col>
+            </Row>
+            <Row>
               <section>
                 <Button
                   bsStyle='primary'
@@ -104,8 +104,8 @@ class Login extends Component {
                   onClick={this.handleDelete}
                 ><span>Resetiraj</span></Button>
               </section>
-            </form>
-          </Row>
+            </Row>
+          </form>
         </Well>
       </div>
     );

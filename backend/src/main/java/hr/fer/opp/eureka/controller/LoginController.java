@@ -18,7 +18,7 @@ public class LoginController {
     this.userService = userService;
   }
 
-  @PostMapping("api/login")
+  @GetMapping("api/login")
   public User validateUser (@RequestBody final User user) {
     User userTemp = userService.validateUser(user.getMail(), user.getPassword());
     return userTemp;

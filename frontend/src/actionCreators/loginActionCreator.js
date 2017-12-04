@@ -13,11 +13,12 @@ export default async function validateUser(userId, password) {
       password: password,
     };
 
-    const response = await axios.post('/api/login', user);
+    const response = await axios.get('/api/login', user);
+    const response2 = await axios.get('/api/users/logged');
 
     return {
       type: types.VALIDATE_USER_SUCCESS,
-      data: response.data,
+      data: response2.data,
     };
   } catch (err) {
     return {
