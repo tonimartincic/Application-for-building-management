@@ -54,11 +54,9 @@ class NavigationBar extends Component {
               Second page
             </span>
           </NavItem >
-          <Nav >
-            <NavItem >
-              <UserInfo />
-            </NavItem>
-          </Nav>
+          <NavItem >
+            <UserInfo />
+          </NavItem>
         </Nav>
       </Navbar>
     );

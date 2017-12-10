@@ -25,4 +25,3 @@ const ConfirmationMessage = props => (
 );
 
 export default ConfirmationMessage;
-

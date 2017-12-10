@@ -21,8 +21,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 
   @Override
   public List<Apartment> getAll() {
-    List<Apartment> apartments = Lists.newArrayList(apartmentRepository.findAll());
-    return apartments;
+    return Lists.newArrayList(apartmentRepository.findAll());
   }
 
   @Override

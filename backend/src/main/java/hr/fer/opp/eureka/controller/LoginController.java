@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
   @Autowired
-  UserService userService;
+  private UserService userService;
 
   public LoginController(UserService userService) {
     this.userService = userService;
@@ -19,7 +19,6 @@ public class LoginController {
 
   @PostMapping("/api/login")
   public User validateUser (@RequestBody final User user) {
-    User userTemp = userService.validateUser(user.getMail(), user.getPassword());
-    return userTemp;
+    return userService.validateUser(user.getMail(), user.getPassword());
   }
 }

@@ -19,7 +19,7 @@ class UserInfo extends Component {
       <div>
         <UserInfoData />
         <Settings />
-        <NavDropdown title = {this.props.userData.firstName + ' ' + this.props.userData.lastName} id='nav-dropdown' className = {styles.navBar}>
+        <NavDropdown title = {this.props.userData.firstName + ' ' + this.props.userData.lastName} id='nav-dropdown'>
           <MenuItem onClick={() => this.props.toggleUserInfo(true)}>
             Info
           </MenuItem>
