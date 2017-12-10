@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {Form, FormGroup, Col, FormControl, Checkbox, Button, Well, Row} from 'react-bootstrap';
+import { Col, FormControl, Button, Well, Row} from 'react-bootstrap';
 import validateUser from '../../actionCreators/loginActionCreator';
 
 class Login extends Component {
-
   constructor(props) {
     super(props);
+
+    //localStorage.removeItem('user');
 
     this.state = {
       userId: '',
@@ -21,17 +22,16 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    debugger;
     this.props.validateUser(this.state.userId, this.state.password);
 
-    this.checkLogin();
+    //this.checkLogin();
   };
 
-  checkLogin = () => {
-    if (this.props.userData.id !== null) {
-      this.props.history.push('/app');
-    }
-  };
+  // checkLogin = () => {
+  //   if (this.props.userData.id !== null) {
+  //     this.props.history.push('/app');
+  //   }
+  // };
 
   handleChangeUserId = (event) => {
     this.setState({
@@ -39,13 +39,11 @@ class Login extends Component {
     });
   };
 
-
   handleChangePass = (event) => {
     this.setState({
       password: event.target.value,
     });
   };
-
 
   handleDelete = () => {
     this.setState({
@@ -54,9 +52,9 @@ class Login extends Component {
     });
   };
 
-
   render() {
-    this.checkLogin();
+    // this.checkLogin();
+
     return (
       <div>
         <Well>

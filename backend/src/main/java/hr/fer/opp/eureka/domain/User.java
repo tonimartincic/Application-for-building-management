@@ -1,6 +1,8 @@
 package hr.fer.opp.eureka.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.Set;
 @Entity
 @Table (name = "app_user")
 public class User {
+
+  public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +62,8 @@ public class User {
   @OneToMany (mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<PaymentOrder> paymentOrdersToReceive;
 
+  private String[] roles;
+
   public User() {
   }
 
@@ -68,7 +74,8 @@ public class User {
     String mail,
     String privilege,
     Boolean reminder,
-    String password) {
+    String password,
+    String... roles) {
 
     this.id = id;
     this.firstName = firstName;
@@ -77,8 +84,8 @@ public class User {
     this.privilege = privilege;
     this.reminder = reminder;
     this.mail = mail;
-    this.password = password;
-
+    this.setPassword(password);
+    this.roles = roles;
   }
 
   public Long getId() {
@@ -112,7 +119,6 @@ public class User {
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }
-
 
   public Set<PaymentOrder> getPaymentOrdersToPay() {
     return paymentOrdersToPay;
@@ -183,7 +189,7 @@ public class User {
   }
 
   public void setPassword(String password) {
-    this.password = password;
+    this.password = PASSWORD_ENCODER.encode(password);
   }
 
   public Set<Building> getLandlordBuildingSet() {
@@ -200,5 +206,13 @@ public class User {
 
   public void setManagerBuildingSet(Set<Building> managerBuildingSet) {
     this.managerBuildingSet = managerBuildingSet;
+  }
+
+  public String[] getRoles() {
+    return roles;
+  }
+
+  public void setRoles(String[] roles) {
+    this.roles = roles;
   }
 }

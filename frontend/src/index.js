@@ -7,7 +7,8 @@ import AnnouncementBoard from './ui/components/AnnouncementBoard';
 import SecondComponent from 'ui/components/SecondComponent';
 import Login from './ui/components/Login';
 import configureStore from './store/configureStore';
-import FirstComponent from "./ui/components/FirstComponent";
+import FirstComponent from './ui/components/FirstComponent';
+import PrivateRoute from './ui/components/PrivateRoute';
 
 const store = configureStore();
 
@@ -15,11 +16,11 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <Route exact path='/' component={Login} />
-        <Route path ='/app' component={App}/>
-        <Route exact path='/board' component={AnnouncementBoard} />
-        <Route path='/first-page' component={FirstComponent} />
-        <Route path='/second-page' component={SecondComponent} />
+        <PrivateRoute path ='/' component={App}/>
+        <PrivateRoute path='/board' component={AnnouncementBoard} />
+        <PrivateRoute path='/first-page' component={FirstComponent} />
+        <PrivateRoute path='/second-page' component={SecondComponent} />
+        <Route path='/login' component={Login} />
       </div>
     </Router>
   </Provider>,
