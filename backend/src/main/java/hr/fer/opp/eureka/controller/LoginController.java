@@ -3,7 +3,6 @@ package hr.fer.opp.eureka.controller;
 import hr.fer.opp.eureka.domain.User;
 import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

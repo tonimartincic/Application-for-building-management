@@ -16,10 +16,10 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <PrivateRoute path ='/' component={App}/>
-        <PrivateRoute path='/board' component={AnnouncementBoard} />
-        <PrivateRoute path='/first-page' component={FirstComponent} />
-        <PrivateRoute path='/second-page' component={SecondComponent} />
+        <PrivateRoute path ='/'><App/></PrivateRoute>
+        <PrivateRoute path='/board'><AnnouncementBoard/></PrivateRoute>
+        <PrivateRoute path='/first-page'><FirstComponent/></PrivateRoute>
+        <PrivateRoute path='/second-page'><SecondComponent/></PrivateRoute>
         <Route path='/login' component={Login} />
       </div>
     </Router>

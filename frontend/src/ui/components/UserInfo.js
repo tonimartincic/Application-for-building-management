@@ -8,9 +8,8 @@ import {toggleUserInfo} from "../../actions/userInfoActions";
 import {toggleUserSettings} from "../../actions/userSettingsActions";
 
 class UserInfo extends Component {
-
   logout = () => {
-    window.location.href = '/';
+    localStorage.removeItem('user');
   }
 
   render() {
