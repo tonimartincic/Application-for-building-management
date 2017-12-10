@@ -1,0 +1,29 @@
+.section {
+  margin: 0.2em;
+}
+
+.sectionMain {
+  background-color: #0c0742;
+  padding-top: 5em;
+  height: 100vh;
+}
+
+.sectionInvalid {
+  margin-top: 1em;
+}
+
+.button {
+  width: 100%;
+}
+
+.p {
+  color: white;
+  font-size: 72px;
+  padding-bottom: 0.5em;
+  text-align: center;
+}
+
+.pInvalid {
+  color: white;
+  text-align: center;
+}

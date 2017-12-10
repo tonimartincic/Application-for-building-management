@@ -7,12 +7,12 @@ import paymentOrdersReducer from "./paymentOrdersReducer";
 import snowClearingSchedulesReducer from "./snowClearingSchedulesReducer";
 import userNotificationsReducer from "./userNotificationsReducer";
 import usersReducer from "./usersReducer";
-import loginReducer from "./loginReducer";
 import userInfoReducer from './userInfoReducer';
 import userSettingsReducer from './userSettingsReducer';
+import userDataReducer from './userDataReducer';
 
 const rootReducer = combineReducers({
-  userData: loginReducer,
+  userData: userDataReducer,
   announcements: announcementsReducer,
   apartments: apartmentsReducer,
   buildings: buildingsReducer,

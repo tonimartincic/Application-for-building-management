@@ -27,9 +27,4 @@ public class SnowClearingDateController {
   public void createSchedule(@RequestParam String from, @RequestParam String to) {
     snowClearingDateService.createSchedule(LocalDate.parse(from), LocalDate.parse(to));
   }
-
-/*  @PostMapping("/api/snow-clearing-schedules")
-  public SnowClearingDate addNewSnowClearingSchedule(@RequestBody final SnowClearingDate snowClearingSchedule) {
-    return snowClearingDateService.add(snowClearingSchedule);
-  }*/
 }

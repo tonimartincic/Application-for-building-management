@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { NavDropdown, MenuItem } from 'react-bootstrap';
 import * as styles from './navigationBar.css';
 import UserInfoData from './UserInfoData';
 import Settings from './Settings';
 import {toggleUserInfo} from "../../actions/userInfoActions";
 import {toggleUserSettings} from "../../actions/userSettingsActions";
+import {withRouter} from 'react-router-dom';
 
 class UserInfo extends Component {
-
   logout = () => {
-    window.location.href = '/';
+    localStorage.removeItem('user');
+    this.props.history.push('/login');
   }
 
   render() {
@@ -18,7 +19,7 @@ class UserInfo extends Component {
       <div>
         <UserInfoData />
         <Settings />
-        <NavDropdown title = {this.props.userData.firstName + ' ' + this.props.userData.lastName} id='nav-dropdown' className = {styles.navBar}>
+        <NavDropdown title = {this.props.userData.firstName + ' ' + this.props.userData.lastName} id='nav-dropdown'>
           <MenuItem onClick={() => this.props.toggleUserInfo(true)}>
             Info
           </MenuItem>
@@ -49,4 +50,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserInfo));

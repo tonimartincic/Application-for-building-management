@@ -11,7 +11,4 @@ public interface CostService {
   Cost getById(Long id);
 
   Cost add(Cost cost);
-
-  void handleUrgentCosts();
-
 }

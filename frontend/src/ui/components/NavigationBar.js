@@ -4,14 +4,20 @@ import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import styles from './navigationBar.css';
 import UserInfo from './UserInfo';
+import { connect } from 'react-redux';
+import { fetchUserData } from '../../actionCreators/userDataActionCreators';
 
 class NavigationBar extends Component {
+  componentDidMount() {
+    this.props.fetchUserData();
+  }
+
   render() {
     return (
       <Navbar className={styles.navBar} >
         <Navbar.Header className={styles.navCenter}>
           <Navbar.Brand>
-            <Link to='/app'>
+            <Link to='/'>
               <span className={styles.span}>
                 Eureka
               </span>
@@ -48,15 +54,23 @@ class NavigationBar extends Component {
               Second page
             </span>
           </NavItem >
-          <Nav >
-            <NavItem >
-              <UserInfo />
-            </NavItem>
-          </Nav>
+          <NavItem >
+            <UserInfo />
+          </NavItem>
         </Nav>
       </Navbar>
     );
   }
 }
 
-export default NavigationBar;
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchUserData: () => dispatch(fetchUserData()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

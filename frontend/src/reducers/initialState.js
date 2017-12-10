@@ -7,16 +7,27 @@ const initialState = {
     privilege: null,
     reminder: false,
     password: null,
+    invalidUserNameAndPassword: false,
   },
+
   userInfoClicked: false,
+
   userSettingsClicked: false,
+
   users: [],
+
   apartments: [],
+
   buildings: [],
+
   costs: [],
+
   paymentOrders: [],
+
   snowClearingSchedules: [],
+
   userNotifications: [],
+
   announcements: []
 };
 
