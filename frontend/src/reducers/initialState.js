@@ -7,6 +7,7 @@ const initialState = {
     privilege: null,
     reminder: false,
     password: null,
+    invalidUserNameAndPassword: false,
   },
 
   userInfoClicked: false,

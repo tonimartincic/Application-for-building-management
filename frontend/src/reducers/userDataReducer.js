@@ -4,8 +4,13 @@ import * as types from '../actions/actionTypes';
 export default function userDataReducer(state = initialState.userData, action) {
   switch (action.type) {
     case types.VALIDATE_USER_SUCCESS: {
-      if (action.data === '')
-        return state;
+      if (action.data === '') {
+        return Object.assign({}, state,
+          {
+            invalidUserNameAndPassword: true,
+          });
+      }
+
       return action.data;
     }
     case types.VALIDATE_USER_FAILURE:
@@ -17,6 +22,11 @@ export default function userDataReducer(state = initialState.userData, action) {
     }
     case types.FETCH_USER_DATA_FAILURE:
       return state;
+    case types.SET_INVALID_USER_NAME_AND_PASSWORD_VALUE:
+      return Object.assign({}, state,
+        {
+          invalidUserNameAndPassword: action.value,
+        });
     default:
       return state;
   }

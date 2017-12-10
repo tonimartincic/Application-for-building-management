@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import { Col, FormControl, Button, Well, Row, Grid} from 'react-bootstrap';
+import { Col, FormControl, Button, Collapse, Row, Grid, Well} from 'react-bootstrap';
 import validateUser from '../../actionCreators/userDataActionCreators';
+import { setInvalidUserNameAndPasswordValue } from '../../actions/userDataActions';
 import styles from './login.css';
 
 class Login extends Component {
@@ -30,12 +31,16 @@ class Login extends Component {
     this.setState({
       userId: event.target.value,
     });
+
+    this.props.setInvalidUserNameAndPasswordValue(false);
   };
 
   handleChangePass = (event) => {
     this.setState({
       password: event.target.value,
     });
+
+    this.props.setInvalidUserNameAndPasswordValue(false);
   };
 
   handleDelete = () => {
@@ -81,6 +86,15 @@ class Login extends Component {
             </Row>
             <Row>
               <Col md={4} mdOffset={4}>
+                <section className={styles.sectionInvalid}>
+                  <Collapse in={this.props.userData.invalidUserNameAndPassword}>
+                    <p className={styles.pInvalid}>Uneseni podatci nisu ispravni.</p>
+                  </Collapse>
+                </section>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={4} mdOffset={4}>
                 <section className={styles.section}>
                   <Button
                     className={styles.button}
@@ -113,12 +127,14 @@ class Login extends Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
+    invalidUserNameAndPassword: state.invalidUserNameAndPassword,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     validateUser: (userId, password) => dispatch(validateUser(userId, password)),
+    setInvalidUserNameAndPasswordValue: value => dispatch(setInvalidUserNameAndPasswordValue(value)),
   };
 }
 
