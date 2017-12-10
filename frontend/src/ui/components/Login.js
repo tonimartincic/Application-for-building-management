@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import { Col, FormControl, Button, Well, Row} from 'react-bootstrap';
+import { Col, FormControl, Button, Well, Row, Grid} from 'react-bootstrap';
 import validateUser from '../../actionCreators/userDataActionCreators';
+import styles from './login.css';
 
 class Login extends Component {
   constructor(props) {
@@ -46,56 +47,65 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <Well>
+      <section className={styles.sectionMain}>
+        <Grid>
+          <Row>
+            <Col md={4} mdOffset={4}>
+              <p className={styles.p}>Eureka</p>
+            </Col>
+          </Row>
           <form>
             <Row>
-              <Col md = {1} mdOffset={2}>
-              <section>
-                <span>Korisničko ime:</span>
-              </section>
-              </Col>
-              <Col md = {5}>
-              <FormControl
-                type="text"
-                value={this.state.userId}
-                placeholder="Korisničko ime"
-                onChange={this.handleChangeUserId}
-              />
+              <Col md={4} mdOffset={4}>
+                <section className={styles.section}>
+                  <FormControl
+                    type="text"
+                    value={this.state.userId}
+                    placeholder="Korisničko ime"
+                    onChange={this.handleChangeUserId}
+                  />
+                </section>
               </Col>
             </Row>
             <Row>
-              <Col md = {1} mdOffset={2}>
-              <section>
-                <span>Lozinka:</span>
-              </section>
+              <Col md={4} mdOffset={4}>
+                <section className={styles.section}>
+                  <FormControl
+                    type="password"
+                    value={this.state.password}
+                    placeholder="Lozinka"
+                    onChange={this.handleChangePass}
+                  />
+                </section>
               </Col>
-            <Col md = {5}>
-                <FormControl
-                  type="password"
-                  value={this.state.password}
-                  placeholder="Lozinka"
-                  onChange={this.handleChangePass}
-                />
-            </Col>
             </Row>
             <Row>
-              <section>
-                <Button
-                  bsStyle='primary'
-                  type='submit'
-                  onClick={this.handleSubmit}
-                ><span>Prijava</span></Button>
-                <Button
-                  bsStyle='warning'
-                  type='button'
-                  onClick={this.handleDelete}
-                ><span>Resetiraj</span></Button>
-              </section>
+              <Col md={4} mdOffset={4}>
+                <section className={styles.section}>
+                  <Button
+                    className={styles.button}
+                    bsStyle='primary'
+                    type='submit'
+                    onClick={this.handleSubmit}
+                  ><span>Prijava</span></Button>
+                </section>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={4} mdOffset={4}>
+                <section className={styles.section}>
+                  <Button
+                    className={styles.button}
+                    bsStyle='warning'
+                    type='button'
+                    onClick={this.handleDelete}
+                  ><span>Resetiraj</span></Button>
+                </section>
+              </Col>
             </Row>
           </form>
-        </Well>
-      </div>
+        </Grid>
+      </section>
     );
   }
 }

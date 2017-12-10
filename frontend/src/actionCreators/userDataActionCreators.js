@@ -13,7 +13,7 @@ export default async function validateUser(userId, password) {
       reminder: false,
       password: password,
     };
-    
+
     const response = await axios.post('/api/login', user);
     if(response.data !== '') {
       localStorage.setItem('user', JSON.stringify(response.data));
