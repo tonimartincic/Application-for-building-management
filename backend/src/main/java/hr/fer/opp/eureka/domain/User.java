@@ -1,8 +1,7 @@
 package hr.fer.opp.eureka.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,8 +10,6 @@ import java.util.Set;
 @Entity
 @Table (name = "app_user")
 public class User {
-
-  public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,7 +81,7 @@ public class User {
     this.privilege = privilege;
     this.reminder = reminder;
     this.mail = mail;
-    this.setPassword(password);
+    this.password = password;
     this.roles = roles;
   }
 
@@ -184,14 +181,6 @@ public class User {
     this.mail = mail;
   }
 
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = PASSWORD_ENCODER.encode(password);
-  }
-
   public Set<Building> getLandlordBuildingSet() {
     return landlordBuildingSet;
   }
@@ -214,5 +203,13 @@ public class User {
 
   public void setRoles(String[] roles) {
     this.roles = roles;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 }
