@@ -11,7 +11,7 @@ class NavigationBar extends Component {
       <Navbar className={styles.navBar} >
         <Navbar.Header className={styles.navCenter}>
           <Navbar.Brand>
-            <Link to='/app'>
+            <Link to='/'>
               <span className={styles.span}>
                 Eureka
               </span>
