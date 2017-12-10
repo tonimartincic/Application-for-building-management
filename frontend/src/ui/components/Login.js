@@ -8,7 +8,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
-    //localStorage.removeItem('user');
+    localStorage.removeItem('user');
 
     this.state = {
       userId: '',
@@ -24,14 +24,14 @@ class Login extends Component {
     event.preventDefault();
     this.props.validateUser(this.state.userId, this.state.password);
 
-    //this.checkLogin();
+    this.checkLogin();
   };
 
-  // checkLogin = () => {
-  //   if (this.props.userData.id !== null) {
-  //     this.props.history.push('/app');
-  //   }
-  // };
+  checkLogin = () => {
+    if (this.props.userData.id !== null) {
+      this.props.history.push('/');
+    }
+  };
 
   handleChangeUserId = (event) => {
     this.setState({
@@ -53,7 +53,7 @@ class Login extends Component {
   };
 
   render() {
-    // this.checkLogin();
+    this.checkLogin();
 
     return (
       <div>

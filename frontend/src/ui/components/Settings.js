@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Modal, MenuItem, DropdownButton, Row, Col, Checkbox } from 'react-bootstrap';
+import { Modal, Row, Col, Checkbox } from 'react-bootstrap';
 import {toggleUserSettings} from "../../actions/userSettingsActions";
 
 class Settings extends Component {
-
   constructor(props) {
     super(props);
 

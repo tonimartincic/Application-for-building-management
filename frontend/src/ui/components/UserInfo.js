@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { NavDropdown, MenuItem } from 'react-bootstrap';
 import * as styles from './navigationBar.css';
 import UserInfoData from './UserInfoData';
 import Settings from './Settings';
 import {toggleUserInfo} from "../../actions/userInfoActions";
 import {toggleUserSettings} from "../../actions/userSettingsActions";
+import {withRouter} from 'react-router-dom';
 
 class UserInfo extends Component {
   logout = () => {
     localStorage.removeItem('user');
+    this.props.history.push('/login');
   }
 
   render() {
@@ -48,4 +50,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserInfo));
