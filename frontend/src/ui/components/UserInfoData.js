@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {toggleUserInfo} from '../../actions/userInfoActions';
 
 class Preferences extends React.Component {
-
   render() {
     return (
       <div>

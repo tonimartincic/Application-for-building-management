@@ -8,15 +8,25 @@ const initialState = {
     reminder: false,
     password: null,
   },
+
   userInfoClicked: false,
+
   userSettingsClicked: false,
+
   users: [],
+
   apartments: [],
+
   buildings: [],
+
   costs: [],
+
   paymentOrders: [],
+
   snowClearingSchedules: [],
+
   userNotifications: [],
+
   announcements: []
 };
 

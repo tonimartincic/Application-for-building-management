@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import styles from './navigationBar.css';
 import UserInfo from './UserInfo';
+import { connect } from 'react-redux';
+import { fetchUserData } from '../../actionCreators/userDataActionCreators';
 
 class NavigationBar extends Component {
+  componentDidMount() {
+    this.props.fetchUserData();
+  }
+
   render() {
     return (
       <Navbar className={styles.navBar} >
@@ -59,4 +65,14 @@ class NavigationBar extends Component {
   }
 }
 
-export default NavigationBar;
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchUserData: () => dispatch(fetchUserData()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

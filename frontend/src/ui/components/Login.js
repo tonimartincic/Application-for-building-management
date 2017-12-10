@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { Col, FormControl, Button, Well, Row} from 'react-bootstrap';
-import validateUser from '../../actionCreators/loginActionCreator';
+import validateUser from '../../actionCreators/userDataActionCreators';
 
 class Login extends Component {
   constructor(props) {
@@ -23,14 +23,6 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.validateUser(this.state.userId, this.state.password);
-
-    this.checkLogin();
-  };
-
-  checkLogin = () => {
-    if (this.props.userData.id !== null) {
-      this.props.history.push('/');
-    }
   };
 
   handleChangeUserId = (event) => {
@@ -53,8 +45,6 @@ class Login extends Component {
   };
 
   render() {
-    this.checkLogin();
-
     return (
       <div>
         <Well>
@@ -62,7 +52,7 @@ class Login extends Component {
             <Row>
               <Col md = {1} mdOffset={2}>
               <section>
-                <span>Korisnicko ime:</span>
+                <span>Korisničko ime:</span>
               </section>
               </Col>
               <Col md = {5}>

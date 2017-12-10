@@ -18,17 +18,12 @@ public class UserController {
     this.userService = userService;
   }
 
-  @GetMapping ("/api/users/logged")
-  public User getLoggedUser(Principal principal) {
-    return userService.getByMail(principal.getName());
-  }
-
-  @GetMapping ("/api/users")
+  @GetMapping("/api/users")
   public List<User> getAllUsers() {
     return userService.getAll();
   }
 
-  @GetMapping ("/api/users/{id}")
+  @GetMapping("/api/users/{id}")
   public User getUserById(@PathVariable Long id) {
     return userService.getById(id);
   }
