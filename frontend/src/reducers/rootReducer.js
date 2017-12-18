@@ -10,6 +10,7 @@ import usersReducer from "./usersReducer";
 import userInfoReducer from './userInfoReducer';
 import userSettingsReducer from './userSettingsReducer';
 import userDataReducer from './userDataReducer';
+import generateScheduleReducer from './generateScheduleReducer';
 
 const rootReducer = combineReducers({
   userData: userDataReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   users: usersReducer,
   userInfoClicked: userInfoReducer,
   userSettingsClicked: userSettingsReducer,
+  generateSchedule: generateScheduleReducer,
 });
 
 export default rootReducer;

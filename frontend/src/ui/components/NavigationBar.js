@@ -60,7 +60,7 @@ class NavigationBar extends Component {
             href='/snow-clearing-schedule'
           >
             <span className={styles.span}>
-              Snow Clearing Schedule
+              Raspored čišćenja snijega
             </span>
           </NavItem >
           <NavItem >

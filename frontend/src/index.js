@@ -10,7 +10,7 @@ import configureStore from './store/configureStore';
 import FirstComponent from './ui/components/FirstComponent';
 import PrivateRoute from './ui/components/PrivateRoute';
 import { history } from './ui/components/history';
-import SnowClearingScheduleView from "./ui/components/SnowClearingScheduleView";
+import SnowClearingScheduleView from "./ui/components/snowClearingSchedule/SnowClearingScheduleView";
 
 const store = configureStore();
 

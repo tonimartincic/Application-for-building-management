@@ -12,6 +12,8 @@ const initialState = {
 
   userInfoClicked: false,
 
+  generateSchedule: false,
+
   userSettingsClicked: false,
 
   users: [],
