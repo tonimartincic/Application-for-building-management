@@ -1,14 +1,18 @@
 export const sortAnnouncementsByCreationDate = (firstAnnouncement, secondAnnouncement) => {
-  if(firstAnnouncement.creationDate.year !== secondAnnouncement.creationDate.year) {
-    return firstAnnouncement.creationDate.year < secondAnnouncement.creationDate.year;
-  }
+  const firstDate = new Date(
+    firstAnnouncement.creationDate.year,
+    firstAnnouncement.creationDate.monthValue,
+    firstAnnouncement.creationDate.dayOfMonth
+  );
 
-  if(firstAnnouncement.creationDate.monthValue !== secondAnnouncement.creationDate.monthValue) {
-    return firstAnnouncement.creationDate.monthValue < secondAnnouncement.creationDate.monthValue;
-  }
+  const secondDate = new Date(
+    secondAnnouncement.creationDate.year,
+    secondAnnouncement.creationDate.monthValue,
+    secondAnnouncement.creationDate.dayOfMonth
+  );
 
-  if(firstAnnouncement.creationDate.dayOfMonth !== secondAnnouncement.creationDate.dayOfMonth) {
-    return firstAnnouncement.creationDate.dayOfMonth < secondAnnouncement.creationDate.dayOfMonth;
+  if(firstDate !== secondDate) {
+    return firstDate < secondDate;
   }
 
   return firstAnnouncement.id < secondAnnouncement.id;
