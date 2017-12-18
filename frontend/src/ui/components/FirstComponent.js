@@ -7,7 +7,7 @@ class FirstComponent extends Component {
     return (
       <div>
         <NavigationBar/>
-        <Button>FirstComponent</Button>
+        <Button/>
       </div>
     );
   }

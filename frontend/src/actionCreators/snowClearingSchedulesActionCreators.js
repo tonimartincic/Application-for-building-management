@@ -16,3 +16,20 @@ export default async function fetchSnowClearingSchedules() {
     };
   }
 }
+
+export async function generateSnowClearingSchedule(from, to) {
+  try {
+
+    const response = await axios.post(`/api/snow-clearing-schedules/create?from=${from}&to=${to}`);
+
+    return {
+      type: types.GENERATE_SNOW_CLEARING_SCHEDULE_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.GENERATE_SNOW_CLEARING_SCHEDULE_FAILURE,
+      data: err,
+    };
+  }
+}

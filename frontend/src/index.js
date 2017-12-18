@@ -10,6 +10,7 @@ import configureStore from './store/configureStore';
 import FirstComponent from './ui/components/FirstComponent';
 import PrivateRoute from './ui/components/PrivateRoute';
 import { history } from './ui/components/history';
+import SnowClearingScheduleView from "./ui/components/SnowClearingScheduleView";
 
 const store = configureStore();
 
@@ -21,6 +22,7 @@ ReactDOM.render(
           <PrivateRoute exact path='/board'><AnnouncementBoard/></PrivateRoute>
           <PrivateRoute exact path='/first-page'><FirstComponent/></PrivateRoute>
           <PrivateRoute exact path='/second-page'><SecondComponent/></PrivateRoute>
+          <PrivateRoute exact path='/snow-clearing-schedule'><SnowClearingScheduleView/></PrivateRoute>
           <Route exact path='/login' component={Login} />
       </div>
     </Router>
