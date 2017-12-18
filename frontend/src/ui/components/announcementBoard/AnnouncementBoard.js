@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Col, Grid, Row} from 'react-bootstrap';
-import fetchAnnouncements from '../../actionCreators/announcementsActionCreators';
-import {deleteAnnouncement} from '../../actionCreators/announcementsActionCreators';
+import fetchAnnouncements from '../../../actionCreators/announcementsActionCreators';
+import {deleteAnnouncement} from '../../../actionCreators/announcementsActionCreators';
 import Announcement from "./Announcement";
 import AnnouncementInputForm from "./AnnouncementInputForm";
-import * as dateUtil from '../../utils/DateUtil';
-import NavigationBar from "./NavigationBar";
+import * as dateUtil from '../../../utils/DateUtil';
+import NavigationBar from "../NavigationBar";
 
 class AnnouncementBoard extends Component {
   componentDidMount() {
@@ -24,10 +24,7 @@ class AnnouncementBoard extends Component {
               {this.props.announcements.map((announcement, index) => (
                 <Announcement
                   key={index}
-                  id={announcement.id}
-                  content={announcement.content}
-                  firstName={announcement.user.firstName}
-                  lastName={announcement.user.lastName}
+                  announcement={announcement}
                   creationDate={dateUtil.constructDateString(
                     announcement.creationDate.dayOfMonth,
                     announcement.creationDate.monthValue,

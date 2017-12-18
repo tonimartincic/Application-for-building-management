@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button, Col, Grid, Row, Well} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import styles from './announcementInputForm.css';
-import {addNewAnnouncement} from '../../actionCreators/announcementsActionCreators';
+import {addNewAnnouncement} from '../../../actionCreators/announcementsActionCreators';
 
 class AnnouncementInputForm extends Component {
   constructor(props) {

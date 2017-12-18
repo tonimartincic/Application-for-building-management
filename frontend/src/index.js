@@ -3,7 +3,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {Router, Route} from 'react-router-dom';
 import App from './ui/components/App';
-import AnnouncementBoard from './ui/components/AnnouncementBoard';
+import AnnouncementBoard from './ui/components/announcementBoard/AnnouncementBoard';
 import SecondComponent from 'ui/components/SecondComponent';
 import Login from './ui/components/Login';
 import configureStore from './store/configureStore';

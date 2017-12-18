@@ -38,6 +38,22 @@ export async function addNewAnnouncement(content, expirationDate) {
   }
 }
 
+export async function editAnnouncement(announcement) {
+  try {
+    const response = await axios.post('/api/announcements/edit', announcement);
+
+    return {
+      type: types.EDIT_ANNOUNCEMENTS_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.EDIT_ANNOUNCEMENTS_FAILURE,
+      data: err,
+    };
+  }
+}
+
 export async function deleteAnnouncement(id) {
   try {
     await axios.delete('/api/announcements/' + id);

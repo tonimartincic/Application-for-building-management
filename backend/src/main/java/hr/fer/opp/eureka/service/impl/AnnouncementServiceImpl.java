@@ -35,6 +35,14 @@ public class AnnouncementServiceImpl implements AnnouncementService {
   }
 
   @Override
+  public Announcement edit(Announcement announcement) {
+    Announcement announcementFromDatabase = this.announcementRepository.findById(announcement.getId());
+    announcementFromDatabase.setContent(announcement.getContent());
+
+    return this.announcementRepository.save(announcementFromDatabase);
+  }
+
+  @Override
   public void deleteById(Long id) {
     this.announcementRepository.delete(id);
   }
