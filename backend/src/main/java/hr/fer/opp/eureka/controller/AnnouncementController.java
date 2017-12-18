@@ -32,6 +32,11 @@ public class AnnouncementController {
     return announcementService.add(announcement);
   }
 
+  @PostMapping("/api/announcements/edit")
+  public Announcement editAnnouncement(@RequestBody final Announcement announcement) {
+    return announcementService.edit(announcement);
+  }
+
   @DeleteMapping("api/announcements/{id}")
   public void deleteAnnouncementById(@PathVariable Long id){
     announcementService.deleteById(id);

@@ -12,5 +12,7 @@ public interface AnnouncementService {
 
   Announcement add(Announcement announcement);
 
+  Announcement edit(Announcement announcement);
+
   void deleteById(Long id);
 }
