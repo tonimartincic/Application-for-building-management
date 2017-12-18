@@ -13,8 +13,7 @@ export default function announcementsReducer(state = initialState.announcements,
 
     case types.ADD_NEW_ANNOUNCEMENTS_SUCCESS:
       return [...state, action.data];
-
-
+    
     case types.ADD_NEW_ANNOUNCEMENTS_FAILURE:
       return state;
 
