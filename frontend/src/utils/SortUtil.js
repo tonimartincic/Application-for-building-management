@@ -7,5 +7,9 @@ export const sortAnnouncementsByCreationDate = (firstAnnouncement, secondAnnounc
     return firstAnnouncement.creationDate.monthValue < secondAnnouncement.creationDate.monthValue;
   }
 
-  return firstAnnouncement.creationDate.dayOfMonth < secondAnnouncement.creationDate.dayOfMonth;
+  if(firstAnnouncement.creationDate.dayOfMonth !== secondAnnouncement.creationDate.dayOfMonth) {
+    return firstAnnouncement.creationDate.dayOfMonth < secondAnnouncement.creationDate.dayOfMonth;
+  }
+
+  return firstAnnouncement.id < secondAnnouncement.id;
 };

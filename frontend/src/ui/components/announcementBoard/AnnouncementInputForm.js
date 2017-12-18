@@ -21,7 +21,13 @@ class AnnouncementInputForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    this.props.addNewAnnouncement(this.state.content, this.state.expirationDate);
+    const user = {
+      id: this.props.userData.id,
+      firstName: this.props.userData.firstName,
+      lastName: this.props.userData.lastName
+    }
+
+    this.props.addNewAnnouncement(user, this.state.content, this.state.expirationDate);
 
     this.setState({
       content: '',
@@ -84,13 +90,14 @@ class AnnouncementInputForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    announcements: state.announcements
+    announcements: state.announcements,
+    userData: state.userData
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNewAnnouncement: (content, expirationDate) => dispatch(addNewAnnouncement(content, expirationDate))
+    addNewAnnouncement: (user, content, expirationDate) => dispatch(addNewAnnouncement(user, content, expirationDate))
   };
 }
 
