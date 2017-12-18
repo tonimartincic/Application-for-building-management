@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Button} from 'react-bootstrap';
 import {setEditAnnouncementButtonClicked} from '../../../actions/announcementsActions';
 import {editAnnouncement} from '../../../actionCreators/announcementsActionCreators';
+import styles from './editAnnouncementForm.css';
 
 class EditAnnouncementForm extends Component {
   constructor(props) {
@@ -43,17 +44,18 @@ class EditAnnouncementForm extends Component {
 
   render() {
     return (
-      <section>
+      <section className={styles.section}>
         <form onSubmit={this.handleSubmit}>
           <textarea
+            className={styles.textArea}
             type='text'
             value={this.state.content}
             onChange={this.handleChange}
           />
 
-          <section>
-            <Button type='submit'><span className='glyphicon glyphicon-ok' /></Button>
-            <Button type='button' onClick={this.handleCancel}><span className='glyphicon glyphicon-remove' /></Button>
+          <section className={styles.sectionButtons}>
+            <Button className={styles.button} type='submit'><span className='glyphicon glyphicon-ok' /></Button>
+            <Button className={styles.button} type='button' onClick={this.handleCancel}><span className='glyphicon glyphicon-remove' /></Button>
           </section>
         </form>
       </section>
