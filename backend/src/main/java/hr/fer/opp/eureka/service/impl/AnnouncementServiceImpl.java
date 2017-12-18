@@ -7,6 +7,7 @@ import hr.fer.opp.eureka.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -31,6 +32,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
   @Override
   public Announcement add(Announcement announcement) {
+    announcement.setCreationDate(LocalDate.now());
     return this.announcementRepository.save(announcement);
   }
 

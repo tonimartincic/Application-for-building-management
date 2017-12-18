@@ -7,6 +7,7 @@ import {deleteAnnouncement} from '../../../actionCreators/announcementsActionCre
 import Announcement from "./Announcement";
 import AnnouncementInputForm from "./AnnouncementInputForm";
 import * as dateUtil from '../../../utils/DateUtil';
+import * as sortUtils from '../../../utils/SortUtil';
 import NavigationBar from "../NavigationBar";
 
 class AnnouncementBoard extends Component {
@@ -20,8 +21,13 @@ class AnnouncementBoard extends Component {
         <NavigationBar/>
         <Grid>
           <Row>
+            <AnnouncementInputForm/>
+          </Row>
+          <Row>
             <Col md={8} mdOffset={2}>
-              {this.props.announcements.map((announcement, index) => (
+              {this.props.announcements
+                .sort(sortUtils.sortAnnouncementsByCreationDate)
+                .map((announcement, index) => (
                 <Announcement
                   key={index}
                   announcement={announcement}
@@ -34,9 +40,6 @@ class AnnouncementBoard extends Component {
                 />
               ))}
             </Col>
-          </Row>
-          <Row>
-            <AnnouncementInputForm/>
           </Row>
         </Grid>
       </div>
