@@ -35,7 +35,7 @@ class ApproveChangeRequest extends React.Component {
   };
 
   handleSubmit() {
-    if (this.state.firstDate==='' || this.state.firstDate==='select' || this.state.firstDate==='' || this.state.secondDate==='select') {
+    if (this.state.firstDate==='' || this.state.firstDate==='select' || this.state.secondDate==='' || this.state.secondDate==='select') {
       if (this.state.firstDate==='' || this.state.firstDate==='select') {
         this.setState({
           firstDateSelected: 'error',
@@ -75,7 +75,7 @@ class ApproveChangeRequest extends React.Component {
           onHide={() => this.props.approveRequestChangeToggle()}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Odobri izmjene</Modal.Title>
+            <Modal.Title>Odobri izmjenu</Modal.Title>
           </Modal.Header>
           <Modal.Body>
               <ControlLabel>Odaberi prvi termin:</ControlLabel>
