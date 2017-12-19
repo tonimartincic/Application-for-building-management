@@ -32,4 +32,9 @@ public class SnowClearingDateController {
   public SnowClearingDate askChange(@RequestParam String date) {
     return snowClearingDateService.askChange(LocalDate.parse(date));
   }
+
+  @PostMapping("/api/snow-clearing-schedules/approve-changes")
+  public void approveChanges(@RequestParam String firstDate, @RequestParam String secondDate) {
+    snowClearingDateService.approveChanges(LocalDate.parse(firstDate), LocalDate.parse(secondDate));
+  }
 }

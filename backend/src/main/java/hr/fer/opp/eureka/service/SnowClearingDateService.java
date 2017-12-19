@@ -14,4 +14,6 @@ public interface SnowClearingDateService {
   SnowClearingDate add(SnowClearingDate snowClearingDate);
 
   SnowClearingDate askChange(LocalDate clearingDate);
+
+  void approveChanges(LocalDate firstDate, LocalDate secondDate);
 }

@@ -47,6 +47,21 @@ public class SnowClearingDateServiceImpl implements SnowClearingDateService {
   }
 
   @Override
+  public void approveChanges(LocalDate firstDate, LocalDate secondDate) {
+    SnowClearingDate snowClearingDateFirst = snowClearingDateRepository.findByClearingDate(firstDate);
+    SnowClearingDate snowClearingDateSecond = snowClearingDateRepository.findByClearingDate(secondDate);
+
+    SnowClearingDate snowClearingDateTempFirst = new SnowClearingDate(secondDate, snowClearingDateFirst.getUser(), false);
+    SnowClearingDate snowClearingDateTempSecond = new SnowClearingDate(firstDate, snowClearingDateSecond.getUser(), false);
+
+    snowClearingDateRepository.delete(snowClearingDateFirst);
+    snowClearingDateRepository.delete(snowClearingDateSecond);
+
+    snowClearingDateRepository.save(snowClearingDateTempFirst);
+    snowClearingDateRepository.save(snowClearingDateTempSecond);
+  }
+
+  @Override
   public void createSchedule(LocalDate from, LocalDate to) {
     List<SnowClearingDate> snowClearingDates = new ArrayList<>();
     List<User> userList = new ArrayList<>();
