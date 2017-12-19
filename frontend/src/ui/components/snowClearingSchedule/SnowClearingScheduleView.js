@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {Button, Col, Row} from 'react-bootstrap';
+import {Button, Col, Row, Well, ControlLabel} from 'react-bootstrap';
 import NavigationBar from "../NavigationBar";
 import SnowClearingSchedule  from "./SnowClearingSchedule";
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';
@@ -9,6 +9,7 @@ import { generateClicked, approveRequestChangeToggle } from '../../../actions/sn
 import GenerateScheduleInputForm from './GenerateScheduleInputForm';
 import AskChangeForm from './AskChangeForm';
 import ApproveChangeRequest from './ApproveChangeRequest';
+import * as styles from './snowClearingSchedule.css';
 
 class SnowClearingScheduleView extends Component {
 
@@ -20,31 +21,42 @@ class SnowClearingScheduleView extends Component {
     return (
       <div>
         <NavigationBar/>
-        <Col md={1} mdOffset={1}>
-          <Row>
-            <Choose>
-              <When condition = {this.props.userData.privilege==="admin"}>
-                <Button
-                  onClick={() => {
-                    this.props.generateClicked();
-                  }
-                  }
-                >Generiraj raspored</Button>
-                <Button onClick={() => this.props.approveRequestChangeToggle()}
-                >Odobri izmjene</Button>
-                <GenerateScheduleInputForm />
-                <ApproveChangeRequest />
-              </When>
-            </Choose>
-          </Row>
-        </Col>
-        <Col md={5} mdOffset={1}>
+        <Col md={5} mdOffset={2}>
           <SnowClearingSchedule />
         </Col>
         <Col md={3}>
           <Row>
             <AskChangeForm />
           </Row>
+          <Choose>
+            <When condition = {this.props.userData.privilege==="admin"}>
+              <Well className={styles.wellUpdate}>
+                <Row>
+                  <Col mdOffset={1}>
+                    <ControlLabel>Ažuriraj raspored:</ControlLabel>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col mdOffset={2}>
+                    <Button
+                      onClick={() => {
+                        this.props.generateClicked();
+                      }
+                      }
+                    >Generiraj raspored</Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col mdOffset={2}>
+                    <Button className={styles.updateScheduleButton} onClick={() => this.props.approveRequestChangeToggle()}
+                    >Odobri izmjene</Button>
+                  </Col>
+                </Row>
+              </Well>
+              <GenerateScheduleInputForm />
+              <ApproveChangeRequest />
+            </When>
+          </Choose>
         </Col>
       </div>
     );

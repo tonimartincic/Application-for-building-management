@@ -88,7 +88,7 @@ class ApproveChangeRequest extends React.Component {
                   <option value="select">Odaberi</option>
                   {
                     this.props.snowClearingSchedules
-                      .filter((date) => !date.askChange)
+                      .filter((date) => date.askChange)
                       .map(date => {
                         const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
                         return(
@@ -109,7 +109,7 @@ class ApproveChangeRequest extends React.Component {
                 <option value="select">Odaberi</option>
                 {
                   this.props.snowClearingSchedules
-                    .filter((date) => !date.askChange)
+                    .filter((date) => date.askChange)
                     .map(date => {
                       const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
                       return(
