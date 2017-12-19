@@ -19,7 +19,6 @@ export const sortAnnouncementsByCreationDate = (firstAnnouncement, secondAnnounc
 };
 
 export const sortSnowClearingScheduleByDate = (firstSnowClearingDate, secondSnowClearingDate) => {
-  debugger;
   const firstDate = new Date(
     firstSnowClearingDate.clearingDate.year,
     firstSnowClearingDate.clearingDate.monthValue,

@@ -12,25 +12,32 @@ class ApproveChangeRequest extends React.Component {
     super(props);
     this.state = {
       firstDate: '',
+      firstDateUser: '',
       secondDate: '',
+      secondDateUser: '',
       firstDateSelected: null,
       secondDateSelected: null,
-      alertVisible: false,
+      alertVisible1: false,
+      alertVisible2: false,
     };
   }
 
   handleChangeFirstDate = (event) => {
     this.setState({
-      firstDate: event.target.value,
+      firstDate: event.target.value.substring(0,10),
+      firstDateUser: event.target.value.substring(11),
       firstDateSelected: null,
-      alertVisible: false,
+      alertVisible1: false,
+      alertVisible2: false,
     });
   };
   handleChangeSecondDate = (event) => {
     this.setState({
-      secondDate: event.target.value,
+      secondDate: event.target.value.substring(0,10),
+      secondDateUser: event.target.value.substring(11),
       secondDateSelected: null,
-      alertVisible: false,
+      alertVisible1: false,
+      alertVisible2: false,
     });
   };
 
@@ -48,7 +55,11 @@ class ApproveChangeRequest extends React.Component {
       }
     } else if (this.state.firstDate === this.state.secondDate) {
       this.setState({
-        alertVisible: true,
+        alertVisible1: true,
+      });
+    } else if (this.state.firstDateUser === this.state.secondDateUser){
+      this.setState({
+        alertVisible2: true,
       });
     } else {
       this.props.approveChangeRequest(this.state.firstDate, this.state.secondDate);
@@ -56,6 +67,8 @@ class ApproveChangeRequest extends React.Component {
       this.setState({
         firstDate: '',
         secondDate: '',
+        firstDateUser: '',
+        secondDateUser: '',
         firstDateSelected: null,
         secondDateSelected: null,
       });
@@ -63,8 +76,12 @@ class ApproveChangeRequest extends React.Component {
     }
   }
 
-  handleAlertDismiss = () => {
-    this.setState({ alertVisible: false });
+  handleAlertDismiss1 = () => {
+    this.setState({ alertVisible1: false });
+  }
+
+  handleAlertDismiss2 = () => {
+    this.setState({ alertVisible2: false });
   }
 
   render() {
@@ -72,7 +89,12 @@ class ApproveChangeRequest extends React.Component {
       <div>
         <Modal
           show={this.props.approveChangeRequestClicked}
-          onHide={() => this.props.approveRequestChangeToggle()}
+          onHide={() => {
+            this.props.approveRequestChangeToggle();
+            this.handleAlertDismiss2();
+            this.handleAlertDismiss1();
+          }
+          }
         >
           <Modal.Header closeButton>
             <Modal.Title>Odobri izmjenu</Modal.Title>
@@ -91,9 +113,10 @@ class ApproveChangeRequest extends React.Component {
                       .filter((date) => date.askChange)
                       .map(date => {
                         const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                        const currentDateTemp = currentDate + ' - ' + date.user.firstName + ' ' + date.user.lastName;
                         return(
-                          <option key={currentDate} value={currentDate}>
-                            {currentDate}
+                          <option key={currentDate} value={currentDateTemp}>
+                            {currentDateTemp}
                           </option>)
                       })
                   }
@@ -112,19 +135,28 @@ class ApproveChangeRequest extends React.Component {
                     .filter((date) => date.askChange)
                     .map(date => {
                       const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                      const currentDateTemp = currentDate + ' - ' + date.user.firstName + ' ' + date.user.lastName;
                       return(
-                        <option key={currentDate} value={currentDate}>
-                          {currentDate}
+                        <option key={currentDate} value={currentDateTemp}>
+                          {currentDateTemp}
                         </option>)
                     })
                 }
               </FormControl>
             </FormGroup>
             <Choose>
-              <When condition={this.state.alertVisible}>
-                <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss()}>
+              <When condition={this.state.alertVisible1}>
+                <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss1()}>
                   <h4>Pogrešno uneseni željeni datumi izmjene</h4>
                   <p>Unijeli ste dva ista datuma za izmjenu. Za točan unos promijenite jedan od datuma.</p>
+                </Alert>
+              </When>
+            </Choose>
+            <Choose>
+              <When condition={this.state.alertVisible2}>
+                <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss2()}>
+                  <h4>Pogrešno uneseni željeni datumi izmjene</h4>
+                  <p>Unijeli ste datume za istog stanara. Za točan unos promijenite jedan od datuma.</p>
                 </Alert>
               </When>
             </Choose>
