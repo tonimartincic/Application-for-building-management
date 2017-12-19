@@ -54,6 +54,15 @@ class NavigationBar extends Component {
               Second page
             </span>
           </NavItem >
+          <NavItem
+            componentClass={Link}
+            to='/snow-clearing-schedule'
+            href='/snow-clearing-schedule'
+          >
+            <span className={styles.span}>
+              Raspored čišćenja snijega
+            </span>
+          </NavItem >
           <NavItem >
             <UserInfo />
           </NavItem>

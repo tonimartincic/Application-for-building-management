@@ -12,4 +12,8 @@ public interface SnowClearingDateService {
   void createSchedule(LocalDate from, LocalDate to);
 
   SnowClearingDate add(SnowClearingDate snowClearingDate);
+
+  SnowClearingDate askChange(LocalDate clearingDate);
+
+  void approveChanges(LocalDate firstDate, LocalDate secondDate);
 }

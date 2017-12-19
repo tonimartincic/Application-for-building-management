@@ -12,6 +12,10 @@ const initialState = {
 
   userInfoClicked: false,
 
+  generateSchedule: false,
+
+  approveChangeRequestClicked: false,
+
   userSettingsClicked: false,
 
   users: [],
