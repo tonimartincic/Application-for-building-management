@@ -37,6 +37,13 @@ export default function snowClearingSchedulesReducer(state = initialState.snowCl
 
     case types.ASK_CHANGE_FAILURE:
       return state;
+
+    case types.APPROVE_CHANGE_REQUEST_SUCCESS: {
+      return action.data;
+    }
+
+    case types.APPROVE_CHANGE_REQUEST_FAILURE:
+      return state;
     default:
       return state;
   }

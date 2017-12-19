@@ -14,6 +14,8 @@ const initialState = {
 
   generateSchedule: false,
 
+  approveChangeRequestClicked: false,
+
   userSettingsClicked: false,
 
   users: [],

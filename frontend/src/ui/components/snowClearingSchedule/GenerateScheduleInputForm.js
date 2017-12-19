@@ -20,10 +20,7 @@ class GenerateScheduleInputForm extends React.Component {
           <Modal.Body>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => {
-              this.props.generateSnowClearingSchedule("2017-06-17", "2017-07-01");
-              this.props.generateClicked();
-            }}>Potvrdi</Button>
+            <Button onClick={()=> this.props.generateSnowClearingSchedule("2017-06-17","2017-07-01")}>Potvrdi</Button>
           </Modal.Footer>
         </Modal>
       </div>

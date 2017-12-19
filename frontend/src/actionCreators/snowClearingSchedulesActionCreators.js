@@ -49,3 +49,20 @@ export async function askChange(date) {
     };
   }
 }
+
+export async function approveChangeRequest(firstDate, secondDate) {
+  try {
+    const response1 = await axios.post(`/api/snow-clearing-schedules/approve-changes?firstDate=${firstDate}&secondDate=${secondDate}`);
+    const response2 = await axios.get('/api/snow-clearing-schedules');
+    return {
+      type: types.APPROVE_CHANGE_REQUEST_SUCCESS,
+      data: response2.data,
+      };
+    } catch (err) {
+      return {
+        type: types.APPROVE_CHANGE_REQUEST_FAILURE,
+        data: err,
+      };
+  }
+}
+

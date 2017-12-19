@@ -24,7 +24,7 @@ class AskChangeForm extends Component {
   };
 
   handleSubmit() {
-    if(this.state.changeDate === '' || this.state.changeDate === 'Odaberi') {
+    if(this.state.changeDate === '' || this.state.changeDate === 'Odaberi' || this.state.changeDate==='select') {
       this.setState({
         changeDate: '',
         changeDatePicked: 'error',

@@ -5,9 +5,10 @@ import {Button, Col, Row} from 'react-bootstrap';
 import NavigationBar from "../NavigationBar";
 import SnowClearingSchedule  from "./SnowClearingSchedule";
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';
-import { generateClicked } from '../../../actions/snowClearingSchedulesActions';
+import { generateClicked, approveRequestChangeToggle } from '../../../actions/snowClearingSchedulesActions';
 import GenerateScheduleInputForm from './GenerateScheduleInputForm';
 import AskChangeForm from './AskChangeForm';
+import ApproveChangeRequest from './ApproveChangeRequest';
 
 class SnowClearingScheduleView extends Component {
 
@@ -22,14 +23,17 @@ class SnowClearingScheduleView extends Component {
         <Col md={1} mdOffset={1}>
           <Row>
             <Choose>
-              <When condition = {this.props.userData.privilege=="admin"}>
+              <When condition = {this.props.userData.privilege==="admin"}>
                 <Button
                   onClick={() => {
                     this.props.generateClicked();
                   }
                   }
                 >Generiraj raspored</Button>
+                <Button onClick={() => this.props.approveRequestChangeToggle()}
+                >Odobri izmjene</Button>
                 <GenerateScheduleInputForm />
+                <ApproveChangeRequest />
               </When>
             </Choose>
           </Row>
@@ -56,6 +60,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     generateClicked: () => dispatch(generateClicked()),
+    approveRequestChangeToggle: () => dispatch(approveRequestChangeToggle()),
     fetchSnowClearingSchedules: () => dispatch(fetchSnowClearingSchedules()),
   };
 }
