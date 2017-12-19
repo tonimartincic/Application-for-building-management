@@ -3,6 +3,7 @@ import { Table } from 'react-bootstrap';
 import {connect} from 'react-redux';
 import styles from './snowClearingSchedule.css';
 import * as utils from '../../../utils/DateUtil';
+import * as sortUtils from '../../../utils/SortUtil';
 
 class SnowClearingSchedule extends Component {
   render(){
@@ -18,6 +19,7 @@ class SnowClearingSchedule extends Component {
         <tbody>
           {
             this.props.snowClearingSchedules
+              .sort(sortUtils.sortSnowClearingScheduleByDate)
               .map((date) => {
                 const schedule
                   = utils.constructDateString(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);

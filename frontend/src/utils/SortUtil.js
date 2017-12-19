@@ -17,3 +17,19 @@ export const sortAnnouncementsByCreationDate = (firstAnnouncement, secondAnnounc
 
   return firstAnnouncement.id < secondAnnouncement.id;
 };
+
+export const sortSnowClearingScheduleByDate = (firstSnowClearingDate, secondSnowClearingDate) => {
+  debugger;
+  const firstDate = new Date(
+    firstSnowClearingDate.clearingDate.year,
+    firstSnowClearingDate.clearingDate.monthValue,
+    firstSnowClearingDate.clearingDate.dayOfMonth
+  );
+
+  const secondDate = new Date(
+    secondSnowClearingDate.clearingDate.year,
+    secondSnowClearingDate.clearingDate.monthValue,
+    secondSnowClearingDate.clearingDate.dayOfMonth,
+  );
+  return secondDate>firstDate? -1 : secondDate<firstDate ? 1 : 0;
+};
