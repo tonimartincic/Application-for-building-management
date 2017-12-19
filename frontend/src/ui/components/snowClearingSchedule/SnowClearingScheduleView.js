@@ -19,7 +19,7 @@ class SnowClearingScheduleView extends Component {
     return (
       <div>
         <NavigationBar/>
-        <Col md={1}>
+        <Col md={1} mdOffset={1}>
           <Row>
             <Choose>
               <When condition = {this.props.userData.privilege=="admin"}>
@@ -34,7 +34,7 @@ class SnowClearingScheduleView extends Component {
             </Choose>
           </Row>
         </Col>
-        <Col md={5} mdOffset={3}>
+        <Col md={5} mdOffset={1}>
           <SnowClearingSchedule />
         </Col>
         <Col md={3}>

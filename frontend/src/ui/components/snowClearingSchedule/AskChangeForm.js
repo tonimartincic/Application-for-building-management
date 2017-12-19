@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {FormGroup, ControlLabel, FormControl, MenuItem, Button} from 'react-bootstrap';
+import {FormGroup, ControlLabel, FormControl, Well, Button, Col} from 'react-bootstrap';
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';
 import { askChange } from '../../../actionCreators/snowClearingSchedulesActionCreators'
 import * as utils from '../../../utils/DateUtil';
+import * as styles from './snowClearingSchedule.css';
 
 class AskChangeForm extends Component {
 
@@ -23,34 +24,39 @@ class AskChangeForm extends Component {
   handleSubmit() {
     if(this.state.changeDate ==='' || this.state.changeDate==='Odaberi') {
       return;
-    }
-    this.props.askChange(this.state.changeDate);
+    } else {
+      this.props.askChange(this.state.changeDate);
 
-    this.setState({
-      changeDate: '',
-    });
+      this.setState({
+        changeDate: '',
+      });
+    }
   };
 
   render() {
     return (
-      <FormGroup controlId="formControlsSelect">
-        <ControlLabel>Select</ControlLabel>
-        <FormControl componentClass='select' placeholder='Odaberi' onChange={this.handleChange}>
-          <option value="select">Odaberi</option>
-          {
-            this.props.snowClearingSchedules
-              .filter((date) => date.user.id === this.props.userData.id && !date.askChange)
-              .map(date => {
-                const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
-                return(
-                  <option key={currentDate} value={currentDate}>
-                    {currentDate}
-                  </option>)
-            })
-          }
-        </FormControl>
-        <Button onClick={()=>this.handleSubmit()}>Potvrdi</Button>
-      </FormGroup>
+      <Well className={styles.wellInput}>
+        <FormGroup controlId="formControlsSelect" >
+          <ControlLabel>Zatraži promjenu rasporeda za datum</ControlLabel>
+          <FormControl componentClass='select' placeholder='Odaberi' onChange={this.handleChange} className={styles.dropDownForm}>
+            <option value="select">Odaberi</option>
+            {
+              this.props.snowClearingSchedules
+                .filter((date) => date.user.id === this.props.userData.id && !date.askChange)
+                .map(date => {
+                  const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                  return(
+                    <option key={currentDate} value={currentDate}>
+                      {currentDate}
+                    </option>)
+              })
+            }
+          </FormControl>
+          <Col mdOffset={9}>
+            <Button bsStyle="primary" onClick={()=>this.handleSubmit()} className={styles.submitButton}>Potvrdi</Button>
+          </Col>
+        </FormGroup>
+      </Well>
     );
   }
 }
