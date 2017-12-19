@@ -12,23 +12,30 @@ class AskChangeForm extends Component {
     super(props);
     this.state = {
       changeDate: '',
+      changeDatePicked: null,
     };
   }
 
   handleChange = (event) => {
     this.setState({
       changeDate: event.target.value,
+      changeDatePicked: null,
     });
   };
 
   handleSubmit() {
-    if(this.state.changeDate ==='' || this.state.changeDate==='Odaberi') {
+    if(this.state.changeDate === '' || this.state.changeDate === 'Odaberi') {
+      this.setState({
+        changeDate: '',
+        changeDatePicked: 'error',
+      });
       return;
     } else {
       this.props.askChange(this.state.changeDate);
 
       this.setState({
         changeDate: '',
+        changeDatePicked: null,
       });
     }
   };
@@ -36,9 +43,14 @@ class AskChangeForm extends Component {
   render() {
     return (
       <Well className={styles.wellInput}>
-        <FormGroup controlId="formControlsSelect" >
-          <ControlLabel>Zatraži promjenu rasporeda za datum</ControlLabel>
-          <FormControl componentClass='select' placeholder='Odaberi' onChange={this.handleChange} className={styles.dropDownForm}>
+        <ControlLabel>Zatraži promjenu rasporeda za datum</ControlLabel>
+        <FormGroup controlId="formControlsSelect" validationState={this.state.changeDatePicked}>
+          <FormControl
+            componentClass='select'
+            placeholder='Odaberi'
+            onChange={this.handleChange}
+            className={styles.dropDownForm}
+          >
             <option value="select">Odaberi</option>
             {
               this.props.snowClearingSchedules
