@@ -33,3 +33,19 @@ export async function generateSnowClearingSchedule(from, to) {
     };
   }
 }
+
+export async function askChange(date) {
+  try {
+    const response = await axios.post(`/api/snow-clearing-schedules/ask-change?date=${date}`);
+
+    return  {
+      type: types.ASK_CHANGE_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.ASK_CHANGE_FAILURE,
+      data: err,
+    };
+  }
+}

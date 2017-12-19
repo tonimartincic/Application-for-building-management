@@ -7,6 +7,7 @@ import SnowClearingSchedule  from "./SnowClearingSchedule";
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';
 import { generateClicked } from '../../../actions/snowClearingSchedulesActions';
 import GenerateScheduleInputForm from './GenerateScheduleInputForm';
+import AskChangeForm from './AskChangeForm';
 
 class SnowClearingScheduleView extends Component {
 
@@ -18,10 +19,7 @@ class SnowClearingScheduleView extends Component {
     return (
       <div>
         <NavigationBar/>
-        <Col md={5} mdOffset={3}>
-          <SnowClearingSchedule />
-        </Col>
-        <Col md={3}>
+        <Col md={1}>
           <Row>
             <Choose>
               <When condition = {this.props.userData.privilege=="admin"}>
@@ -35,8 +33,13 @@ class SnowClearingScheduleView extends Component {
               </When>
             </Choose>
           </Row>
+        </Col>
+        <Col md={5} mdOffset={3}>
+          <SnowClearingSchedule />
+        </Col>
+        <Col md={3}>
           <Row>
-            <Button>Traži izmjenu</Button>
+            <AskChangeForm />
           </Row>
         </Col>
       </div>

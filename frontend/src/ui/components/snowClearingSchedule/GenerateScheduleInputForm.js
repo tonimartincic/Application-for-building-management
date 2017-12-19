@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, MenuItem, DropdownButton, Row, Col, Checkbox, Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { generateClicked } from '../../../actions/snowClearingSchedulesActions';
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';

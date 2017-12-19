@@ -38,6 +38,15 @@ public class SnowClearingDateServiceImpl implements SnowClearingDateService {
   }
 
   @Override
+  public SnowClearingDate askChange(LocalDate clearingDate) {
+    SnowClearingDate snowClearingDateTemp = snowClearingDateRepository.findByClearingDate(clearingDate);
+
+    snowClearingDateTemp.setAskChange(true);
+
+    return snowClearingDateRepository.save(snowClearingDateTemp);
+  }
+
+  @Override
   public void createSchedule(LocalDate from, LocalDate to) {
     List<SnowClearingDate> snowClearingDates = new ArrayList<>();
     List<User> userList = new ArrayList<>();
