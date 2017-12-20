@@ -20,11 +20,12 @@ export default async function fetchSnowClearingSchedules() {
 export async function generateSnowClearingSchedule(from, to) {
   try {
 
-    const response = await axios.post(`/api/snow-clearing-schedules/create?from=${from}&to=${to}`);
+    const response1 = await axios.post(`/api/snow-clearing-schedules/create?from=${from}&to=${to}`);
+    const response2 = await axios.get('/api/snow-clearing-schedules');
 
     return {
       type: types.GENERATE_SNOW_CLEARING_SCHEDULE_SUCCESS,
-      data: response.data,
+      data: response2.data,
     };
   } catch (err) {
     return {
