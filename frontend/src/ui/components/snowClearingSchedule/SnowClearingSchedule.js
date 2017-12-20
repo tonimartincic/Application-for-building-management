@@ -7,13 +7,11 @@ import * as sortUtils from '../../../utils/SortUtil';
 
 class SnowClearingSchedule extends Component {
 
-  pastDates = (date) => {
-    const currentDate = new Date();
-    const dateTemp = dateUtils.createDateFromSnowClearingDate(date);
-    return dateTemp >= currentDate;
-  };
-
   render(){
+
+    const snowClearingScheduleSorted = this.props.snowClearingSchedules.sort(sortUtils.sortSnowClearingScheduleByDate);
+    const snowClearingScheduleSortedPastDates = snowClearingScheduleSorted.filter(date => !dateUtils.determinatePastDates(date));
+
     return(
       <Table striped bordered condensed hover className={styles.myTable}>
         <thead>
@@ -25,9 +23,7 @@ class SnowClearingSchedule extends Component {
         </thead>
         <tbody>
           {
-            this.props.snowClearingSchedules
-              .filter(date => !this.pastDates(date))
-              .sort(sortUtils.sortSnowClearingScheduleByDate)
+            snowClearingScheduleSortedPastDates
               .map((date) => {
                 const schedule
                   = dateUtils.constructDateString(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
@@ -38,21 +34,32 @@ class SnowClearingSchedule extends Component {
                     <td className={styles.tableColumn}>{schedule}</td>
                   </tr> )}
               )
-              .shift()
+              .slice(snowClearingScheduleSortedPastDates.length - 2,  snowClearingScheduleSortedPastDates.length)
+
           }
           {
-            this.props.snowClearingSchedules
-              .filter(date => this.pastDates(date))
-              .sort(sortUtils.sortSnowClearingScheduleByDate)
+            snowClearingScheduleSorted
+              .filter(date => dateUtils.determinatePastDates(date))
               .map((date) => {
                 const schedule
                   = dateUtils.constructDateString(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
                 return (
-                  <tr>
-                    <td className={styles.tableColumn}>{date.user.firstName}</td>
-                    <td className={styles.tableColumn}>{date.user.lastName}</td>
-                    <td className={styles.tableColumn}>{schedule}</td>
-                  </tr> )}
+                  <Choose>
+                    <When condition={this.props.userData.id === date.user.id}>
+                      <tr>
+                        <td className={styles.tableColumnCurrentUser}>{date.user.firstName}</td>
+                        <td className={styles.tableColumnCurrentUser}>{date.user.lastName}</td>
+                        <td className={styles.tableColumnCurrentUser}>{schedule}</td>
+                      </tr>
+                    </When>
+                    <Otherwise>
+                      <tr>
+                        <td className={styles.tableColumn}>{date.user.firstName}</td>
+                        <td className={styles.tableColumn}>{date.user.lastName}</td>
+                        <td className={styles.tableColumn}>{schedule}</td>
+                      </tr>
+                    </Otherwise>
+                  </Choose>)}
                 )
           }
         </tbody>
@@ -63,6 +70,7 @@ class SnowClearingSchedule extends Component {
 
 function mapStateToProps(state) {
   return {
+    userData : state.userData,
     snowClearingSchedules: state.snowClearingSchedules
   };
 }

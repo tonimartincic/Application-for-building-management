@@ -6,6 +6,12 @@
   width: 20%;
 }
 
+
+.tableColumnCurrentUser {
+  width: 20%;
+  font-weight: bold;
+}
+
 .dropDownForm {
   margin-bottom: 10px;
 }

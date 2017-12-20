@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {FormGroup, ControlLabel, FormControl, Well, Button, Col} from 'react-bootstrap';
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';
 import { askChange } from '../../../actionCreators/snowClearingSchedulesActionCreators'
-import * as utils from '../../../utils/DateUtil';
+import * as dateUtils from '../../../utils/DateUtil';
 import * as styles from './snowClearingSchedule.css';
 
 class AskChangeForm extends Component {
@@ -55,8 +55,9 @@ class AskChangeForm extends Component {
             {
               this.props.snowClearingSchedules
                 .filter((date) => date.user.id === this.props.userData.id && !date.askChange)
+                .filter((date) => dateUtils.determinatePastDates(date))
                 .map(date => {
-                  const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                  const currentDate = dateUtils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
                   return(
                     <option key={currentDate} value={currentDate}>
                       {currentDate}

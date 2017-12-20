@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { approveRequestChangeToggle } from '../../../actions/snowClearingSchedulesActions';
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';
 import { generateSnowClearingSchedule, approveChangeRequest } from '../../../actionCreators/snowClearingSchedulesActionCreators';
-import * as utils from '../../../utils/DateUtil';
+import * as dateUtils from '../../../utils/DateUtil';
 
 class ApproveChangeRequest extends React.Component {
 
@@ -84,6 +84,9 @@ class ApproveChangeRequest extends React.Component {
   }
 
   render() {
+
+    const snowClearingSchedulesWithoutPastDates = this.props.snowClearingSchedules.filter((date) => dateUtils.determinatePastDates(date))
+
     return (
       <div>
         <Modal
@@ -92,6 +95,10 @@ class ApproveChangeRequest extends React.Component {
             this.props.approveRequestChangeToggle();
             this.handleAlertDismiss2();
             this.handleAlertDismiss1();
+            this.setState({
+              firstDateSelected: null,
+              secondDateSelected: null
+            });
           }
           }
         >
@@ -108,10 +115,10 @@ class ApproveChangeRequest extends React.Component {
                 >
                   <option value="select">Odaberi</option>
                   {
-                    this.props.snowClearingSchedules
+                    snowClearingSchedulesWithoutPastDates
                       .filter((date) => date.askChange)
                       .map(date => {
-                        const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                        const currentDate = dateUtils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
                         const currentDateTemp = currentDate + ' - ' + date.user.firstName + ' ' + date.user.lastName;
                         return(
                           <option key={currentDate} value={currentDateTemp}>
@@ -130,10 +137,10 @@ class ApproveChangeRequest extends React.Component {
               >
                 <option value="select">Odaberi</option>
                 {
-                  this.props.snowClearingSchedules
+                  snowClearingSchedulesWithoutPastDates
                     .filter((date) => date.askChange)
                     .map(date => {
-                      const currentDate = utils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                      const currentDate = dateUtils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
                       const currentDateTemp = currentDate + ' - ' + date.user.firstName + ' ' + date.user.lastName;
                       return(
                         <option key={currentDate} value={currentDateTemp}>
