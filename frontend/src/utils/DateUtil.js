@@ -8,3 +8,12 @@ export const constructDateStringForBackend = (day, month, year) => {
   const dayTemp = day < 10 ? "0"+day : day;
   return year + "-" + monthTemp + "-" + dayTemp;
 }
+
+export const createDateFromSnowClearingDate = (date) => {
+  const dateTemp = new Date(
+    date.clearingDate.year,
+    date.clearingDate.monthValue,
+    date.clearingDate.dayOfMonth
+  );
+  return dateTemp;
+}

@@ -58,3 +58,5 @@ Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('02.02.16', 'dd.MM.yy'), 1, false);
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('01.04.15', 'dd.MM.yy'), 2, true);
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('22.01.15', 'dd.MM.yy'), 2, true);
+Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('22.01.18', 'dd.MM.yy'), 2, true);
+Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('23.01.18', 'dd.MM.yy'), 1, true);

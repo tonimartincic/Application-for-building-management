@@ -72,7 +72,6 @@ class ApproveChangeRequest extends React.Component {
         firstDateSelected: null,
         secondDateSelected: null,
       });
-      this.props.approveRequestChangeToggle();
     }
   }
 

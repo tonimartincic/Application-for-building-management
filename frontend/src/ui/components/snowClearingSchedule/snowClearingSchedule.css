@@ -25,3 +25,7 @@
 .updateScheduleButton {
   margin: 10px;
 }
+
+.pastDates {
+  color: gray;
+}
