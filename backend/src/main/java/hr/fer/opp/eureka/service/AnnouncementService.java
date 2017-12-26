@@ -1,6 +1,7 @@
 package hr.fer.opp.eureka.service;
 
-import hr.fer.opp.eureka.domain.Announcement;
+import hr.fer.opp.eureka.domain.announcement.Announcement;
+import hr.fer.opp.eureka.domain.announcement.AnnouncementCreateRequest;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface AnnouncementService {
 
   Announcement getById(Long id);
 
-  Announcement add(Announcement announcement);
+  Announcement add(AnnouncementCreateRequest announcementCreateRequest);
 
   Announcement edit(Announcement announcement);
 

@@ -35,11 +35,6 @@ class AnnouncementBoard extends Component {
                 <Announcement
                   key={index}
                   announcement={announcement}
-                  creationDate={dateUtil.constructDateString(
-                    announcement.creationDate.dayOfMonth,
-                    announcement.creationDate.monthValue,
-                    announcement.creationDate.year
-                  )}
                   deleteAnnouncement={() => this.props.deleteAnnouncement(announcement.id)}
                 />
               ))}

@@ -68,7 +68,7 @@ class Announcement extends Component {
                 <span>{this.props.announcement.user.firstName} {this.props.announcement.user.lastName}</span>
               </Col>
               <Col md={4} mdOffset={4}>
-                <span className={styles.creationDateSpan}>{this.props.creationDate}</span>
+                <span className={styles.creationDateSpan}>{this.props.announcement.creationDate}</span>
               </Col>
             </Row>
           </section>

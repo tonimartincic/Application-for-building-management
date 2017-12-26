@@ -1,8 +1,10 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.Announcement;
+import hr.fer.opp.eureka.domain.announcement.Announcement;
+import hr.fer.opp.eureka.domain.announcement.AnnouncementCreateRequest;
 import hr.fer.opp.eureka.repository.AnnouncementRepository;
+import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,15 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
   private final AnnouncementRepository announcementRepository;
 
+  private final UserRepository userRepository;
+
   @Autowired
-  public AnnouncementServiceImpl(AnnouncementRepository announcementRepository){
-    this.announcementRepository=announcementRepository;
+  public AnnouncementServiceImpl(
+    AnnouncementRepository announcementRepository,
+    UserRepository userRepository){
+
+    this.announcementRepository = announcementRepository;
+    this.userRepository = userRepository;
   }
 
   @Override
@@ -31,8 +39,14 @@ public class AnnouncementServiceImpl implements AnnouncementService {
   }
 
   @Override
-  public Announcement add(Announcement announcement) {
+  public Announcement add(AnnouncementCreateRequest announcementCreateRequest) {
+    Announcement announcement = new Announcement();
+
     announcement.setCreationDate(LocalDate.now());
+    announcement.setCreationDate(announcementCreateRequest.getExpirationDate());
+    announcement.setContent(announcementCreateRequest.getContent());
+    announcement.setUser(this.userRepository.findById(announcementCreateRequest.getUserId()));
+
     return this.announcementRepository.save(announcement);
   }
 

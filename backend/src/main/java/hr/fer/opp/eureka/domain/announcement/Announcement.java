@@ -1,6 +1,7 @@
-package hr.fer.opp.eureka.domain;
+package hr.fer.opp.eureka.domain.announcement;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import hr.fer.opp.eureka.domain.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;

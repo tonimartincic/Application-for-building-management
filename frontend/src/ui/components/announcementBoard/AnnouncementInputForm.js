@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Button, Col, Grid, Row, Well, ControlLabel, Checkbox} from 'react-bootstrap';
+import {Button, Col, Grid, Row, ControlLabel, Checkbox} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import DatePicker from 'react-bootstrap-date-picker';
+import dateformat from 'dateformat';
 import styles from './announcementInputForm.css';
 import * as constants from '../../../constants/values';
+import * as dateUtil from '../../../utils/DateUtil';
 import {addNewAnnouncement} from '../../../actionCreators/announcementsActionCreators';
 
 class AnnouncementInputForm extends Component {
@@ -25,17 +27,17 @@ class AnnouncementInputForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const user = {
-      id: this.props.userData.id,
-      firstName: this.props.userData.firstName,
-      lastName: this.props.userData.lastName
-    };
-
-    this.props.addNewAnnouncement(user, this.state.content, this.state.expirationDate);
+    debugger;
+    this.props.addNewAnnouncement(
+      this.props.userData.id,
+      this.state.content,
+      `${this.state.expirationDate.substring(8, 10)}-${this.state.expirationDate.substring(5, 7)}-${this.state.expirationDate.substring(0, 4)}`
+    );
 
     this.setState({
       content: '',
       expirationDate: null,
+      announcementHasExpirationDate: false
     });
   }
 
@@ -140,7 +142,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNewAnnouncement: (user, content, expirationDate) => dispatch(addNewAnnouncement(user, content, expirationDate))
+    addNewAnnouncement: (userId, content, expirationDate) => dispatch(addNewAnnouncement(userId, content, expirationDate))
   };
 }
 

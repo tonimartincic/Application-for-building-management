@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.repository;
 
-import hr.fer.opp.eureka.domain.Announcement;
+import hr.fer.opp.eureka.domain.announcement.Announcement;
 import org.springframework.data.repository.CrudRepository;
 
 public interface AnnouncementRepository extends CrudRepository<Announcement,Long> {
