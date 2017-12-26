@@ -27,15 +27,16 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "create-react-class": "^15.6.2",
+    "dateformat": "^2.0.0",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.2",
-    "react-bootstrap-date-picker": "^5.1.0",
+    "react-bootstrap-date-picker": "github:maxaggedon/react-bootstrap-date-picker",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-async-await": "^1.0.1",
-    "redux-persist": "^5.2.2",
-    "dateformat": "^2.0.0"
+    "redux-persist": "^5.2.2"
   }
 }

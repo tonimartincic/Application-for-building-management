@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {Col, Grid, Row} from 'react-bootstrap';
+import {Col, Grid, Row, Well} from 'react-bootstrap';
 import fetchAnnouncements from '../../../actionCreators/announcementsActionCreators';
 import {deleteAnnouncement} from '../../../actionCreators/announcementsActionCreators';
 import Announcement from "./Announcement";
@@ -21,7 +21,11 @@ class AnnouncementBoard extends Component {
         <NavigationBar/>
         <Grid>
           <Row>
-            <AnnouncementInputForm/>
+            <Col md={8} mdOffset={2}>
+              <Well>
+                <AnnouncementInputForm/>
+              </Well>
+            </Col>
           </Row>
           <Row>
             <Col md={8} mdOffset={2}>
