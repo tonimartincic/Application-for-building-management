@@ -43,7 +43,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     Announcement announcement = new Announcement();
 
     announcement.setCreationDate(LocalDate.now());
-    announcement.setCreationDate(announcementCreateRequest.getExpirationDate());
+    announcement.setExpirationDate(announcementCreateRequest.getExpirationDate());
     announcement.setContent(announcementCreateRequest.getContent());
     announcement.setUser(this.userRepository.findById(announcementCreateRequest.getUserId()));
 
