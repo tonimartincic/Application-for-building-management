@@ -27,7 +27,6 @@ class AnnouncementInputForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    debugger;
     this.props.addNewAnnouncement(
       this.props.userData.id,
       this.state.content,

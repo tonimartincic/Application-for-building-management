@@ -19,7 +19,6 @@ export default async function fetchAnnouncements() {
 
 export async function addNewAnnouncement(userId, content, expirationDate) {
   try {
-    debugger;
     const announcement =  {
       userId: userId,
       content: content,
