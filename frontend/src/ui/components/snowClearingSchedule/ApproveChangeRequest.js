@@ -141,7 +141,6 @@ class ApproveChangeRequest extends React.Component {
                   snowClearingSchedulesWithoutPastDates
                     .filter((date) => date.askChange)
                     .map(date => {
-                      debugger;
                       const currentDate = dateUtils.constructDateStringForBackend(date);
                       const currentDateTemp = currentDate + ' - ' + date.user.firstName + ' ' + date.user.lastName;
                       return(
