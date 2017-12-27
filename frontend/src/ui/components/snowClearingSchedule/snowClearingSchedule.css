@@ -6,6 +6,12 @@
   width: 20%;
 }
 
+
+.tableColumnCurrentUser {
+  width: 20%;
+  font-weight: bold;
+}
+
 .dropDownForm {
   margin-bottom: 10px;
 }
@@ -16,4 +22,16 @@
 
 .wellInput {
   padding-bottom: 0px;
+}
+
+.wellUpdate {
+  width: 70%;
+}
+
+.updateScheduleButton {
+  margin: 10px;
+}
+
+.pastDates {
+  color: gray;
 }
