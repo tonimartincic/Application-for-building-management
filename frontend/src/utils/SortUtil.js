@@ -21,15 +21,15 @@ export const sortAnnouncementsByCreationDate = (firstAnnouncement, secondAnnounc
 
 export const sortSnowClearingScheduleByDate = (firstSnowClearingDate, secondSnowClearingDate) => {
   const firstDate = new Date(
-    firstSnowClearingDate.clearingDate.year,
-    firstSnowClearingDate.clearingDate.monthValue,
-    firstSnowClearingDate.clearingDate.dayOfMonth
+    firstSnowClearingDate.clearingDate.split('-')[2],
+    firstSnowClearingDate.clearingDate.split('-')[1] - 1,
+    firstSnowClearingDate.clearingDate.split('-')[0]
   );
 
   const secondDate = new Date(
-    secondSnowClearingDate.clearingDate.year,
-    secondSnowClearingDate.clearingDate.monthValue,
-    secondSnowClearingDate.clearingDate.dayOfMonth,
+    secondSnowClearingDate.clearingDate.split('-')[2],
+    secondSnowClearingDate.clearingDate.split('-')[1] - 1,
+    secondSnowClearingDate.clearingDate.split('-')[0]
   );
   return secondDate>firstDate? -1 : secondDate<firstDate ? 1 : 0;
 };

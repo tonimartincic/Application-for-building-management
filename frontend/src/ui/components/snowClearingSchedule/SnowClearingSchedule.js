@@ -25,13 +25,11 @@ class SnowClearingSchedule extends Component {
           {
             snowClearingScheduleSortedPastDates
               .map((date) => {
-                const schedule
-                  = dateUtils.constructDateString(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
                 return (
                   <tr className={styles.pastDates}>
                     <td className={styles.tableColumn}>{date.user.firstName}</td>
                     <td className={styles.tableColumn}>{date.user.lastName}</td>
-                    <td className={styles.tableColumn}>{schedule}</td>
+                    <td className={styles.tableColumn}>{date.clearingDate}</td>
                   </tr> )}
               )
               .slice(snowClearingScheduleSortedPastDates.length - 2,  snowClearingScheduleSortedPastDates.length)
@@ -41,22 +39,20 @@ class SnowClearingSchedule extends Component {
             snowClearingScheduleSorted
               .filter(date => dateUtils.determinatePastDates(date))
               .map((date) => {
-                const schedule
-                  = dateUtils.constructDateString(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
                 return (
                   <Choose>
                     <When condition={this.props.userData.id === date.user.id}>
                       <tr>
                         <td className={styles.tableColumnCurrentUser}>{date.user.firstName}</td>
                         <td className={styles.tableColumnCurrentUser}>{date.user.lastName}</td>
-                        <td className={styles.tableColumnCurrentUser}>{schedule}</td>
+                        <td className={styles.tableColumnCurrentUser}>{date.clearingDate}</td>
                       </tr>
                     </When>
                     <Otherwise>
                       <tr>
                         <td className={styles.tableColumn}>{date.user.firstName}</td>
                         <td className={styles.tableColumn}>{date.user.lastName}</td>
-                        <td className={styles.tableColumn}>{schedule}</td>
+                        <td className={styles.tableColumn}>{date.clearingDate}</td>
                       </tr>
                     </Otherwise>
                   </Choose>)}

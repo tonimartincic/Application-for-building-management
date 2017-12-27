@@ -3,19 +3,18 @@ import * as constants from '../constants/values';
 export const constructDateString = (day, month, year) =>
   day + ". " + constants.monthNamesGen[month - 1] + " " + year + ".";
 
-export const constructDateStringForBackend = (day, month, year) => {
-  const monthTemp = month < 10 ? "0"+month : month;
-  const dayTemp = day < 10 ? "0"+day : day;
-  return year + "-" + monthTemp + "-" + dayTemp;
+export const constructDateStringForBackend = (date) => {
+  const monthTemp = date.clearingDate.split('-')[1];
+  const dayTemp = date.clearingDate.split('-')[0];
+  const yearTemp = date.clearingDate.split('-')[2];
+  return yearTemp + "-" + monthTemp + "-" + dayTemp;
 }
 
 export const createDateFromSnowClearingDate = (date) => {
-  debugger;
-  const month = date.clearingDate.monthValue === 1 ? 12 : date.clearingDate.monthValue - 1;
   const dateTemp = new Date(
-    date.clearingDate.year,
-    month,
-    date.clearingDate.dayOfMonth
+    date.clearingDate.split('-')[2],
+    date.clearingDate.split('-')[1] - 1,
+    date.clearingDate.split('-')[0]
   );
   return dateTemp;
 }

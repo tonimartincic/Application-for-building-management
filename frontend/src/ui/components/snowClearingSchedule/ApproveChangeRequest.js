@@ -62,6 +62,7 @@ class ApproveChangeRequest extends React.Component {
         alertVisible2: true,
       });
     } else {
+      debugger;
       this.props.approveChangeRequest(this.state.firstDate, this.state.secondDate);
 
       this.setState({
@@ -118,7 +119,7 @@ class ApproveChangeRequest extends React.Component {
                     snowClearingSchedulesWithoutPastDates
                       .filter((date) => date.askChange)
                       .map(date => {
-                        const currentDate = dateUtils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                        const currentDate = dateUtils.constructDateStringForBackend(date);
                         const currentDateTemp = currentDate + ' - ' + date.user.firstName + ' ' + date.user.lastName;
                         return(
                           <option key={currentDate} value={currentDateTemp}>
@@ -140,7 +141,8 @@ class ApproveChangeRequest extends React.Component {
                   snowClearingSchedulesWithoutPastDates
                     .filter((date) => date.askChange)
                     .map(date => {
-                      const currentDate = dateUtils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                      debugger;
+                      const currentDate = dateUtils.constructDateStringForBackend(date);
                       const currentDateTemp = currentDate + ' - ' + date.user.firstName + ' ' + date.user.lastName;
                       return(
                         <option key={currentDate} value={currentDateTemp}>
