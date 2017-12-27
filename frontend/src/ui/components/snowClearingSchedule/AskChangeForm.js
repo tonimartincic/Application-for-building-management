@@ -57,7 +57,7 @@ class AskChangeForm extends Component {
                 .filter((date) => date.user.id === this.props.userData.id && !date.askChange)
                 .filter((date) => dateUtils.determinatePastDates(date))
                 .map(date => {
-                  const currentDate = dateUtils.constructDateStringForBackend(date.clearingDate.dayOfMonth,date.clearingDate.monthValue, date.clearingDate.year);
+                  const currentDate = dateUtils.constructDateStringForBackend(date);
                   return(
                     <option key={currentDate} value={currentDate}>
                       {currentDate}

@@ -13,14 +13,14 @@ export default function snowClearingSchedulesReducer(state = initialState.snowCl
       return state;
 
     case types.ASK_CHANGE_SUCCESS: {
-      const actionDay = action.data.clearingDate.dayOfMonth;
-      const actionMonth = action.data.clearingDate.monthValue;
-      const actionYear = action.data.clearingDate.year;
+      const actionDay = action.data.clearingDate.split('-')[0];
+      const actionMonth = action.data.clearingDate.split('-')[1];
+      const actionYear = action.data.clearingDate.split('-')[2];
 
       for (let i = 0; i < state.length; i += 1) {
-        if ( actionDay === state[i].clearingDate.dayOfMonth
-          && actionMonth===state[i].clearingDate.monthValue
-          && actionYear===state[i].clearingDate.year) {
+        if ( actionDay === state[i].clearingDate.split('-')[0]
+          && actionMonth===state[i].clearingDate.split('-')[1]
+          && actionYear===state[i].clearingDate.split('-')[2]) {
           newSchedule[i] = Object.assign(
             {},
             action.data,
