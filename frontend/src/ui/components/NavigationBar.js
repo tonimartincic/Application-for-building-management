@@ -66,14 +66,28 @@ class NavigationBar extends Component {
           <NavItem >
             <UserInfo />
           </NavItem>
+          <Choose>
+            <When condition={this.props.userData.privilege==="admin"}>
+              <NavItem
+                componentClass={Link}
+                to='/all-users'
+                href='/all-users'>
+                <span className={styles.span}>
+                  Korisnici
+                </span>
+              </NavItem>
+            </When>
+          </Choose>
         </Nav>
       </Navbar>
     );
   }
 }
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    userData: state.userData,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
