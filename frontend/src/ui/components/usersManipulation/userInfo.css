@@ -5,3 +5,11 @@
 .tableColumn {
   width: 20%;
 }
+
+.pInvalid {
+  color: black;
+}
+
+.sectionInvalid {
+  margin-top: 1em;
+}
