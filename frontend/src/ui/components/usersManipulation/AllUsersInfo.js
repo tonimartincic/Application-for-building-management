@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import NavigationBar from '../NavigationBar';
 import fetchUsers from '../../../actionCreators/usersActionCreators';
 import AllUsersInfoTable from './AllUsersInfoTable';
-import AddNewUser from './AddNewUser';
+import AddNewUserContainer from './AddNewUserContainer';
 import { Col, Button } from 'react-bootstrap';
 
 
@@ -35,7 +35,7 @@ class AllUsersInfo extends Component {
         <Col mdOffset={1}>
           <Button onClick={() => this.toggleAddNewUser()}>Dodaj novog korisnika</Button>
         </Col>
-        <AddNewUser
+        <AddNewUserContainer
           addNewUserClicked={this.state.addNewUserClicked}
           toggleAddNewUser={this.toggleAddNewUser}/>
         <br />
