@@ -22,7 +22,6 @@ class AllUsersInfo extends Component {
   }
 
   toggleAddNewUser() {
-    debugger;
     const addNewUserClickedTemp = this.state.addNewUserClicked;
     this.setState({
       addNewUserClicked: !addNewUserClickedTemp,
