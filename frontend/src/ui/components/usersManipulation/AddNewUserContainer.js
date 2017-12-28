@@ -25,8 +25,8 @@ class AddNewUserContainer extends React.Component {
     this.handleChangeLastName = this.handleChangeLastName.bind(this);
     this.handleChangeEMail = this.handleChangeEMail.bind(this);
     this.handleChangePrivilege = this.handleChangePrivilege.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
-
 
   handleSubmit() {
     if(this.state.firstName === null || this.state.firstName === '' ||
@@ -114,7 +114,6 @@ class AddNewUserContainer extends React.Component {
   }
 
   checkPrivilege() {
-    debugger;
     if (this.state.privilege === '' || this.state.privilege === 'Odaberi' || this.state.privilege==='select') {
       this.setState({
         privilegeValidationEmpty: 'error',
@@ -131,6 +130,22 @@ class AddNewUserContainer extends React.Component {
       }
     }
     return true;
+  }
+
+  resetState() {
+    this.setState({
+      firstName: null,
+      lastName: null,
+      email: null,
+      privilege: '',
+      firstNameValidation: null,
+      lastNameValidation: null,
+      emailValidationEmptyString: null,
+      emailValidationAlreadyExists: null,
+      emailValidationNotCorrectFormat: null,
+      privilegeValidationEmpty: null,
+      privilegeValidationAlreadyExists: null,
+    });
   }
 
   render() {
@@ -154,6 +169,7 @@ class AddNewUserContainer extends React.Component {
         handleChangeLastName={this.handleChangeLastName}
         handleChangeEMail={this.handleChangeEMail}
         handleChangePrivilege={this.handleChangePrivilege}
+        resetState={this.resetState}
       />
     )
   }

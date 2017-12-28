@@ -11,6 +11,7 @@ class AddNewUser extends React.Component {
           show={this.props.addNewUserClicked}
           onHide={() => {
             this.props.toggleAddNewUser();
+            this.props.resetState();
           }
           }
         >
