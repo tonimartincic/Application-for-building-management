@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import {Button, Col, Grid, Row, ControlLabel, Checkbox} from 'react-bootstrap';
+import {Button, Col, Grid, Row, ControlLabel, Checkbox, FormGroup} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import DatePicker from 'react-bootstrap-date-picker';
-import dateformat from 'dateformat';
 import styles from './announcementInputForm.css';
 import * as constants from '../../../constants/values';
-import * as dateUtil from '../../../utils/DateUtil';
 import {addNewAnnouncement} from '../../../actionCreators/announcementsActionCreators';
 
 class AnnouncementInputForm extends Component {
@@ -15,7 +13,8 @@ class AnnouncementInputForm extends Component {
     this.state = {
       content: '',
       expirationDate: null,
-      announcementHasExpirationDate: false
+      announcementHasExpirationDate: false,
+      invalidExpirationDate: null
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,16 +26,26 @@ class AnnouncementInputForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    if(!this.calculateValidationExpirationDate()) {
+      return;
+    }
+
+    let expirationDate = null;
+    if(this.state.announcementHasExpirationDate) {
+      expirationDate = `${this.state.expirationDate.substring(8, 10)}-${this.state.expirationDate.substring(5, 7)}-${this.state.expirationDate.substring(0, 4)}`;
+    }
+
     this.props.addNewAnnouncement(
       this.props.userData.id,
       this.state.content,
-      `${this.state.expirationDate.substring(8, 10)}-${this.state.expirationDate.substring(5, 7)}-${this.state.expirationDate.substring(0, 4)}`
+      expirationDate
     );
 
     this.setState({
       content: '',
       expirationDate: null,
-      announcementHasExpirationDate: false
+      announcementHasExpirationDate: false,
+      invalidExpirationDate: null
     });
   }
 
@@ -60,8 +69,55 @@ class AnnouncementInputForm extends Component {
 
   onChangeExpirationDate = (value) => {
     this.setState({
-     expirationDate: value
+      expirationDate: value,
+      invalidExpirationDate: null
     });
+  };
+
+  calculateValidationExpirationDate = () => {
+    if(!this.state.announcementHasExpirationDate) {
+      this.setState(
+        {
+          invalidExpirationDate: null
+        },
+      );
+
+      return true;
+    }
+
+    if(this.state.expirationDate === null) {
+      this.setState(
+        {
+          invalidExpirationDate: 'error'
+        },
+      );
+
+      return false;
+    }
+
+    const date = new Date();
+    const year = this.state.expirationDate.split('-')[0];
+    const month = this.state.expirationDate.split('-')[1] - 1;
+    const day = this.state.expirationDate.split('-')[2].substring(0, 2);
+    const expirationDate = new Date(year, month, day);
+
+    if (!(date < expirationDate)) {
+      this.setState(
+        {
+          invalidExpirationDate: 'error'
+        },
+      );
+
+      return false;
+    }
+
+    this.setState(
+      {
+        invalidExpirationDate: null
+      },
+    );
+
+    return true;
   };
 
   render() {
@@ -100,14 +156,16 @@ class AnnouncementInputForm extends Component {
                   <Choose>
                     <When condition={this.state.announcementHasExpirationDate}>
                       <section className={styles.sectionDatePicker}>
-                        <DatePicker
-                          value={this.state.expirationDate}
-                          dateFormat='DD-MM-YYYY'
-                          weekStartsOn={1}
-                          dayLabels={constants.datePickerDayNames}
-                          monthLabels={constants.monthNames}
-                          onChange={this.onChangeExpirationDate}
-                        />
+                        <FormGroup validationState={this.state.invalidExpirationDate}>
+                          <DatePicker
+                            value={this.state.expirationDate}
+                            dateFormat='DD-MM-YYYY'
+                            weekStartsOn={1}
+                            dayLabels={constants.datePickerDayNames}
+                            monthLabels={constants.monthNames}
+                            onChange={this.onChangeExpirationDate}
+                          />
+                        </FormGroup>
                       </section>
                     </When>
                   </Choose>

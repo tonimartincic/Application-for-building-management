@@ -1,5 +1,4 @@
 export const sortAnnouncementsByCreationDate = (firstAnnouncement, secondAnnouncement) => {
-  debugger;
   const firstDate = new Date(
     firstAnnouncement.creationDate.split('-')[2],
     firstAnnouncement.creationDate.split('-')[1] - 1,
@@ -16,7 +15,7 @@ export const sortAnnouncementsByCreationDate = (firstAnnouncement, secondAnnounc
     return firstDate < secondDate ? 1 : -1;
   }
 
-  return firstAnnouncement.id < secondAnnouncement.id;
+  return firstAnnouncement.id < secondAnnouncement.id ? -1 : 1;
 };
 
 export const sortSnowClearingScheduleByDate = (firstSnowClearingDate, secondSnowClearingDate) => {
@@ -31,5 +30,6 @@ export const sortSnowClearingScheduleByDate = (firstSnowClearingDate, secondSnow
     secondSnowClearingDate.clearingDate.split('-')[1] - 1,
     secondSnowClearingDate.clearingDate.split('-')[0]
   );
-  return secondDate>firstDate? -1 : secondDate<firstDate ? 1 : 0;
+
+  return secondDate > firstDate? -1 : secondDate < firstDate ? 1 : 0;
 };
