@@ -62,4 +62,21 @@ public class AnnouncementServiceImpl implements AnnouncementService {
   public void deleteById(Long id) {
     this.announcementRepository.delete(id);
   }
+
+  @Override
+  public void deleteExpiredAnnouncements() {
+    List<Announcement> allAnnouncements = Lists.newArrayList(this.announcementRepository.findAll());
+
+    for(Announcement announcement : allAnnouncements) {
+      if(announcement.getExpirationDate() == null) {
+        continue;
+      }
+
+      if(announcement.getExpirationDate().isAfter(LocalDate.now())) {
+        continue;
+      }
+
+      this.announcementRepository.delete(announcement.getId());
+    }
+  }
 }

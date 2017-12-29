@@ -16,4 +16,6 @@ public interface AnnouncementService {
   Announcement edit(Announcement announcement);
 
   void deleteById(Long id);
+
+  void deleteExpiredAnnouncements();
 }
