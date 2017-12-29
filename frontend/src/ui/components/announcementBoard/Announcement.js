@@ -24,6 +24,10 @@ class Announcement extends Component {
   }
 
   render() {
+    const announcement = this.props.announcement;
+    const privilege = this.props.userData.privilege;
+    const userId = this.props.userData.id;
+
     return (
       <section className={styles.sectionAnnouncement}>
         <ConfirmationMessage
@@ -32,32 +36,36 @@ class Announcement extends Component {
           deleteAnnouncement={this.props.deleteAnnouncement}
         />
         <Well>
-          <Row>
-            <section className={styles.sectionHeader}>
-              <Button onClick={() => {
-                this.props.setEditAnnouncementButtonClicked(this.props.announcement.id, !this.props.announcement.editClicked);
-              }}
-              >
-                <span className='glyphicon glyphicon-edit' />
-              </Button>
-              <Button onClick={() => {
-                this.setValueOfDeleteAnnouncementButtonClicked(true);
-              }}
-              >
-                <span className='glyphicon glyphicon-trash' />
-              </Button>
-            </section>
-          </Row>
+          <Choose>
+            <When condition={privilege === 'admin' || privilege === 'predstavnik stanara' || announcement.user.id === userId}>
+              <Row>
+                <section className={styles.sectionHeader}>
+                  <Button onClick={() => {
+                    this.props.setEditAnnouncementButtonClicked(announcement.id, !announcement.editClicked);
+                  }}
+                  >
+                    <span className='glyphicon glyphicon-edit' />
+                  </Button>
+                  <Button onClick={() => {
+                    this.setValueOfDeleteAnnouncementButtonClicked(true);
+                  }}
+                  >
+                    <span className='glyphicon glyphicon-trash' />
+                  </Button>
+                </section>
+              </Row>
+            </When>
+          </Choose>
           <Row>
             <Col md={12}>
               <Choose>
-                <When condition={this.props.announcement.editClicked}>
+                <When condition={announcement.editClicked}>
                   <EditAnnouncementForm
-                    announcement={this.props.announcement}
+                    announcement={announcement}
                   />
                 </When>
                 <Otherwise>
-                  <span>{this.props.announcement.content}</span>
+                  <span>{announcement.content}</span>
                 </Otherwise>
               </Choose>
             </Col>
@@ -65,10 +73,10 @@ class Announcement extends Component {
           <section className={styles.sectionFooter}>
             <Row>
               <Col md={4}>
-                <span>{this.props.announcement.user.firstName} {this.props.announcement.user.lastName}</span>
+                <span>{announcement.user.firstName} {announcement.user.lastName}</span>
               </Col>
               <Col md={4} mdOffset={4}>
-                <span className={styles.creationDateSpan}>{this.props.announcement.creationDate}</span>
+                <span className={styles.creationDateSpan}>{announcement.creationDate}</span>
               </Col>
             </Row>
           </section>
@@ -78,8 +86,10 @@ class Announcement extends Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    userData: state.userData
+  };
 }
 
 function mapDispatchToProps(dispatch) {
