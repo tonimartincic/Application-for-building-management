@@ -11,11 +11,11 @@ export const sortAnnouncementsByCreationDate = (firstAnnouncement, secondAnnounc
     secondAnnouncement.creationDate.split('-')[0]
   );
 
-  if(firstDate !== secondDate) {
+  if(firstDate.getTime() !== secondDate.getTime()) {
     return firstDate < secondDate ? 1 : -1;
   }
 
-  return firstAnnouncement.id < secondAnnouncement.id ? -1 : 1;
+  return firstAnnouncement.id < secondAnnouncement.id ? 1 : -1;
 };
 
 export const sortSnowClearingScheduleByDate = (firstSnowClearingDate, secondSnowClearingDate) => {
