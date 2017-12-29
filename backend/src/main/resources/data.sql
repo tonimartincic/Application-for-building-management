@@ -28,7 +28,7 @@ Insert into announcement (creation_date, creator, content) values (parsedatetime
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('02.09.17', 'dd.MM.yy'), parsedatetime('02.10.17', 'dd.MM.yy'), 5, 'Tražim zamjenu termina za čišćenje snijega');
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), parsedatetime('30.10.17', 'dd.MM.yy'), 1, 'Objavljen raspored čišćenja snijega');
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), parsedatetime('28.10.17', 'dd.MM.yy'), 2, 'Sastanak sljedeći tjedan u utorak u 18:00');
-Insert into announcement (creation_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), 3, 'Jel hoće tko na pivu u utorak u 18:00');
+Insert into announcement (creation_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), 6, 'Jel hoće tko na pivu u utorak u 18:00');
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('02.10.17', 'dd.MM.yy'), parsedatetime('28.10.17', 'dd.MM.yy'), 3, 'Jel hoće tko na pivu u srijedu u 18:00');
 
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
