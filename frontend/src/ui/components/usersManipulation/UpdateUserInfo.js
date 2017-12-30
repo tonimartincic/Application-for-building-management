@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Collapse, Row, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {deleteUser} from '../../../actionCreators/usersActionCreators';
+import {deleteUser, editUserInfo} from '../../../actionCreators/usersActionCreators';
 import * as constants from '../../../constants/values';
 
 class UpdateUserInfo extends React.Component {
@@ -11,23 +11,141 @@ class UpdateUserInfo extends React.Component {
     this.state = {
       userSelectedValidation: null,
       userSelected: null,
-      user: null,
+      user: {
+        id: null,
+        firstName: null,
+        lastName: null,
+        mail: null,
+        privilege: null,
+      },
     };
     this.handleChangeUser = this.handleChangeUser.bind(this);
+    this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
+    this.handleChangeLastName = this.handleChangeLastName.bind(this);
+    this.handleChangeMail = this.handleChangeMail.bind(this);
+    this.handleChangePrivilege = this.handleChangePrivilege.bind(this);
   }
+
+  resetState = () => {
+    this.setState({
+      userSelectedValidation: null,
+      userSelected: null,
+      user: {
+        id: null,
+        firstName: null,
+        lastName: null,
+        mail: null,
+        privilege: null,
+      },
+      userPrivilege: null,
+    });
+  };
 
   handleChangeUser = (event) => {
     for (let i = 0; i < this.props.users.length; ++i) {
       if (this.props.users[i].id == event.target.value)
         this.setState({
-          user: this.props.users[i],
-        });
+          user: {
+            id: this.props.users[i].id,
+            firstName: this.props.users[i].firstName,
+            lastName: this.props.users[i].lastName,
+            mail: this.props.users[i].mail,
+            privilege: this.props.users[i].privilege,
+        }});
     }
     this.setState({
       userSelected: event.target.value,
       userSelectedValidation: null,
     });
   };
+
+  handleChangeFirstName = (event) => {
+    debugger;
+    const userTemp = this.state.user;
+    userTemp.firstName = event.target.value;
+    this.setState({
+      user: userTemp,
+    });
+  };
+
+  handleChangeLastName = (event) => {
+    const userTemp = this.state.user;
+    userTemp.lastName = event.target.value;
+    this.setState({
+      user: userTemp,
+    });
+  };
+
+  handleChangeMail = (event) => {
+    const userTemp = this.state.user;
+    userTemp.mail = event.target.value;
+    this.setState({
+      user: userTemp,
+    });
+  };
+
+  handleChangePrivilege = (event) => {
+    this.setState({
+      userPrivilege: event.target.value,
+    });
+  };
+
+  handleSubmit() {
+    const userTemp = this.state.user;
+    userTemp.privilege = this.state.userPrivilege;
+    this.setState({
+      user: userTemp,
+    });
+    if(!this.checkFirstName() || !this.checkLastName() || !this.checkEmail() || !this.checkPrivilege()) {
+      console.log("error");
+    } else {
+      this.props.editUserInfo(this.state.user);
+      this.resetState();
+      this.props.toggleUpdateUserInfo();
+    }
+
+  }
+
+  checkFirstName() {
+    if(this.state.user.firstName !== '' || this.state.user.firstName !== null)
+      return true;
+    return false;
+  }
+
+  checkLastName() {
+    if(this.state.user.lastName !== '' || this.state.user.lastName !== null)
+      return true;
+    return false;
+  }
+
+  checkEmail() {
+    if(this.state.user.mail === null || this.state.user.mail === '') {
+      return false;
+    }
+    for(let i = 0 ; i < this.props.users.length; i = i + 1) {
+      if (this.props.users[i].mail === this.state.user.mail && this.props.users[i].id !== this.state.user.id) {
+        return false;
+      }
+    }
+    let re = /\S+@\S+\.\S+/;
+    if (!re.test(this.state.user.mail)) {
+      return false;
+    }
+    return true;
+  }
+
+  checkPrivilege() {
+    if (this.state.user.privilege === '' || this.state.user.privilege === 'Odaberi' || this.state.user.privilege==='select') {
+      return false;
+    } else if (this.state.privilege === 'predstavnik' || this.state.privilege === 'upravitelj' ) {
+      for(let i = 0 ; i < this.props.users.length; i = i + 1) {
+        if (this.props.users[i].privilege === this.state.user.privilege) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
   render() {
     return (
@@ -36,6 +154,7 @@ class UpdateUserInfo extends React.Component {
           show={this.props.updateUserInfoClicked}
           onHide={() => {
             this.props.toggleUpdateUserInfo();
+            this.resetState();
           }
           }
         >
@@ -53,10 +172,10 @@ class UpdateUserInfo extends React.Component {
                 <option value="select">Odaberi</option>
                 {
                   this.props.users
-                    .map(user => {
-                      const fullName = user.firstName + " " + user.lastName + " - " + user.mail;
+                    .map(userTemp => {
+                      const fullName = userTemp.firstName + " " + userTemp.lastName + " - " + userTemp.mail;
                       return (
-                        <option key={user.id} value={user.id}>
+                        <option key={userTemp.id} value={userTemp.id}>
                           {fullName}
                         </option>)
                     })
@@ -113,19 +232,18 @@ class UpdateUserInfo extends React.Component {
                       </Col>
                       <Col md={6}>
                         <FormControl componentClass="select" placeholder="select"
-                                     onChange={this.props.handleChangePrivilege}>
+                                     onChange={this.handleChangePrivilege}>
                           {
                             constants.userPrivileges
                               .filter(privilege => privilege === this.state.user.privilege)
                               .map(privilege =>
                                 <option value={privilege}>{privilege}</option>)
-                          }
-                          {
-                            constants.userPrivileges
-                              .filter(privilege => privilege !== this.state.user.privilege)
-                              .map(privilege =>
-                                <option value={privilege}>{privilege}</option>)
-                          }
+                          }                          {
+                          constants.userPrivileges
+                            .filter(privilege => privilege !== this.state.user.privilege)
+                            .map(privilege =>
+                              <option value={privilege}>{privilege}</option>)
+                        }
                         </FormControl>
                       </Col>
                     </Row>
@@ -138,7 +256,9 @@ class UpdateUserInfo extends React.Component {
                       <Button onClick={() => this.props.deleteUser(this.state.user.id)}>Obriši korisnika</Button>
                     </Col>
                     <Col md={4}>
-                      <Button onClick={() => this.props.toggleUpdateUserInfo()}>Odustani</Button>
+                      <Button onClick={() =>
+                      {this.props.toggleUpdateUserInfo();
+                      this.resetState();}}>Odustani</Button>
                     </Col>
                   </Row>
                 </When>
@@ -160,6 +280,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     deleteUser: (id) => (dispatch(deleteUser(id))),
+    editUserInfo: (user) => (dispatch(editUserInfo(user))),
   };
 }
 
