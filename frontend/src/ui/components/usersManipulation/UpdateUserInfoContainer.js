@@ -16,6 +16,7 @@ class UpdateUserInfoContainer extends React.Component {
         mail: null,
         privilege: null,
       },
+      userPrivilege: null,
     };
     this.handleChangeUser = this.handleChangeUser.bind(this);
     this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
@@ -89,11 +90,14 @@ class UpdateUserInfoContainer extends React.Component {
   };
 
   handleSubmit() {
-    const userTemp = this.state.user;
-    userTemp.privilege = this.state.userPrivilege;
-    this.setState({
-      user: userTemp,
-    });
+    if(this.checkPrivilege()) {
+      debugger;
+      const userTemp = this.state.user;
+      userTemp.privilege = this.state.userPrivilege;
+      this.setState({
+        user: userTemp,
+      });
+    }
     if(!this.checkFirstName() || !this.checkLastName() || !this.checkEmail() || !this.checkPrivilege()) {
       console.log("error");
     } else {
@@ -132,11 +136,11 @@ class UpdateUserInfoContainer extends React.Component {
   }
 
   checkPrivilege() {
-    if (this.state.user.privilege === '' || this.state.user.privilege === 'Odaberi' || this.state.user.privilege==='select') {
+    if (this.state.userPrivilege === '' || this.state.userPrivilege === null || this.state.userPrivilege==='select') {
       return false;
-    } else if (this.state.privilege === 'predstavnik' || this.state.privilege === 'upravitelj' ) {
+    } else if (this.state.userPrivilege === 'predstavnik' || this.state.userPrivilege === 'upravitelj' ) {
       for(let i = 0 ; i < this.props.users.length; i = i + 1) {
-        if (this.props.users[i].privilege === this.state.user.privilege) {
+        if (this.props.users[i].privilege === this.state.userPrivilege) {
           return false;
         }
       }
