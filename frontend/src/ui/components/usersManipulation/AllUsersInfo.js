@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import NavigationBar from '../NavigationBar';
 import fetchUsers from '../../../actionCreators/usersActionCreators';
 import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
-import { Col, Button, Row } from 'react-bootstrap';
-import UpdateUserInfo from './UpdateUserInfo';
+import {Col, Button, Row, Well} from 'react-bootstrap';
+import UpdateUserInfoContainer from './UpdateUserInfoContainer';
 
 class AllUsersInfo extends Component {
   componentDidMount() {
@@ -41,23 +41,26 @@ class AllUsersInfo extends Component {
     return (
       <div>
         <NavigationBar/>
-        <Row>
-          <Col mdOffset={1} md={3}>
-            <Button onClick={() => this.toggleAddNewUser()}>Dodaj novog korisnika</Button>
-          </Col>
+        <Col md={8} mdOffset={1}>
+          <AddNewUserContainer
+            addNewUserClicked={this.state.addNewUserClicked}
+            toggleAddNewUser={this.toggleAddNewUser}/>
+          <UpdateUserInfoContainer
+            updateUserInfoClicked={this.state.updateUserInfoClicked}
+            toggleUpdateUserInfo={this.toggleUpdateUserInfo}/>
+          <br/>
           <Col>
-            <Button onClick={() => this.toggleUpdateUserInfo()}>Ažuriraj podatke</Button>
+            <AllUsersInfoTable/>
           </Col>
-        </Row>
-        <AddNewUserContainer
-          addNewUserClicked={this.state.addNewUserClicked}
-          toggleAddNewUser={this.toggleAddNewUser}/>
-        <UpdateUserInfo
-          updateUserInfoClicked={this.state.updateUserInfoClicked}
-          toggleUpdateUserInfo={this.toggleUpdateUserInfo}/>
-        <br />
-        <Col mdOffset={2}>
-          <AllUsersInfoTable />
+        </Col>
+        <Col md={2}>
+          <Row>
+            <Button onClick={() => this.toggleAddNewUser()}>Dodaj novog korisnika</Button>
+          </Row>
+          <br/>
+          <Row>
+            <Button onClick={() => this.toggleUpdateUserInfo()}>Ažuriraj podatke</Button>
+          </Row>
         </Col>
       </div>
     );
