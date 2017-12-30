@@ -67,7 +67,7 @@ class NavigationBar extends Component {
             <UserInfo />
           </NavItem>
           <Choose>
-            <When condition={this.props.userData.privilege==="admin"}>
+            <When condition={this.props.userData.privilege==="administrator"}>
               <NavItem
                 componentClass={Link}
                 to='/all-users'

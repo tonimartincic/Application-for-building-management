@@ -43,4 +43,20 @@ public class UserServiceImpl implements UserService {
   public User getByMail(String mail) {
     return this.userRepository.findByMail(mail);
   }
+
+  @Override
+  public User edit(User user) {
+    User userFromDatabase = this.userRepository.findById(user.getId());
+    userFromDatabase.setFirstName(user.getFirstName());
+    userFromDatabase.setLastName(user.getLastName());
+    userFromDatabase.setMail(user.getMail());
+    userFromDatabase.setPrivilege(user.getPrivilege());
+
+    return this.userRepository.save(userFromDatabase);
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    this.userRepository.delete(id);
+  }
 }

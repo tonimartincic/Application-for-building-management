@@ -4,8 +4,8 @@ import NavigationBar from '../NavigationBar';
 import fetchUsers from '../../../actionCreators/usersActionCreators';
 import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
-import { Col, Button } from 'react-bootstrap';
-
+import { Col, Button, Row } from 'react-bootstrap';
+import UpdateUserInfo from './UpdateUserInfo';
 
 class AllUsersInfo extends Component {
   componentDidMount() {
@@ -16,9 +16,11 @@ class AllUsersInfo extends Component {
     super(props);
     this.state = {
       addNewUserClicked: false,
-    }
+      updateUserInfoClicked: false,
+    };
 
     this.toggleAddNewUser = this.toggleAddNewUser.bind(this);
+    this.toggleUpdateUserInfo = this.toggleUpdateUserInfo.bind(this);
   }
 
   toggleAddNewUser() {
@@ -28,16 +30,31 @@ class AllUsersInfo extends Component {
     });
   }
 
+  toggleUpdateUserInfo() {
+    const updateUserInfoClickedTemp = this.state.updateUserInfoClicked;
+    this.setState({
+      updateUserInfoClicked: !updateUserInfoClickedTemp,
+    });
+  }
+
   render() {
     return (
       <div>
         <NavigationBar/>
-        <Col mdOffset={1}>
-          <Button onClick={() => this.toggleAddNewUser()}>Dodaj novog korisnika</Button>
-        </Col>
+        <Row>
+          <Col mdOffset={1} md={3}>
+            <Button onClick={() => this.toggleAddNewUser()}>Dodaj novog korisnika</Button>
+          </Col>
+          <Col>
+            <Button onClick={() => this.toggleUpdateUserInfo()}>Ažuriraj podatke</Button>
+          </Col>
+        </Row>
         <AddNewUserContainer
           addNewUserClicked={this.state.addNewUserClicked}
           toggleAddNewUser={this.toggleAddNewUser}/>
+        <UpdateUserInfo
+          updateUserInfoClicked={this.state.updateUserInfoClicked}
+          toggleUpdateUserInfo={this.toggleUpdateUserInfo}/>
         <br />
         <Col mdOffset={2}>
           <AllUsersInfoTable />
@@ -46,9 +63,6 @@ class AllUsersInfo extends Component {
     );
   }
 }
-
-
-
 
 function mapStateToProps(state) {
   return {

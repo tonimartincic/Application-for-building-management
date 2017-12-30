@@ -41,3 +41,35 @@ export async function addNewUser(firstName, lastName, eMail, privilege) {
   }
 
 }
+
+export async function editUserInfo(user) {
+  try {
+    const response = await axios.post('/api/users/edit', user);
+
+    return {
+      type: types.EDIT_USER_INFO_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.EDIT_USER_INFO_FAILURE,
+      data: err,
+    };
+  }
+}
+
+export async function deleteUser(id) {
+  try {
+    await axios.delete('/api/users/' + id);
+
+    return {
+      type: types.DELETE_USER_SUCCESS,
+      id,
+    };
+  } catch (err) {
+    return {
+      type: types.DELETE_USER_FAILURE,
+      data: err,
+    };
+  }
+}

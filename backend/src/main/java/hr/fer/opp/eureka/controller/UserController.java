@@ -31,4 +31,13 @@ public class UserController {
   public User addNewUser(@RequestBody final User user) {
     return userService.add(user);
   }
+
+  @PostMapping("/api/users/edit")
+  public User editAnnouncement(@RequestBody final User user) {
+    return userService.edit(user);
+  }
+
+  @DeleteMapping("/api/users/{id}")
+  public void deleteUserById(@PathVariable Long id) {
+    userService.deleteById(id); }
 }

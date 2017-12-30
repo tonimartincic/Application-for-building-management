@@ -15,4 +15,8 @@ public interface UserService {
   User add(User user);
 
   User getByMail(String mail);
+
+  User edit(User user);
+
+  void deleteById(Long id);
 }

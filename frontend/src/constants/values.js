@@ -9,3 +9,7 @@ export const monthNames = [
 export const monthNamesGen = [
   'siječnja', 'veljače', 'ožujka', 'travnja', 'svibnja', 'lipnja', 'srpnja', 'kolovoza', 'rujna', 'listopada', 'studenoga', 'prosinca',
 ];
+
+export const userPrivileges = [
+  'administrator', 'upravitelj', 'predstavnik', 'stanar'
+];
