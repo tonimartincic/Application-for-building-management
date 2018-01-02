@@ -1,10 +1,7 @@
 package hr.fer.opp.eureka.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import hr.fer.opp.eureka.domain.Apartment;
-import hr.fer.opp.eureka.domain.Building;
-import hr.fer.opp.eureka.domain.PaymentOrder;
-import hr.fer.opp.eureka.domain.UserNotification;
+import hr.fer.opp.eureka.domain.*;
 import hr.fer.opp.eureka.domain.announcement.Announcement;
 import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.enumeration.UserPrivilege;
@@ -35,36 +32,40 @@ public class User {
   private String password;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "user")
   private Set<Announcement> announcementSet;
 
   @JsonIgnore
-  @OneToMany (mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany (mappedBy = "user", fetch = FetchType.LAZY)
   private List<UserNotification> userNotificationList;
 
   @JsonIgnore
-  @OneToMany (mappedBy = "creator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany (mappedBy = "creator", fetch = FetchType.LAZY)
   private Set<Cost> costs;
 
   @JsonIgnore
-  @OneToMany (mappedBy = "landlord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany (mappedBy = "landlord", fetch = FetchType.LAZY)
   private Set<Building> landlordBuildingSet;
 
   @JsonIgnore
-  @OneToMany (mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany (mappedBy = "manager", fetch = FetchType.LAZY)
   private Set<Building> managerBuildingSet;
 
   @JsonIgnore
-  @OneToMany (mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany (mappedBy = "owner", fetch = FetchType.LAZY)
   private Set<Apartment> apartments;
 
   @JsonIgnore
-  @OneToMany (mappedBy = "payer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany (mappedBy = "payer", fetch = FetchType.LAZY)
   private Set<PaymentOrder> paymentOrdersToPay;
 
   @JsonIgnore
-  @OneToMany (mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany (mappedBy = "receiver", fetch = FetchType.LAZY)
   private Set<PaymentOrder> paymentOrdersToReceive;
+
+  @JsonIgnore
+  @OneToMany (mappedBy = "user", fetch = FetchType.LAZY)
+  private Set<SnowClearingDate> snowClearingDates;
 
   public User() {
   }
@@ -216,5 +217,13 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public Set<SnowClearingDate> getSnowClearingDates() {
+    return snowClearingDates;
+  }
+
+  public void setSnowClearingDates(Set<SnowClearingDate> snowClearingDates) {
+    this.snowClearingDates = snowClearingDates;
   }
 }

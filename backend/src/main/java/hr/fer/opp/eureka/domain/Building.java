@@ -92,4 +92,12 @@ public class Building {
   public void setAnnouncementSet(Set<Announcement> announcementSet) {
     this.announcementSet = announcementSet;
   }
+
+  public User getManager() {
+    return manager;
+  }
+
+  public void setManager(User manager) {
+    this.manager = manager;
+  }
 }

@@ -168,6 +168,7 @@ class UpdateUserInfoContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         updateUserInfoClicked={this.props.updateUserInfoClicked}
         toggleUpdateUserInfo={this.props.toggleUpdateUserInfo}
+        deleteUser={this.props.deleteUser}
       />
     );
   }
