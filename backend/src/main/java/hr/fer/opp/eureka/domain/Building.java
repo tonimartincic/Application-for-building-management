@@ -2,6 +2,7 @@ package hr.fer.opp.eureka.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hr.fer.opp.eureka.domain.announcement.Announcement;
+import hr.fer.opp.eureka.domain.user.User;
 
 import javax.persistence.*;
 import java.util.Set;

@@ -1,6 +1,8 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.User;
+import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.domain.user.UserRequest;
+import hr.fer.opp.eureka.domain.user.UserResponse;
 import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,23 +20,23 @@ public class UserController {
   }
 
   @GetMapping("/api/users")
-  public List<User> getAllUsers() {
+  public List<UserResponse> getAllUsers() {
     return userService.getAll();
   }
 
   @GetMapping("/api/users/{id}")
-  public User getUserById(@PathVariable Long id) {
+  public UserResponse getUserById(@PathVariable Long id) {
     return userService.getById(id);
   }
 
   @PostMapping("/api/users")
-  public User addNewUser(@RequestBody final User user) {
-    return userService.add(user);
+  public UserResponse addNewUser(@RequestBody final UserRequest userRequest) {
+    return userService.add(userRequest);
   }
 
   @PostMapping("/api/users/edit")
-  public User editAnnouncement(@RequestBody final User user) {
-    return userService.edit(user);
+  public UserResponse editUser(@RequestBody final UserRequest userRequest) {
+    return userService.edit(userRequest);
   }
 
   @DeleteMapping("/api/users/{id}")

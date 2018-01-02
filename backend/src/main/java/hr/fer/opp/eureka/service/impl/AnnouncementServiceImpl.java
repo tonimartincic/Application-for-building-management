@@ -2,7 +2,7 @@ package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.announcement.Announcement;
-import hr.fer.opp.eureka.domain.announcement.AnnouncementCreateRequest;
+import hr.fer.opp.eureka.domain.announcement.AnnouncementRequest;
 import hr.fer.opp.eureka.repository.AnnouncementRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.AnnouncementService;
@@ -39,13 +39,13 @@ public class AnnouncementServiceImpl implements AnnouncementService {
   }
 
   @Override
-  public Announcement add(AnnouncementCreateRequest announcementCreateRequest) {
+  public Announcement add(AnnouncementRequest announcementRequest) {
     Announcement announcement = new Announcement();
 
     announcement.setCreationDate(LocalDate.now());
-    announcement.setExpirationDate(announcementCreateRequest.getExpirationDate());
-    announcement.setContent(announcementCreateRequest.getContent());
-    announcement.setUser(this.userRepository.findById(announcementCreateRequest.getUserId()));
+    announcement.setExpirationDate(announcementRequest.getExpirationDate());
+    announcement.setContent(announcementRequest.getContent());
+    announcement.setUser(this.userRepository.findById(announcementRequest.getUserId()));
 
     return this.announcementRepository.save(announcement);
   }

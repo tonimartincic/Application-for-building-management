@@ -6,6 +6,7 @@ import UpdateUserInfo from './UpdateUserInfo';
 class UpdateUserInfoContainer extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       userSelectedValidation: null,
       userSelected: null,
@@ -18,6 +19,7 @@ class UpdateUserInfoContainer extends React.Component {
       },
       userPrivilege: null,
     };
+
     this.handleChangeUser = this.handleChangeUser.bind(this);
     this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
     this.handleChangeLastName = this.handleChangeLastName.bind(this);
@@ -53,6 +55,7 @@ class UpdateUserInfoContainer extends React.Component {
             privilege: this.props.users[i].privilege,
           }});
     }
+
     this.setState({
       userSelected: event.target.value,
       userSelectedValidation: null,
@@ -98,6 +101,7 @@ class UpdateUserInfoContainer extends React.Component {
         user: userTemp,
       });
     }
+
     if(!this.checkFirstName() || !this.checkLastName() || !this.checkEmail() || !this.checkPrivilege()) {
       console.log("error");
     } else {

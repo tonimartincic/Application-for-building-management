@@ -1,22 +1,24 @@
 package hr.fer.opp.eureka.service;
 
-import hr.fer.opp.eureka.domain.User;
+import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.domain.user.UserRequest;
+import hr.fer.opp.eureka.domain.user.UserResponse;
 
 import java.util.List;
 
 public interface UserService {
 
-  List<User> getAll();
+  List<UserResponse> getAll();
 
-  User getById(Long id);
+  UserResponse getById(Long id);
 
-  User validateUser(String mail, String password);
+  UserResponse validateUser(String mail, String password);
 
-  User add(User user);
+  UserResponse add(UserRequest userRequest);
 
-  User getByMail(String mail);
+  UserResponse getByMail(String mail);
 
-  User edit(User user);
+  UserResponse edit(UserRequest userRequest);
 
   void deleteById(Long id);
 }

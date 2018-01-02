@@ -1,7 +1,7 @@
 package hr.fer.opp.eureka.controller;
 
 import hr.fer.opp.eureka.domain.announcement.Announcement;
-import hr.fer.opp.eureka.domain.announcement.AnnouncementCreateRequest;
+import hr.fer.opp.eureka.domain.announcement.AnnouncementRequest;
 import hr.fer.opp.eureka.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +29,8 @@ public class AnnouncementController {
   }
 
   @PostMapping("/api/announcements")
-  public Announcement addNewAnnouncement(@RequestBody final AnnouncementCreateRequest announcementCreateRequest) {
-    return announcementService.add(announcementCreateRequest);
+  public Announcement addNewAnnouncement(@RequestBody final AnnouncementRequest announcementRequest) {
+    return announcementService.add(announcementRequest);
   }
 
   @PostMapping("/api/announcements/edit")

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
-public class AnnouncementCreateRequest {
+public class AnnouncementRequest {
 
   private Long userId;
 
@@ -13,10 +13,10 @@ public class AnnouncementCreateRequest {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate expirationDate;
 
-  public AnnouncementCreateRequest(){
+  public AnnouncementRequest(){
   }
 
-  public AnnouncementCreateRequest(Long userId, String content, LocalDate expirationDate) {
+  public AnnouncementRequest(Long userId, String content, LocalDate expirationDate) {
     this.userId = userId;
     this.content = content;
     this.expirationDate = expirationDate;

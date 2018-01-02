@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.repository;
 
-import hr.fer.opp.eureka.domain.User;
+import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.domain.UserNotification;
 import org.springframework.data.repository.CrudRepository;
 

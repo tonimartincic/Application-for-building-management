@@ -1,7 +1,7 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.User;
+import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.domain.UserNotification;
 import hr.fer.opp.eureka.repository.UserNotificationRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
