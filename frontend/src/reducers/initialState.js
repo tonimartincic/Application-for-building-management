@@ -24,6 +24,8 @@ const initialState = {
 
   buildings: [],
 
+  buildingUsers: [],
+
   costs: [],
 
   paymentOrders: [],

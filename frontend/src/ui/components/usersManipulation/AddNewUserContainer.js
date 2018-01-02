@@ -176,9 +176,8 @@ class AddNewUserContainer extends React.Component {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
-    users: state.users,
   };
 }
 

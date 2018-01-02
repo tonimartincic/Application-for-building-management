@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import NavigationBar from '../NavigationBar';
-import fetchUsers from '../../../actionCreators/usersActionCreators';
 import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
-import {Col, Button, Row, Well} from 'react-bootstrap';
+import {Col, Button, Row, Well, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import UpdateUserInfoContainer from './UpdateUserInfoContainer';
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
+import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
 
 class AllUsersInfo extends Component {
   componentDidMount() {
-    this.props.fetchUsers();
     this.props.fetchBuildings();
   }
 
@@ -19,6 +18,8 @@ class AllUsersInfo extends Component {
     this.state = {
       addNewUserClicked: false,
       updateUserInfoClicked: false,
+      buildingId: null,
+      buildingSelected: null,
     };
 
     this.toggleAddNewUser = this.toggleAddNewUser.bind(this);
@@ -39,31 +40,78 @@ class AllUsersInfo extends Component {
     });
   }
 
+  handleChangeBuilding = (event) => {
+    const buildingIdTemp = event.target.value;
+    if (buildingIdTemp !== null && buildingIdTemp !=="select") {
+      this.setState({
+        buildingId: event.target.value,
+        buildingSelected: true,
+      });
+      this.props.fetchBuildingUsersById(parseInt(buildingIdTemp));
+    }
+    else
+      this.setState({
+        buildingId: event.target.value,
+        buildingSelected: false,
+      });
+  };
+
   render() {
     return (
       <div>
         <NavigationBar/>
+        <Row>
+          <Col md={6} mdOffset={1}>
+            <FormGroup>
+              <ControlLabel>Odaberi zgradu:</ControlLabel>
+              <FormControl componentClass="select" placeholder="select" onChange={this.handleChangeBuilding}>
+                <option value="select">Odaberi</option>
+                {
+                  this.props.buildings
+                    .map(building => {
+                        return(
+                          <option value={building.id}>{building.address}</option>
+                        );
+                      }
+                    )
+                }
+              </FormControl>
+            </FormGroup>
+          </Col>
+        </Row>
         <Col md={8} mdOffset={1}>
           <AddNewUserContainer
             addNewUserClicked={this.state.addNewUserClicked}
-            toggleAddNewUser={this.toggleAddNewUser}/>
+            toggleAddNewUser={this.toggleAddNewUser}
+            users={this.props.users}/>
           <UpdateUserInfoContainer
             updateUserInfoClicked={this.state.updateUserInfoClicked}
-            toggleUpdateUserInfo={this.toggleUpdateUserInfo}/>
+            toggleUpdateUserInfo={this.toggleUpdateUserInfo}
+            users={this.props.users}/>
           <br/>
-          <Col>
-            <AllUsersInfoTable/>
-          </Col>
+          <Choose>
+            <When condition={this.state.buildingSelected}>
+              <Col>
+                <AllUsersInfoTable
+                  buildingId={this.state.buildingId}
+                  users={this.props.users}/>
+              </Col>
+            </When>
+          </Choose>
         </Col>
-        <Col md={2}>
-          <Row>
-            <Button onClick={() => this.toggleAddNewUser()}>Dodaj novog korisnika</Button>
-          </Row>
-          <br/>
-          <Row>
-            <Button onClick={() => this.toggleUpdateUserInfo()}>Ažuriraj podatke</Button>
-          </Row>
-        </Col>
+        <Choose>
+          <When condition={this.state.buildingSelected}>
+            <Col md={2}>
+              <Row>
+                <Button onClick={() => this.toggleAddNewUser()}>Dodaj novog korisnika</Button>
+              </Row>
+              <br/>
+              <Row>
+                <Button onClick={() => this.toggleUpdateUserInfo()}>Ažuriraj podatke</Button>
+              </Row>
+            </Col>
+          </When>
+        </Choose>
       </div>
     );
   }
@@ -72,13 +120,15 @@ class AllUsersInfo extends Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
+    buildings: state.buildings,
+    users: state.users,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchUsers: () => dispatch(fetchUsers()),
     fetchBuildings: () => dispatch(fetchBuildings()),
+    fetchBuildingUsersById: id => dispatch(fetchBuildingUsersById(id)),
   };
 }
 

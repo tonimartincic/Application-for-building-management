@@ -34,7 +34,7 @@ public class BuildingController {
     return buildingService.add(building);
   }
 
-  @GetMapping("/api/buildings/users/{id}")
+  @GetMapping("/api/building-users/{id}")
   public List<User> getAllUsersInBuilding(@PathVariable final Long id) {
     return this.buildingService.getAllUsersByBuildingId(id);
   }

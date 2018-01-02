@@ -1,19 +1,19 @@
 import axios from 'axios';
 import * as types from '../actions/actionTypes';
 
-export default async function fetchUsers() {
+export default async function fetchBuildingUsersById(id) {
   try {
-    const response = await axios.get('/api/users');
+    const response = await axios.get('/api/building-users/'+id);
 
     return {
-      type: types.FETCH_USERS_SUCCESS,
+      type: types.FETCH_BUILDING_USERS_SUCCESS,
       data: response.data,
     };
   } catch (err) {
     return {
-      type: types.FETCH_USERS_FAILURE,
+      type: types.FETCH_BUILDING_USERS_FAILURE,
       data: err,
-    };
+    }
   }
 }
 

@@ -12,10 +12,10 @@ Insert into building (address, landlord, funds) values ('Vukovarska 1a', 4, -594
 Insert into building (address, landlord, funds) values ('Lastovska 23', 4, 15.01);
 
 Insert into apartment (building_id, area, owner_id) values (1, 25.23, 1);
+Insert into apartment (building_id, area, owner_id) values (1, 25.23, 2);
+Insert into apartment (building_id, area, owner_id) values (1, 25.23, 3);
+Insert into apartment (building_id, area, owner_id) values (1, 25.23, 4);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, 2);
-Insert into apartment (building_id, area, owner_id) values (3, 60, 3);
-Insert into apartment (building_id, area, owner_id) values (1, 54, 5);
-Insert into apartment (building_id, area, owner_id) values (2, 67, 6);
 
 Insert into user_notification (description, user_id) values ('Sutra ste na rasporedu za čišćenje snijega',1);
 Insert into user_notification (description, user_id) values ('Niste podmirili dugovanje za prošli mjesec',2);

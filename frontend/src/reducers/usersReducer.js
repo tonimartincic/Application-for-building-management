@@ -6,10 +6,10 @@ export default function usersReducer(state = initialState.users, action) {
 
   switch (action.type) {
 
-    case types.FETCH_USERS_SUCCESS:
+    case types.FETCH_BUILDING_USERS_SUCCESS:
       return action.data;
 
-    case types.FETCH_USERS_FAILURE:
+    case types.FETCH_BUILDING_USERS_FAILURE:
       return state;
 
     case types.ADD_NEW_USER_SUCCESS:

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.Apartment;
 import hr.fer.opp.eureka.domain.Building;
 import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.repository.ApartmentRepository;
 import hr.fer.opp.eureka.repository.BuildingRepository;
 import hr.fer.opp.eureka.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,13 @@ import java.util.Set;
 public class BuildingServiceImpl implements BuildingService {
 
   private final BuildingRepository buildingRepository;
+  private final ApartmentRepository apartmentRepository;
 
   @Autowired
-  public BuildingServiceImpl(BuildingRepository buildingRepository) {
+  public BuildingServiceImpl(BuildingRepository buildingRepository, ApartmentRepository apartmentRepository) {
+
     this.buildingRepository = buildingRepository;
+    this.apartmentRepository = apartmentRepository;
   }
 
   @Override
@@ -40,14 +44,14 @@ public class BuildingServiceImpl implements BuildingService {
 
   @Override
   public List<User> getAllUsersByBuildingId(Long id) {
-    Building buildingTemp = buildingRepository.findById(id);
 
-    Set<Apartment> apartmentList = buildingTemp.getApartments();
+    Iterable<Apartment> apartmentList = apartmentRepository.findAll();
 
     List<User> users = new ArrayList<>();
 
     for(Apartment apartment : apartmentList){
-      users.add(apartment.getOwner());
+      if (apartment.getBuilding().getId() == id)
+        users.add(apartment.getOwner());
     }
 
     return users;
