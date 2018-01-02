@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {Button, Col, Row, Panel, ControlLabel, Well} from 'react-bootstrap';
+import {Button, Col, Row, Well} from 'react-bootstrap';
 import NavigationBar from "../NavigationBar";
 import GeneratePaymentInputForm from "./GeneratePaymentInputForm";
 import PaymentsTable from "./PaymentsTable";
@@ -34,7 +34,9 @@ class AllPaymentsView extends Component {
     return (
       <div>
         <NavigationBar/>
-        <Button onClick={() => this.toggleGeneratePaymentsClicked()}>Generiraj naloge</Button>
+        <Col mdOffset={1}>
+          <Button onClick={() => this.toggleGeneratePaymentsClicked()}>Generiraj naloge</Button>
+        </Col>
         <GeneratePaymentInputForm
           generatePaymentsClicked={this.state.generatePaymentsClicked}
           toggleGeneratePaymentsClicked={this.toggleGeneratePaymentsClicked}/>
