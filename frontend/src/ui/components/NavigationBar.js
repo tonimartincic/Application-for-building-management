@@ -44,6 +44,15 @@ class NavigationBar extends Component {
           </NavItem>
           <NavItem
             componentClass={Link}
+            to='/payments'
+            href='/payments'
+          >
+            <span className={styles.span}>
+              Zajednički novac
+            </span>
+          </NavItem>
+          <NavItem
+            componentClass={Link}
             to='/snow-clearing-schedule'
             href='/snow-clearing-schedule'
           >
