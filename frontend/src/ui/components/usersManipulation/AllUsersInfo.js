@@ -6,10 +6,12 @@ import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
 import {Col, Button, Row, Well} from 'react-bootstrap';
 import UpdateUserInfoContainer from './UpdateUserInfoContainer';
+import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 
 class AllUsersInfo extends Component {
   componentDidMount() {
     this.props.fetchUsers();
+    this.props.fetchBuildings();
   }
 
   constructor(props) {
@@ -76,6 +78,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
+    fetchBuildings: () => dispatch(fetchBuildings()),
   };
 }
 

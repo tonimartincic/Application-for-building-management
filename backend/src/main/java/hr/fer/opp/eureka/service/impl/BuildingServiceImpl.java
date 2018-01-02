@@ -1,13 +1,17 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
+import hr.fer.opp.eureka.domain.Apartment;
 import hr.fer.opp.eureka.domain.Building;
+import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.repository.BuildingRepository;
 import hr.fer.opp.eureka.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class BuildingServiceImpl implements BuildingService {
@@ -32,5 +36,20 @@ public class BuildingServiceImpl implements BuildingService {
   @Override
   public Building add(Building building) {
     return this.buildingRepository.save(building);
+  }
+
+  @Override
+  public List<User> getAllUsersByBuildingId(Long id) {
+    Building buildingTemp = buildingRepository.findById(id);
+
+    Set<Apartment> apartmentList = buildingTemp.getApartments();
+
+    List<User> users = new ArrayList<>();
+
+    for(Apartment apartment : apartmentList){
+      users.add(apartment.getOwner());
+    }
+
+    return users;
   }
 }
