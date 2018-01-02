@@ -119,7 +119,7 @@ class AddNewUserContainer extends React.Component {
         privilegeValidationEmpty: 'error',
       });
       return false;
-    } else if (this.state.privilege === 'predstavnik' || this.state.privilege === 'upravitelj' ) {
+    } else if (this.state.privilege === 'Predstavnik stanara' || this.state.privilege === 'Upravitelj' ) {
       for(let i = 0 ; i < this.props.users.length; i = i + 1) {
         if (this.props.users[i].privilege === this.state.privilege) {
           this.setState({

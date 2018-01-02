@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Collapse, Row, ListGroup} from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup} from 'react-bootstrap';
 import * as constants from '../../../constants/values';
 
 const UpdateUserInfo = props => (
@@ -85,8 +85,10 @@ const UpdateUserInfo = props => (
                     <p>Privilegija: </p>
                   </Col>
                   <Col md={6}>
-                    <FormControl componentClass="select" placeholder="select"
-                                 onChange={props.handleChangePrivilege}>
+                    <FormControl
+                      componentClass="select"
+                      placeholder="select"
+                      onChange={props.handleChangePrivilege}>
                       {
                         constants.userPrivileges
                           .filter(privilege => privilege === props.user.privilege)

@@ -88,6 +88,16 @@ public class User {
     this.password = password;
   }
 
+  public User(UserRequest userRequest) {
+    this.id = userRequest.getId();
+    this.firstName = userRequest.getFirstName();
+    this.lastName = userRequest.getLastName();
+    this.mail = userRequest.getMail();
+    this.privilege = UserPrivilege.getByName(userRequest.getPrivilege());
+    this.password = userRequest.getPassword();
+    this.reminder = userRequest.getReminder();
+  }
+
   public Long getId() {
     return id;
   }

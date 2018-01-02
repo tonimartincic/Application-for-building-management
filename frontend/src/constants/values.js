@@ -11,5 +11,5 @@ export const monthNamesGen = [
 ];
 
 export const userPrivileges = [
-  'administrator', 'upravitelj', 'predstavnik', 'stanar'
+  'Administrator', 'Upravitelj', 'Predstavnik stanara', 'Stanar'
 ];

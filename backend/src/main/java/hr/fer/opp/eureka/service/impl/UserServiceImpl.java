@@ -4,7 +4,9 @@ import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.cost.CostResponse;
 import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.domain.user.UserRequest;
 import hr.fer.opp.eureka.domain.user.UserResponse;
+import hr.fer.opp.eureka.enumeration.UserPrivilege;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +41,8 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserResponse add(User user) {
-    return getUserResponse(this.userRepository.save(user));
+  public UserResponse add(UserRequest userRequest) {
+    return getUserResponse(this.userRepository.save(getUser(userRequest)));
   }
 
   @Override
@@ -49,13 +51,13 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserResponse edit(User user) {
-    User userFromDatabase = this.userRepository.findById(user.getId());
+  public UserResponse edit(UserRequest userRequest) {
+    User userFromDatabase = this.userRepository.findById(userRequest.getId());
 
-    userFromDatabase.setFirstName(user.getFirstName());
-    userFromDatabase.setLastName(user.getLastName());
-    userFromDatabase.setMail(user.getMail());
-    userFromDatabase.setPrivilege(user.getPrivilege());
+    userFromDatabase.setFirstName(userRequest.getFirstName());
+    userFromDatabase.setLastName(userRequest.getLastName());
+    userFromDatabase.setMail(userRequest.getMail());
+    userFromDatabase.setPrivilege(UserPrivilege.getByName(userRequest.getPrivilege()));
 
     return getUserResponse(this.userRepository.save(userFromDatabase));
   }
@@ -77,5 +79,9 @@ public class UserServiceImpl implements UserService {
 
   private UserResponse getUserResponse(User user) {
     return new UserResponse(user);
+  }
+
+  private User getUser(UserRequest userRequest) {
+    return new User(userRequest);
   }
 }
