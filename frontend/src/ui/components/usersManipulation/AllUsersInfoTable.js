@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import styles from './userInfo.css';
 
 class AllUsersInfoTable extends Component {
 
   render(){
-
     return(
       <Table striped bordered condensed hover className={styles.myTable}>
         <thead>
@@ -20,9 +19,9 @@ class AllUsersInfoTable extends Component {
         <tbody>
         {
           this.props.users
-            .map(user => {
+            .map((user, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td className={styles.tableColumn}>{user.firstName}</td>
                   <td className={styles.tableColumn}>{user.lastName}</td>
                   <td className={styles.tableColumn}>{user.mail}</td>
@@ -49,4 +48,3 @@ function mapDispatchToProps() {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllUsersInfoTable);
-

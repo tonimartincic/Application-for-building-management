@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
-import {Grid, Row, Col, Well} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Grid, Row, Col, Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import fetchFutureCosts from '../../../actionCreators/costsActionCreators';
 import NavigationBar from "../NavigationBar";
-import CostInputForm from "./CostInputForm";
-import Cost from "./Cost";
 
 class PlanningFutureCosts extends Component {
   componentDidMount() {
@@ -19,13 +17,34 @@ class PlanningFutureCosts extends Component {
         <Grid>
           <Row>
             <Col md={8} mdOffset={2}>
-              {this.props.costs
-                .map((cost, index) => (
-                  <Cost
-                    key={index}
-                    cost={cost}
-                  />
-                ))}
+              <Table striped bordered condensed hover>
+                <thead>
+                <tr>
+                  <th>Kreator</th>
+                  <th>Iznos</th>
+                  <th>Opis</th>
+                  <th>Datum kreiranja</th>
+                  <th>Hitnost</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                  this.props.costs
+                    .map((cost, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{cost.creator.firstName + ' ' + cost.creator.lastName}</td>
+                          <td>{cost.amount}</td>
+                          <td>{cost.description}</td>
+                          <td>{cost.createdOn}</td>
+                          <td>{cost.isUrgent ? 'Hitno' : 'Nije hitno'}</td>
+                          <td>{cost.status}</td>
+                        </tr> )}
+                    )
+                }
+                </tbody>
+              </Table>
             </Col>
           </Row>
         </Grid>

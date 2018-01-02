@@ -8,7 +8,6 @@ import * as sortUtils from '../../../utils/SortUtil';
 class SnowClearingSchedule extends Component {
 
   render(){
-
     const snowClearingScheduleSorted = this.props.snowClearingSchedules.sort(sortUtils.sortSnowClearingScheduleByDate);
     const snowClearingScheduleSortedPastDates = snowClearingScheduleSorted.filter(date => !dateUtils.determinatePastDates(date));
 
@@ -24,32 +23,31 @@ class SnowClearingSchedule extends Component {
         <tbody>
           {
             snowClearingScheduleSortedPastDates
-              .map((date) => {
+              .map((date, index) => {
                 return (
-                  <tr className={styles.pastDates}>
+                  <tr className={styles.pastDates} key={index}>
                     <td className={styles.tableColumn}>{date.user.firstName}</td>
                     <td className={styles.tableColumn}>{date.user.lastName}</td>
                     <td className={styles.tableColumn}>{date.clearingDate}</td>
                   </tr> )}
               )
               .slice(snowClearingScheduleSortedPastDates.length - 2,  snowClearingScheduleSortedPastDates.length)
-
           }
           {
             snowClearingScheduleSorted
               .filter(date => dateUtils.determinatePastDates(date))
-              .map((date) => {
+              .map((date, index) => {
                 return (
                   <Choose>
                     <When condition={this.props.userData.id === date.user.id}>
-                      <tr>
+                      <tr key={index}>
                         <td className={styles.tableColumnCurrentUser}>{date.user.firstName}</td>
                         <td className={styles.tableColumnCurrentUser}>{date.user.lastName}</td>
                         <td className={styles.tableColumnCurrentUser}>{date.clearingDate}</td>
                       </tr>
                     </When>
                     <Otherwise>
-                      <tr>
+                      <tr key={index}>
                         <td className={styles.tableColumn}>{date.user.firstName}</td>
                         <td className={styles.tableColumn}>{date.user.lastName}</td>
                         <td className={styles.tableColumn}>{date.clearingDate}</td>
@@ -77,4 +75,3 @@ function mapDispatchToProps() {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SnowClearingSchedule);
-
