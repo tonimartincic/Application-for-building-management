@@ -11,6 +11,7 @@ import FirstComponent from './ui/components/FirstComponent';
 import PrivateRoute from './ui/components/PrivateRoute';
 import { history } from './ui/components/history';
 import SnowClearingScheduleView from "./ui/components/snowClearingSchedule/SnowClearingScheduleView";
+import AllUsersInfo from './ui/components/usersManipulation/AllUsersInfo';
 
 const store = configureStore();
 
@@ -23,6 +24,7 @@ ReactDOM.render(
           <PrivateRoute exact path='/first-page'><FirstComponent/></PrivateRoute>
           <PrivateRoute exact path='/second-page'><SecondComponent/></PrivateRoute>
           <PrivateRoute exact path='/snow-clearing-schedule'><SnowClearingScheduleView/></PrivateRoute>
+          <PrivateRoute exact path='/all-users'><AllUsersInfo /></PrivateRoute>
           <Route exact path='/login' component={Login} />
       </div>
     </Router>
