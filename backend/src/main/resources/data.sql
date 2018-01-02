@@ -1,9 +1,9 @@
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivan','Biška','ivan.biska@fer.hr','administrator',false, 'pass');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivana','Mršić','ivana.mrsic@fer.hr','administrator',false, 'pass');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Luka','Hrgović','luka.hrgovic@fer.hr','administrator',false, 'pass');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Cavalli','marko.cavalli@fer.hr','administrator',false, 'pass');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Ćurlin','marko.curlin@fer.hr','administrator',false, 'pass');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Toni','Martinčić','toni.martincic@fer.hr','administrator',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivan','Biška','ivan.biska@fer.hr','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivana','Mršić','ivana.mrsic@fer.hr','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Luka','Hrgović','luka.hrgovic@fer.hr','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Cavalli','marko.cavalli@fer.hr','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Ćurlin','marko.curlin@fer.hr','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Toni','Martinčić','toni.martincic@fer.hr','ADMINISTRATOR',false, 'pass');
 
 Insert into building (address, landlord, funds) values ('Ilica 256', 1, 100532.52);
 Insert into building (address, landlord, funds) values ('Ožujska BB', 2, 54625.32);
@@ -46,15 +46,15 @@ Insert into payment_order (amount, payer, description, payment_due, day_of_payme
 99.99, 5, 'popravak', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 2);
 
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
-150000.23, true, 'popravak krova', 'odabir ponude', 1, parsedatetime('01.12.15', 'dd.MM.yy'));
+150000.23, true, 'popravak krova', 'OFFER_SELECTION', 1, parsedatetime('01.12.15', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
-250.65, false, 'troškovi čišćenja', 'plaćeno', 2, parsedatetime('28.09.17', 'dd.MM.yy'));
+250.65, false, 'troškovi čišćenja', 'PAID', 2, parsedatetime('28.09.17', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
-75.45, false, 'uvođenje video nadzora', 'odabir ponude', 1, parsedatetime('01.01.15', 'dd.MM.yy'));
+75.45, false, 'uvođenje video nadzora', 'OFFER_SELECTION', 1, parsedatetime('01.01.15', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
-150000.65, false, 'redovan servis dizala', 'skupljanje sredstava', 1, parsedatetime('08.06.16', 'dd.MM.yy'));
+150000.65, false, 'redovan servis dizala', 'FUNDRAISING', 1, parsedatetime('08.06.16', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
-150000.65, true, 'nova garažna vrata', 'sredstva skupljena', 1, parsedatetime('02.08.16', 'dd.MM.yy'));
+150000.65, true, 'nova garažna vrata', 'FUNDS_COLLECTED', 1, parsedatetime('02.08.16', 'dd.MM.yy'));
 
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('02.01.16', 'dd.MM.yy'), 1, false);
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('03.02.17', 'dd.MM.yy'), 2, false);

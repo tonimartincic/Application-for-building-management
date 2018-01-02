@@ -37,7 +37,7 @@ class Announcement extends Component {
         />
         <Well>
           <Choose>
-            <When condition={privilege === 'admin' || privilege === 'predstavnik stanara' || announcement.user.id === userId}>
+            <When condition={privilege === 'Administrator' || privilege === 'Predstavnik stanara' || announcement.user.id === userId}>
               <Row>
                 <section className={styles.sectionHeader}>
                   <Button onClick={() => {

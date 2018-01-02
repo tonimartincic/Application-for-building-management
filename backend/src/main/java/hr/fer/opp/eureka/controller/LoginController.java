@@ -1,6 +1,7 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.User;
+import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.domain.user.UserResponse;
 import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class LoginController {
   }
 
   @PostMapping("/api/login")
-  public User validateUser (@RequestBody final User user) {
+  public UserResponse validateUser (@RequestBody final User user) {
     return userService.validateUser(user.getMail(), user.getPassword());
   }
 }

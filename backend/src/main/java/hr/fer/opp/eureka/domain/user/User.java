@@ -1,7 +1,13 @@
-package hr.fer.opp.eureka.domain;
+package hr.fer.opp.eureka.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import hr.fer.opp.eureka.domain.Apartment;
+import hr.fer.opp.eureka.domain.Building;
+import hr.fer.opp.eureka.domain.PaymentOrder;
+import hr.fer.opp.eureka.domain.UserNotification;
 import hr.fer.opp.eureka.domain.announcement.Announcement;
+import hr.fer.opp.eureka.domain.cost.Cost;
+import hr.fer.opp.eureka.enumeration.UserPrivilege;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,7 +27,8 @@ public class User {
 
   private String mail;
 
-  private String privilege;
+  @Enumerated(EnumType.STRING)
+  private UserPrivilege privilege;
 
   private Boolean reminder;
 
@@ -59,8 +66,6 @@ public class User {
   @OneToMany (mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<PaymentOrder> paymentOrdersToReceive;
 
-  private String[] roles;
-
   public User() {
   }
 
@@ -69,10 +74,9 @@ public class User {
     String firstName,
     String lastName,
     String mail,
-    String privilege,
+    UserPrivilege privilege,
     Boolean reminder,
-    String password,
-    String... roles) {
+    String password) {
 
     this.id = id;
     this.firstName = firstName;
@@ -82,7 +86,6 @@ public class User {
     this.reminder = reminder;
     this.mail = mail;
     this.password = password;
-    this.roles = roles;
   }
 
   public Long getId() {
@@ -133,11 +136,11 @@ public class User {
     this.paymentOrdersToReceive = paymentOrdersToReceive;
   }
 
-  public String getPrivilege() {
+  public UserPrivilege getPrivilege() {
     return privilege;
   }
 
-  public void setPrivilege(String privilege) {
+  public void setPrivilege(UserPrivilege privilege) {
     this.privilege = privilege;
   }
 
@@ -195,14 +198,6 @@ public class User {
 
   public void setManagerBuildingSet(Set<Building> managerBuildingSet) {
     this.managerBuildingSet = managerBuildingSet;
-  }
-
-  public String[] getRoles() {
-    return roles;
-  }
-
-  public void setRoles(String[] roles) {
-    this.roles = roles;
   }
 
   public String getPassword() {

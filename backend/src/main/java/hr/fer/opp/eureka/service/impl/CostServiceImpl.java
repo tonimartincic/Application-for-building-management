@@ -1,12 +1,14 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.Cost;
+import hr.fer.opp.eureka.domain.cost.Cost;
+import hr.fer.opp.eureka.domain.cost.CostResponse;
 import hr.fer.opp.eureka.repository.CostRepository;
 import hr.fer.opp.eureka.service.CostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,17 +22,31 @@ public class CostServiceImpl implements CostService {
   }
 
   @Override
-  public List<Cost> getAll() {
-    return Lists.newArrayList(costRepository.findAll());
+  public List<CostResponse> getAll() {
+    return getCostResponses(Lists.newArrayList(costRepository.findAll()));
   }
 
   @Override
-  public Cost getById(Long id) {
-    return costRepository.findById(id);
+  public CostResponse getById(Long id) {
+    return getCostResponse(costRepository.findById(id));
   }
 
   @Override
-  public Cost add(Cost cost) {
-    return costRepository.save(cost);
+  public CostResponse add(Cost cost) {
+    return getCostResponse(costRepository.save(cost));
+  }
+
+  private List<CostResponse> getCostResponses(List<Cost> costs) {
+    List<CostResponse> costResponses = new ArrayList<>();
+
+    for(Cost cost : costs) {
+      costResponses.add(getCostResponse(cost));
+    }
+
+    return costResponses;
+  }
+
+  private CostResponse getCostResponse(Cost cost) {
+    return new CostResponse(cost);
   }
 }

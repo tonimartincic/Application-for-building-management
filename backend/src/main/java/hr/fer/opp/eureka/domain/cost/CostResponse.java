@@ -1,20 +1,14 @@
-package hr.fer.opp.eureka.domain;
+package hr.fer.opp.eureka.domain.cost;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import hr.fer.opp.eureka.domain.user.User;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "cost")
-public class Cost {
+public class CostResponse {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @ManyToOne
-  @JoinColumn (name = "creator_id")
   private User creator;
 
   private Double amount;
@@ -28,15 +22,14 @@ public class Cost {
 
   private String status;
 
-  public Cost() {
-  }
-
-  public Cost(User creator, Double amount, String description, Boolean isUrgent, String status) {
-    this.creator = creator;
-    this.amount = amount;
-    this.description = description;
-    this.isUrgent = isUrgent;
-    this.status = status;
+  public CostResponse(Cost cost) {
+    this.id = cost.getId();
+    this.creator = cost.getCreator();
+    this.amount = cost.getAmount();
+    this.description = cost.getDescription();
+    this.createdOn = cost.getCreatedOn();
+    this.isUrgent = cost.getUrgent();
+    this.status = cost.getStatus().getName();
   }
 
   public Long getId() {
@@ -51,12 +44,24 @@ public class Cost {
     return creator;
   }
 
+  public void setCreator(User creator) {
+    this.creator = creator;
+  }
+
   public Double getAmount() {
     return amount;
   }
 
+  public void setAmount(Double amount) {
+    this.amount = amount;
+  }
+
   public String getDescription() {
     return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public LocalDate getCreatedOn() {
@@ -71,24 +76,12 @@ public class Cost {
     return isUrgent;
   }
 
-  public String getStatus() {
-    return status;
-  }
-
-  public void setCreator(User creator) {
-    this.creator = creator;
-  }
-
-  public void setAmount(Double amount) {
-    this.amount = amount;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
   public void setUrgent(Boolean urgent) {
     isUrgent = urgent;
+  }
+
+  public String getStatus() {
+    return status;
   }
 
   public void setStatus(String status) {

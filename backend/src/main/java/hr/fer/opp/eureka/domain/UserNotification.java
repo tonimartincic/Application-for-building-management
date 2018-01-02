@@ -1,5 +1,7 @@
 package hr.fer.opp.eureka.domain;
 
+import hr.fer.opp.eureka.domain.user.User;
+
 import javax.persistence.*;
 
 @Entity

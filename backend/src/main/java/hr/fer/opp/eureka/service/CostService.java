@@ -1,14 +1,15 @@
 package hr.fer.opp.eureka.service;
 
-import hr.fer.opp.eureka.domain.Cost;
+import hr.fer.opp.eureka.domain.cost.Cost;
+import hr.fer.opp.eureka.domain.cost.CostResponse;
 
 import java.util.List;
 
 public interface CostService {
 
-  List<Cost> getAll();
+  List<CostResponse> getAll();
 
-  Cost getById(Long id);
+  CostResponse getById(Long id);
 
-  Cost add(Cost cost);
+  CostResponse add(Cost cost);
 }
