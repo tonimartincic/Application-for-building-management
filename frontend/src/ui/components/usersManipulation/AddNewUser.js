@@ -104,6 +104,29 @@ class AddNewUser extends React.Component {
                   </Col>
                 </Row>
               </FormGroup>
+              <FormGroup validationState={this.props.apartmentSelectedValidation}>
+                <ControlLabel>Odaberi jedan od praznih stanova:</ControlLabel>
+                <FormControl componentClass="select" placeholder="select" onChange={this.props.handleChangeApartment}>
+                  <option value="select">Odaberi</option>
+                  {
+                    this.props.apartments
+                      .filter(apartment => apartment.owner === null && apartment.building.id == this.props.buildingId)
+                      .map(apartment => {
+
+                        return (<option value={apartment.id}>{apartment.id}</option>);
+                  })
+                  }
+                </FormControl>
+                <Row>
+                  <Col md={4}>
+                    <section className={styles.sectionInvalid}>
+                      <Collapse in={this.props.apartmentSelectedValidation==='error'}>
+                        <p className={styles.pInvalid}>Morate odabrati stan.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
+              </FormGroup>
             </form>
           </Modal.Body>
           <Modal.Footer>

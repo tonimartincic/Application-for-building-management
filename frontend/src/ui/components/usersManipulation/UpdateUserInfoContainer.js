@@ -44,16 +44,20 @@ class UpdateUserInfoContainer extends React.Component {
   };
 
   handleChangeUser = (event) => {
+    debugger;
     for (let i = 0; i < this.props.users.length; ++i) {
-      if (this.props.users[i].id == event.target.value)
-        this.setState({
-          user: {
-            id: this.props.users[i].id,
-            firstName: this.props.users[i].firstName,
-            lastName: this.props.users[i].lastName,
-            mail: this.props.users[i].mail,
-            privilege: this.props.users[i].privilege,
-          }});
+      if (this.props.users[i] !== null) {
+        if (this.props.users[i].id == event.target.value)
+          this.setState({
+            user: {
+              id: this.props.users[i].id,
+              firstName: this.props.users[i].firstName,
+              lastName: this.props.users[i].lastName,
+              mail: this.props.users[i].mail,
+              privilege: this.props.users[i].privilege,
+            }
+          });
+      }
     }
 
     this.setState({
@@ -93,8 +97,7 @@ class UpdateUserInfoContainer extends React.Component {
   };
 
   handleSubmit() {
-    if(this.checkPrivilege()) {
-      debugger;
+    if(this.state.userPrivilege !== 'select' && this.state.userPrivilege !== null) {
       const userTemp = this.state.user;
       userTemp.privilege = this.state.userPrivilege;
       this.setState({
@@ -128,8 +131,10 @@ class UpdateUserInfoContainer extends React.Component {
       return false;
     }
     for(let i = 0 ; i < this.props.users.length; i = i + 1) {
-      if (this.props.users[i].mail === this.state.user.mail && this.props.users[i].id !== this.state.user.id) {
-        return false;
+      if (this.props.users[i] !== null) {
+        if (this.props.users[i].mail === this.state.user.mail && this.props.users[i].id !== this.state.user.id) {
+          return false;
+        }
       }
     }
     let re = /\S+@\S+\.\S+/;
@@ -140,12 +145,14 @@ class UpdateUserInfoContainer extends React.Component {
   }
 
   checkPrivilege() {
-    if (this.state.userPrivilege === '' || this.state.userPrivilege === null || this.state.userPrivilege==='select') {
+    if ((this.state.userPrivilege === '' || this.state.userPrivilege === null || this.state.userPrivilege==='select') && (this.state.user.privilege === 'select' || this.state.user.privilege === null)) {
       return false;
-    } else if (this.state.userPrivilege === 'predstavnik' || this.state.userPrivilege === 'upravitelj' ) {
-      for(let i = 0 ; i < this.props.users.length; i = i + 1) {
-        if (this.props.users[i].privilege === this.state.userPrivilege) {
-          return false;
+    } else if (this.state.userPrivilege === 'Predstavnik' || this.state.userPrivilege === 'Upravitelj' ) {
+      for (let i = 0; i < this.props.users.length; i = i + 1) {
+        if (this.props.users[i] !== null) {
+          if (this.props.users[i].privilege === this.state.userPrivilege) {
+            return false;
+          }
         }
       }
     }

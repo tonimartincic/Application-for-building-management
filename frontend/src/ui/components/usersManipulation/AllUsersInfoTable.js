@@ -18,6 +18,7 @@ class AllUsersInfoTable extends Component {
         <tbody>
         {
           this.props.users
+            .filter(user => user !== null)
             .map((user, index) => {
               return (
                 <tr key={index}>

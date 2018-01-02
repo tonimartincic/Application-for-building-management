@@ -16,6 +16,11 @@ Insert into apartment (building_id, area, owner_id) values (1, 25.23, 2);
 Insert into apartment (building_id, area, owner_id) values (1, 25.23, 3);
 Insert into apartment (building_id, area, owner_id) values (1, 25.23, 4);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, 2);
+Insert into apartment (building_id, area, owner_id) values (2, 56.50, 1);
+Insert into apartment (building_id, area, owner_id) values (2, 56.50, 3);
+Insert into apartment (building_id, area, owner_id) values (2, 56.50, 5);
+Insert into apartment (building_id, area, owner_id) values (2, 56.50, null);
+Insert into apartment (building_id, area, owner_id) values (2, 56.50, null);
 
 Insert into user_notification (description, user_id) values ('Sutra ste na rasporedu za čišćenje snijega',1);
 Insert into user_notification (description, user_id) values ('Niste podmirili dugovanje za prošli mjesec',2);

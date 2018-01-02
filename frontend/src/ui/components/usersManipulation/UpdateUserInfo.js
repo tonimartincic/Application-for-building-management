@@ -26,6 +26,7 @@ const UpdateUserInfo = props => (
             <option value="select">Odaberi</option>
             {
               props.users
+                .filter(user => user !== null)
                 .map(userTemp => {
                   const fullName = userTemp.firstName + " " + userTemp.lastName + " - " + userTemp.mail;
                   return (

@@ -32,7 +32,7 @@ public class Building {
   private Set<Announcement> announcementSet;
 
   @JsonIgnore
-  @OneToMany (mappedBy = "id", cascade = CascadeType.ALL)
+  @OneToMany (mappedBy = "building", cascade = CascadeType.ALL)
   private Set<Apartment> apartments;
 
   public Building() {

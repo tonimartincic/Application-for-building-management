@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import NavigationBar from '../NavigationBar';
 import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
-import {Col, Button, Row, Well, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
+import {Col, Button, Row, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import UpdateUserInfoContainer from './UpdateUserInfoContainer';
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
@@ -83,7 +83,8 @@ class AllUsersInfo extends Component {
           <AddNewUserContainer
             addNewUserClicked={this.state.addNewUserClicked}
             toggleAddNewUser={this.toggleAddNewUser}
-            users={this.props.users}/>
+            users={this.props.users}
+            buildingId={this.state.buildingId}/>
           <UpdateUserInfoContainer
             updateUserInfoClicked={this.state.updateUserInfoClicked}
             toggleUpdateUserInfo={this.toggleUpdateUserInfo}

@@ -17,8 +17,9 @@ export default async function fetchBuildingUsersById(id) {
   }
 }
 
-export async function addNewUser(firstName, lastName, eMail, privilege) {
+export async function addNewUser(firstName, lastName, eMail, privilege, id) {
   try {
+    debugger;
     const user = {
       firstName: firstName,
       lastName: lastName,
@@ -27,7 +28,7 @@ export async function addNewUser(firstName, lastName, eMail, privilege) {
       password: 12345,
     };
 
-    const response = await axios.post('/api/users', user);
+    const response = await axios.post('/api/users/'+id, user);
 
     return {
       type: types.ADD_NEW_USER_SUCCESS,
