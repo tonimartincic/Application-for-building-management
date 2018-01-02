@@ -48,3 +48,20 @@ export async function fetchUserData() {
     };
   }
 }
+
+export async function toggleReminderValue() {
+  try {
+    const userId = JSON.parse(localStorage.getItem('user')).id;
+    const response = await axios.put(`/api/users/${userId}`);
+
+    return {
+      type: types.TOGGLE_REMINDER_VALUE_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.TOGGLE_REMINDER_VALUE_FAILURE,
+      data: err,
+    };
+  }
+}

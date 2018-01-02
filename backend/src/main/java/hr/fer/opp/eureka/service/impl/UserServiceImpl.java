@@ -93,6 +93,15 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public UserResponse toggleReminderValue(Long id) {
+    User user = this.userRepository.findById(id);
+    user.setReminder(!user.getReminder());
+
+    this.userRepository.save(user);
+    return getUserResponse(user);
+  }
+
+  @Override
   public void deleteById(Long id) {
     User user = this.userRepository.findById(id);
     setForeignKeyValuesToNull(user);

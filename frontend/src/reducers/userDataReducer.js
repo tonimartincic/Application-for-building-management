@@ -14,6 +14,10 @@ export default function userDataReducer(state = initialState.userData, action) {
       return action.data;
     }
     case types.VALIDATE_USER_FAILURE:
+      return state
+    case types.TOGGLE_REMINDER_VALUE_SUCCESS:
+      return action.data;
+    case types.TOGGLE_REMINDER_VALUE_FAILURE:
       return state;
     case types.FETCH_USER_DATA_SUCCESS: {
       if (action.data === '')
