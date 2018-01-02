@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
@@ -34,26 +33,15 @@ class NavigationBar extends Component {
               Oglasna ploča
             </span>
           </NavItem>
-
           <NavItem
             componentClass={Link}
-            to='/first-page'
-            href='/first-page'
+            to='/planning-future-costs'
+            href='/planning-future-costs'
           >
             <span className={styles.span}>
-              First page
+              Planiranje budućih troškova
             </span>
           </NavItem>
-
-          <NavItem
-            componentClass={Link}
-            to='/second-page'
-            href='/second-page'
-          >
-            <span className={styles.span}>
-              Second page
-            </span>
-          </NavItem >
           <NavItem
             componentClass={Link}
             to='/snow-clearing-schedule'

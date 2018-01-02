@@ -6,7 +6,6 @@ import fetchAnnouncements from '../../../actionCreators/announcementsActionCreat
 import {deleteAnnouncement} from '../../../actionCreators/announcementsActionCreators';
 import Announcement from "./Announcement";
 import AnnouncementInputForm from "./AnnouncementInputForm";
-import * as dateUtil from '../../../utils/DateUtil';
 import * as sortUtils from '../../../utils/SortUtil';
 import NavigationBar from "../NavigationBar";
 
