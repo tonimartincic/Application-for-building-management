@@ -109,7 +109,10 @@ const UpdateUserInfo = props => (
                   <Button onClick={() => props.handleSubmit()}>Promijeni podatke</Button>
                 </Col>
                 <Col mdOffset={1} md={3}>
-                  <Button onClick={() => props.deleteUser(props.user.id)}>Obriši korisnika</Button>
+                  <Button onClick={() => {
+                    props.deleteUser(props.user.id);
+                    props.resetState();
+                  }}>Obriši korisnika</Button>
                 </Col>
                 <Col md={4}>
                   <Button onClick={() => {
