@@ -18,7 +18,7 @@ class PlanningFutureCosts extends Component {
     };
 
     this.toggleAddNewFutureCost = this.toggleAddNewFutureCost.bind(this);
-    this.toggleUpdateFutureCostInfo = this.toggleUpdateFutureCostInfo.bind(this);
+    this.toggleUpdateFutureCost = this.toggleUpdateFutureCost.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +32,7 @@ class PlanningFutureCosts extends Component {
     });
   }
 
-  toggleUpdateFutureCostInfo() {
+  toggleUpdateFutureCost() {
     const updateFutureCostClickedTemp = this.state.updateFutureCostClicked;
     this.setState({
       updateFutureCostClicked: !updateFutureCostClickedTemp,
@@ -108,10 +108,10 @@ class PlanningFutureCosts extends Component {
                 addNewFutureCostClicked={this.state.addNewFutureCostClicked}
                 toggleAddNewFutureCost={this.toggleAddNewFutureCost}
                 costs={this.props.costs}/>
-              {/*<UpdateFutureCost*/}
-                {/*updateFutureCostClicked={this.state.updateFutureCostClicked}*/}
-                {/*toggleUpdateFutureCost={this.toggleUpdateFutureCost}*/}
-                {/*costs={this.props.costs}/>*/}
+              <UpdateFutureCost
+                updateFutureCostClicked={this.state.updateFutureCostClicked}
+                toggleUpdateFutureCost={this.toggleUpdateFutureCost}
+                costs={this.props.costs}/>
             </Col>
           </Row>
         </Grid>

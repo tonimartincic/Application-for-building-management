@@ -30,4 +30,14 @@ public class CostController {
   public CostResponse addNewCost(@RequestBody final CostRequest costRequest) {
     return costService.add(costRequest);
   }
+
+  @PutMapping("/api/costs/edit")
+  public CostResponse editCost(@RequestBody final CostRequest costRequest) {
+    return this.costService.edit(costRequest);
+  }
+
+  @DeleteMapping("/api/costs/{id}")
+  public void deleteCostById(@PathVariable Long id) {
+    this.costService.deleteById(id);
+  }
 }

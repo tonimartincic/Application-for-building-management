@@ -41,3 +41,34 @@ export async function addNewCost(amount, creatorId, description, urgent, status)
   }
 }
 
+export async function editCost(cost) {
+  try {
+    const response = await axios.put('/api/costs/edit', cost);
+
+    return {
+      type: types.EDIT_COST_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.EDIT_COST_FAILURE,
+      data: err,
+    };
+  }
+}
+
+export async function deleteCost(id) {
+  try {
+    await axios.delete('/api/costs/' + id);
+
+    return {
+      type: types.DELETE_COST_SUCCESS,
+      id,
+    };
+  } catch (err) {
+    return {
+      type: types.DELETE_COST_FAILURE,
+      data: err,
+    };
+  }
+}

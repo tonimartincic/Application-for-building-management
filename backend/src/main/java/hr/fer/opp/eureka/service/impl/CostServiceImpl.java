@@ -50,6 +50,20 @@ public class CostServiceImpl implements CostService {
     return getCostResponse(costRepository.save(cost));
   }
 
+  @Override
+  public CostResponse edit(CostRequest costRequest) {
+    Cost cost = new Cost(costRequest);
+
+    cost.setCreator(this.userRepository.findById(costRequest.getCreatorId()));
+
+    return getCostResponse(costRepository.save(cost));
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    this.costRepository.delete(id);
+  }
+
   private List<CostResponse> getCostResponses(List<Cost> costs) {
     List<CostResponse> costResponses = new ArrayList<>();
 

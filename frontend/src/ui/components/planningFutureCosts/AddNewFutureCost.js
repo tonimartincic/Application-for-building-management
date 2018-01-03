@@ -24,6 +24,15 @@ class AddNewFutureCost extends React.Component {
     this.handleChangeStatus = this.handleChangeStatus.bind(this);
   }
 
+  resetState = () => {
+    this.setState({
+      amount: null,
+      description: null,
+      isUrgent: 'Nije hitno',
+      status: 'Odabir ponude',
+    });
+  };
+
   handleSubmit() {
     let hasError = false;
 
@@ -53,13 +62,7 @@ class AddNewFutureCost extends React.Component {
       );
 
       this.props.toggleAddNewFutureCost();
-
-      this.setState({
-        amount: null,
-        description: null,
-        isUrgent: 'Nije hitno',
-        status: 'Odabir ponude',
-      });
+      this.resetState();
     }
   }
 
@@ -94,7 +97,11 @@ class AddNewFutureCost extends React.Component {
       <div>
         <Modal
           show={this.props.addNewFutureCostClicked}
-          onHide={this.props.toggleAddNewFutureCost}
+          onHide={() => {
+            this.props.toggleAddNewFutureCost();
+            this.resetState();
+          }
+          }
         >
           <Modal.Header closeButton>
             <Modal.Title>Dodaj novi trošak</Modal.Title>
@@ -113,7 +120,7 @@ class AddNewFutureCost extends React.Component {
                 />
                 <Row>
                   <Col md={4}>
-                    <section className={styles.sectionInvalid}>
+                    <section>
                       <Collapse in={this.state.amountValidation === 'error'}>
                         <p className={styles.pInvalid}>Morate unijeti iznos.</p>
                       </Collapse>
@@ -133,7 +140,7 @@ class AddNewFutureCost extends React.Component {
                 />
                 <Row>
                   <Col md={4}>
-                    <section className={styles.sectionInvalid}>
+                    <section>
                       <Collapse in={this.state.descriptionValidation === 'error'}>
                         <p className={styles.pInvalid}>Morate unijeti opis.</p>
                       </Collapse>

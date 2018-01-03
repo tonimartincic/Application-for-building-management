@@ -12,4 +12,8 @@ public interface CostService {
   CostResponse getById(Long id);
 
   CostResponse add(CostRequest costRequest);
+
+  CostResponse edit(CostRequest costRequest);
+
+  void deleteById(Long id);
 }

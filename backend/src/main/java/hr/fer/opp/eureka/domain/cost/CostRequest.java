@@ -1,6 +1,12 @@
 package hr.fer.opp.eureka.domain.cost;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDate;
+
 public class CostRequest {
+
+  private Long id;
 
   private Long creatorId;
 
@@ -8,9 +14,20 @@ public class CostRequest {
 
   private String description;
 
+  @JsonFormat(pattern = "dd-MM-yyyy")
+  private LocalDate createdOn;
+
   private Boolean isUrgent;
 
   private String status;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public Double getAmount() {
     return amount;
@@ -34,6 +51,14 @@ public class CostRequest {
 
   public void setUrgent(Boolean urgent) {
     isUrgent = urgent;
+  }
+
+  public LocalDate getCreatedOn() {
+    return createdOn;
+  }
+
+  public void setCreatedOn(LocalDate createdOn) {
+    this.createdOn = createdOn;
   }
 
   public String getStatus() {
