@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.service;
 
-import hr.fer.opp.eureka.domain.PaymentOrder;
+import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
 
 import java.util.List;
 

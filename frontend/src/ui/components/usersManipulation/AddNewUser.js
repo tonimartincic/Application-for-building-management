@@ -86,10 +86,10 @@ class AddNewUser extends React.Component {
                 <ControlLabel>Odaberi privilegiju</ControlLabel>
                 <FormControl componentClass="select" placeholder="select" onChange={this.props.handleChangePrivilege}>
                   <option value="select">Odaberi</option>
-                  <option value="stanar">Stanar</option>
-                  <option value="predstavnik">Predstavnik stanara</option>
-                  <option value="upravitelj">Upravitelj</option>
-                  <option value="administrator">Administrator</option>
+                  <option value="Stanar">Stanar</option>
+                  <option value="Predstavnik stanara">Predstavnik stanara</option>
+                  <option value="Upravitelj">Upravitelj</option>
+                  <option value="Administrator">Administrator</option>
                 </FormControl>
                 <Row>
                   <Col md={4}>

@@ -1,10 +1,7 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.Apartment;
-import hr.fer.opp.eureka.domain.Building;
-import hr.fer.opp.eureka.domain.cost.Cost;
-import hr.fer.opp.eureka.domain.cost.CostResponse;
+import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.domain.user.UserRequest;
 import hr.fer.opp.eureka.domain.user.UserResponse;
@@ -14,7 +11,6 @@ import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

@@ -1,8 +1,8 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.Apartment;
-import hr.fer.opp.eureka.domain.Building;
+import hr.fer.opp.eureka.domain.apartment.Apartment;
+import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.repository.ApartmentRepository;
 import hr.fer.opp.eureka.repository.BuildingRepository;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class BuildingServiceImpl implements BuildingService {

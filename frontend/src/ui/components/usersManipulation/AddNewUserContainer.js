@@ -5,9 +5,6 @@ import {addNewUser} from "../../../actionCreators/usersActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
 
 class AddNewUserContainer extends React.Component {
-  componentDidMount(){
-    this.props.fetchApartments();
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -33,6 +30,10 @@ class AddNewUserContainer extends React.Component {
     this.handleChangePrivilege = this.handleChangePrivilege.bind(this);
     this.resetState = this.resetState.bind(this);
     this.handleChangeApartment = this.handleChangeApartment.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.fetchApartments();
   }
 
   handleSubmit() {
@@ -224,4 +225,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddNewUserContainer);
-

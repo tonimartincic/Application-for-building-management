@@ -42,6 +42,13 @@ public class Cost {
     this.status = status;
   }
 
+  public Cost(CostRequest costRequest) {
+    this.amount = costRequest.getAmount();
+    this.description = costRequest.getDescription();
+    this.isUrgent = costRequest.getUrgent();
+    this.status = CostStatus.getByName(costRequest.getStatus());
+  }
+
   public Long getId() {
     return id;
   }

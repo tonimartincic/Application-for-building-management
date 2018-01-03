@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.service;
 
-import hr.fer.opp.eureka.domain.UserNotification;
+import hr.fer.opp.eureka.domain.userNotification.UserNotification;
 
 import java.util.List;
 

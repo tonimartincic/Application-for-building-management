@@ -1,4 +1,4 @@
-package hr.fer.opp.eureka.domain;
+package hr.fer.opp.eureka.domain.userNotification;
 
 import hr.fer.opp.eureka.domain.user.User;
 

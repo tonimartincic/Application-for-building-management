@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.SnowClearingDate;
+import hr.fer.opp.eureka.domain.snowClearingDate.SnowClearingDate;
 import hr.fer.opp.eureka.service.SnowClearingDateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

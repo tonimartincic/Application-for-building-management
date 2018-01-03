@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.cost.Cost;
+import hr.fer.opp.eureka.domain.cost.CostRequest;
 import hr.fer.opp.eureka.domain.cost.CostResponse;
 import hr.fer.opp.eureka.service.CostService;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class CostController {
   }
 
   @PostMapping ("/api/costs")
-  public CostResponse addNewCost(@RequestBody final Cost cost) {
-    return costService.add(cost);
+  public CostResponse addNewCost(@RequestBody final CostRequest costRequest) {
+    return costService.add(costRequest);
   }
 }

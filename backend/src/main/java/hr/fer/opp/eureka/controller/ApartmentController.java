@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.Apartment;
+import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.service.ApartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.Apartment;
+import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.repository.ApartmentRepository;
 import hr.fer.opp.eureka.service.ApartmentService;
 import org.springframework.beans.factory.annotation.Autowired;

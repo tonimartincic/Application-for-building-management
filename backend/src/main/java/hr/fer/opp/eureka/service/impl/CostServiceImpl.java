@@ -2,12 +2,15 @@ package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.cost.Cost;
+import hr.fer.opp.eureka.domain.cost.CostRequest;
 import hr.fer.opp.eureka.domain.cost.CostResponse;
 import hr.fer.opp.eureka.repository.CostRepository;
+import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.CostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +19,15 @@ public class CostServiceImpl implements CostService {
 
   private final CostRepository costRepository;
 
+  private final UserRepository userRepository;
+
   @Autowired
-  public CostServiceImpl(CostRepository costRepository) {
+  public CostServiceImpl(
+    CostRepository costRepository,
+    UserRepository userRepository) {
+
     this.costRepository = costRepository;
+    this.userRepository = userRepository;
   }
 
   @Override
@@ -32,7 +41,12 @@ public class CostServiceImpl implements CostService {
   }
 
   @Override
-  public CostResponse add(Cost cost) {
+  public CostResponse add(CostRequest costRequest) {
+    Cost cost = new Cost(costRequest);
+
+    cost.setCreator(this.userRepository.findById(costRequest.getCreatorId()));
+    cost.setCreatedOn(LocalDate.now());
+
     return getCostResponse(costRepository.save(cost));
   }
 

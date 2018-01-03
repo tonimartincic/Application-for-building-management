@@ -1,6 +1,7 @@
-package hr.fer.opp.eureka.domain;
+package hr.fer.opp.eureka.domain.building;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.announcement.Announcement;
 import hr.fer.opp.eureka.domain.user.User;
 
