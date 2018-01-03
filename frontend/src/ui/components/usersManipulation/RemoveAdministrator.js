@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {deleteUser, editUserInfo} from '../../../actionCreators/usersActionCreators';
-import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, ListGroupItem, Alert} from 'react-bootstrap';
+import * as styles from './removeAdministrator.css';
 
 class RemoveAdministrator extends React.Component {
   constructor(props) {
@@ -54,6 +55,24 @@ class RemoveAdministrator extends React.Component {
     this.setState({
       userSelected: event.target.value,
       userSelectedValidation: null,
+    });
+  };
+
+  handleDelete = () => {
+    if (this.state.user.id === this.props.userData.id) {
+      this.setState ({
+        userSelectedValidation: true,
+      });
+    } else {
+      this.props.deleteUser(this.state.user.id);
+      this.props.toggleAdministratorInfoClicked();
+      this.resetState();
+    }
+  };
+
+  handleAlertDismiss() {
+    this.setState({
+      userSelectedValidation: false,
     });
   };
 
@@ -121,13 +140,17 @@ class RemoveAdministrator extends React.Component {
                       </Row>
                     </ListGroupItem>
                   </ListGroup>
+                  <Choose>
+                    <When condition={this.state.userSelectedValidation}>
+                      <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss()}>
+                        <h4>Ne možete obrisati sami sebe</h4>
+                        <p>Samo vas drugi administrator može obrisati.</p>
+                      </Alert>
+                    </When>
+                  </Choose>
                   <Row>
                     <Col mdOffset={1} md={3}>
-                      <Button onClick={() => {
-                        this.props.deleteUser(this.state.user.id);
-                        this.props.toggleAdministratorInfoClicked();
-                        this.resetState();
-                      }}>Obriši korisnika</Button>
+                      <Button onClick={() => this.handleDelete()}>Obriši korisnika</Button>
                     </Col>
                     <Col md={4}>
                       <Button onClick={() => {
@@ -148,6 +171,7 @@ class RemoveAdministrator extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    userData: state.userData,
     users: state.users,
     buildingUsers: state.buildingUsers,
   };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteUser, editUserInfo} from '../../../actionCreators/usersActionCreators';
+import {deleteUserFromBuilding, editUserInfo} from '../../../actionCreators/usersActionCreators';
 import UpdateUserInfo from './UpdateUserInfo';
 
 class UpdateUserInfoContainer extends React.Component {
@@ -8,6 +8,7 @@ class UpdateUserInfoContainer extends React.Component {
     super(props);
 
     this.state = {
+      deleteValidation: false,
       userSelectedValidation: null,
       userSelected: null,
       user: {
@@ -26,6 +27,7 @@ class UpdateUserInfoContainer extends React.Component {
     this.handleChangeMail = this.handleChangeMail.bind(this);
     this.handleChangePrivilege = this.handleChangePrivilege.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   resetState = () => {
@@ -159,6 +161,24 @@ class UpdateUserInfoContainer extends React.Component {
     return true;
   }
 
+  deleteUser() {
+    if(this.props.userData.id === this.state.user.id) {
+      this.setState({
+        deleteValidation: true,
+      })
+    } else {
+      this.props.deleteUserFromBuilding(this.state.user.id);
+      this.resetState();
+    }
+  }
+
+  handleAlertDismiss() {
+    this.setState({
+      deleteValidation: false,
+    });
+  };
+
+
   render() {
     return (
       <UpdateUserInfo
@@ -176,7 +196,9 @@ class UpdateUserInfoContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         updateUserInfoClicked={this.props.updateUserInfoClicked}
         toggleUpdateUserInfo={this.props.toggleUpdateUserInfo}
-        deleteUser={this.props.deleteUser}
+        deleteUser={this.deleteUser}
+        deleteValidation={this.state.deleteValidation}
+        handleAlertDismiss={this.handleAlertDismiss}
       />
     );
   }
@@ -184,6 +206,7 @@ class UpdateUserInfoContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    userData: state.userData,
     users: state.users,
     buildingUsers: state.buildingUsers,
   };
@@ -191,7 +214,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteUser: id => dispatch(deleteUser(id)),
+    deleteUserFromBuilding: id => dispatch(deleteUserFromBuilding(id)),
     editUserInfo: user => dispatch(editUserInfo(user)),
   };
 }

@@ -114,3 +114,20 @@ export async function deleteUser(id) {
     };
   }
 }
+
+export async function deleteUserFromBuilding(id) {
+  try {
+    await axios.delete('/api/users/' + id);
+
+    return {
+      type: types.DELETE_BUILDING_USER_SUCCESS,
+      id,
+    };
+  } catch (err) {
+    return {
+      type: types.DELETE_BUILDING_USER_FAILURE,
+      data: err,
+    };
+  }
+}
+
