@@ -17,6 +17,24 @@ export default async function fetchBuildingUsersById(id) {
   }
 }
 
+export async function fetchUsers() {
+  try {
+
+    const response = await axios.get('/api/users');
+
+    return {
+      type: types.FETCH_USERS_SUCCESS,
+      data: response.data,
+    }
+
+  } catch (err) {
+    return {
+      type: types.FETCH_USERS_FAILURE,
+      data: err
+    }
+  }
+}
+
 export async function addNewUser(firstName, lastName, eMail, privilege, id) {
   try {
     debugger;

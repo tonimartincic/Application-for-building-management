@@ -3,15 +3,18 @@ import {connect} from 'react-redux';
 import NavigationBar from '../NavigationBar';
 import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
-import {Col, Button, Row, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
+import {Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader} from 'react-bootstrap';
 import UpdateUserInfoContainer from './UpdateUserInfoContainer';
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
+import { fetchUsers } from "../../../actionCreators/usersActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
+import AdministratorsTable from "./AdministratorsTable";
 
 class AllUsersInfo extends Component {
   componentDidMount() {
     this.props.fetchBuildings();
+    this.props.fetchUsers();
   }
 
   constructor(props) {
@@ -62,7 +65,13 @@ class AllUsersInfo extends Component {
     return (
       <div>
         <NavigationBar/>
+        <AdministratorsTable />
         <Row>
+          <Row>
+            <Col mdOffset={1}>
+              <PageHeader>Ostali korisnici:<small> (po zgradama)</small></PageHeader>
+            </Col>
+          </Row>
           <Col md={6} mdOffset={1}>
             <FormGroup>
               <ControlLabel>Odaberi zgradu:</ControlLabel>
@@ -85,19 +94,18 @@ class AllUsersInfo extends Component {
           <AddNewUserContainer
             addNewUserClicked={this.state.addNewUserClicked}
             toggleAddNewUser={this.toggleAddNewUser}
-            users={this.props.users}
             buildingId={this.state.buildingId}/>
           <UpdateUserInfoContainer
             updateUserInfoClicked={this.state.updateUserInfoClicked}
             toggleUpdateUserInfo={this.toggleUpdateUserInfo}
-            users={this.props.users}/>
+            buildingUsers={this.props.buildingUsers}/>
           <br/>
           <Choose>
             <When condition={this.state.buildingSelected}>
               <Col>
                 <AllUsersInfoTable
                   buildingId={this.state.buildingId}
-                  users={this.props.users}/>
+                  buildingUsers={this.props.buildingUsers}/>
               </Col>
             </When>
           </Choose>
@@ -125,6 +133,7 @@ function mapStateToProps(state) {
     userData: state.userData,
     buildings: state.buildings,
     users: state.users,
+    buildingUsers: state.buildingUsers,
   };
 }
 
@@ -133,6 +142,7 @@ function mapDispatchToProps(dispatch) {
     fetchBuildings: () => dispatch(fetchBuildings()),
     fetchBuildingUsersById: id => dispatch(fetchBuildingUsersById(id)),
     fetchApartments: () => dispatch(fetchApartments()),
+    fetchUsers: () => dispatch(fetchUsers()),
   };
 }
 

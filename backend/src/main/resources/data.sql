@@ -4,6 +4,10 @@ Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) v
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Cavalli','marko.cavalli@fer.hr','ADMINISTRATOR',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Ćurlin','marko.curlin@fer.hr','ADMINISTRATOR',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Toni','Martinčić','toni.martincic@fer.hr','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Pero','Peric','pero.peric@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Iva','Ivic','iva.ivic@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivan','Horvat','ivan.horvat@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Maja','Majic','maja.majic@fer.hr','TENANT',false, 'pass');
 
 Insert into building (address, landlord, funds) values ('Ilica 256', 1, 100532.52);
 Insert into building (address, landlord, funds) values ('Ožujska BB', 2, 54625.32);
@@ -11,9 +15,9 @@ Insert into building (address, landlord, funds) values ('Savska 56', 3, 15456.23
 Insert into building (address, landlord, funds) values ('Vukovarska 1a', 4, -5947.65);
 Insert into building (address, landlord, funds) values ('Lastovska 23', 4, 15.01);
 
-Insert into apartment (building_id, area, owner_id) values (1, 25.23, 1);
-Insert into apartment (building_id, area, owner_id) values (1, 25.23, 2);
-Insert into apartment (building_id, area, owner_id) values (1, 25.23, 3);
+Insert into apartment (building_id, area, owner_id) values (1, 25.23, 7);
+Insert into apartment (building_id, area, owner_id) values (1, 25.23, 8);
+Insert into apartment (building_id, area, owner_id) values (1, 25.23, 9);
 Insert into apartment (building_id, area, owner_id) values (1, 25.23, 4);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, 2);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, 1);

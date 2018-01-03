@@ -213,6 +213,8 @@ class AddNewUserContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     apartments: state.apartments,
+    buildingUsers: state.buildingUsers,
+    users: state.users,
   };
 }
 

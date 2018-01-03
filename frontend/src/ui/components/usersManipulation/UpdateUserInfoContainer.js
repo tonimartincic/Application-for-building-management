@@ -165,6 +165,7 @@ class UpdateUserInfoContainer extends React.Component {
         userSelectedValidation={this.state.userSelectedValidation}
         user={this.state.user}
         users={this.props.users}
+        buildingUsers={this.props.buildingUsers}
         userSelected={this.state.userSelected}
         resetState={this.resetState}
         handleChangeUser={this.handleChangeUser}
@@ -181,8 +182,10 @@ class UpdateUserInfoContainer extends React.Component {
   }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
   return {
+    users: state.users,
+    buildingUsers: state.buildingUsers,
   };
 }
 
