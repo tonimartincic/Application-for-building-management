@@ -67,18 +67,15 @@ class PlanningFutureCosts extends Component {
                           <td>{cost.amount + ' kn'}</td>
                           <td>{cost.description}</td>
                           <td>{cost.createdOn}</td>
-                          <td>{cost.urgent ? 'Hitno' : 'Nije hitno'}</td>
-                          <td>{cost.status}</td>
-                          <Choose>
-                            <When condition={cost.urgent}>
-                              <td>
-                                <span className='glyphicon glyphicon-warning-sign' />
-                              </td>
-                            </When>
-                            <Otherwise>
-                              <td />
-                            </Otherwise>
-                          </Choose>
+                          <td>
+                            {cost.urgent ? 'Hitno  ' : 'Nije hitno'}
+                            {cost.urgent ? <span className='glyphicon glyphicon-warning-sign' /> : ''}
+                          </td>
+                          <td>
+                            {cost.status}
+                            {cost.status === 'Plaćeno' ? '  ' : ''}
+                            {cost.status === 'Plaćeno' ? <span className='glyphicon glyphicon-ok' /> : ''}
+                          </td>
                         </tr>
                       )}
                     )
