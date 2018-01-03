@@ -20,5 +20,7 @@ public interface UserService {
 
   UserResponse edit(UserRequest userRequest);
 
+  UserResponse toggleReminderValue(Long id);
+
   void deleteById(Long id);
 }

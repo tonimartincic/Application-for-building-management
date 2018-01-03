@@ -26,7 +26,7 @@ public class UserController {
 
   @GetMapping("/api/users/{id}")
   public UserResponse getUserById(@PathVariable Long id) {
-    return userService.getById(id);
+    return this.userService.getById(id);
   }
 
   @PostMapping("/api/users/{apartmentId}")
@@ -36,10 +36,16 @@ public class UserController {
 
   @PostMapping("/api/users/edit")
   public UserResponse editUser(@RequestBody final UserRequest userRequest) {
-    return userService.edit(userRequest);
+    return this.userService.edit(userRequest);
   }
 
   @DeleteMapping("/api/users/{id}")
   public void deleteUserById(@PathVariable Long id) {
-    userService.deleteById(id); }
+    this.userService.deleteById(id);
+  }
+
+  @PutMapping("/api/users/{id}")
+  public UserResponse toggleReminderValue(@PathVariable Long id) {
+    return this.userService.toggleReminderValue(id);
+  }
 }
