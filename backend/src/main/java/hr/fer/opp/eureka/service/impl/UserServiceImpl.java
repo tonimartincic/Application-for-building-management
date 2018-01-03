@@ -58,22 +58,28 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public List<UserResponse> getAll() {
-    return getUserResponses(Lists.newArrayList(userRepository.findAll()));
+    return getUserResponses(Lists.newArrayList(this.userRepository.findAll()));
   }
 
   @Override
   public UserResponse getById(Long id) {
-    return getUserResponse(userRepository.findById(id));
+    return getUserResponse(this.userRepository.findById(id));
   }
 
   @Override
   public UserResponse validateUser(String mail, String password) {
-    return getUserResponse(userRepository.findByMailAndPassword(mail, password));
+    User user = this.userRepository.findByMailAndPassword(mail, password);
+
+    if(user == null) {
+      return null;
+    }
+
+    return getUserResponse(user);
   }
 
   @Override
   public UserResponse add(UserRequest userRequest, Long apartmentId) {
-    Apartment apartment = apartmentRepository.findById(apartmentId);
+    Apartment apartment = this.apartmentRepository.findById(apartmentId);
 
     User user = new User(userRequest);
 

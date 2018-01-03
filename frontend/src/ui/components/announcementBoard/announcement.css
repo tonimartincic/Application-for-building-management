@@ -1,6 +1,8 @@
 .sectionAnnouncement {
   margin-top: 15px;
   margin-bottom: 15px;
+  border: solid black 0.2em;
+  padding: 1em;
 }
 
 .sectionFooter {

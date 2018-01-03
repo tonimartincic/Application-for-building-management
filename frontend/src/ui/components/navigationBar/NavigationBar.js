@@ -17,7 +17,7 @@ class NavigationBar extends Component {
         <Navbar.Header className={styles.navCenter}>
           <Navbar.Brand>
             <Link to='/'>
-              <span className={styles.span}>
+              <span className={styles.spanEureka}>
                 Eureka
               </span>
             </Link>
@@ -30,7 +30,7 @@ class NavigationBar extends Component {
             href='/board'
           >
             <span className={styles.span}>
-              Oglasna ploča
+              <span className='glyphicon glyphicon-list-alt' />    Oglasna ploča
             </span>
           </NavItem>
           <NavItem
@@ -39,7 +39,7 @@ class NavigationBar extends Component {
             href='/planning-future-costs'
           >
             <span className={styles.span}>
-              Planiranje budućih troškova
+              <span className='glyphicon glyphicon-file' />    Planiranje budućih troškova
             </span>
           </NavItem>
           <NavItem
@@ -48,7 +48,7 @@ class NavigationBar extends Component {
             href='/payments'
           >
             <span className={styles.span}>
-              Zajednički novac
+              <span className='glyphicon glyphicon-euro' />    Zajednički novac
             </span>
           </NavItem>
           <NavItem
@@ -57,7 +57,7 @@ class NavigationBar extends Component {
             href='/snow-clearing-schedule'
           >
             <span className={styles.span}>
-              Raspored čišćenja snijega
+              <span className='glyphicon glyphicon-calendar' />    Raspored čišćenja snijega
             </span>
           </NavItem >
           <NavItem >
@@ -70,7 +70,7 @@ class NavigationBar extends Component {
                 to='/all-users'
                 href='/all-users'>
                 <span className={styles.span}>
-                  Korisnici
+                  <span className='glyphicon glyphicon-user' />    Korisnici
                 </span>
               </NavItem>
             </When>

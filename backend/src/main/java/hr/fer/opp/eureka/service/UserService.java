@@ -1,6 +1,5 @@
 package hr.fer.opp.eureka.service;
 
-import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.domain.user.UserRequest;
 import hr.fer.opp.eureka.domain.user.UserResponse;
 

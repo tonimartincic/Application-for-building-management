@@ -35,52 +35,50 @@ class Announcement extends Component {
           setValueOfDeleteAnnouncementButtonClicked={this.setValueOfDeleteAnnouncementButtonClicked}
           deleteAnnouncement={this.props.deleteAnnouncement}
         />
-        <Well>
-          <Choose>
-            <When condition={privilege === 'Administrator' || privilege === 'Predstavnik stanara' || announcement.user.id === userId}>
-              <Row>
-                <section className={styles.sectionHeader}>
-                  <Button onClick={() => {
-                    this.props.setEditAnnouncementButtonClicked(announcement.id, !announcement.editClicked);
-                  }}
-                  >
-                    <span className='glyphicon glyphicon-edit' />
-                  </Button>
-                  <Button onClick={() => {
-                    this.setValueOfDeleteAnnouncementButtonClicked(true);
-                  }}
-                  >
-                    <span className='glyphicon glyphicon-trash' />
-                  </Button>
-                </section>
-              </Row>
-            </When>
-          </Choose>
+        <Choose>
+          <When condition={privilege === 'Administrator' || privilege === 'Predstavnik stanara' || announcement.user.id === userId}>
+            <Row>
+              <section className={styles.sectionHeader}>
+                <Button onClick={() => {
+                  this.props.setEditAnnouncementButtonClicked(announcement.id, !announcement.editClicked);
+                }}
+                >
+                  <span className='glyphicon glyphicon-edit' />
+                </Button>
+                <Button onClick={() => {
+                  this.setValueOfDeleteAnnouncementButtonClicked(true);
+                }}
+                >
+                  <span className='glyphicon glyphicon-trash' />
+                </Button>
+              </section>
+            </Row>
+          </When>
+        </Choose>
+        <Row>
+          <Col md={12}>
+            <Choose>
+              <When condition={announcement.editClicked}>
+                <EditAnnouncementForm
+                  announcement={announcement}
+                />
+              </When>
+              <Otherwise>
+                <span>{announcement.content}</span>
+              </Otherwise>
+            </Choose>
+          </Col>
+        </Row>
+        <section className={styles.sectionFooter}>
           <Row>
-            <Col md={12}>
-              <Choose>
-                <When condition={announcement.editClicked}>
-                  <EditAnnouncementForm
-                    announcement={announcement}
-                  />
-                </When>
-                <Otherwise>
-                  <span>{announcement.content}</span>
-                </Otherwise>
-              </Choose>
+            <Col md={4}>
+              <span>{announcement.user.firstName} {announcement.user.lastName}</span>
+            </Col>
+            <Col md={4} mdOffset={4}>
+              <span className={styles.creationDateSpan}>{announcement.creationDate}</span>
             </Col>
           </Row>
-          <section className={styles.sectionFooter}>
-            <Row>
-              <Col md={4}>
-                <span>{announcement.user.firstName} {announcement.user.lastName}</span>
-              </Col>
-              <Col md={4} mdOffset={4}>
-                <span className={styles.creationDateSpan}>{announcement.creationDate}</span>
-              </Col>
-            </Row>
-          </section>
-        </Well>
+        </section>
       </section>
     )
   }

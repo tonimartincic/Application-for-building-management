@@ -3,7 +3,7 @@
 }
 
 .navBar {
-  background-color: #0c0742;
+  background-color: black;
 }
 
 .a {
@@ -12,6 +12,11 @@
 
 .span {
   color: white;
+}
+
+.spanEureka {
+  color: white;
+  font-size: 26px;
 }
 
 .span:hover {

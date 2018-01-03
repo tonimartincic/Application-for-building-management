@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import { Col, FormControl, Button, Collapse, Row, Grid, Well} from 'react-bootstrap';
+import { Col, FormControl, Button, Collapse, Row, Grid } from 'react-bootstrap';
 import validateUser from '../../../actionCreators/userDataActionCreators';
 import { setInvalidUserNameAndPasswordValue } from '../../../actions/userDataActions';
 import styles from './login.css';
@@ -56,65 +56,69 @@ class Login extends Component {
         <Grid>
           <Row>
             <Col md={4} mdOffset={4}>
-              <p className={styles.p}>Eureka</p>
+              <h1 className={styles.h1ElegantShadow}>Eureka</h1>
             </Col>
           </Row>
           <form>
             <Row>
               <Col md={4} mdOffset={4}>
-                <section className={styles.section}>
-                  <FormControl
-                    type="text"
-                    value={this.state.userId}
-                    placeholder="Korisničko ime"
-                    onChange={this.handleChangeUserId}
-                  />
-                </section>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={4} mdOffset={4}>
-                <section className={styles.section}>
-                  <FormControl
-                    type="password"
-                    value={this.state.password}
-                    placeholder="Lozinka"
-                    onChange={this.handleChangePass}
-                  />
-                </section>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={4} mdOffset={4}>
-                <section className={styles.sectionInvalid}>
-                  <Collapse in={this.props.userData.invalidUserNameAndPassword}>
-                    <p className={styles.pInvalid}>Uneseni podatci nisu ispravni.</p>
-                  </Collapse>
-                </section>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={4} mdOffset={4}>
-                <section className={styles.section}>
-                  <Button
-                    className={styles.button}
-                    bsStyle='primary'
-                    type='submit'
-                    onClick={this.handleSubmit}
-                  ><span>Prijava</span></Button>
-                </section>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={4} mdOffset={4}>
-                <section className={styles.section}>
-                  <Button
-                    className={styles.button}
-                    bsStyle='warning'
-                    type='button'
-                    onClick={this.handleDelete}
-                  ><span>Resetiraj</span></Button>
-                </section>
+                <Row>
+                  <Col>
+                    <section className={styles.section}>
+                      <FormControl
+                        type="text"
+                        value={this.state.userId}
+                        placeholder="Korisničko ime"
+                        onChange={this.handleChangeUserId}
+                      />
+                    </section>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <section className={styles.section}>
+                      <FormControl
+                        type="password"
+                        value={this.state.password}
+                        placeholder="Lozinka"
+                        onChange={this.handleChangePass}
+                      />
+                    </section>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <section>
+                      <Collapse in={this.props.userData.invalidUserNameAndPassword}>
+                        <p className={styles.pInvalid}>Uneseni podatci nisu ispravni.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <section className={styles.section}>
+                      <Button
+                        className={styles.button}
+                        bsStyle='primary'
+                        type='submit'
+                        onClick={this.handleSubmit}
+                      ><span>Prijava</span></Button>
+                    </section>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <section className={styles.section}>
+                      <Button
+                        className={styles.button}
+                        bsStyle='warning'
+                        type='button'
+                        onClick={this.handleDelete}
+                      ><span>Resetiraj</span></Button>
+                    </section>
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </form>

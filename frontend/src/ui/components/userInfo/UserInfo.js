@@ -20,15 +20,15 @@ class UserInfo extends Component {
         <Settings />
         <NavDropdown title = {this.props.userData.firstName + ' ' + this.props.userData.lastName} id='nav-dropdown'>
           <MenuItem onClick={() => this.props.toggleUserInfo(true)}>
-            Info
+            <span className='glyphicon glyphicon-info-sign' /> &nbsp;&nbsp; Informacije
           </MenuItem>
           <MenuItem divider />
             <MenuItem onClick={() => this.props.toggleUserSettings(true)}>
-              Postavke
+              <span className='glyphicon glyphicon-pencil' /> &nbsp;&nbsp; Postavke
             </MenuItem>
           <MenuItem divider />
           <MenuItem onClick={this.logout}>
-            Odjava
+            <span className='glyphicon glyphicon-log-out' /> &nbsp;&nbsp; Odjava
           </MenuItem>
         </NavDropdown>
       </div>
