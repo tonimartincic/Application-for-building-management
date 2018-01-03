@@ -188,8 +188,8 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteUser: (id) => (dispatch(deleteUser(id))),
-    editUserInfo: (user) => (dispatch(editUserInfo(user))),
+    deleteUser: id => dispatch(deleteUser(id)),
+    editUserInfo: user => dispatch(editUserInfo(user)),
   };
 }
 

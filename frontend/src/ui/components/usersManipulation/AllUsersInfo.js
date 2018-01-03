@@ -7,6 +7,7 @@ import {Col, Button, Row, FormGroup, FormControl, ControlLabel} from 'react-boot
 import UpdateUserInfoContainer from './UpdateUserInfoContainer';
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
+import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
 
 class AllUsersInfo extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class AllUsersInfo extends Component {
 
   toggleAddNewUser() {
     const addNewUserClickedTemp = this.state.addNewUserClicked;
+    this.props.fetchApartments();
     this.setState({
       addNewUserClicked: !addNewUserClickedTemp,
     });
@@ -130,6 +132,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchBuildings: () => dispatch(fetchBuildings()),
     fetchBuildingUsersById: id => dispatch(fetchBuildingUsersById(id)),
+    fetchApartments: () => dispatch(fetchApartments()),
   };
 }
 

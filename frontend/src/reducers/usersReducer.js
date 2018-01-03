@@ -42,8 +42,10 @@ export default function usersReducer(state = initialState.users, action) {
     case types.DELETE_USER_SUCCESS:
       const usersWithoutDeletedOne = [];
       for(let i = 0, j = 0; i < state.length; i++) {
-        if(state[i].id === action.id) {
-          continue;
+        if(state[i] !== null) {
+          if(state[i].id === action.id) {
+            continue;
+          }
         }
 
         usersWithoutDeletedOne[j] = state[i];
