@@ -7,7 +7,7 @@ import {deleteAnnouncement} from '../../../actionCreators/announcementsActionCre
 import Announcement from "./Announcement";
 import AnnouncementInputForm from "./AnnouncementInputForm";
 import * as sortUtils from '../../../utils/SortUtil';
-import NavigationBar from "../NavigationBar";
+import NavigationBar from "../navigationBar/NavigationBar";
 
 class AnnouncementBoard extends Component {
   componentDidMount() {

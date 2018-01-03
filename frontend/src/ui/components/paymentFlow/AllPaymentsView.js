@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Button, Col, Row, Well} from 'react-bootstrap';
-import NavigationBar from "../NavigationBar";
+import NavigationBar from "../navigationBar/NavigationBar";
 import GeneratePaymentInputForm from "./GeneratePaymentInputForm";
 import PaymentsTable from "./PaymentsTable";
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";

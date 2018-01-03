@@ -3,7 +3,7 @@ import { Grid, Row, Col, Table, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import fetchFutureCosts from '../../../actionCreators/costsActionCreators';
-import NavigationBar from "../NavigationBar";
+import NavigationBar from "../navigationBar/NavigationBar";
 import AddNewFutureCost from "./AddNewFutureCost";
 import UpdateFutureCost from "./UpdateFutureCost";
 import * as styles from './planningFutureCosts.css';

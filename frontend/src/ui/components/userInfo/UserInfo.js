@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
-import * as styles from './navigationBar.css';
 import UserInfoData from './UserInfoData';
 import Settings from './Settings';
-import {toggleUserInfo} from "../../actions/userInfoActions";
-import {toggleUserSettings} from "../../actions/userSettingsActions";
+import {toggleUserInfo} from "../../../actions/userInfoActions";
+import {toggleUserSettings} from "../../../actions/userSettingsActions";
 import {withRouter} from 'react-router-dom';
 
 class UserInfo extends Component {

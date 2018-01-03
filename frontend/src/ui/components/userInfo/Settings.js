@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Row, Col, Checkbox } from 'react-bootstrap';
-import { toggleUserSettings } from "../../actions/userSettingsActions";
-import { toggleReminderValue } from "../../actionCreators/userDataActionCreators";
+import { toggleUserSettings } from "../../../actions/userSettingsActions";
+import { toggleReminderValue } from "../../../actionCreators/userDataActionCreators";
 
 class Settings extends Component {
   render (){

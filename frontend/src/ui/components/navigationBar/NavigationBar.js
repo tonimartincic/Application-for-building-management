@@ -2,9 +2,9 @@ import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import styles from './navigationBar.css';
-import UserInfo from './UserInfo';
+import UserInfo from '../userInfo/UserInfo';
 import { connect } from 'react-redux';
-import { fetchUserData } from '../../actionCreators/userDataActionCreators';
+import { fetchUserData } from '../../../actionCreators/userDataActionCreators';
 
 class NavigationBar extends Component {
   componentDidMount() {
