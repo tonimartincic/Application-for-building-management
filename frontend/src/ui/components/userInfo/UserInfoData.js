@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import {toggleUserInfo} from '../../actions/userInfoActions';
+import {toggleUserInfo} from '../../../actions/userInfoActions';
 
 class Preferences extends React.Component {
   render() {

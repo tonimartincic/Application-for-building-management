@@ -1,13 +1,12 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.Building;
+import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class BuildingController {

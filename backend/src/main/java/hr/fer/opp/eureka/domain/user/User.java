@@ -1,9 +1,13 @@
 package hr.fer.opp.eureka.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import hr.fer.opp.eureka.domain.*;
 import hr.fer.opp.eureka.domain.announcement.Announcement;
+import hr.fer.opp.eureka.domain.apartment.Apartment;
+import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.cost.Cost;
+import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
+import hr.fer.opp.eureka.domain.snowClearingDate.SnowClearingDate;
+import hr.fer.opp.eureka.domain.userNotification.UserNotification;
 import hr.fer.opp.eureka.enumeration.UserPrivilege;
 
 import javax.persistence.*;

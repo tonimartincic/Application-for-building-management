@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.service;
 
-import hr.fer.opp.eureka.domain.SnowClearingDate;
+import hr.fer.opp.eureka.domain.snowClearingDate.SnowClearingDate;
 
 import java.time.LocalDate;
 import java.util.List;

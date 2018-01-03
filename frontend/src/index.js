@@ -2,13 +2,12 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import {Provider} from 'react-redux';
 import {Router, Route} from 'react-router-dom';
-import App from './ui/components/App';
 import AnnouncementBoard from './ui/components/announcementBoard/AnnouncementBoard';
-import Login from './ui/components/Login';
+import Login from './ui/components/login/Login';
 import configureStore from './store/configureStore';
 import PlanningFutureCosts from './ui/components/planningFutureCosts/PlanningFutureCosts';
-import PrivateRoute from './ui/components/PrivateRoute';
-import { history } from './ui/components/history';
+import PrivateRoute from './ui/components/route/PrivateRoute';
+import { history } from './ui/components/history/history';
 import SnowClearingScheduleView from "./ui/components/snowClearingSchedule/SnowClearingScheduleView";
 import AllUsersInfo from './ui/components/usersManipulation/AllUsersInfo';
 import AllPaymentsView from './ui/components/paymentFlow/AllPaymentsView';
@@ -19,7 +18,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <div>
-          <PrivateRoute exact path ='/'><App/></PrivateRoute>
+          <PrivateRoute exact path='/'><AnnouncementBoard/></PrivateRoute>
           <PrivateRoute exact path='/board'><AnnouncementBoard/></PrivateRoute>
           <PrivateRoute exact path='/planning-future-costs'><PlanningFutureCosts/></PrivateRoute>
           <PrivateRoute exact path='/snow-clearing-schedule'><SnowClearingScheduleView/></PrivateRoute>

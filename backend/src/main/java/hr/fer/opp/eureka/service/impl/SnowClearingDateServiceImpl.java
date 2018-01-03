@@ -1,7 +1,7 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.SnowClearingDate;
+import hr.fer.opp.eureka.domain.snowClearingDate.SnowClearingDate;
 import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.repository.SnowClearingDateRepository;
 import hr.fer.opp.eureka.repository.UserRepository;

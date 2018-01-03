@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Button, Col, Row, Well, ControlLabel} from 'react-bootstrap';
-import NavigationBar from "../NavigationBar";
+import NavigationBar from "../navigationBar/NavigationBar";
 import SnowClearingSchedule  from "./SnowClearingSchedule";
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';
 import { generateClicked, approveRequestChangeToggle } from '../../../actions/snowClearingSchedulesActions';

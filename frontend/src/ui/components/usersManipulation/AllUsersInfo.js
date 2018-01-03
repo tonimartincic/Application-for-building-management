@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import NavigationBar from '../NavigationBar';
+import NavigationBar from '../navigationBar/NavigationBar';
 import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
 import {Col, Button, Row, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';

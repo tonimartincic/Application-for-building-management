@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.UserNotification;
+import hr.fer.opp.eureka.domain.userNotification.UserNotification;
 import hr.fer.opp.eureka.service.UserNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

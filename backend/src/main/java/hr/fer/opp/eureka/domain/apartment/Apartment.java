@@ -1,5 +1,6 @@
-package hr.fer.opp.eureka.domain;
+package hr.fer.opp.eureka.domain.apartment;
 
+import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.user.User;
 
 import javax.persistence.*;

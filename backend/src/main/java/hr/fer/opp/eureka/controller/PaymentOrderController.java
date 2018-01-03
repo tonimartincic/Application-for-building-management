@@ -1,6 +1,6 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.PaymentOrder;
+import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
 import hr.fer.opp.eureka.service.PaymentOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

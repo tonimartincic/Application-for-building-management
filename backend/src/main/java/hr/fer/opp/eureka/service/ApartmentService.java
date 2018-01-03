@@ -1,10 +1,6 @@
 package hr.fer.opp.eureka.service;
 
-import hr.fer.opp.eureka.domain.Apartment;
-
-import java.util.List;
-
-import hr.fer.opp.eureka.domain.Apartment;
+import hr.fer.opp.eureka.domain.apartment.Apartment;
 
 import java.util.List;
 

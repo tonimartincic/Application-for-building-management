@@ -1,4 +1,4 @@
-package hr.fer.opp.eureka.domain;
+package hr.fer.opp.eureka.domain.snowClearingDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import hr.fer.opp.eureka.domain.user.User;
