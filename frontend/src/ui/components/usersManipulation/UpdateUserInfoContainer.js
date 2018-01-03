@@ -148,9 +148,9 @@ class UpdateUserInfoContainer extends React.Component {
     if ((this.state.userPrivilege === '' || this.state.userPrivilege === null || this.state.userPrivilege==='select') && (this.state.user.privilege === 'select' || this.state.user.privilege === null)) {
       return false;
     } else if (this.state.userPrivilege === 'Predstavnik' || this.state.userPrivilege === 'Upravitelj' ) {
-      for (let i = 0; i < this.props.users.length; i = i + 1) {
-        if (this.props.users[i] !== null) {
-          if (this.props.users[i].privilege === this.state.userPrivilege) {
+      for (let i = 0; i < this.props.buildingUsers.length; i = i + 1) {
+        if (this.props.buildingUsers[i] !== null) {
+          if (this.props.buildingUsers[i].privilege === this.state.userPrivilege) {
             return false;
           }
         }
