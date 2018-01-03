@@ -149,9 +149,9 @@ class AddNewUserContainer extends React.Component {
       });
       return false;
     } else if (this.state.privilege === 'Predstavnik stanara' || this.state.privilege === 'Upravitelj' ) {
-      for (let i = 0; i < this.props.users.length; i = i + 1) {
-        if (this.props.users[i] !== null) {
-          if (this.props.users[i].privilege === this.state.privilege) {
+      for (let i = 0; i < this.props.buildingUsers.length; i = i + 1) {
+        if (this.props.buildingUsers[i] !== null) {
+          if (this.props.buildingUsers[i].privilege === this.state.privilege) {
             this.setState({
               privilegeValidationAlreadyExists: 'error',
             });
@@ -214,6 +214,8 @@ class AddNewUserContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     apartments: state.apartments,
+    buildingUsers: state.buildingUsers,
+    users: state.users,
   };
 }
 
