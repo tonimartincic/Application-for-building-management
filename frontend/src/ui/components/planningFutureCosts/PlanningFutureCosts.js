@@ -64,7 +64,7 @@ class PlanningFutureCosts extends Component {
                       return (
                         <tr key={index}>
                           <td>{cost.creator.firstName + ' ' + cost.creator.lastName}</td>
-                          <td>{cost.amount}</td>
+                          <td>{cost.amount + ' kn'}</td>
                           <td>{cost.description}</td>
                           <td>{cost.createdOn}</td>
                           <td>{cost.urgent ? 'Hitno' : 'Nije hitno'}</td>

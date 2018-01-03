@@ -184,10 +184,10 @@ class UpdateFutureCost extends React.Component {
                   this.props.costs
                     .filter(cost => cost !== null)
                     .map(costTemp => {
-                      const idDescriptionAndAmount = costTemp.id + ". " + costTemp.description + " - " + costTemp.amount;
+                      const record = costTemp.description + " - " + costTemp.amount + " kn";
                       return (
                         <option key={costTemp.id} value={costTemp.id}>
-                          {idDescriptionAndAmount}
+                          {record}
                         </option>)
                     })
                 }
