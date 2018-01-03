@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import styles from './userInfo.css';
 
 class AllUsersInfoTable extends Component {
-
   render(){
     return(
       <Table striped bordered condensed hover className={styles.myTable}>
@@ -19,6 +18,7 @@ class AllUsersInfoTable extends Component {
         <tbody>
         {
           this.props.users
+            .filter(user => user !== null)
             .map((user, index) => {
               return (
                 <tr key={index}>
@@ -38,7 +38,6 @@ class AllUsersInfoTable extends Component {
 function mapStateToProps(state) {
   return {
     userData : state.userData,
-    users: state.users,
   };
 }
 

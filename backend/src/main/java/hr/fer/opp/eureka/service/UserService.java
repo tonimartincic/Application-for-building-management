@@ -14,7 +14,7 @@ public interface UserService {
 
   UserResponse validateUser(String mail, String password);
 
-  UserResponse add(UserRequest userRequest);
+  UserResponse add(UserRequest userRequest, Long apartmentId);
 
   UserResponse getByMail(String mail);
 

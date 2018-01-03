@@ -2,8 +2,12 @@ import React from 'react';
 import AddNewUser from './AddNewUser';
 import { connect } from 'react-redux';
 import {addNewUser} from "../../../actionCreators/usersActionCreators";
+import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
 
 class AddNewUserContainer extends React.Component {
+  componentDidMount(){
+    this.props.fetchApartments();
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +22,8 @@ class AddNewUserContainer extends React.Component {
       emailValidationNotCorrectFormat: null,
       privilegeValidationEmpty: null,
       privilegeValidationAlreadyExists: null,
+      currentApartment: null,
+      apartmentSelectedValidation: null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,12 +32,13 @@ class AddNewUserContainer extends React.Component {
     this.handleChangeEMail = this.handleChangeEMail.bind(this);
     this.handleChangePrivilege = this.handleChangePrivilege.bind(this);
     this.resetState = this.resetState.bind(this);
+    this.handleChangeApartment = this.handleChangeApartment.bind(this);
   }
 
   handleSubmit() {
     if(this.state.firstName === null || this.state.firstName === '' ||
       this.state.lastName === null || this.state.lastName === '' || !this.checkEmail() || !this.checkPrivilege()) {
-      if(this.state.firstName === null || this.state.firstName === '') {
+      if(this.state.firstName === null || this.state.firstName === '' || this.state.currentApartment === null) {
         this.setState({
           firstNameValidation: 'error',
         });
@@ -43,9 +50,13 @@ class AddNewUserContainer extends React.Component {
       }
       this.checkPrivilege();
       this.checkEmail();
+      if(this.state.currentApartment === null)  {
+        this.setState({
+          apartmentSelectedValidation: 'error',
+        });
+      }
     } else {
-
-      this.props.addNewUser(this.state.firstName, this.state.lastName, this.state.email, this.state.privilege);
+      this.props.addNewUser(this.state.firstName, this.state.lastName, this.state.email, this.state.privilege, this.state.currentApartment);
       this.props.toggleAddNewUser();
 
       this.setState({
@@ -88,7 +99,22 @@ class AddNewUserContainer extends React.Component {
     });
   }
 
+  handleChangeApartment(e) {
+    const currentApartment = e.target.value;
+    if (currentApartment !== 'select' && currentApartment !== null)
+    this.setState({
+      currentApartment,
+      apartmentSelectedValidation: null,
+    });
+    else
+      this.setState({
+        currentApartment: null,
+        apartmentSelectedValidation: null,
+      });
+  }
+
   checkEmail() {
+    debugger;
     if(this.state.email === null || this.state.email === '') {
       this.setState({
         emailValidationEmptyString: 'error',
@@ -96,11 +122,13 @@ class AddNewUserContainer extends React.Component {
       return false;
     }
     for(let i = 0 ; i < this.props.users.length; i = i + 1) {
-      if (this.props.users[i].mail === this.state.email) {
-        this.setState({
-          emailValidationAlreadyExists: 'error',
-        });
-        return false;
+      if(this.props.users[i] !== null) {
+        if (this.props.users[i].mail === this.state.email) {
+          this.setState({
+            emailValidationAlreadyExists: 'error',
+          });
+          return false;
+        }
       }
     }
     let re = /\S+@\S+\.\S+/;
@@ -120,12 +148,14 @@ class AddNewUserContainer extends React.Component {
       });
       return false;
     } else if (this.state.privilege === 'Predstavnik stanara' || this.state.privilege === 'Upravitelj' ) {
-      for(let i = 0 ; i < this.props.users.length; i = i + 1) {
-        if (this.props.users[i].privilege === this.state.privilege) {
-          this.setState({
-            privilegeValidationAlreadyExists: 'error',
-          });
-          return false;
+      for (let i = 0; i < this.props.users.length; i = i + 1) {
+        if (this.props.users[i] !== null) {
+          if (this.props.users[i].privilege === this.state.privilege) {
+            this.setState({
+              privilegeValidationAlreadyExists: 'error',
+            });
+            return false;
+          }
         }
       }
     }
@@ -170,6 +200,10 @@ class AddNewUserContainer extends React.Component {
         handleChangeEMail={this.handleChangeEMail}
         handleChangePrivilege={this.handleChangePrivilege}
         resetState={this.resetState}
+        apartments={this.props.apartments}
+        buildingId={this.props.buildingId}
+        handleChangeApartment={this.handleChangeApartment}
+        apartmentSelectedValidation={this.state.apartmentSelectedValidation}
       />
     )
   }
@@ -178,13 +212,14 @@ class AddNewUserContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    users: state.users,
+    apartments: state.apartments,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNewUser: (firstName, lastName, eMail, privilege) => (dispatch(addNewUser(firstName, lastName, eMail, privilege))),
+    addNewUser: (firstName, lastName, eMail, privilege, id) => (dispatch(addNewUser(firstName, lastName, eMail, privilege, id))),
+    fetchApartments: () => dispatch(fetchApartments()),
   };
 }
 

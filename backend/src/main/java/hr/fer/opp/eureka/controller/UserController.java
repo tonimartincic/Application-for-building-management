@@ -29,9 +29,9 @@ public class UserController {
     return this.userService.getById(id);
   }
 
-  @PostMapping("/api/users")
-  public UserResponse addNewUser(@RequestBody final UserRequest userRequest) {
-    return this.userService.add(userRequest);
+  @PostMapping("/api/users/{apartmentId}")
+  public UserResponse addNewUser(@RequestBody final UserRequest userRequest, @PathVariable Long apartmentId) {
+    return userService.add(userRequest, apartmentId);
   }
 
   @PostMapping("/api/users/edit")

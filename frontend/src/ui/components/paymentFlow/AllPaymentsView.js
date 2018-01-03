@@ -48,14 +48,16 @@ class AllPaymentsView extends Component {
                 <Col md={7}>
                   <p>Trenutna količina zajedničkog novca zgrade (u kunama):</p>
                 </Col>
-                <Col md={2}>
+                <Col md={3}>
                   {
                     this.props.apartments
+                      .filter(apartment => apartment.owner !== null)
                       .filter(apartment => apartment.owner.id === this.props.userData.id)
                       .map(apartment => {
+                        const tmp =apartment.building.address + " - " + apartment.building.funds;
                         return(
                           <p key={apartment.id}>
-                            {apartment.building.funds}
+                            {tmp}
                           </p>
                         )
                       })

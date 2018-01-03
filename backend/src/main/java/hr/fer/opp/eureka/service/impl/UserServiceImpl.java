@@ -1,6 +1,8 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
+import hr.fer.opp.eureka.domain.Apartment;
+import hr.fer.opp.eureka.domain.Building;
 import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.cost.CostResponse;
 import hr.fer.opp.eureka.domain.user.User;
@@ -12,8 +14,11 @@ import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -71,8 +76,18 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserResponse add(UserRequest userRequest) {
-    return getUserResponse(this.userRepository.save(getUser(userRequest)));
+  public UserResponse add(UserRequest userRequest, Long apartmentId) {
+    Apartment apartment = apartmentRepository.findById(apartmentId);
+
+    User user = new User(userRequest);
+
+    Set<Apartment> apartmentSet = new HashSet<>();
+    apartmentSet.add(apartment);
+
+    apartment.setOwner(user);
+    user.setApartments(apartmentSet);
+
+    return getUserResponse(this.userRepository.save(user));
   }
 
   @Override
