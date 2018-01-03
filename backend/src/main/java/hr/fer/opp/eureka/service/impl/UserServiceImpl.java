@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -82,6 +83,13 @@ public class UserServiceImpl implements UserService {
 
     apartment.setOwner(user);
     user.setApartments(apartmentSet);
+
+    return getUserResponse(this.userRepository.save(user));
+  }
+
+  @Override
+  public UserResponse add(UserRequest userRequest) {
+    User user = new User(userRequest);
 
     return getUserResponse(this.userRepository.save(user));
   }

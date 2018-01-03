@@ -37,7 +37,6 @@ export async function fetchUsers() {
 
 export async function addNewUser(firstName, lastName, eMail, privilege, id) {
   try {
-    debugger;
     const user = {
       firstName: firstName,
       lastName: lastName,
@@ -59,6 +58,29 @@ export async function addNewUser(firstName, lastName, eMail, privilege, id) {
     }
   }
 
+}
+
+export async function addNewAdministrator(firstName, lastName, eMail) {
+  try {
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      mail: eMail,
+      privilege: "ADMINISTRATOR"
+    };
+
+    const response = await axios.post('/api/users/administrator', user);
+
+    return {
+      type: types.ADD_NEW_ADMINISTRATOR_SUCCESS,
+      data: response.data,
+    }
+  } catch (err) {
+    return {
+      type: types.ADD_NEW_ADMINISTRATOR_FAILURE,
+      data: err,
+    }
+  }
 }
 
 export async function editUserInfo(user) {

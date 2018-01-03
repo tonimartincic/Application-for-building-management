@@ -16,6 +16,8 @@ public interface UserService {
 
   UserResponse add(UserRequest userRequest, Long apartmentId);
 
+  UserResponse add(UserRequest userRequest);
+
   UserResponse getByMail(String mail);
 
   UserResponse edit(UserRequest userRequest);

@@ -48,4 +48,9 @@ public class UserController {
   public UserResponse toggleReminderValue(@PathVariable Long id) {
     return this.userService.toggleReminderValue(id);
   }
+
+  @PostMapping("/api/users/administrator")
+  public UserResponse addNewAdministrator(@RequestBody final UserRequest userRequest) {
+    return userService.add(userRequest);
+  }
 }

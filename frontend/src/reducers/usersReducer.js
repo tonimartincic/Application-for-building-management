@@ -18,6 +18,12 @@ export default function usersReducer(state = initialState.users, action) {
     case types.ADD_NEW_USER_FAILURE:
       return state;
 
+    case types.ADD_NEW_ADMINISTRATOR_SUCCESS:
+      return [...state, action.data];
+
+    case types.ADD_NEW_ADMINISTRATOR_FAILURE:
+      return state;
+
     case types.EDIT_USER_INFO_SUCCESS:
       for (let i = 0; i < state.length; i += 1) {
         if(state[i] !== null) {
