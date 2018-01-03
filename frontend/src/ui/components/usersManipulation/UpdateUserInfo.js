@@ -106,6 +106,55 @@ const UpdateUserInfo = props => (
                 </Row>
               </ListGroup>
               <Choose>
+                <When condition={props.firstNameValidation}>
+                  <Alert bsStyle="danger">
+                    <p>Morate unijeti ime.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.lastNameValidation}>
+                  <Alert bsStyle="danger">
+                    <p>Morate unijeti prezime</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.emailValidationEmptyString}>
+                  <Alert bsStyle="danger">
+                    <p>Morate unijeti e - mail adresu.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.emailValidationAlreadyExists}>
+                  <Alert bsStyle="danger">
+                    <p>Odabrana e - mail adresa vec postoji.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.emailValidationNotCorrectFormat}>
+                  <Alert bsStyle="danger">
+                    <p>Unesena e - mail adresa nije dobrog formata.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.privilegeValidationEmpty}>
+                  <Alert bsStyle="danger">
+                    <p>Morate izabrati privilegiju.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.privilegeValidationAlreadyExists}>
+                  <Alert bsStyle="danger">
+                    <p>Korisnik s odabranom privilegijom već postoji.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
                 <When condition={props.deleteValidation}>
                   <Alert bsStyle="danger" onDismiss={() => props.handleAlertDismiss()}>
                     <h4>Ne možete obrisati sami sebe</h4>

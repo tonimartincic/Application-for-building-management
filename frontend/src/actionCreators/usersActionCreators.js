@@ -99,6 +99,22 @@ export async function editUserInfo(user) {
   }
 }
 
+export async function editUserFromBuildingInfo(user) {
+  try {
+    const response = await axios.post('/api/users/edit', user);
+
+    return {
+      type: types.EDIT_BUILDING_USER_INFO_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.EDIT_BUILDING_USER_INFO_FAILURE,
+      data: err,
+    };
+  }
+}
+
 export async function deleteUser(id) {
   try {
     await axios.delete('/api/users/' + id);

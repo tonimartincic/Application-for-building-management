@@ -115,7 +115,6 @@ class AddNewUserContainer extends React.Component {
   }
 
   checkEmail() {
-    debugger;
     if(this.state.email === null || this.state.email === '') {
       this.setState({
         emailValidationEmptyString: 'error',
