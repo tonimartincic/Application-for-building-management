@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteUser, editUserInfo} from '../../../actionCreators/usersActionCreators';
+import {deleteUserFromBuilding, editUserFromBuildingInfo} from '../../../actionCreators/usersActionCreators';
 import UpdateUserInfo from './UpdateUserInfo';
 
 class UpdateUserInfoContainer extends React.Component {
@@ -8,6 +8,7 @@ class UpdateUserInfoContainer extends React.Component {
     super(props);
 
     this.state = {
+      deleteValidation: false,
       userSelectedValidation: null,
       userSelected: null,
       user: {
@@ -18,6 +19,13 @@ class UpdateUserInfoContainer extends React.Component {
         privilege: null,
       },
       userPrivilege: null,
+      firstNameValidation: null,
+      lastNameValidation: null,
+      emailValidationEmptyString: null,
+      emailValidationAlreadyExists: null,
+      emailValidationNotCorrectFormat: null,
+      privilegeValidationEmpty: null,
+      privilegeValidationAlreadyExists: null,
     };
 
     this.handleChangeUser = this.handleChangeUser.bind(this);
@@ -26,6 +34,7 @@ class UpdateUserInfoContainer extends React.Component {
     this.handleChangeMail = this.handleChangeMail.bind(this);
     this.handleChangePrivilege = this.handleChangePrivilege.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   resetState = () => {
@@ -40,11 +49,17 @@ class UpdateUserInfoContainer extends React.Component {
         privilege: null,
       },
       userPrivilege: null,
+      firstNameValidation: null,
+      lastNameValidation: null,
+      emailValidationEmptyString: null,
+      emailValidationAlreadyExists: null,
+      emailValidationNotCorrectFormat: null,
+      privilegeValidationEmpty: null,
+      privilegeValidationAlreadyExists: null,
     });
   };
 
   handleChangeUser = (event) => {
-    debugger;
     for (let i = 0; i < this.props.users.length; ++i) {
       if (this.props.users[i] !== null) {
         if (this.props.users[i].id == event.target.value)
@@ -71,6 +86,7 @@ class UpdateUserInfoContainer extends React.Component {
     userTemp.firstName = event.target.value;
     this.setState({
       user: userTemp,
+      firstNameValidation: null,
     });
   };
 
@@ -79,6 +95,7 @@ class UpdateUserInfoContainer extends React.Component {
     userTemp.lastName = event.target.value;
     this.setState({
       user: userTemp,
+      lastNameValidation: null,
     });
   };
 
@@ -87,12 +104,17 @@ class UpdateUserInfoContainer extends React.Component {
     userTemp.mail = event.target.value;
     this.setState({
       user: userTemp,
+      emailValidationEmptyString: null,
+      emailValidationAlreadyExists: null,
+      emailValidationNotCorrectFormat: null,
     });
   };
 
   handleChangePrivilege = (event) => {
     this.setState({
       userPrivilege: event.target.value,
+      privilegeValidationEmpty: null,
+      privilegeValidationAlreadyExists: null,
     });
   };
 
@@ -106,51 +128,77 @@ class UpdateUserInfoContainer extends React.Component {
     }
 
     if(!this.checkFirstName() || !this.checkLastName() || !this.checkEmail() || !this.checkPrivilege()) {
-      console.log("error");
+      if(!this.checkFirstName()) {
+        this.setState({
+          firstNameValidation: true,
+        });
+      }
+      if(!this.checkLastName() ) {
+        this.setState({
+          lastNameValidation: true,
+        });
+      }
+      this.checkPrivilege();
+      this.checkEmail();
     } else {
-      this.props.editUserInfo(this.state.user);
+      this.props.editUserFromBuildingInfo(this.state.user);
       this.resetState();
       this.props.toggleUpdateUserInfo();
     }
   }
 
   checkFirstName() {
-    if(this.state.user.firstName !== '' || this.state.user.firstName !== null)
+    debugger;
+    if(this.state.user.firstName !== '' && this.state.user.firstName !== null)
       return true;
     return false;
   }
 
   checkLastName() {
-    if(this.state.user.lastName !== '' || this.state.user.lastName !== null)
+    if(this.state.user.lastName !== '' && this.state.user.lastName !== null)
       return true;
     return false;
   }
 
   checkEmail() {
     if(this.state.user.mail === null || this.state.user.mail === '') {
+      this.setState({
+        emailValidationEmptyString: true
+      });
       return false;
     }
     for(let i = 0 ; i < this.props.users.length; i = i + 1) {
       if (this.props.users[i] !== null) {
         if (this.props.users[i].mail === this.state.user.mail && this.props.users[i].id !== this.state.user.id) {
+          this.setState({
+            emailValidationAlreadyExists: true
+          });
           return false;
         }
       }
     }
     let re = /\S+@\S+\.\S+/;
     if (!re.test(this.state.user.mail)) {
-      return false;
+      this.setState({
+        emailValidationNotCorrectFormat: true,
+      })
     }
     return true;
   }
 
   checkPrivilege() {
     if ((this.state.userPrivilege === '' || this.state.userPrivilege === null || this.state.userPrivilege==='select') && (this.state.user.privilege === 'select' || this.state.user.privilege === null)) {
+      this.setState({
+        privilegeValidationEmpty: true
+      });
       return false;
     } else if (this.state.userPrivilege === 'Predstavnik' || this.state.userPrivilege === 'Upravitelj' ) {
       for (let i = 0; i < this.props.buildingUsers.length; i = i + 1) {
         if (this.props.buildingUsers[i] !== null) {
           if (this.props.buildingUsers[i].privilege === this.state.userPrivilege) {
+            this.setState({
+              privilegeValidationAlreadyExists: true,
+            });
             return false;
           }
         }
@@ -158,6 +206,24 @@ class UpdateUserInfoContainer extends React.Component {
     }
     return true;
   }
+
+  deleteUser() {
+    if(this.props.userData.id === this.state.user.id) {
+      this.setState({
+        deleteValidation: true,
+      })
+    } else {
+      this.props.deleteUserFromBuilding(this.state.user.id);
+      this.resetState();
+    }
+  }
+
+  handleAlertDismiss() {
+    this.setState({
+      deleteValidation: false,
+    });
+  };
+
 
   render() {
     return (
@@ -176,7 +242,16 @@ class UpdateUserInfoContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         updateUserInfoClicked={this.props.updateUserInfoClicked}
         toggleUpdateUserInfo={this.props.toggleUpdateUserInfo}
-        deleteUser={this.props.deleteUser}
+        deleteUser={this.deleteUser}
+        deleteValidation={this.state.deleteValidation}
+        handleAlertDismiss={this.handleAlertDismiss}
+        firstNameValidation={this.state.firstNameValidation}
+        lastNameValidation={this.state.lastNameValidation}
+        emailValidationEmptyString={this.state.emailValidationEmptyString}
+        emailValidationAlreadyExists={this.state.emailValidationAlreadyExists}
+        emailValidationNotCorrectFormat={this.state.emailValidationNotCorrectFormat}
+        privilegeValidationEmpty={this.state.privilegeValidationEmpty}
+        privilegeValidationAlreadyExists={this.state.privilegeValidationAlreadyExists}
       />
     );
   }
@@ -184,6 +259,7 @@ class UpdateUserInfoContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    userData: state.userData,
     users: state.users,
     buildingUsers: state.buildingUsers,
   };
@@ -191,8 +267,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteUser: id => dispatch(deleteUser(id)),
-    editUserInfo: user => dispatch(editUserInfo(user)),
+    deleteUserFromBuilding: id => dispatch(deleteUserFromBuilding(id)),
+    editUserFromBuildingInfo: user => dispatch(editUserFromBuildingInfo(user)),
   };
 }
 

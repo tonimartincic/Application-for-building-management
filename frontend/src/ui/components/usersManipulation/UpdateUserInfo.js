@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup} from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, Alert} from 'react-bootstrap';
 import * as constants from '../../../constants/values';
 
 const UpdateUserInfo = props => (
@@ -105,15 +105,70 @@ const UpdateUserInfo = props => (
                   </Col>
                 </Row>
               </ListGroup>
+              <Choose>
+                <When condition={props.firstNameValidation}>
+                  <Alert bsStyle="danger">
+                    <p>Morate unijeti ime.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.lastNameValidation}>
+                  <Alert bsStyle="danger">
+                    <p>Morate unijeti prezime</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.emailValidationEmptyString}>
+                  <Alert bsStyle="danger">
+                    <p>Morate unijeti e - mail adresu.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.emailValidationAlreadyExists}>
+                  <Alert bsStyle="danger">
+                    <p>Odabrana e - mail adresa vec postoji.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.emailValidationNotCorrectFormat}>
+                  <Alert bsStyle="danger">
+                    <p>Unesena e - mail adresa nije dobrog formata.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.privilegeValidationEmpty}>
+                  <Alert bsStyle="danger">
+                    <p>Morate izabrati privilegiju.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.privilegeValidationAlreadyExists}>
+                  <Alert bsStyle="danger">
+                    <p>Korisnik s odabranom privilegijom već postoji.</p>
+                  </Alert>
+                </When>
+              </Choose>
+              <Choose>
+                <When condition={props.deleteValidation}>
+                  <Alert bsStyle="danger" onDismiss={() => props.handleAlertDismiss()}>
+                    <h4>Ne možete obrisati sami sebe</h4>
+                    <p>Samo vas drugi administrator može obrisati.</p>
+                  </Alert>
+                </When>
+              </Choose>
               <Row>
                 <Col mdOffset={1} md={3}>
                   <Button onClick={() => props.handleSubmit()}>Promijeni podatke</Button>
                 </Col>
                 <Col mdOffset={1} md={3}>
-                  <Button onClick={() => {
-                    props.deleteUser(props.user.id);
-                    props.resetState();
-                  }}>Obriši korisnika</Button>
+                  <Button onClick={() => props.deleteUser()}
+                  >Obriši korisnika</Button>
                 </Col>
                 <Col md={4}>
                   <Button onClick={() => {

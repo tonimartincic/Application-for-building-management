@@ -37,7 +37,6 @@ export async function fetchUsers() {
 
 export async function addNewUser(firstName, lastName, eMail, privilege, id) {
   try {
-    debugger;
     const user = {
       firstName: firstName,
       lastName: lastName,
@@ -61,6 +60,29 @@ export async function addNewUser(firstName, lastName, eMail, privilege, id) {
 
 }
 
+export async function addNewAdministrator(firstName, lastName, eMail) {
+  try {
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      mail: eMail,
+      privilege: "ADMINISTRATOR"
+    };
+
+    const response = await axios.post('/api/users/administrator', user);
+
+    return {
+      type: types.ADD_NEW_ADMINISTRATOR_SUCCESS,
+      data: response.data,
+    }
+  } catch (err) {
+    return {
+      type: types.ADD_NEW_ADMINISTRATOR_FAILURE,
+      data: err,
+    }
+  }
+}
+
 export async function editUserInfo(user) {
   try {
     const response = await axios.post('/api/users/edit', user);
@@ -72,6 +94,22 @@ export async function editUserInfo(user) {
   } catch (err) {
     return {
       type: types.EDIT_USER_INFO_FAILURE,
+      data: err,
+    };
+  }
+}
+
+export async function editUserFromBuildingInfo(user) {
+  try {
+    const response = await axios.post('/api/users/edit', user);
+
+    return {
+      type: types.EDIT_BUILDING_USER_INFO_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.EDIT_BUILDING_USER_INFO_FAILURE,
       data: err,
     };
   }
@@ -92,3 +130,20 @@ export async function deleteUser(id) {
     };
   }
 }
+
+export async function deleteUserFromBuilding(id) {
+  try {
+    await axios.delete('/api/users/' + id);
+
+    return {
+      type: types.DELETE_BUILDING_USER_SUCCESS,
+      id,
+    };
+  } catch (err) {
+    return {
+      type: types.DELETE_BUILDING_USER_FAILURE,
+      data: err,
+    };
+  }
+}
+

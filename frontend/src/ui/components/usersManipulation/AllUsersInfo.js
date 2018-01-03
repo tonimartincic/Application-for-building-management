@@ -3,13 +3,16 @@ import {connect} from 'react-redux';
 import NavigationBar from '../navigationBar/NavigationBar';
 import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
-import {Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader} from 'react-bootstrap';
+import {Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader, Well} from 'react-bootstrap';
 import UpdateUserInfoContainer from './UpdateUserInfoContainer';
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
 import { fetchUsers } from "../../../actionCreators/usersActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
 import AdministratorsTable from "./AdministratorsTable";
+import AddNewAdministratorContainer from './AddNewAdministratorContainer';
+import RemoveAdministrator from './RemoveAdministrator';
+import * as styles from './allUsersInfo.css';
 
 class AllUsersInfo extends Component {
   componentDidMount() {
@@ -22,12 +25,24 @@ class AllUsersInfo extends Component {
     this.state = {
       addNewUserClicked: false,
       updateUserInfoClicked: false,
+      addNewAdministratorClicked: false,
+      updateAdministratorInfoClicked: false,
       buildingId: null,
       buildingSelected: null,
     };
 
     this.toggleAddNewUser = this.toggleAddNewUser.bind(this);
+    this.toggleNewAdministratorClicked = this.toggleNewAdministratorClicked.bind(this);
     this.toggleUpdateUserInfo = this.toggleUpdateUserInfo.bind(this);
+    this.toggleAdministratorInfoClicked = this.toggleAdministratorInfoClicked.bind(this);
+  }
+
+  toggleNewAdministratorClicked() {
+    debugger;
+    const addNewAdministratorClickedTemp = this.state.addNewAdministratorClicked;
+    this.setState({
+      addNewAdministratorClicked: !addNewAdministratorClickedTemp,
+    });
   }
 
   toggleAddNewUser() {
@@ -42,6 +57,12 @@ class AllUsersInfo extends Component {
     const updateUserInfoClickedTemp = this.state.updateUserInfoClicked;
     this.setState({
       updateUserInfoClicked: !updateUserInfoClickedTemp,
+    });
+  }
+  toggleAdministratorInfoClicked() {
+    const updateAdministratorInfoClickedTemp = this.state.updateAdministratorInfoClicked;
+    this.setState({
+      updateAdministratorInfoClicked: !updateAdministratorInfoClickedTemp,
     });
   }
 
@@ -65,7 +86,34 @@ class AllUsersInfo extends Component {
     return (
       <div>
         <NavigationBar/>
-        <AdministratorsTable />
+        <Row>
+          <Col md={12}>
+            <Row>
+              <Col md={8}>
+                <AdministratorsTable />
+              </Col>
+              <div className={styles.buttons}>
+                <Col md={2}>
+                  <Row>
+                    <Button onClick={() => this.toggleNewAdministratorClicked()}>Dodaj administratora</Button>
+                  </Row>
+                  <br/>
+                  <Row>
+                    <Button onClick={() => this.toggleAdministratorInfoClicked()}>Obriši administratora</Button>
+                  </Row>
+                </Col>
+              </div>
+            </Row>
+            <AddNewAdministratorContainer
+              addNewAdministratorClicked={this.state.addNewAdministratorClicked}
+              toggleNewAdministratorClicked={this.toggleNewAdministratorClicked}
+              />
+            <RemoveAdministrator
+              updateAdministratorInfoClicked={this.state.updateAdministratorInfoClicked}
+              toggleAdministratorInfoClicked={this.toggleAdministratorInfoClicked}
+            />
+          </Col>
+        </Row>
         <Row>
           <Row>
             <Col mdOffset={1}>
@@ -92,7 +140,7 @@ class AllUsersInfo extends Component {
         </Row>
         <Col md={8} mdOffset={1}>
           <AddNewUserContainer
-            addNewUserClicked={this.state.addNewUserClicked}
+            addNewAdministratorClicked={this.state.addNewAdministratorClicked}
             toggleAddNewUser={this.toggleAddNewUser}
             buildingId={this.state.buildingId}/>
           <UpdateUserInfoContainer
