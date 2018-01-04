@@ -2,7 +2,9 @@ package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
+import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderRequest;
 import hr.fer.opp.eureka.repository.PaymentOrderRepository;
+import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.PaymentOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,15 @@ public class PaymentOrderImpl implements PaymentOrderService {
 
   private final PaymentOrderRepository paymentOrderRepository;
 
+  private final UserRepository userRepository;
+
   @Autowired
-  public PaymentOrderImpl(PaymentOrderRepository paymentOrderRepository) {
+  public PaymentOrderImpl(
+    PaymentOrderRepository paymentOrderRepository,
+    UserRepository userRepository) {
+
     this.paymentOrderRepository = paymentOrderRepository;
+    this.userRepository = userRepository;
   }
 
   @Override
@@ -30,7 +38,27 @@ public class PaymentOrderImpl implements PaymentOrderService {
   }
 
   @Override
-  public PaymentOrder add(PaymentOrder paymentOrder) {
+  public PaymentOrder add(PaymentOrderRequest paymentOrderRequest) {
+    PaymentOrder paymentOrder = new PaymentOrder(paymentOrderRequest);
+
+    paymentOrder.setPayer(this.userRepository.findById(paymentOrderRequest.getPayerId()));
+    paymentOrder.setReceiver(this.userRepository.findById(paymentOrderRequest.getReceiverId()));
+
     return this.paymentOrderRepository.save(paymentOrder);
+  }
+
+  @Override
+  public PaymentOrder edit(PaymentOrderRequest paymentOrderRequest) {
+    PaymentOrder paymentOrder = new PaymentOrder(paymentOrderRequest);
+
+    paymentOrder.setPayer(this.userRepository.findById(paymentOrderRequest.getPayerId()));
+    paymentOrder.setReceiver(this.userRepository.findById(paymentOrderRequest.getReceiverId()));
+
+    return this.paymentOrderRepository.save(paymentOrder);
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    this.paymentOrderRepository.delete(id);
   }
 }

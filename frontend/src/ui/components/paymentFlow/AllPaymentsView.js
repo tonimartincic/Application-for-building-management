@@ -3,10 +3,12 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Button, Col, Row, Well} from 'react-bootstrap';
 import NavigationBar from "../navigationBar/NavigationBar";
-import GeneratePaymentInputForm from "./GeneratePaymentInputForm";
+import AddNewPaymentOrder from "./AddNewPaymentOrder";
+import UpdatePaymentOrder from "./UpdatePaymentOrder";
 import PaymentsTable from "./PaymentsTable";
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
+import fetchPaymentOrders from '../../../actionCreators/paymentOrdersActionCreators';
 import * as styles from './allPaymentsView.css';
 
 class AllPaymentsView extends Component {
@@ -14,7 +16,8 @@ class AllPaymentsView extends Component {
     super(props);
 
     this.state = {
-      generatePaymentsClicked: false,
+      addNewPaymentOrderClicked: false,
+      updatePaymentOrderClicked: false,
     };
 
     this.toggleGeneratePaymentsClicked = this.toggleGeneratePaymentsClicked.bind(this);
@@ -22,6 +25,7 @@ class AllPaymentsView extends Component {
 
   componentWillMount() {
     this.props.fetchApartments();
+    this.props.fetchPaymentOrders();
   }
 
   toggleGeneratePaymentsClicked() {
@@ -72,10 +76,18 @@ class AllPaymentsView extends Component {
                 <Button onClick={() => this.toggleGeneratePaymentsClicked()}>Generiraj naloge</Button>
               </section>
             </Col>
-            <GeneratePaymentInputForm
-              generatePaymentsClicked={this.state.generatePaymentsClicked}
-              toggleGeneratePaymentsClicked={this.toggleGeneratePaymentsClicked}
-            />
+          </Row>
+          <Row>
+            <Col>
+              <AddNewPaymentOrder
+                addNewPaymentOrderClicked={this.state.addNewPaymentOrderClicked}
+                toggleAddNewPaymentOrder={this.toggleAddNewPaymentOrder}
+                paymentOrders={this.props.paymentOrders}/>
+              <UpdatePaymentOrder
+                updatePaymentOrderClicked={this.state.updatePaymentOrderClicked}
+                toggleUpdatePaymentOrder={this.toggleUpdatePaymentOrder}
+                paymentOrders={this.props.paymentOrders}/>
+            </Col>
           </Row>
         </section>
       </section>
@@ -87,6 +99,7 @@ function mapStateToProps(state) {
   return {
     userData: state.userData,
     apartments: state.apartments,
+    paymentOrders: state.paymentOrders,
   };
 }
 

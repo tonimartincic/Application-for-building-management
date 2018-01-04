@@ -1,6 +1,7 @@
 package hr.fer.opp.eureka.service;
 
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
+import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderRequest;
 
 import java.util.List;
 
@@ -10,5 +11,9 @@ public interface PaymentOrderService {
 
   PaymentOrder getById(Long id);
 
-  PaymentOrder add(PaymentOrder paymentOrder);
+  PaymentOrder add(PaymentOrderRequest paymentOrderRequest);
+
+  PaymentOrder edit(PaymentOrderRequest paymentOrderRequest);
+
+  void deleteById(Long id);
 }
