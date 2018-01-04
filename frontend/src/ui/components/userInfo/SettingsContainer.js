@@ -35,6 +35,7 @@ class SettingsContainer extends Component {
   }
 
   handleSubmit() {
+    debugger;
     if(this.state.user.firstName === null || this.state.user.firstName === '' ||
       this.state.user.lastName === null || this.state.user.lastName === '' || !this.checkEmail()) {
       if(this.state.user.firstName === null || this.state.user.firstName === '') {
@@ -104,6 +105,7 @@ class SettingsContainer extends Component {
   };
 
   checkEmail() {
+    debugger;
     if(this.state.user.mail === null || this.state.user.mail === '') {
       this.setState({
         emailValidationEmptyString: 'error',
@@ -112,7 +114,7 @@ class SettingsContainer extends Component {
     }
     for(let i = 0 ; i < this.props.users.length; i = i + 1) {
       if(this.props.users[i] !== null) {
-        if (this.props.users[i].mail === this.state.user.mail) {
+        if (this.props.users[i].mail === this.state.user.mail && this.state.user.id !== this.props.users[i].id) {
           this.setState({
             emailValidationAlreadyExists: 'error',
           });
