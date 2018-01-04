@@ -1,7 +1,6 @@
 package hr.fer.opp.eureka.controller;
 
 import hr.fer.opp.eureka.domain.building.Building;
-import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.domain.user.UserResponse;
 import hr.fer.opp.eureka.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;

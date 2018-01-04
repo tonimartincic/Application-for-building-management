@@ -3,12 +3,10 @@ package hr.fer.opp.eureka.service.impl;
 import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.building.Building;
-import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.domain.user.UserResponse;
 import hr.fer.opp.eureka.repository.ApartmentRepository;
 import hr.fer.opp.eureka.repository.BuildingRepository;
 import hr.fer.opp.eureka.service.BuildingService;
-import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +18,12 @@ public class BuildingServiceImpl implements BuildingService {
 
   private final BuildingRepository buildingRepository;
   private final ApartmentRepository apartmentRepository;
-  private final UserServiceImpl userService;
 
   @Autowired
-  public BuildingServiceImpl(BuildingRepository buildingRepository, ApartmentRepository apartmentRepository, UserServiceImpl userService) {
+  public BuildingServiceImpl(BuildingRepository buildingRepository, ApartmentRepository apartmentRepository) {
 
     this.buildingRepository = buildingRepository;
     this.apartmentRepository = apartmentRepository;
-    this.userService = userService;
   }
 
   @Override
