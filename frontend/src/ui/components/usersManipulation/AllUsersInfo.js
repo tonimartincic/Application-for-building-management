@@ -87,40 +87,45 @@ class AllUsersInfo extends Component {
       <div>
         <NavigationBar/>
         <Row>
-          <Col md={12}>
-            <Row>
-              <Col md={8}>
-                <AdministratorsTable />
-              </Col>
-              <div className={styles.buttons}>
-                <Col md={2}>
-                  <Row>
-                    <Button onClick={() => this.toggleNewAdministratorClicked()}>Dodaj administratora</Button>
-                  </Row>
-                  <br/>
-                  <Row>
-                    <Button onClick={() => this.toggleAdministratorInfoClicked()}>Obriši administratora</Button>
-                  </Row>
-                </Col>
-              </div>
-            </Row>
-            <AddNewAdministratorContainer
-              addNewAdministratorClicked={this.state.addNewAdministratorClicked}
-              toggleNewAdministratorClicked={this.toggleNewAdministratorClicked}
-              />
-            <RemoveAdministrator
-              updateAdministratorInfoClicked={this.state.updateAdministratorInfoClicked}
-              toggleAdministratorInfoClicked={this.toggleAdministratorInfoClicked}
-            />
+          <Col md={8} mdOffset={2}>
+            <PageHeader>Administratori</PageHeader>
           </Col>
         </Row>
         <Row>
-          <Row>
-            <Col mdOffset={1}>
-              <PageHeader>Ostali korisnici:<small> (po zgradama)</small></PageHeader>
+          <Col md={8} mdOffset={2}>
+            <AdministratorsTable />
+          </Col>
+        </Row>
+        <Row>
+          <div>
+            <Col md={8} mdOffset={3}>
+              <Button
+                className={styles.button}
+                onClick={() => this.toggleNewAdministratorClicked()}
+              >Dodaj administratora</Button>
+
+              <Button
+                className={styles.button}
+                onClick={() => this.toggleAdministratorInfoClicked()}
+              >Obriši administratora</Button>
             </Col>
-          </Row>
-          <Col md={6} mdOffset={1}>
+          </div>
+          <AddNewAdministratorContainer
+            addNewAdministratorClicked={this.state.addNewAdministratorClicked}
+            toggleNewAdministratorClicked={this.toggleNewAdministratorClicked}
+            />
+          <RemoveAdministrator
+            updateAdministratorInfoClicked={this.state.updateAdministratorInfoClicked}
+            toggleAdministratorInfoClicked={this.toggleAdministratorInfoClicked}
+          />
+        </Row>
+        <Row>
+          <Col md={8} mdOffset={2}>
+            <PageHeader>Ostali korisnici:<small> (po zgradama)</small></PageHeader>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4} mdOffset={3}>
             <FormGroup>
               <ControlLabel>Odaberi zgradu:</ControlLabel>
               <FormControl componentClass="select" placeholder="select" onChange={this.handleChangeBuilding}>
@@ -138,7 +143,7 @@ class AllUsersInfo extends Component {
             </FormGroup>
           </Col>
         </Row>
-        <Col md={8} mdOffset={1}>
+        <Col md={8} mdOffset={3}>
           <AddNewUserContainer
             addNewAdministratorClicked={this.state.addNewAdministratorClicked}
             toggleAddNewUser={this.toggleAddNewUser}
@@ -160,14 +165,16 @@ class AllUsersInfo extends Component {
         </Col>
         <Choose>
           <When condition={this.state.buildingSelected}>
-            <Col md={2}>
-              <Row>
-                <Button onClick={() => this.toggleAddNewUser()}>Dodaj novog korisnika</Button>
-              </Row>
-              <br/>
-              <Row>
-                <Button onClick={() => this.toggleUpdateUserInfo()}>Ažuriraj podatke</Button>
-              </Row>
+            <Col md={8} mdOffset={4}>
+              <Button
+                className={styles.button}
+                onClick={() => this.toggleAddNewUser()}
+              >Dodaj novog korisnika</Button>
+
+              <Button
+                className={styles.button}
+                onClick={() => this.toggleUpdateUserInfo()}
+              >Ažuriraj podatke</Button>
             </Col>
           </When>
         </Choose>

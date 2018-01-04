@@ -8,12 +8,7 @@ class AdministratorsTable extends Component {
     return(
       <div>
         <Row>
-          <Col mdOffset={1}>
-            <PageHeader>Administratori</PageHeader>
-          </Col>
-        </Row>
-        <Row>
-          <Col mdOffset={3} md={8}>
+          <Col mdOffset={1} md={6}>
             <Table striped bordered condensed hover className={styles.myTable}>
               <thead>
               <tr>

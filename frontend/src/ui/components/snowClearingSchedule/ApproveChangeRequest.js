@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormGroup, ControlLabel, FormControl, Well, Button, Col, Modal, Alert} from 'react-bootstrap';
+import {FormGroup, ControlLabel, FormControl, Button, Modal, Alert} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { approveRequestChangeToggle } from '../../../actions/snowClearingSchedulesActions';
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';

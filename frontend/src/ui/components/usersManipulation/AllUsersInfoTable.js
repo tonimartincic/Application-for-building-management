@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, PageHeader, Row, Col } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import styles from './userInfo.css';
 
@@ -9,12 +9,12 @@ class AllUsersInfoTable extends Component {
       <div>
         <Table striped bordered condensed hover className={styles.myTable}>
           <thead>
-          <tr>
-            <th>Ime</th>
-            <th>Prezime</th>
-            <th>E - Mail</th>
-            <th>Privilegija</th>
-          </tr>
+            <tr>
+              <th>Ime</th>
+              <th>Prezime</th>
+              <th>E - Mail</th>
+              <th>Privilegija</th>
+            </tr>
           </thead>
           <tbody>
           {

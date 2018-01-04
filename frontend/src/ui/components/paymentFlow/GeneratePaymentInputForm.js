@@ -1,9 +1,6 @@
 import React from 'react';
-import { Modal, Button, ControlLabel, Alert } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import * as constants from '../../../constants/values';
-import DatePicker from 'react-bootstrap-date-picker';
-import * as dateUtils from '../../../utils/DateUtil';
 
 class GeneratePaymentInputForm extends React.Component {
   constructor(props) {
@@ -18,7 +15,6 @@ class GeneratePaymentInputForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
   }
-
 
   render() {
     return (
@@ -42,15 +38,12 @@ class GeneratePaymentInputForm extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-  };
+function mapStateToProps() {
+  return {};
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-
-  };
+function mapDispatchToProps() {
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneratePaymentInputForm);

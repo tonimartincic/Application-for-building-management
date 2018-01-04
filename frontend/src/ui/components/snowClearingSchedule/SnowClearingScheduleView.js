@@ -9,7 +9,7 @@ import { generateClicked, approveRequestChangeToggle } from '../../../actions/sn
 import GenerateScheduleInputForm from './GenerateScheduleInputForm';
 import AskChangeForm from './AskChangeForm';
 import ApproveChangeRequest from './ApproveChangeRequest';
-import * as styles from './snowClearingSchedule.css';
+import * as styles from './snowClearingScheduleView.css';
 
 class SnowClearingScheduleView extends Component {
 
@@ -19,46 +19,47 @@ class SnowClearingScheduleView extends Component {
 
   render() {
     return (
-      <div>
+      <section>
         <NavigationBar/>
-        <Col md={5} mdOffset={2}>
-          <SnowClearingSchedule />
-        </Col>
-        <Col md={3}>
-          <Row>
-            <AskChangeForm />
-          </Row>
-          <Choose>
-            <When condition = {this.props.userData.privilege === 'Administrator'}>
-              <Well className={styles.wellUpdate}>
-                <Row>
-                  <Col mdOffset={1}>
-                    <ControlLabel>Ažuriraj raspored:</ControlLabel>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col mdOffset={2}>
-                    <Button
-                      onClick={() => {
-                        this.props.generateClicked();
-                      }
-                      }
-                    >Generiraj raspored</Button>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col mdOffset={2}>
-                    <Button className={styles.updateScheduleButton} onClick={() => this.props.approveRequestChangeToggle()}
-                    >Odobri izmjene</Button>
-                  </Col>
-                </Row>
-              </Well>
-              <GenerateScheduleInputForm />
-              <ApproveChangeRequest />
-            </When>
-          </Choose>
-        </Col>
-      </div>
+        <section className={styles.sectionMain}>
+          <Col md={4} mdOffset={2}>
+            <SnowClearingSchedule />
+          </Col>
+          <Col md={4}>
+            <Row>
+              <AskChangeForm />
+            </Row>
+            <Choose>
+              <When condition = {this.props.userData.privilege === 'Administrator'}>
+                <Well>
+                  <Row>
+                    <Col mdOffset={1}>
+                      <ControlLabel>Ažuriraj raspored:</ControlLabel>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col mdOffset={1} md={4}>
+                      <Button
+                        onClick={() => {
+                          this.props.generateClicked();
+                          }
+                        }
+                      >Generiraj raspored</Button>
+                    </Col>
+                    <Col md={4}>
+                      <Button
+                        onClick={() => this.props.approveRequestChangeToggle()}
+                      >Odobri izmjene</Button>
+                    </Col>
+                  </Row>
+                </Well>
+                <GenerateScheduleInputForm />
+                <ApproveChangeRequest />
+              </When>
+            </Choose>
+          </Col>
+        </section>
+      </section>
     );
   }
 }

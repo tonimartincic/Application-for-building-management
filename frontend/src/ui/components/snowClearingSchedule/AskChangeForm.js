@@ -4,7 +4,7 @@ import {FormGroup, ControlLabel, FormControl, Well, Button, Col} from 'react-boo
 import fetchSnowClearingSchedules from '../../../actionCreators/snowClearingSchedulesActionCreators';
 import { askChange } from '../../../actionCreators/snowClearingSchedulesActionCreators'
 import * as dateUtils from '../../../utils/DateUtil';
-import * as styles from './snowClearingSchedule.css';
+import * as styles from './askChangeForm.css';
 
 class AskChangeForm extends Component {
 
@@ -42,7 +42,7 @@ class AskChangeForm extends Component {
 
   render() {
     return (
-      <Well className={styles.wellInput}>
+      <Well>
         <ControlLabel>Zatraži promjenu rasporeda za datum</ControlLabel>
         <FormGroup controlId="formControlsSelect" validationState={this.state.changeDatePicked}>
           <FormControl
