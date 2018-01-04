@@ -85,6 +85,7 @@ export async function addNewAdministrator(firstName, lastName, eMail) {
 
 export async function editUserInfo(user) {
   try {
+    debugger;
     const response = await axios.post('/api/users/edit', user);
 
     return {
