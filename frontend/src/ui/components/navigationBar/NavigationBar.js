@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import styles from './navigationBar.css';
 import UserInfo from '../userInfo/UserInfo';
+import Notifications from '../notifications/Notifications';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../../../actionCreators/userDataActionCreators';
 
@@ -62,6 +63,9 @@ class NavigationBar extends Component {
           </NavItem >
           <NavItem >
             <UserInfo />
+          </NavItem>
+          <NavItem >
+            <Notifications />
           </NavItem>
           <Choose>
             <When condition={this.props.userData.privilege === 'Administrator'}>
