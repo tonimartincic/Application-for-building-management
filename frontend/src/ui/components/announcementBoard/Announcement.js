@@ -39,15 +39,21 @@ class Announcement extends Component {
           <When condition={privilege === 'Administrator' || privilege === 'Predstavnik stanara' || announcement.user.id === userId}>
             <Row>
               <section className={styles.sectionHeader}>
-                <Button onClick={() => {
-                  this.props.setEditAnnouncementButtonClicked(announcement.id, !announcement.editClicked);
-                }}
+                <Button
+                  className={styles.button}
+                  bsSize="xsmall"
+                  onClick={() => {
+                    this.props.setEditAnnouncementButtonClicked(announcement.id, !announcement.editClicked);
+                  }}
                 >
                   <span className='glyphicon glyphicon-edit' />
                 </Button>
-                <Button onClick={() => {
-                  this.setValueOfDeleteAnnouncementButtonClicked(true);
-                }}
+                <Button
+                  className={styles.button}
+                  bsSize="xsmall"
+                  onClick={() => {
+                    this.setValueOfDeleteAnnouncementButtonClicked(true);
+                  }}
                 >
                   <span className='glyphicon glyphicon-trash' />
                 </Button>

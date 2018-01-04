@@ -41,78 +41,80 @@ class PlanningFutureCosts extends Component {
 
   render() {
     return (
-      <div>
+      <section>
         <NavigationBar/>
-        <Grid>
-          <Row>
-            <Col md={8} mdOffset={2}>
-              <Table striped bordered condensed hover>
-                <thead>
-                <tr>
-                  <th>Kreator</th>
-                  <th>Iznos</th>
-                  <th>Opis</th>
-                  <th>Datum kreiranja</th>
-                  <th>Hitnost</th>
-                  <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                  this.props.costs
-                    .map((cost, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{cost.creator.firstName + ' ' + cost.creator.lastName}</td>
-                          <td>{cost.amount + ' kn'}</td>
-                          <td>{cost.description}</td>
-                          <td>{cost.createdOn}</td>
-                          <td>
-                            {cost.urgent ? 'Hitno  ' : 'Nije hitno'}
-                            {cost.urgent ? <span className='glyphicon glyphicon-warning-sign' /> : ''}
-                          </td>
-                          <td>
-                            {cost.status}
-                            {cost.status === 'Plaćeno' ? '  ' : ''}
-                            {cost.status === 'Plaćeno' ? <span className='glyphicon glyphicon-ok' /> : ''}
-                          </td>
-                        </tr>
-                      )}
-                    )
-                }
-                </tbody>
-              </Table>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={8} mdOffset={2}>
-              <section className={styles.sectionButtons}>
-                <Button
-                  className={styles.button}
-                  onClick={() => this.toggleAddNewFutureCost()}
-                >Dodaj novi trošak</Button>
+        <section className={styles.sectionMain}>
+          <Grid>
+            <Row>
+              <Col md={8} mdOffset={2}>
+                <Table striped bordered condensed hover>
+                  <thead>
+                    <tr>
+                      <th>Kreator</th>
+                      <th>Iznos</th>
+                      <th>Opis</th>
+                      <th>Datum kreiranja</th>
+                      <th>Hitnost</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {
+                    this.props.costs
+                      .map((cost, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{cost.creator.firstName + ' ' + cost.creator.lastName}</td>
+                            <td>{cost.amount + ' kn'}</td>
+                            <td>{cost.description}</td>
+                            <td>{cost.createdOn}</td>
+                            <td>
+                              {cost.urgent ? 'Hitno  ' : 'Nije hitno'}
+                              {cost.urgent ? <span className='glyphicon glyphicon-warning-sign' /> : ''}
+                            </td>
+                            <td>
+                              {cost.status}
+                              {cost.status === 'Plaćeno' ? '  ' : ''}
+                              {cost.status === 'Plaćeno' ? <span className='glyphicon glyphicon-ok' /> : ''}
+                            </td>
+                          </tr>
+                        )}
+                      )
+                  }
+                  </tbody>
+                </Table>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={8} mdOffset={2}>
+                <section className={styles.sectionButtons}>
+                  <Button
+                    className={styles.button}
+                    onClick={() => this.toggleAddNewFutureCost()}
+                  >Dodaj novi trošak</Button>
 
-                <Button
-                  className={styles.button}
-                  onClick={() => this.toggleUpdateFutureCost()}
-                >Ažuriraj podatke</Button>
-              </section>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <AddNewFutureCost
-                addNewFutureCostClicked={this.state.addNewFutureCostClicked}
-                toggleAddNewFutureCost={this.toggleAddNewFutureCost}
-                costs={this.props.costs}/>
-              <UpdateFutureCost
-                updateFutureCostClicked={this.state.updateFutureCostClicked}
-                toggleUpdateFutureCost={this.toggleUpdateFutureCost}
-                costs={this.props.costs}/>
-            </Col>
-          </Row>
-        </Grid>
-      </div>
+                  <Button
+                    className={styles.button}
+                    onClick={() => this.toggleUpdateFutureCost()}
+                  >Ažuriraj podatke</Button>
+                </section>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <AddNewFutureCost
+                  addNewFutureCostClicked={this.state.addNewFutureCostClicked}
+                  toggleAddNewFutureCost={this.toggleAddNewFutureCost}
+                  costs={this.props.costs}/>
+                <UpdateFutureCost
+                  updateFutureCostClicked={this.state.updateFutureCostClicked}
+                  toggleUpdateFutureCost={this.toggleUpdateFutureCost}
+                  costs={this.props.costs}/>
+              </Col>
+            </Row>
+          </Grid>
+        </section>
+      </section>
     );
   }
 }

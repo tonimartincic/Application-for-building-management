@@ -1,5 +1,10 @@
+.sectionMain {
+  margin-top: 3em;
+}
+
 .sectionButtons {
   text-align: center;
+  margin-top: 1em;
 }
 
 .button {

@@ -20,3 +20,9 @@
 .creationDateSpan {
   float: right;
 }
+
+.button {
+  background-color: white;
+  color: black;
+  margin: 0.1em;
+}
