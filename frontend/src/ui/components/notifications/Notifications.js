@@ -3,24 +3,35 @@ import {connect} from 'react-redux';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 //import {toggleUserNotification} from "../../../actions/userNotificationsActions";
 import {withRouter} from 'react-router-dom';
+import styles from './notifications.css';
+import fetchUserNotifications from "../../../actionCreators/userNotificationsActionCreators";
 
 class Notifications extends Component {
-
+  componentDidMount() {
+    this.props.fetchUserNotifications();
+  }
+  constructor(props) {
+    super(props);
+  }
+    //console.log(notifications);
   render() {
+
+
     return (
       <div>
-        <NavDropdown title = "Notifikacije" id='nav-dropdown2'>//<span class="glyphicon glyphicon-bell"/>
-          <MenuItem >
-             Notif1
-          </MenuItem>
-          <MenuItem divider />
-            <MenuItem >
-              Notif2
-            </MenuItem>
-          <MenuItem divider />
-          <MenuItem >
-             Notif3
-          </MenuItem>
+        <NavDropdown title = {<span class="glyphicon glyphicon-bell" />} pullRight id='nav-dropdown2'>
+          {
+            this.props.userNotifications
+              .map((notification, index) => {
+                return (
+                  <MenuItem key={index}>
+                    <section className={styles.notification}>
+                      {notification.description}
+                    </section>
+                  </MenuItem>
+                 )}
+              )
+          }
         </NavDropdown>
       </div>
     );
@@ -28,15 +39,13 @@ class Notifications extends Component {
 }
 function mapStateToProps(state) {
   return {
-    //userData: state.userData,
-    //userSettingsClicked: state.userSettingsClicked,
+    userNotifications: state.userNotifications,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    //toggleUserSettings: value => dispatch(toggleUserSettings(value)),
-    //toggleReminderValue: () => dispatch(toggleReminderValue())
+    fetchUserNotifications: () => dispatch(fetchUserNotifications()),
   };
 }
 

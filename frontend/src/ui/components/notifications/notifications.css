@@ -1,3 +1,7 @@
-.navBar > a > span {
-  display: none;
-}
+.button {
+  font-size: 7px;
+  color: white;
+ }
+ .notification{
+  font-size: 17px;
+ }
