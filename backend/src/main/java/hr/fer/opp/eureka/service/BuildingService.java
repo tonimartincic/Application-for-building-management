@@ -2,6 +2,7 @@ package hr.fer.opp.eureka.service;
 
 import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.domain.user.UserResponse;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface BuildingService {
 
   Building add(Building building);
 
-  List<User> getAllUsersByBuildingId(Long id);
+  List<UserResponse> getAllUsersByBuildingId(Long id);
 }

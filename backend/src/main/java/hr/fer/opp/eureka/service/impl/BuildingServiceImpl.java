@@ -4,9 +4,11 @@ import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.domain.user.UserResponse;
 import hr.fer.opp.eureka.repository.ApartmentRepository;
 import hr.fer.opp.eureka.repository.BuildingRepository;
 import hr.fer.opp.eureka.service.BuildingService;
+import hr.fer.opp.eureka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +20,14 @@ public class BuildingServiceImpl implements BuildingService {
 
   private final BuildingRepository buildingRepository;
   private final ApartmentRepository apartmentRepository;
+  private final UserServiceImpl userService;
 
   @Autowired
-  public BuildingServiceImpl(BuildingRepository buildingRepository, ApartmentRepository apartmentRepository) {
+  public BuildingServiceImpl(BuildingRepository buildingRepository, ApartmentRepository apartmentRepository, UserServiceImpl userService) {
 
     this.buildingRepository = buildingRepository;
     this.apartmentRepository = apartmentRepository;
+    this.userService = userService;
   }
 
   @Override
@@ -42,15 +46,15 @@ public class BuildingServiceImpl implements BuildingService {
   }
 
   @Override
-  public List<User> getAllUsersByBuildingId(Long id) {
+  public List<UserResponse> getAllUsersByBuildingId(Long id) {
 
     Iterable<Apartment> apartmentList = apartmentRepository.findAll();
 
-    List<User> users = new ArrayList<>();
+    List<UserResponse> users = new ArrayList<>();
 
     for(Apartment apartment : apartmentList){
       if (apartment.getBuilding().getId() == id)
-        users.add(apartment.getOwner());
+        users.add(new UserResponse(apartment.getOwner()));
     }
 
     return users;

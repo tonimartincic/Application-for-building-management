@@ -2,6 +2,7 @@ package hr.fer.opp.eureka.controller;
 
 import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.domain.user.UserResponse;
 import hr.fer.opp.eureka.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class BuildingController {
   }
 
   @GetMapping("/api/building-users/{id}")
-  public List<User> getAllUsersInBuilding(@PathVariable final Long id) {
+  public List<UserResponse> getAllUsersInBuilding(@PathVariable final Long id) {
     return this.buildingService.getAllUsersByBuildingId(id);
   }
 }
