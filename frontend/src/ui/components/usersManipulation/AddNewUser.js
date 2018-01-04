@@ -89,7 +89,6 @@ class AddNewUser extends React.Component {
                   <option value="Stanar">Stanar</option>
                   <option value="Predstavnik stanara">Predstavnik stanara</option>
                   <option value="Upravitelj">Upravitelj</option>
-                  <option value="Administrator">Administrator</option>
                 </FormControl>
                 <Row>
                   <Col md={4}>
