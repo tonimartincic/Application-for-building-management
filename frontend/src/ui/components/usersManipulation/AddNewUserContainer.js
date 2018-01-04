@@ -37,26 +37,43 @@ class AddNewUserContainer extends React.Component {
   }
 
   handleSubmit() {
-    if(this.state.firstName === null || this.state.firstName === '' ||
-      this.state.lastName === null || this.state.lastName === '' || !this.checkEmail() || !this.checkPrivilege()) {
-      if(this.state.firstName === null || this.state.firstName === '' || this.state.currentApartment === null) {
-        this.setState({
-          firstNameValidation: 'error',
-        });
-      }
-      if(this.state.lastName === null || this.state.lastName === '') {
-        this.setState({
-          lastNameValidation: 'error',
-        });
-      }
-      this.checkPrivilege();
-      this.checkEmail();
-      if(this.state.currentApartment === null)  {
-        this.setState({
-          apartmentSelectedValidation: 'error',
-        });
-      }
-    } else {
+    let hasError = false;
+
+    if(this.state.firstName === null || this.state.firstName === '') {
+      this.setState({
+        firstNameValidation: 'error',
+      });
+
+      hasError = true;
+    }
+
+    if(this.state.lastName === null || this.state.lastName === '') {
+      this.setState({
+        lastNameValidation: 'error',
+      });
+
+      hasError = true;
+    }
+
+    if(!this.checkEmail()) {
+      hasError = true;
+    }
+
+    if(!this.checkPrivilege()) {
+      hasError = true;
+    }
+
+    if(this.state.currentApartment === null || this.state.currentApartment === '' ||
+      this.state.currentApartment === 'select' || this.state.currentApartment === 'Odaberi')  {
+
+      this.setState({
+        apartmentSelectedValidation: 'error',
+      });
+
+      hasError = true;
+    }
+
+    if(!hasError) {
       this.props.addNewUser(this.state.firstName, this.state.lastName, this.state.email, this.state.privilege, this.state.currentApartment);
       this.props.toggleAddNewUser();
 
@@ -119,33 +136,40 @@ class AddNewUserContainer extends React.Component {
       this.setState({
         emailValidationEmptyString: 'error',
       });
+
       return false;
     }
+
     for(let i = 0 ; i < this.props.users.length; i = i + 1) {
       if(this.props.users[i] !== null) {
         if (this.props.users[i].mail === this.state.email) {
           this.setState({
             emailValidationAlreadyExists: 'error',
           });
+
           return false;
         }
       }
     }
+
     let re = /\S+@\S+\.\S+/;
     if (!re.test(this.state.email)) {
       this.setState({
         emailValidationNotCorrectFormat: 'error',
       });
+
       return false;
     }
+
     return true;
   }
 
   checkPrivilege() {
-    if (this.state.privilege === '' || this.state.privilege === 'Odaberi' || this.state.privilege==='select') {
+    if (this.state.privilege === null || this.state.privilege === '' || this.state.privilege === 'Odaberi' || this.state.privilege==='select') {
       this.setState({
         privilegeValidationEmpty: 'error',
       });
+
       return false;
     } else if (this.state.privilege === 'Predstavnik stanara' || this.state.privilege === 'Upravitelj' ) {
       for (let i = 0; i < this.props.buildingUsers.length; i = i + 1) {
@@ -154,11 +178,13 @@ class AddNewUserContainer extends React.Component {
             this.setState({
               privilegeValidationAlreadyExists: 'error',
             });
+
             return false;
           }
         }
       }
     }
+
     return true;
   }
 
