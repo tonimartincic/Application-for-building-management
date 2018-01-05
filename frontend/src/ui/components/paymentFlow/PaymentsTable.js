@@ -16,7 +16,7 @@ class PaymentsTable extends Component {
         <tr>
           <th>Platitelj</th>
           <th>Primatelj</th>
-          <th>Cijena</th>
+          <th>Iznos</th>
           <th>Opis</th>
           <th>Datum dospijeća</th>
           <th>Dan plaćanja</th>

@@ -50,7 +50,7 @@ export default function costsReducer(state = initialState.costs, action) {
 
       return costsWithoutDeletedOne;
 
-    case types.DELETE_ANNOUNCEMENTS_FAILURE:
+    case types.DELETE_COST_FAILURE:
       return state;
 
     default:

@@ -51,6 +51,14 @@ public class PaymentOrder {
     this.receiver = receiver;
   }
 
+  public PaymentOrder(PaymentOrderRequest paymentOrderRequest) {
+    this.id = paymentOrderRequest.getId();
+    this.amount = paymentOrderRequest.getAmount();
+    this.description = paymentOrderRequest.getDescription();
+    this.paymentDue = paymentOrderRequest.getPaymentDue();
+    this.dayOfPayment = paymentOrderRequest.getDayOfPayment();
+  }
+
   public Long getId() {
     return id;
   }
