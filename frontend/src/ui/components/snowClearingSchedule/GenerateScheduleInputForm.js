@@ -56,7 +56,6 @@ class GenerateScheduleInputForm extends React.Component {
       } else {
         let startDate;
         if (start < currentDate) {
-          debugger;
           startDate = dateUtils.constructDateString(currentDate.getDate(), currentDate.getMonth() + 1, currentDate.getFullYear());
         } else {
           startDate = `${this.state.startDate.substring(0, 4)}-${this.state.startDate.substring(5, 7)}-${this.state.startDate.substring(8, 10)}`;
