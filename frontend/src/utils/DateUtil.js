@@ -1,5 +1,3 @@
-import * as constants from '../constants/values';
-
 export const constructDateString = (day, month, year) =>
   year + '-' + month + '-' + day;
 
@@ -24,3 +22,7 @@ export const determinatePastDates = (date) => {
   const dateTemp = createDateFromSnowClearingDate(date);
   return dateTemp > currentDate;
 };
+
+export const constructDateFromDatePickerForBackend = (dateFromDatePicker) => {
+  return `${dateFromDatePicker.substring(8, 10)}-${dateFromDatePicker.substring(5, 7)}-${dateFromDatePicker.substring(0, 4)}`;
+}

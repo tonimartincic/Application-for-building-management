@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, Collapse} from 'react-bootstrap';
 import { deletePaymentOrder, editPaymentOrder } from '../../../actionCreators/paymentOrdersActionCreators';
 import * as styles from './updatePaymentOrder.css';
+import * as dateUtils from '../../../utils/DateUtil';
 
 class UpdatePaymentOrder extends React.Component {
   constructor(props) {
@@ -196,13 +197,23 @@ class UpdatePaymentOrder extends React.Component {
       hasError = true;
     }
 
+    let paymentDue = null;
+    if(this.state.paymentOrder.paymentDue !== null && this.state.paymentOrder.paymentDue !== '') {
+      paymentDue = dateUtils.constructDateFromDatePickerForBackend(this.state.paymentOrder.paymentDue);
+    }
+
+    let dayOfPayment = null;
+    if(this.state.paymentOrder.dayOfPayment !== null && this.state.paymentOrder.dayOfPayment !== '') {
+      dayOfPayment = dateUtils.constructDateFromDatePickerForBackend(this.state.paymentOrder.dayOfPayment);
+    }
+
     if(!hasError) {
       const paymentOrder = {
         id: this.state.paymentOrder.id,
         amount: this.state.paymentOrder.amount,
         description: this.state.paymentOrder.description,
-        paymentDue: this.state.paymentOrder.paymentDue,
-        dayOfPayment: this.state.paymentOrder.dayOfPayment,
+        paymentDue,
+        dayOfPayment,
         payerId: this.state.paymentOrder.payerId,
         receiverId: this.state.paymentOrder.receiverId,
       };

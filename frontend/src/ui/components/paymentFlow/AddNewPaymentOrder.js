@@ -5,6 +5,7 @@ import { addNewPaymentOrder } from "../../../actionCreators/paymentOrdersActionC
 import DatePicker from 'react-bootstrap-date-picker';
 import styles from './addNewPaymentOrder.css';
 import * as constants from '../../../constants/values';
+import * as dateUtils from '../../../utils/DateUtil';
 
 class AddNewPaymentOrder extends React.Component {
   constructor(props) {
@@ -100,13 +101,23 @@ class AddNewPaymentOrder extends React.Component {
       hasError = true;
     }
 
+    let paymentDue = null;
+    if(this.state.paymentDue !== null && this.state.paymentDue !== '') {
+      paymentDue = dateUtils.constructDateFromDatePickerForBackend(this.state.paymentDue);
+    }
+
+    let dayOfPayment = null;
+    if(this.state.dayOfPayment !== null && this.state.dayOfPayment !== '') {
+      dayOfPayment = dateUtils.constructDateFromDatePickerForBackend(this.state.dayOfPayment);
+    }
+
     if(!hasError) {
       const paymentOrder = {
         id: this.state.id,
         amount: this.state.amount,
         description: this.state.description,
-        paymentDue: this.state.paymentDue,
-        dayOfPayment: this.state.dayOfPayment,
+        paymentDue,
+        dayOfPayment,
         payerId: this.state.payerId,
         receiverId: this.state.receiverId,
       };
