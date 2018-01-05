@@ -21,7 +21,7 @@ Insert into apartment (building_id, area, owner_id) values (1, 25.23, 9);
 Insert into apartment (building_id, area, owner_id) values (1, 25.23, 4);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, 2);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, 1);
-Insert into apartment (building_id, area, owner_id) values (2, 56.50, 3);
+Insert into apartment (building_id, area, owner_id) values (1, 56.50, 3);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, 5);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, 6);
 Insert into apartment (building_id, area, owner_id) values (2, 56.50, null);

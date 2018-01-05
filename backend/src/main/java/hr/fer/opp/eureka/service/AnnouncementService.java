@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AnnouncementService {
 
-  List<Announcement> getAll();
+  List<Announcement> getAllForCurrentUser(Long currentUserId);
 
   Announcement getById(Long id);
 
