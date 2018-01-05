@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {deleteUserFromBuilding, editUserFromBuildingInfo} from '../../../actionCreators/usersActionCreators';
 import UpdateUserInfo from './UpdateUserInfo';
+import {thereCanOnlyBeOne} from "../../../constants/values";
 
 class UpdateUserInfoContainer extends React.Component {
   constructor(props) {
@@ -192,7 +193,7 @@ class UpdateUserInfoContainer extends React.Component {
         privilegeValidationEmpty: true
       });
       return false;
-    } else if (this.state.userPrivilege === 'Predstavnik' || this.state.userPrivilege === 'Upravitelj' ) {
+    } else if (thereCanOnlyBeOne.indexOf(this.state.privilege) !== -1 ) {
       for (let i = 0; i < this.props.buildingUsers.length; i = i + 1) {
         if (this.props.buildingUsers[i] !== null) {
           if (this.props.buildingUsers[i].privilege === this.state.userPrivilege) {

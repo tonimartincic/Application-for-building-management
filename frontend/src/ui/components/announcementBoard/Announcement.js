@@ -5,6 +5,7 @@ import styles from './announcement.css';
 import ConfirmationMessage from './ConfirmationMessage';
 import EditAnnouncementForm from './EditAnnouncementForm';
 import {setEditAnnouncementButtonClicked} from '../../../actions/announcementsActions';
+import {canEditAnnouncement} from '../../../constants/values';
 
 class Announcement extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Announcement extends Component {
           deleteAnnouncement={this.props.deleteAnnouncement}
         />
         <Choose>
-          <When condition={privilege === 'Administrator' || privilege === 'Predstavnik stanara' || announcement.user.id === userId}>
+          <When condition={canEditAnnouncement.indexOf(privilege) !== -1 || announcement.user.id === userId}>
             <Row>
               <section className={styles.sectionHeader}>
                 <Button

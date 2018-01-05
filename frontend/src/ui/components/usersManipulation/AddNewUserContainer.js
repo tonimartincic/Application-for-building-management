@@ -3,6 +3,7 @@ import AddNewUser from './AddNewUser';
 import { connect } from 'react-redux';
 import {addNewUser} from "../../../actionCreators/usersActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
+import {thereCanOnlyBeOne} from "../../../constants/values";
 
 class AddNewUserContainer extends React.Component {
   constructor(props) {
@@ -171,7 +172,7 @@ class AddNewUserContainer extends React.Component {
       });
 
       return false;
-    } else if (this.state.privilege === 'Predstavnik stanara' || this.state.privilege === 'Upravitelj' ) {
+    } else if (thereCanOnlyBeOne.indexOf(this.state.privilege) !== -1) {
       for (let i = 0; i < this.props.buildingUsers.length; i = i + 1) {
         if (this.props.buildingUsers[i] !== null) {
           if (this.props.buildingUsers[i].privilege === this.state.privilege) {
