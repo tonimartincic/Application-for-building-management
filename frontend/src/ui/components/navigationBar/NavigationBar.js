@@ -49,7 +49,7 @@ class NavigationBar extends Component {
             href='/payments'
           >
             <span className={styles.span}>
-              <span className='glyphicon glyphicon-euro' />    Zajednički novac
+              <span className='glyphicon glyphicon-euro' />    Nalozi
             </span>
           </NavItem>
           <NavItem

@@ -7,7 +7,6 @@ import AddNewPaymentOrder from "./AddNewPaymentOrder";
 import UpdatePaymentOrder from "./UpdatePaymentOrder";
 import PaymentsTable from "./PaymentsTable";
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
-import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
 import { fetchUsers } from '../../../actionCreators/usersActionCreators';
 import * as styles from './allPaymentsView.css';
 
@@ -25,7 +24,6 @@ class AllPaymentsView extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchApartments();
     this.props.fetchUsers();
   }
 
@@ -48,29 +46,6 @@ class AllPaymentsView extends Component {
       <section>
         <NavigationBar/>
         <section className={styles.sectionMain}>
-          <Row>
-            <Col mdOffset={2} md={8}>
-              <Well>
-                <Row>
-                  <Col md={8}>
-                    {
-                      this.props.apartments
-                        .filter(apartment => apartment.owner !== null)
-                        .filter(apartment => apartment.owner.id === this.props.userData.id)
-                        .map(apartment => {
-                          const tmp = 'Trenutni iznos zajedničkog novca zgrade "' + apartment.building.address + '":  ' + apartment.building.funds + ' kn';
-                          return(
-                            <p key={apartment.id}>
-                              {tmp}
-                            </p>
-                          )
-                        })
-                    }
-                  </Col>
-                </Row>
-              </Well>
-            </Col>
-          </Row>
           <Row>
             <Col md={8} mdOffset={2}>
               <section className={styles.sectionTable}>
@@ -114,7 +89,6 @@ class AllPaymentsView extends Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
-    apartments: state.apartments,
     paymentOrders: state.paymentOrders,
   };
 }
@@ -122,7 +96,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchBuildings: () => (dispatch(fetchBuildings())),
-    fetchApartments: () => (dispatch(fetchApartments())),
     fetchUsers: () => (dispatch(fetchUsers())),
   };
 }

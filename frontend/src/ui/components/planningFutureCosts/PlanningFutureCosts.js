@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Table, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Table, Button, Well } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import fetchFutureCosts from '../../../actionCreators/costsActionCreators';
+import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
 import NavigationBar from "../navigationBar/NavigationBar";
 import AddNewFutureCost from "./AddNewFutureCost";
 import UpdateFutureCost from "./UpdateFutureCost";
@@ -23,6 +24,7 @@ class PlanningFutureCosts extends Component {
 
   componentDidMount() {
     this.props.fetchFutureCosts();
+    this.props.fetchApartments();
   }
 
   toggleAddNewFutureCost() {
@@ -46,43 +48,68 @@ class PlanningFutureCosts extends Component {
         <section className={styles.sectionMain}>
           <Grid>
             <Row>
+              <Col mdOffset={2} md={8}>
+                <Well>
+                  <Row>
+                    <Col md={8}>
+                      {
+                        this.props.apartments
+                          .filter(apartment => apartment.owner !== null)
+                          .filter(apartment => apartment.owner.id === this.props.userData.id)
+                          .map(apartment => {
+                            const tmp = 'Trenutni iznos zajedničkog novca zgrade "' + apartment.building.address + '":  ' + apartment.building.funds + ' kn';
+                            return(
+                              <p key={apartment.id}>
+                                {tmp}
+                              </p>
+                            )
+                          })
+                      }
+                    </Col>
+                  </Row>
+                </Well>
+              </Col>
+            </Row>
+            <Row>
               <Col md={8} mdOffset={2}>
-                <Table striped bordered condensed hover>
-                  <thead>
-                    <tr>
-                      <th>Kreator</th>
-                      <th>Iznos</th>
-                      <th>Opis</th>
-                      <th>Datum kreiranja</th>
-                      <th>Hitnost</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {
-                    this.props.costs
-                      .map((cost, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{cost.creator.firstName + ' ' + cost.creator.lastName}</td>
-                            <td>{cost.amount + ' kn'}</td>
-                            <td>{cost.description}</td>
-                            <td>{cost.createdOn}</td>
-                            <td>
-                              {cost.urgent ? 'Hitno  ' : 'Nije hitno'}
-                              {cost.urgent ? <span className='glyphicon glyphicon-warning-sign' /> : ''}
-                            </td>
-                            <td>
-                              {cost.status}
-                              {cost.status === 'Plaćeno' ? '  ' : ''}
-                              {cost.status === 'Plaćeno' ? <span className='glyphicon glyphicon-ok' /> : ''}
-                            </td>
-                          </tr>
-                        )}
-                      )
-                  }
-                  </tbody>
-                </Table>
+                <section className={styles.sectionTable}>
+                  <Table striped bordered condensed hover>
+                    <thead>
+                      <tr>
+                        <th>Kreator</th>
+                        <th>Iznos</th>
+                        <th>Opis</th>
+                        <th>Datum kreiranja</th>
+                        <th>Hitnost</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {
+                      this.props.costs
+                        .map((cost, index) => {
+                          return (
+                            <tr key={index}>
+                              <td>{cost.creator.firstName + ' ' + cost.creator.lastName}</td>
+                              <td>{cost.amount + ' kn'}</td>
+                              <td>{cost.description}</td>
+                              <td>{cost.createdOn}</td>
+                              <td>
+                                {cost.urgent ? 'Hitno  ' : 'Nije hitno'}
+                                {cost.urgent ? <span className='glyphicon glyphicon-warning-sign' /> : ''}
+                              </td>
+                              <td>
+                                {cost.status}
+                                {cost.status === 'Plaćeno' ? '  ' : ''}
+                                {cost.status === 'Plaćeno' ? <span className='glyphicon glyphicon-ok' /> : ''}
+                              </td>
+                            </tr>
+                          )}
+                        )
+                    }
+                    </tbody>
+                  </Table>
+                </section>
               </Col>
             </Row>
             <Row>
@@ -121,13 +148,16 @@ class PlanningFutureCosts extends Component {
 
 function mapStateToProps(state) {
   return {
-    costs: state.costs
+    costs: state.costs,
+    apartments: state.apartments,
+    userData: state.userData,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchFutureCosts: () => dispatch(fetchFutureCosts()),
+    fetchApartments: () => (dispatch(fetchApartments())),
   };
 }
 
