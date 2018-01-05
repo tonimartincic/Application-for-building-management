@@ -1,14 +1,17 @@
 import React from 'react';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Collapse, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { addNewCost } from "../../../actionCreators/costsActionCreators";
-import * as styles from './addNewPaymentOrder.css';
+import { addNewPaymentOrder } from "../../../actionCreators/paymentOrdersActionCreators";
+import DatePicker from 'react-bootstrap-date-picker';
+import styles from './addNewPaymentOrder.css';
+import * as constants from '../../../constants/values';
 
 class AddNewPaymentOrder extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      id: null,
       amount: null,
       description: null,
       paymentDue: null,
@@ -45,7 +48,6 @@ class AddNewPaymentOrder extends React.Component {
       amountValidation: null,
       descriptionValidation: null,
       paymentDueValidation: null,
-      dayOfPaymentValidation: null,
       payerIdValidation: null,
       receiverIdValidation: null,
     });
@@ -78,14 +80,6 @@ class AddNewPaymentOrder extends React.Component {
       hasError = true;
     }
 
-    if(this.state.dayOfPayment === null || this.state.dayOfPayment === '') {
-      this.setState({
-        dayOfPaymentValidation: 'error',
-      });
-
-      hasError = true;
-    }
-
     if(this.state.payerId === null || this.state.payerId === '' ||
       this.state.payerId === 'select' || this.state.payerId === 'Odaberi') {
 
@@ -107,15 +101,19 @@ class AddNewPaymentOrder extends React.Component {
     }
 
     if(!hasError) {
-      this.props.addNewCost(
-        this.state.amount,
-        this.props.userData.id,
-        this.state.description,
-        this.state.isUrgent === 'Hitno',
-        this.state.status,
-      );
+      const paymentOrder = {
+        id: this.state.id,
+        amount: this.state.amount,
+        description: this.state.description,
+        paymentDue: this.state.paymentDue,
+        dayOfPayment: this.state.dayOfPayment,
+        payerId: this.state.payerId,
+        receiverId: this.state.receiverId,
+      };
 
-      this.props.toggleAddNewFutureCost();
+      this.props.addNewPaymentOrder(paymentOrder);
+
+      this.props.toggleAddNewPaymentOrder();
       this.resetState();
     }
   }
@@ -134,15 +132,30 @@ class AddNewPaymentOrder extends React.Component {
     });
   }
 
-  handleChangeIsUrgent(e) {
+  handleChangePaymentDue(e) {
     this.setState({
-      isUrgent: e.target.value,
+      paymentDue: e.target.value,
+      paymentDueValidation: null,
     });
   }
 
-  handleChangeStatus(e) {
+  handleChangeDayOfPayment(e) {
     this.setState({
-      status: e.target.value,
+      dayOfPayment: e.target.value,
+    });
+  }
+
+  handleChangePayerId(e) {
+    this.setState({
+      payerId: e.target.value,
+      payerIdValidation: null,
+    });
+  }
+
+  handleChangeReceiverId(e) {
+    this.setState({
+      receiverId: e.target.value,
+      receiverIdValidation: null,
     });
   }
 
@@ -150,15 +163,15 @@ class AddNewPaymentOrder extends React.Component {
     return (
       <div>
         <Modal
-          show={this.props.addNewFutureCostClicked}
+          show={this.props.addNewPaymentOrderClicked}
           onHide={() => {
-            this.props.toggleAddNewFutureCost();
+            this.props.toggleAddNewPaymentOrder();
             this.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Dodaj novi trošak</Modal.Title>
+            <Modal.Title>Dodaj novi nalog</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
@@ -182,6 +195,7 @@ class AddNewPaymentOrder extends React.Component {
                   </Col>
                 </Row>
               </FormGroup>
+
               <FormGroup
                 controlId="descriptionInput"
                 validationState={this.state.descriptionValidation}
@@ -202,35 +216,101 @@ class AddNewPaymentOrder extends React.Component {
                   </Col>
                 </Row>
               </FormGroup>
+
               <FormGroup
-                controlId="isUrgentInput"
+                controlId="paymentDueInput"
+                validationState={this.state.paymentDueValidation}
               >
-                <ControlLabel>Hitnost</ControlLabel>
-                <FormControl
-                  componentClass="select"
-                  placeholder="select"
-                  defaultValue="Nije hitno"
-                  onChange={this.handleChangeIsUrgent}
-                >
-                  <option value="Hitno">Hitno</option>
-                  <option value="Nije hitno">Nije hitno</option>
-                </FormControl>
+                <ControlLabel>Datum prispijeća</ControlLabel>
+                <DatePicker
+                  value={this.state.paymentDue}
+                  dateFormat='DD-MM-YYYY'
+                  weekStartsOn={1}
+                  dayLabels={constants.datePickerDayNames}
+                  monthLabels={constants.monthNames}
+                  onChange={this.handleChangePaymentDue}
+                />
+                <Row>
+                  <Col md={4}>
+                    <section>
+                      <Collapse in={this.state.paymentDueValidation === 'error'}>
+                        <p className={styles.pInvalid}>Morate unijeti datum prispijeća.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
               </FormGroup>
+
               <FormGroup
-                controlId="statusInput"
+                controlId="dayOfPaymentInput"
               >
-                <ControlLabel>Status</ControlLabel>
+                <ControlLabel>Datum plaćanja</ControlLabel>
+                <DatePicker
+                  value={this.state.dayOfPayment}
+                  dateFormat='DD-MM-YYYY'
+                  weekStartsOn={1}
+                  dayLabels={constants.datePickerDayNames}
+                  monthLabels={constants.monthNames}
+                  onChange={this.handleChangeDayOfPayment}
+                />
+              </FormGroup>
+
+              <FormGroup
+                controlId="payerIdInput"
+                validationState={this.state.payerIdValidation}
+              >
+                <ControlLabel>Id platitelja</ControlLabel>
                 <FormControl
                   componentClass="select"
                   placeholder="select"
-                  defaultValue="Odabir ponude"
-                  onChange={this.handleChangeStatus}
+                  onChange={this.handleChangePayerId}
                 >
-                  <option value="Odabir ponude">Odabir ponude</option>
-                  <option value="Plaćeno">Plaćeno</option>
-                  <option value="Prikupljanje sredstava">Prikupljanje sredstava</option>
-                  <option value="Sredstva skupljena">Sredstva skupljena</option>
+                  <option value="select">Odaberi</option>
+                  {
+                    this.props.users
+                      .map(user => {
+                        return (<option value={user.id}>`${user.firstName} ${user.lastName}`</option>);
+                      })
+                  }
                 </FormControl>
+                <Row>
+                  <Col md={4}>
+                    <section>
+                      <Collapse in={this.state.payerIdValidation === 'error'}>
+                        <p className={styles.pInvalid}>Morate odabrati id platitelja.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
+              </FormGroup>
+
+              <FormGroup
+                controlId="receiverIdInput"
+                validationState={this.state.receiverIdValidation}
+              >
+                <ControlLabel>Id primatelja</ControlLabel>
+                <FormControl
+                  componentClass="select"
+                  placeholder="select"
+                  onChange={this.handleChangeReceiverId}
+                >
+                  <option value="select">Odaberi</option>
+                  {
+                    this.props.users
+                      .map(user => {
+                        return (<option value={user.id}>`${user.firstName} ${user.lastName}`</option>);
+                      })
+                  }
+                </FormControl>
+                <Row>
+                  <Col md={4}>
+                    <section>
+                      <Collapse in={this.state.receiverIdValidation === 'error'}>
+                        <p className={styles.pInvalid}>Morate odabrati id primatelja.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
               </FormGroup>
             </form>
           </Modal.Body>
@@ -246,13 +326,13 @@ class AddNewPaymentOrder extends React.Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
+    users: state.users,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNewPaymentOrder: (amount, creatorId, description, urgent, status) => (dispatch(addNewCost(amount, creatorId, description, urgent, status))),
-    fetchPaymentOrders: () => (dispatch(fetchPaymentOrders())),
+    addNewPaymentOrder: (paymentOrder) => (dispatch(addNewPaymentOrder(paymentOrder))),
   };
 }
 

@@ -8,7 +8,7 @@ import UpdatePaymentOrder from "./UpdatePaymentOrder";
 import PaymentsTable from "./PaymentsTable";
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
-import fetchPaymentOrders from '../../../actionCreators/paymentOrdersActionCreators';
+import fetchUsers from '../../../actionCreators/usersActionCreators';
 import * as styles from './allPaymentsView.css';
 
 class AllPaymentsView extends Component {
@@ -25,7 +25,7 @@ class AllPaymentsView extends Component {
 
   componentWillMount() {
     this.props.fetchApartments();
-    this.props.fetchPaymentOrders();
+    this.props.fetchUsers();
   }
 
   toggleGeneratePaymentsClicked() {
@@ -107,6 +107,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchBuildings: () => (dispatch(fetchBuildings())),
     fetchApartments: () => (dispatch(fetchApartments())),
+    fetchUsers: () => (dispatch(fetchUsers())),
   };
 }
 
