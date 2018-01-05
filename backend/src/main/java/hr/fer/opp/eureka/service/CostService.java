@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CostService {
 
-  List<CostResponse> getAll();
+  List<CostResponse> getAllForCurrentUser(Long currentUserId);
 
   CostResponse getById(Long id);
 

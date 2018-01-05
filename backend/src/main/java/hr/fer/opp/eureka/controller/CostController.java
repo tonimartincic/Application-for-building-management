@@ -16,9 +16,9 @@ public class CostController {
     this.costService = costService;
   }
   
-  @GetMapping("/api/costs")
-  public List<CostResponse> getAllCosts() {
-    return costService.getAll();
+  @GetMapping("/api/costs/current-user/{currentUserId}")
+  public List<CostResponse> getAllCosts(@PathVariable Long currentUserId) {
+    return costService.getAllForCurrentUser(currentUserId);
   }
 
   @GetMapping ("/api/costs/{id}")

@@ -60,11 +60,11 @@ Insert into cost (amount, is_urgent, description, status, creator_id, created_on
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
 250.65, false, 'troškovi čišćenja', 'PAID', 2, parsedatetime('28.09.17', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
-75.45, false, 'uvođenje video nadzora', 'OFFER_SELECTION', 1, parsedatetime('01.01.15', 'dd.MM.yy'));
+75.45, false, 'uvođenje video nadzora', 'OFFER_SELECTION', 3, parsedatetime('01.01.15', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
-150000.65, false, 'redovan servis dizala', 'FUNDRAISING', 1, parsedatetime('08.06.16', 'dd.MM.yy'));
+150000.65, false, 'redovan servis dizala', 'FUNDRAISING', 4, parsedatetime('08.06.16', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
-150000.65, true, 'nova garažna vrata', 'FUNDS_COLLECTED', 1, parsedatetime('02.08.16', 'dd.MM.yy'));
+150000.65, true, 'nova garažna vrata', 'FUNDS_COLLECTED', 5, parsedatetime('02.08.16', 'dd.MM.yy'));
 
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('02.01.16', 'dd.MM.yy'), 1, false);
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('03.02.17', 'dd.MM.yy'), 2, false);

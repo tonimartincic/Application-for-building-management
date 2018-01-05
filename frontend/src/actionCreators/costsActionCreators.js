@@ -3,7 +3,8 @@ import * as types from '../actions/actionTypes';
 
 export default async function fetchFutureCosts() {
   try {
-    const response = await axios.get('/api/costs');
+    const currentUserId = JSON.parse(localStorage.getItem('user')).id;
+    const response = await axios.get('/api/costs/current-user/' + currentUserId);
 
     return {
       type: types.FETCH_FUTURE_COSTS_SUCCESS,
