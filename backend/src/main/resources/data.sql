@@ -47,7 +47,7 @@ Insert into announcement (creation_date, expiration_date, creator, content) valu
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
 101.25, 1, 'pričuva', parsedatetime('02.10.17', 'dd.MM.yy'),parsedatetime('01.10.17', 'dd.MM.yy'), 2);
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-595.05, 2, 'čišćenje', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('02.08.16', 'dd.MM.yy'), 3);
+595.05, 4, 'čišćenje', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('02.08.16', 'dd.MM.yy'), 3);
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
 68.10, 1, 'pričuva', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('28.09.17', 'dd.MM.yy'), 6);
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (

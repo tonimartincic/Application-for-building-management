@@ -3,7 +3,8 @@ import * as types from '../actions/actionTypes';
 
 export default async function fetchPaymentOrders() {
   try {
-    const response = await axios.get('/api/payment-orders');
+    const currentUserId = JSON.parse(localStorage.getItem('user')).id;
+    const response = await axios.get('/api/payment-orders/current-user/' + currentUserId);
 
     return {
       type: types.FETCH_PAYMENT_ORDERS_SUCCESS,

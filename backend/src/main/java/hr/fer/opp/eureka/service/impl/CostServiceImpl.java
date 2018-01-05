@@ -36,7 +36,7 @@ public class CostServiceImpl implements CostService {
   public List<CostResponse> getAllForCurrentUser(Long currentUserId) {
     Building currentUserBuilding = ((Apartment) this.userRepository.findById(currentUserId).getApartments().toArray()[0]).getBuilding();
 
-    List<Cost> allCosts = Lists.newArrayList(costRepository.findAll());
+    List<Cost> allCosts = Lists.newArrayList(this.costRepository.findAll());
     List<CostResponse> costResponsesForBuilding = new ArrayList<>();
 
     for(Cost cost : allCosts) {

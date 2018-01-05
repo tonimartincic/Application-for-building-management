@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PaymentOrderService {
 
-  List<PaymentOrder> getAll();
+  List<PaymentOrder> getAllForCurrentUser(Long currentUserId);
 
   PaymentOrder getById(Long id);
 
