@@ -40,7 +40,7 @@ class NavigationBar extends Component {
             href='/planning-future-costs'
           >
             <span className={styles.span}>
-              <span className='glyphicon glyphicon-file' />    Planiranje budućih troškova
+              <span className='glyphicon glyphicon-file' />    Troškovi
             </span>
           </NavItem>
           <NavItem

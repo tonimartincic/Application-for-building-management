@@ -84,7 +84,7 @@ class AllPaymentsView extends Component {
                 <Button
                   className={styles.button}
                   onClick={() => this.toggleAddNewPaymentOrder()}
-                >Dodaj novi trošak</Button>
+                >Dodaj novi nalog</Button>
 
                 <Button
                   className={styles.button}
