@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Settings from './Settings';
-import { toggleUserSettings } from "../../../actions/userSettingsActions";
-import { toggleReminderValue } from "../../../actionCreators/userDataActionCreators";
+import {toggleUserSettings} from "../../../actions/userSettingsActions";
+import {toggleReminderValue} from "../../../actionCreators/userDataActionCreators";
 import {editUserInfo} from "../../../actionCreators/usersActionCreators";
 
 class SettingsContainer extends Component {
@@ -28,6 +28,9 @@ class SettingsContainer extends Component {
       emailValidationNotCorrectFormat: null,
       privilegeValidationEmpty: null,
       privilegeValidationAlreadyExists: null,
+      correctOldPasswordValidation: null,
+      matchingNewPasswordsValidation: null,
+      emptyPasswordFieldsValidation: null,
     };
 
     this.toggleUpdateUserInfoClicked = this.toggleUpdateUserInfoClicked.bind(this);
@@ -45,14 +48,14 @@ class SettingsContainer extends Component {
   }
 
   handleSubmit = () => {
-    if(this.state.user.firstName === null || this.state.user.firstName === '' ||
+    if (this.state.user.firstName === null || this.state.user.firstName === '' ||
       this.state.user.lastName === null || this.state.user.lastName === '' || !this.checkEmail()) {
-      if(this.state.user.firstName === null || this.state.user.firstName === '') {
+      if (this.state.user.firstName === null || this.state.user.firstName === '') {
         this.setState({
           firstNameValidation: 'error',
         });
       }
-      if(this.state.user.lastName === null || this.state.user.lastName === '') {
+      if (this.state.user.lastName === null || this.state.user.lastName === '') {
         this.setState({
           lastNameValidation: 'error',
         });
@@ -66,8 +69,25 @@ class SettingsContainer extends Component {
   };
 
   handleSubmitPassword = () => {
+    if (this.state.oldPassword === "" || this.state.oldPassword === null
+      || this.state.newPassword === "" || this.state.newPassword === null
+      || this.state.newPasswordRepeat === "" || this.state.newPasswordRepeat === null) {
+      this.setstate({
+        emptyPasswordFieldsValidation: true,
+      })
+    } else if (this.state.oldPassword !== this.props.userData.password) {
+      this.setState({
+        correctOldPasswordValidation: true,
+      });
+    } else if (this.state.newPassword === this.state.newPasswordRepeat) {
+      this.setState({
+        matchingNewPasswordsValidation: true,
+      });
+    } else {
 
-  }
+    }
+  };
+
 
   changeFirstName = (event) => {
     const userTemp = this.state.user;
@@ -120,30 +140,36 @@ class SettingsContainer extends Component {
   oldPasswordChange = (event) => {
     this.setState({
       oldPassword: event.target.value,
+      correctOldPasswordValidation: false,
+      emptyPasswordFieldsValidation: false,
     })
   };
 
   newPasswordChange = (event) => {
     this.setState({
       newPassword: event.target.value,
+      matchingNewPasswordsValidation: false,
+      emptyPasswordFieldsValidation: false,
     })
   };
 
   newPasswordChangeRepeat = (event) => {
     this.setState({
       newPasswordRepeat: event.target.value,
+      matchingNewPasswordsValidation: false,
+      emptyPasswordFieldsValidation: false,
     })
   };
 
   checkEmail() {
-    if(this.state.user.mail === null || this.state.user.mail === '') {
+    if (this.state.user.mail === null || this.state.user.mail === '') {
       this.setState({
         emailValidationEmptyString: 'error',
       });
       return false;
     }
-    for(let i = 0 ; i < this.props.users.length; i = i + 1) {
-      if(this.props.users[i] !== null) {
+    for (let i = 0; i < this.props.users.length; i = i + 1) {
+      if (this.props.users[i] !== null) {
         if (this.props.users[i].mail === this.state.user.mail && this.state.user.id !== this.props.users[i].id) {
           this.setState({
             emailValidationAlreadyExists: 'error',
@@ -197,8 +223,8 @@ class SettingsContainer extends Component {
     });
   }
 
-  render (){
-    return(
+  render() {
+    return (
       <Settings
         currentUser={this.state.user}
         handleSubmit={this.handleSubmit}
@@ -221,6 +247,9 @@ class SettingsContainer extends Component {
         newPassword={this.state.newPassword}
         newPasswordRepeat={this.state.newPasswordRepeat}
         handleSubmitPassword={this.handleSubmitPassword}
+        correctOldPasswordValidation={this.state.correctOldPasswordValidation}
+        matchingNewPasswordsValidation={this.state.matchingNewPasswordsValidation}
+        emptyPasswordFieldsValidation={this.state.emptyPasswordFieldsValidation}
       />
     );
   }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Button, Collapse, FormControl, FormGroup, ListGroup, Well} from 'react-bootstrap';
+import {Row, Col, Button, Collapse, FormControl, FormGroup, ListGroup, Well, Alert} from 'react-bootstrap';
 
 const ChangePassword = props => (
   <Collapse in={props.updatePasswordClicked}>
@@ -60,6 +60,27 @@ const ChangePassword = props => (
             </Row>
           </Row>
         </ListGroup>
+        <Choose>
+          <When condition={props.correctOldPasswordValidation}>
+            <Alert bsStyle="danger">
+              <p>Krivo unesena stara lozinka.</p>
+            </Alert>
+          </When>
+        </Choose>
+        <Choose>
+          <When condition={props.matchingNewPasswordsValidation}>
+            <Alert bsStyle="danger">
+              <p>Nova lozinka se ne podudara sa ponovljenom novom lozinkom.</p>
+            </Alert>
+          </When>
+        </Choose>
+        <Choose>
+          <When condition={props.emptyPasswordFieldsValidation}>
+            <Alert bsStyle="danger">
+              <p>Morate popuniti sva polja.</p>
+            </Alert>
+          </When>
+        </Choose>
       </FormGroup>
       <Button onClick={() => props.handleSubmitPassword()}>Potvrdi</Button>
     </Well>

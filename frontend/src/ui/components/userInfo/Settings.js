@@ -58,6 +58,9 @@ class Settings extends Component {
               newPassword={this.props.newPassword}
               newPasswordRepeat={this.props.newPasswordRepeat}
               handleSubmitPassword={this.props.handleSubmitPassword}
+              correctOldPasswordValidation={this.props.correctOldPasswordValidation}
+              matchingNewPasswordsValidation={this.props.matchingNewPasswordsValidation}
+              emptyPasswordFieldsValidation={this.props.emptyPasswordFieldsValidation}
             />
           </Modal.Body>
         </Modal>
