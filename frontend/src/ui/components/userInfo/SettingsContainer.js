@@ -72,7 +72,7 @@ class SettingsContainer extends Component {
     if (this.state.oldPassword === "" || this.state.oldPassword === null
       || this.state.newPassword === "" || this.state.newPassword === null
       || this.state.newPasswordRepeat === "" || this.state.newPasswordRepeat === null) {
-      this.setstate({
+      this.setState({
         emptyPasswordFieldsValidation: true,
       })
     } else if (this.state.oldPassword !== this.props.userData.password) {
