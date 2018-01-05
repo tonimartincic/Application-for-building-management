@@ -8,7 +8,7 @@ import UpdatePaymentOrder from "./UpdatePaymentOrder";
 import PaymentsTable from "./PaymentsTable";
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
-import fetchUsers from '../../../actionCreators/usersActionCreators';
+import { fetchUsers } from '../../../actionCreators/usersActionCreators';
 import * as styles from './allPaymentsView.css';
 
 class AllPaymentsView extends Component {
@@ -20,7 +20,8 @@ class AllPaymentsView extends Component {
       updatePaymentOrderClicked: false,
     };
 
-    this.toggleGeneratePaymentsClicked = this.toggleGeneratePaymentsClicked.bind(this);
+    this.toggleAddNewPaymentOrder = this.toggleAddNewPaymentOrder.bind(this);
+    this.toggleUpdatePaymentOrder = this.toggleUpdatePaymentOrder.bind(this);
   }
 
   componentWillMount() {
@@ -28,11 +29,18 @@ class AllPaymentsView extends Component {
     this.props.fetchUsers();
   }
 
-  toggleGeneratePaymentsClicked() {
-    const generatePaymentsClickedTemp = this.state.generatePaymentsClicked;
+  toggleAddNewPaymentOrder() {
+    const addNewPaymentOrderClickedTemp = this.state.addNewPaymentOrderClicked;
     this.setState({
-      generatePaymentsClicked: !generatePaymentsClickedTemp,
-    })
+      addNewPaymentOrderClicked: !addNewPaymentOrderClickedTemp,
+    });
+  }
+
+  toggleUpdatePaymentOrder() {
+    const updatePaymentOrderClickedTemp = this.state.updatePaymentOrderClicked;
+    this.setState({
+      updatePaymentOrderClicked: !updatePaymentOrderClickedTemp,
+    });
   }
 
   render() {
@@ -73,7 +81,15 @@ class AllPaymentsView extends Component {
           <Row>
             <Col md={8} mdOffset={2}>
               <section className={styles.sectionButtons}>
-                <Button onClick={() => this.toggleGeneratePaymentsClicked()}>Generiraj naloge</Button>
+                <Button
+                  className={styles.button}
+                  onClick={() => this.toggleAddNewPaymentOrder()}
+                >Dodaj novi trošak</Button>
+
+                <Button
+                  className={styles.button}
+                  onClick={() => this.toggleUpdatePaymentOrder()}
+                >Ažuriraj podatke</Button>
               </section>
             </Col>
           </Row>

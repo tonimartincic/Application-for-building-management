@@ -132,16 +132,16 @@ class AddNewPaymentOrder extends React.Component {
     });
   }
 
-  handleChangePaymentDue(e) {
+  handleChangePaymentDue(value) {
     this.setState({
-      paymentDue: e.target.value,
+      paymentDue: value,
       paymentDueValidation: null,
     });
   }
 
-  handleChangeDayOfPayment(e) {
+  handleChangeDayOfPayment(value) {
     this.setState({
-      dayOfPayment: e.target.value,
+      dayOfPayment: value,
     });
   }
 
@@ -231,7 +231,7 @@ class AddNewPaymentOrder extends React.Component {
                   onChange={this.handleChangePaymentDue}
                 />
                 <Row>
-                  <Col md={4}>
+                  <Col md={8}>
                     <section>
                       <Collapse in={this.state.paymentDueValidation === 'error'}>
                         <p className={styles.pInvalid}>Morate unijeti datum prispijeća.</p>
@@ -269,7 +269,7 @@ class AddNewPaymentOrder extends React.Component {
                   {
                     this.props.users
                       .map(user => {
-                        return (<option value={user.id}>`${user.firstName} ${user.lastName}`</option>);
+                        return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                       })
                   }
                 </FormControl>
@@ -288,7 +288,7 @@ class AddNewPaymentOrder extends React.Component {
                 controlId="receiverIdInput"
                 validationState={this.state.receiverIdValidation}
               >
-                <ControlLabel>Primatelja</ControlLabel>
+                <ControlLabel>Primatelj</ControlLabel>
                 <FormControl
                   componentClass="select"
                   placeholder="select"
@@ -298,7 +298,7 @@ class AddNewPaymentOrder extends React.Component {
                   {
                     this.props.users
                       .map(user => {
-                        return (<option value={user.id}>`${user.firstName} ${user.lastName}`</option>);
+                        return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                       })
                   }
                 </FormControl>
