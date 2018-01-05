@@ -5,6 +5,7 @@ import { toggleUserSettings } from "../../../actions/userSettingsActions";
 import { toggleReminderValue } from "../../../actionCreators/userDataActionCreators";
 import {editUserInfo} from "../../../actionCreators/usersActionCreators"
 import ChangePersonalInfo from "./ChangePersonalInfo";
+import ChangePassword from "./ChangePassword";
 
 class Settings extends Component {
   render (){
@@ -40,6 +41,23 @@ class Settings extends Component {
               handleChangeMail={this.props.handleChangeMail}
               changeFirstName={this.props.changeFirstName}
               handleSubmit={this.props.handleSubmit}
+            />
+            <Row>
+              <Col mdOffset={1}>
+                <Button onClick={() => this.props.toggleUpdatePasswordClicked()}>Promijeni lozinku</Button>
+              </Col>
+            </Row>
+            <br />
+            <ChangePassword
+              updatePasswordClicked={this.props.updatePasswordClicked}
+              toggleUpdatePasswordClicked={this.props.toggleUpdatePasswordClicked}
+              oldPasswordChange={this.props.oldPasswordChange}
+              newPasswordChange={this.props.newPasswordChange}
+              newPasswordChangeRepeat={this.props.newPasswordChangeRepeat}
+              oldPassword={this.props.oldPassword}
+              newPassword={this.props.newPassword}
+              newPasswordRepeat={this.props.newPasswordRepeat}
+              handleSubmitPassword={this.props.handleSubmitPassword}
             />
           </Modal.Body>
         </Modal>

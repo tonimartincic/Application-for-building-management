@@ -10,6 +10,7 @@ class SettingsContainer extends Component {
     super(props);
     this.state = {
       updateUserInfoClicked: false,
+      updatePasswordClicked: false,
       user: {
         id: null,
         firstName: "",
@@ -17,6 +18,9 @@ class SettingsContainer extends Component {
         mail: "",
         privilege: null,
       },
+      oldPassword: "",
+      newPassword: "",
+      newPasswordRepeat: "",
       firstNameValidation: null,
       lastNameValidation: null,
       emailValidationEmptyString: null,
@@ -27,11 +31,17 @@ class SettingsContainer extends Component {
     };
 
     this.toggleUpdateUserInfoClicked = this.toggleUpdateUserInfoClicked.bind(this);
+    this.toggleUpdatePasswordClicked = this.toggleUpdatePasswordClicked.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeFirstName = this.changeFirstName.bind(this);
     this.lastNameChange = this.lastNameChange.bind(this);
     this.handleChangeMail = this.handleChangeMail.bind(this);
     this.resetState = this.resetState.bind(this);
+    this.oldPasswordChange = this.oldPasswordChange.bind(this);
+    this.newPasswordChange = this.newPasswordChange.bind(this);
+    this.newPasswordChangeRepeat = this.newPasswordChangeRepeat.bind(this);
+    this.handleSubmitPassword = this.handleSubmitPassword.bind(this);
+
   }
 
   handleSubmit = () => {
@@ -53,6 +63,10 @@ class SettingsContainer extends Component {
       this.toggleUpdateUserInfoClicked();
       this.resetState();
     }
+  };
+
+  handleSubmitPassword = () => {
+
   }
 
   changeFirstName = (event) => {
@@ -101,6 +115,24 @@ class SettingsContainer extends Component {
       },
       lastNameValidation: null,
     });
+  };
+
+  oldPasswordChange = (event) => {
+    this.setState({
+      oldPassword: event.target.value,
+    })
+  };
+
+  newPasswordChange = (event) => {
+    this.setState({
+      newPassword: event.target.value,
+    })
+  };
+
+  newPasswordChangeRepeat = (event) => {
+    this.setState({
+      newPasswordRepeat: event.target.value,
+    })
   };
 
   checkEmail() {
@@ -158,6 +190,13 @@ class SettingsContainer extends Component {
     })
   }
 
+  toggleUpdatePasswordClicked() {
+    const updatePasswordClickedTemp = this.state.updatePasswordClicked;
+    this.setState({
+      updatePasswordClicked: !updatePasswordClickedTemp,
+    });
+  }
+
   render (){
     return(
       <Settings
@@ -173,6 +212,15 @@ class SettingsContainer extends Component {
         emailValidationAlreadyExists={this.state.emailValidationAlreadyExists}
         emailValidationNotCorrectFormat={this.state.emailValidationNotCorrectFormat}
         updateUserInfoClicked={this.state.updateUserInfoClicked}
+        toggleUpdatePasswordClicked={this.toggleUpdatePasswordClicked}
+        updatePasswordClicked={this.state.updatePasswordClicked}
+        oldPasswordChange={this.oldPasswordChange}
+        newPasswordChange={this.newPasswordChange}
+        newPasswordChangeRepeat={this.newPasswordChangeRepeat}
+        oldPassword={this.state.oldPassword}
+        newPassword={this.state.newPassword}
+        newPasswordRepeat={this.state.newPasswordRepeat}
+        handleSubmitPassword={this.handleSubmitPassword}
       />
     );
   }
