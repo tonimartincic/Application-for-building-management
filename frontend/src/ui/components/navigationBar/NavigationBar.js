@@ -6,6 +6,7 @@ import UserInfo from '../userInfo/UserInfo';
 import Notifications from '../notifications/Notifications';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../../../actionCreators/userDataActionCreators';
+import { ADMINISTRATOR } from "../../../constants/values";
 
 class NavigationBar extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class NavigationBar extends Component {
 
   render() {
     return (
-      <Navbar className={styles.navBar} >
+      <Navbar className={styles.navBar}>
         <Navbar.Header className={styles.navCenter}>
           <Navbar.Brand>
             <Link to='/'>
@@ -25,50 +26,58 @@ class NavigationBar extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav className={styles.navCenter}>
-          <NavItem
-            componentClass={Link}
-            to='/board'
-            href='/board'
-          >
-            <span className={styles.span}>
-              <span className='glyphicon glyphicon-list-alt' />    Oglasna ploča
-            </span>
-          </NavItem>
-          <NavItem
-            componentClass={Link}
-            to='/planning-future-costs'
-            href='/planning-future-costs'
-          >
-            <span className={styles.span}>
-              <span className='glyphicon glyphicon-file' />    Troškovi
-            </span>
-          </NavItem>
-          <NavItem
-            componentClass={Link}
-            to='/payments'
-            href='/payments'
-          >
-            <span className={styles.span}>
-              <span className='glyphicon glyphicon-euro' />    Nalozi
-            </span>
-          </NavItem>
-          <NavItem
-            componentClass={Link}
-            to='/snow-clearing-schedule'
-            href='/snow-clearing-schedule'
-          >
-            <span className={styles.span}>
-              <span className='glyphicon glyphicon-calendar' />    Raspored čišćenja snijega
-            </span>
-          </NavItem >
+          <Choose>
+            <When condition={this.props.userData.privilege !== ADMINISTRATOR}>
+              <NavItem
+                componentClass={Link}
+                to='/board'
+                href='/board'
+              >
+                <span className={styles.span}>
+                  <span className='glyphicon glyphicon-list-alt' />    Oglasna ploča
+                </span>
+              </NavItem>
+              <NavItem
+                componentClass={Link}
+                to='/planning-future-costs'
+                href='/planning-future-costs'
+              >
+                <span className={styles.span}>
+                  <span className='glyphicon glyphicon-file' />    Troškovi
+                </span>
+              </NavItem>
+              <NavItem
+                componentClass={Link}
+                to='/payments'
+                href='/payments'
+              >
+                <span className={styles.span}>
+                  <span className='glyphicon glyphicon-euro' />    Nalozi
+                </span>
+              </NavItem>
+              <NavItem
+                componentClass={Link}
+                to='/snow-clearing-schedule'
+                href='/snow-clearing-schedule'
+              >
+                <span className={styles.span}>
+                  <span className='glyphicon glyphicon-calendar'/>    Raspored čišćenja snijega
+                </span>
+              </NavItem>
+            </When>
+          </Choose>
           <NavItem >
             <UserInfo />
           </NavItem>
-          <NavItem >
-            <Notifications />
-          </NavItem>
           <Choose>
-            <When condition={this.props.userData.privilege === 'Administrator'}>
+            <When condition={this.props.userData.privilege !== ADMINISTRATOR}>
+              <NavItem >
+                <Notifications />
+              </NavItem>
+            </When>
+          </Choose>
+          <Choose>
+            <When condition={this.props.userData.privilege === ADMINISTRATOR}>
               <NavItem
                 componentClass={Link}
                 to='/all-users'
