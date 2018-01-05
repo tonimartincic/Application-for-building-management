@@ -35,7 +35,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
   public List<Announcement> getAllForCurrentUser(Long currentUserId) {
     Building currentUserBuilding = ((Apartment) this.userRepository.findById(currentUserId).getApartments().toArray()[0]).getBuilding();
 
-    List<Announcement> allAnnouncements = Lists.newArrayList(announcementRepository.findAll());
+    List<Announcement> allAnnouncements = Lists.newArrayList(this.announcementRepository.findAll());
     List<Announcement> allAnnouncementsForBuilding = new ArrayList<>();
 
     for (Announcement announcement : allAnnouncements) {

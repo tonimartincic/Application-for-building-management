@@ -18,9 +18,9 @@ public class PaymentOrderController {
     this.paymentOrderService = paymentOrderService;
   }
 
-  @GetMapping ("/api/payment-orders")
-  public List<PaymentOrder> getAllPaymentOrders() {
-    return paymentOrderService.getAll();
+  @GetMapping ("/api/payment-orders/current-user/{currentUserId}")
+  public List<PaymentOrder> getAllPaymentOrdersForCurrentUser(@PathVariable Long currentUserId) {
+    return paymentOrderService.getAllForCurrentUser(currentUserId);
   }
 
   @GetMapping ("api/payment-orders/{id}")
