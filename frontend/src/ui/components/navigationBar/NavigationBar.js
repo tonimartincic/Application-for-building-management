@@ -7,10 +7,12 @@ import Notifications from '../notifications/Notifications';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../../../actionCreators/userDataActionCreators';
 import { ADMINISTRATOR } from "../../../constants/values";
+import fetchApartments from '../../../actionCreators/apartmentsActionCreators';
 
 class NavigationBar extends Component {
   componentDidMount() {
     this.props.fetchUserData();
+    this.props.fetchApartments();
   }
 
   render() {
@@ -103,6 +105,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchUserData: () => dispatch(fetchUserData()),
+    fetchApartments: () => dispatch(fetchApartments()),
   };
 }
 
