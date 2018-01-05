@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from '../actions/actionTypes';
 import { history } from '../ui/components/history/history';
-import {ADMINISTRATOR} from "../constants/values";
+import { ADMINISTRATOR } from "../constants/values";
 
 export default async function validateUser(userId, password) {
   try {
