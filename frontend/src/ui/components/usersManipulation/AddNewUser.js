@@ -2,6 +2,7 @@ import React from 'react';
 import {FormGroup, ControlLabel, FormControl, Button, Col, Modal, Collapse, Row} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as styles from './userInfo.css';
+import {TENANT_REPRESENTATIVE, TENANT, MANAGER} from "../../../constants/values";
 
 class AddNewUser extends React.Component {
   render() {
@@ -86,9 +87,9 @@ class AddNewUser extends React.Component {
                 <ControlLabel>Odaberi privilegiju</ControlLabel>
                 <FormControl componentClass="select" placeholder="select" onChange={this.props.handleChangePrivilege}>
                   <option value="select">Odaberi</option>
-                  <option value="Stanar">Stanar</option>
-                  <option value="Predstavnik stanara">Predstavnik stanara</option>
-                  <option value="Upravitelj">Upravitelj</option>
+                  <option value={TENANT}>Stanar</option>
+                  <option value={TENANT_REPRESENTATIVE}>Predstavnik stanara</option>
+                  <option value={MANAGER}>Upravitelj</option>
                 </FormControl>
                 <Row>
                   <Col md={4}>
