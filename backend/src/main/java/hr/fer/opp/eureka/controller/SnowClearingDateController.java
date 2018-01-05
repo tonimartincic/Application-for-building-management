@@ -18,23 +18,23 @@ public class SnowClearingDateController {
     this.snowClearingDateService = snowClearingDateService;
   }
 
-  @GetMapping("/api/snow-clearing-schedules")
-  public List<SnowClearingDate> getAllSnowClearingSchedules() {
-    return snowClearingDateService.getAll();
+  @GetMapping("/api/snow-clearing-schedules/{currentUserId}")
+  public List<SnowClearingDate> getAllSnowClearingSchedules(@PathVariable Long currentUserId) {
+    return snowClearingDateService.getAllForCurrentBuilding(currentUserId);
   }
 
   @PostMapping("/api/snow-clearing-schedules/create")
-  public void createSchedule(@RequestParam String from, @RequestParam String to) {
-    snowClearingDateService.createSchedule(LocalDate.parse(from), LocalDate.parse(to));
+  public List<SnowClearingDate> createSchedule(@RequestParam String from, @RequestParam String to, @RequestParam Long currentUserId) {
+    return snowClearingDateService.createScheduleForCurrentBuilding(LocalDate.parse(from), LocalDate.parse(to), currentUserId);
   }
 
   @PostMapping("/api/snow-clearing-schedules/ask-change")
-  public SnowClearingDate askChange(@RequestParam String date) {
-    return snowClearingDateService.askChange(LocalDate.parse(date));
+  public SnowClearingDate askChange(@RequestParam String date, @RequestParam Long currentUserId) {
+    return snowClearingDateService.askChangeForCurrentBuilding(LocalDate.parse(date), currentUserId);
   }
 
   @PostMapping("/api/snow-clearing-schedules/approve-changes")
-  public void approveChanges(@RequestParam String firstDate, @RequestParam String secondDate) {
-    snowClearingDateService.approveChanges(LocalDate.parse(firstDate), LocalDate.parse(secondDate));
+  public List<SnowClearingDate> approveChanges(@RequestParam String firstDate, @RequestParam String secondDate, @RequestParam Long currentUserId) {
+    return snowClearingDateService.approveChangesForCurrentBuilding(LocalDate.parse(firstDate), LocalDate.parse(secondDate), currentUserId);
   }
 }

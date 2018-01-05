@@ -4,8 +4,9 @@ import hr.fer.opp.eureka.domain.snowClearingDate.SnowClearingDate;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface SnowClearingDateRepository extends CrudRepository<SnowClearingDate, Long> {
 
-  SnowClearingDate findByClearingDate(LocalDate date);
+  List<SnowClearingDate> findAllByClearingDate(LocalDate date);
 }

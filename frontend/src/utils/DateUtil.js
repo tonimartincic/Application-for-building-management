@@ -1,5 +1,5 @@
 export const constructDateString = (day, month, year) =>
-  year + '-' + month + '-' + day;
+  year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
 
 export const constructDateStringForBackend = (date) => {
   const monthTemp = date.clearingDate.split('-')[1];
