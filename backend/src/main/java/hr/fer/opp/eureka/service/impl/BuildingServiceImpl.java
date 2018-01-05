@@ -49,8 +49,10 @@ public class BuildingServiceImpl implements BuildingService {
     List<UserResponse> users = new ArrayList<>();
 
     for(Apartment apartment : apartmentList){
-      if (apartment.getBuilding().getId() == id)
-        users.add(new UserResponse(apartment.getOwner()));
+      if (apartment.getBuilding().getId() == id) {
+        if(apartment.getOwner() != null)
+          users.add(new UserResponse(apartment.getOwner()));
+      }
     }
 
     return users;

@@ -19,7 +19,6 @@ export default async function fetchBuildingUsersById(id) {
 
 export async function fetchUsers() {
   try {
-
     const response = await axios.get('/api/users');
 
     return {
@@ -85,7 +84,6 @@ export async function addNewAdministrator(firstName, lastName, eMail) {
 
 export async function editUserInfo(user) {
   try {
-    debugger;
     const response = await axios.post('/api/users/edit', user);
 
     return {
