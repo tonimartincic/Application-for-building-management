@@ -22,7 +22,6 @@ class UserInfo extends Component {
         <NavDropdown title = {this.props.userData.firstName + ' ' + this.props.userData.lastName} id='nav-dropdown'>
           <MenuItem onClick={() => {
             this.props.toggleUserInfo(true);
-            this.props.fetchApartmentForCurrentUser(this.props.userData.id)
           }}>
             <span className='glyphicon glyphicon-info-sign' /> &nbsp;&nbsp; Informacije
           </MenuItem>
@@ -50,7 +49,6 @@ function mapDispatchToProps(dispatch) {
   return {
     toggleUserInfo: (value) => dispatch(toggleUserInfo(value)),
     toggleUserSettings: (value) => dispatch(toggleUserSettings(value)),
-    fetchApartmentForCurrentUser: id => dispatch(fetchApartmentForCurrentUser(id)),
   };
 }
 
