@@ -1,7 +1,13 @@
-.button {
-  font-size: 7px;
-  color: white;
+.bellAlert {
+  color: red
  }
- .notification{
+ .bellDefault {
+   color: white
+  }
+.notification{
+  font-size: 17px;
+}
+.next {
+  color: blue;
   font-size: 17px;
  }

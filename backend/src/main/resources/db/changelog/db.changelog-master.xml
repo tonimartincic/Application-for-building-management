@@ -73,6 +73,9 @@
       <column name="user_id" type="bigint">
         <constraints nullable="false"/>
       </column>
+      <column name="is_read" type="boolean">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
   </changeSet>
 

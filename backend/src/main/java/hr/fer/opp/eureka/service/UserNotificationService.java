@@ -11,4 +11,6 @@ public interface UserNotificationService {
   List<UserNotification> getAll();
 
   UserNotification add(UserNotification userNotification);
+
+  List<UserNotification> readNotificationsForUser(Long id);
 }

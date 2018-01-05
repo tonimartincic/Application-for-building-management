@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import styles from './notifications.css';
 import fetchUserNotificationsForUser from "../../../actionCreators/userNotificationsActionCreators";
 import fetchUserData from "../../../actionCreators/userDataActionCreators";
+import readNotificationsForUser from "../../../actionCreators/userNotificationsActionCreators";
 
 class Notifications extends Component {
 
@@ -14,15 +15,36 @@ class Notifications extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {newNotifications:true};
   }
 
-  render() {
+    checkForNotifications(){
+      var noNewNotifications=true;
 
+      for(let i = 0; i < this.props.userNotifications.length; i++) {
+        if(this.props.userNotifications[i].read==false){
+          noNewNotifications=false;
+          break;
+        }
+      }
+      if(!noNewNotifications){
+        this.props.readNotificationsForUser();
+        this.setState({newNotifications: true});
+      }else{
+        this.setState({newNotifications: false});
+      }
+    }
+
+  render() {
+  let bellColor = this.state.newNotifications ? "red" : "white"
     return (
       <div>
-        <NavDropdown title = {<span class="glyphicon glyphicon-bell" />} pullRight id='nav-dropdown2'>
+        <NavDropdown title = {<span class="glyphicon glyphicon-bell" style={{color: bellColor}} />} pullRight id='nav-dropdown2'
+         onClick={() => this.checkForNotifications()}>
           {
-            this.props.userNotifications
+            [...this.props.userNotifications]
+              .reverse()
+              .slice(0, 5)
               .map((notification, index) => {
                 return (
                   <MenuItem key={index}>
@@ -49,7 +71,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchUserData: () => dispatch(fetchUserData()),
     fetchUserNotificationsForUser: () => dispatch(fetchUserNotificationsForUser()),
-
+    readNotificationsForUser: () => dispatch(readNotificationsForUser()),
   };
 }
 

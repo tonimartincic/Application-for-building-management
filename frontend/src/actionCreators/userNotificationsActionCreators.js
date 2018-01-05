@@ -17,3 +17,19 @@ export default async function fetchUserNotificationsForUser() {
     };
   }
 }
+export async function readNotificationsForUser() {
+  try {
+    const userId = JSON.parse(localStorage.getItem('user')).id;
+    const response = await axios.get('/api/user-notifications-read/'+userId);
+
+    return {
+      type: types.READ_USER_NOTIFICATIONS_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.READ_USER_NOTIFICATIONS_FAILURE,
+      data: err,
+    };
+  }
+}
