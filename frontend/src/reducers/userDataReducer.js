@@ -26,6 +26,13 @@ export default function userDataReducer(state = initialState.userData, action) {
     }
     case types.FETCH_USER_DATA_FAILURE:
       return state;
+    case types.EDIT_USER_INFO_SUCCESS: {
+      if (action.data === '' || action.data == null)
+        return state;
+      return action.data;
+    }
+    case types.EDIT_USER_INFO_FAILURE:
+      return state;
     case types.SET_INVALID_USER_NAME_AND_PASSWORD_VALUE:
       return Object.assign({}, state,
         {
