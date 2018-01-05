@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Row, Col, Checkbox, Button} from 'react-bootstrap';
+import { Modal, Row, Col, Checkbox, Button } from 'react-bootstrap';
 import { toggleUserSettings } from "../../../actions/userSettingsActions";
 import { toggleReminderValue } from "../../../actionCreators/userDataActionCreators";
 import {editUserInfo} from "../../../actionCreators/usersActionCreators"
 import ChangePersonalInfo from "./ChangePersonalInfo";
 import ChangePassword from "./ChangePassword";
+import { ADMINISTRATOR } from "../../../constants/values";
 
 class Settings extends Component {
   render (){
@@ -19,15 +20,19 @@ class Settings extends Component {
             <Modal.Title>Postavke</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Row>
-              <Col mdOffset={2}>
-                <Checkbox
-                  checked={this.props.userData.reminder}
-                  onChange={() => this.props.toggleReminderValue()} >
-                  Želim podsjetnike za naloge.
-                </Checkbox>
-              </Col>
-            </Row>
+            <Choose>
+              <When condition={this.props.userData.privilege !== ADMINISTRATOR}>
+                <Row>
+                  <Col mdOffset={2}>
+                    <Checkbox
+                      checked={this.props.userData.reminder}
+                      onChange={() => this.props.toggleReminderValue()}>
+                      Želim podsjetnike za naloge.
+                    </Checkbox>
+                  </Col>
+                </Row>
+              </When>
+            </Choose>
             <Row>
               <Col mdOffset={1}>
                 <Button onClick={() => this.props.toggleUpdateUserInfoClicked()}>Promijeni osobne podatke</Button>
