@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, Collapse} from 'react-bootstrap';
 import { deletePaymentOrder, editPaymentOrder } from '../../../actionCreators/paymentOrdersActionCreators';
-import * as styles from './updatePaymentOrder.css';
+import DatePicker from 'react-bootstrap-date-picker';
+import styles from './updatePaymentOrder.css';
+import * as constants from '../../../constants/values';
 import * as dateUtils from '../../../utils/DateUtil';
 
 class UpdatePaymentOrder extends React.Component {
@@ -70,18 +72,19 @@ class UpdatePaymentOrder extends React.Component {
 
     for (let i = 0; i < paymentOrders.length; ++i) {
       if (paymentOrders[i] !== null) {
-        if (paymentOrders[i].id == event.target.value)
+        if (paymentOrders[i].id == event.target.value) {
           this.setState({
             paymentOrder: {
               id: paymentOrders[i].id,
               amount: paymentOrders[i].amount,
               description: paymentOrders[i].description,
-              paymentDue: paymentOrders[i].paymentDue,
-              dayOfPayment: paymentOrders[i].dayOfPayment,
-              payerId: paymentOrders[i].payerId,
-              receiverId: paymentOrders[i].receiverId,
+              paymentDue: dateUtils.createDateForDatePickerFromDateFromBackend(paymentOrders[i].paymentDue),
+              dayOfPayment: dateUtils.createDateForDatePickerFromDateFromBackend(paymentOrders[i].dayOfPayment),
+              payerId: paymentOrders[i].payer.id,
+              receiverId: paymentOrders[i].receiver.id,
             }
           });
+        }
       }
     }
 
@@ -254,7 +257,8 @@ class UpdatePaymentOrder extends React.Component {
                   this.props.paymentOrders
                     .filter(paymentOrder => paymentOrder !== null)
                     .map(paymentOrderTemp => {
-                      const record = "Id platitelja i primatelja (" + paymentOrderTemp.payerId + "," + paymentOrderTemp.receiverId + "), Nalog:"
+                      const record = "Platitelj: " + paymentOrderTemp.payer.firstName + " " + paymentOrderTemp.payer.lastName +
+                        ", Primatelj: " + paymentOrderTemp.receiver.firstName + " " + paymentOrderTemp.receiver.lastName +  ", Nalog: "
                         + paymentOrderTemp.description + " - " + paymentOrderTemp.amount + " kn";
                       return (
                         <option key={paymentOrderTemp.id} value={paymentOrderTemp.id}>
@@ -282,6 +286,7 @@ class UpdatePaymentOrder extends React.Component {
                       <ControlLabel>Iznos</ControlLabel>
                       <FormControl
                         type="text"
+                        value={this.state.paymentOrder.amount}
                         placeholder="Unesi iznos"
                         onChange={this.handleChangeAmount}
                       />
@@ -303,6 +308,7 @@ class UpdatePaymentOrder extends React.Component {
                       <ControlLabel>Opis</ControlLabel>
                       <FormControl
                         type="text"
+                        value={this.state.paymentOrder.description}
                         placeholder="Unesi opis"
                         onChange={this.handleChangeDescription}
                       />
@@ -323,7 +329,7 @@ class UpdatePaymentOrder extends React.Component {
                     >
                       <ControlLabel>Datum prispijeća</ControlLabel>
                       <DatePicker
-                        value={this.state.paymentDue}
+                        value={this.state.paymentOrder.paymentDue}
                         dateFormat='DD-MM-YYYY'
                         weekStartsOn={1}
                         dayLabels={constants.datePickerDayNames}
@@ -346,7 +352,7 @@ class UpdatePaymentOrder extends React.Component {
                     >
                       <ControlLabel>Datum plaćanja</ControlLabel>
                       <DatePicker
-                        value={this.state.dayOfPayment}
+                        value={this.state.paymentOrder.dayOfPayment}
                         dateFormat='DD-MM-YYYY'
                         weekStartsOn={1}
                         dayLabels={constants.datePickerDayNames}
@@ -359,9 +365,10 @@ class UpdatePaymentOrder extends React.Component {
                       controlId="payerIdInput"
                       validationState={this.state.payerIdValidation}
                     >
-                      <ControlLabel>Platitelja</ControlLabel>
+                      <ControlLabel>Platitelj</ControlLabel>
                       <FormControl
                         componentClass="select"
+                        defaultValue={this.state.paymentOrder.payerId}
                         placeholder="select"
                         onChange={this.handleChangePayerId}
                       >
@@ -391,6 +398,7 @@ class UpdatePaymentOrder extends React.Component {
                       <ControlLabel>Primatelj</ControlLabel>
                       <FormControl
                         componentClass="select"
+                        defaultValue={this.state.paymentOrder.receiverId}
                         placeholder="select"
                         onChange={this.handleChangeReceiverId}
                       >
@@ -443,6 +451,7 @@ class UpdatePaymentOrder extends React.Component {
 function mapStateToProps(state) {
   return {
     paymentOrders: state.paymentOrders,
+    users: state.users,
   };
 }
 
