@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Row, Col, Checkbox, Button, Collapse, FormControl, FormGroup, ListGroup, Well} from 'react-bootstrap';
+import { Modal, Row, Col, Checkbox, Button} from 'react-bootstrap';
 import { toggleUserSettings } from "../../../actions/userSettingsActions";
 import { toggleReminderValue } from "../../../actionCreators/userDataActionCreators";
 import {editUserInfo} from "../../../actionCreators/usersActionCreators"
+import ChangePersonalInfo from "./ChangePersonalInfo";
 
 class Settings extends Component {
   render (){
@@ -32,54 +33,14 @@ class Settings extends Component {
               </Col>
             </Row>
             <br />
-            <Collapse in={this.props.updateUserInfoClicked}>
-              <Well>
-                <FormGroup controlId="formControlsSelect">
-                  <ListGroup>
-                    <Row>
-                      <Col md={2} mdOffset={1}>
-                        <p>Ime: </p>
-                      </Col>
-                      <Col md={6}>
-                        <FormControl
-                          type="text"
-                          value={this.props.currentUser.firstName}
-                          placeholder={this.props.currentUser.firstName}
-                          onChange={this.props.handleChangeFirstName}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md={2} mdOffset={1}>
-                        <p>Prezime: </p>
-                      </Col>
-                      <Col md={6}>
-                        <FormControl
-                          type="text"
-                          value={this.props.currentUser.lastName}
-                          placeholder={this.props.currentUser.lastName}
-                          onChange={this.props.handleChangeLastName}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md={2} mdOffset={1}>
-                        <p>E - Mail: </p>
-                      </Col>
-                      <Col md={6}>
-                        <FormControl
-                          type="text"
-                          value={this.props.currentUser.mail}
-                          placeholder={this.props.currentUser.mail}
-                          onChange={this.props.handleChangeMail}
-                        />
-                      </Col>
-                    </Row>
-                  </ListGroup>
-                </FormGroup>
-                <Button onClick={() => this.props.handleSubmit()}>Potvrdi</Button>
-              </Well>
-            </Collapse>
+            <ChangePersonalInfo
+              currentUser={this.props.currentUser}
+              updateUserInfoClicked={this.props.updateUserInfoClicked}
+              lastNameChange={this.props.lastNameChange}
+              handleChangeMail={this.props.handleChangeMail}
+              changeFirstName={this.props.changeFirstName}
+              handleSubmit={this.props.handleSubmit}
+            />
           </Modal.Body>
         </Modal>
       </div>

@@ -28,14 +28,13 @@ class SettingsContainer extends Component {
 
     this.toggleUpdateUserInfoClicked = this.toggleUpdateUserInfoClicked.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
-    this.handleChangeLastName = this.handleChangeLastName.bind(this);
+    this.changeFirstName = this.changeFirstName.bind(this);
+    this.lastNameChange = this.lastNameChange.bind(this);
     this.handleChangeMail = this.handleChangeMail.bind(this);
     this.resetState = this.resetState.bind(this);
   }
 
-  handleSubmit() {
-    debugger;
+  handleSubmit = () => {
     if(this.state.user.firstName === null || this.state.user.firstName === '' ||
       this.state.user.lastName === null || this.state.user.lastName === '' || !this.checkEmail()) {
       if(this.state.user.firstName === null || this.state.user.firstName === '') {
@@ -56,8 +55,8 @@ class SettingsContainer extends Component {
     }
   }
 
-  handleChangeFirstName = (event) => {
-    const userTemp = this.props.userData;
+  changeFirstName = (event) => {
+    const userTemp = this.state.user;
     userTemp.firstName = event.target.value;
     this.setState({
       user: {
@@ -69,21 +68,6 @@ class SettingsContainer extends Component {
 
       },
       firstNameValidation: null,
-    });
-  };
-
-  handleChangeLastName = (event) => {
-    const userTemp = this.state.user;
-    userTemp.lastName = event.target.value;
-    this.setState({
-      user: {
-        id: userTemp.id,
-        firstName: userTemp.firstName,
-        lastName: userTemp.lastName,
-        mail: userTemp.mail,
-        privilege: userTemp.privilege,
-      },
-      lastNameValidation: null,
     });
   };
 
@@ -104,8 +88,22 @@ class SettingsContainer extends Component {
     });
   };
 
+  lastNameChange = (event) => {
+    const userTemp = this.state.user;
+    userTemp.lastName = event.target.value;
+    this.setState({
+      user: {
+        id: userTemp.id,
+        firstName: userTemp.firstName,
+        lastName: userTemp.lastName,
+        mail: userTemp.mail,
+        privilege: userTemp.privilege,
+      },
+      lastNameValidation: null,
+    });
+  };
+
   checkEmail() {
-    debugger;
     if(this.state.user.mail === null || this.state.user.mail === '') {
       this.setState({
         emailValidationEmptyString: 'error',
@@ -165,9 +163,9 @@ class SettingsContainer extends Component {
       <Settings
         currentUser={this.state.user}
         handleSubmit={this.handleSubmit}
-        handleChangeFirstName={this.handleChangeFirstName}
-        handleChangeLastName={this.handleChangeLastName}
         handleChangeMail={this.handleChangeMail}
+        changeFirstName={this.changeFirstName}
+        lastNameChange={this.lastNameChange}
         toggleUpdateUserInfoClicked={this.toggleUpdateUserInfoClicked}
         firstNameValidation={this.state.firstNameValidation}
         lastNameValidation={this.state.lastNameValidation}
