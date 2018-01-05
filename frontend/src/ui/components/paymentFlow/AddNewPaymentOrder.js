@@ -259,7 +259,7 @@ class AddNewPaymentOrder extends React.Component {
                 controlId="payerIdInput"
                 validationState={this.state.payerIdValidation}
               >
-                <ControlLabel>Id platitelja</ControlLabel>
+                <ControlLabel>Platitelj</ControlLabel>
                 <FormControl
                   componentClass="select"
                   placeholder="select"
@@ -277,7 +277,7 @@ class AddNewPaymentOrder extends React.Component {
                   <Col md={4}>
                     <section>
                       <Collapse in={this.state.payerIdValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate odabrati id platitelja.</p>
+                        <p className={styles.pInvalid}>Morate odabrati platitelja.</p>
                       </Collapse>
                     </section>
                   </Col>
@@ -288,7 +288,7 @@ class AddNewPaymentOrder extends React.Component {
                 controlId="receiverIdInput"
                 validationState={this.state.receiverIdValidation}
               >
-                <ControlLabel>Id primatelja</ControlLabel>
+                <ControlLabel>Primatelja</ControlLabel>
                 <FormControl
                   componentClass="select"
                   placeholder="select"
@@ -306,7 +306,7 @@ class AddNewPaymentOrder extends React.Component {
                   <Col md={4}>
                     <section>
                       <Collapse in={this.state.receiverIdValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate odabrati id primatelja.</p>
+                        <p className={styles.pInvalid}>Morate odabrati primatelja.</p>
                       </Collapse>
                     </section>
                   </Col>
