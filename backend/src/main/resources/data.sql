@@ -29,7 +29,7 @@ Insert into apartment (building_id, area, owner_id) values (2, 56.50, null);
 
 Insert into user_notification (description, user_id) values ('Sutra ste na rasporedu za čišćenje snijega',1);
 Insert into user_notification (description, user_id) values ('Niste podmirili dugovanje za prošli mjesec',2);
-Insert into user_notification (description, user_id) values ('Danas ste na rasporedu za čišćenje snijega',3);
+Insert into user_notification (description, user_id) values ('Danas ste na rasporedu za čišćenje snijega',4);
 Insert into user_notification (description, user_id) values ('Imate nepodmirene račune',6);
 Insert into user_notification (description, user_id) values ('Termin čišćenja snijega uspješno zamijenjen',4);
 
