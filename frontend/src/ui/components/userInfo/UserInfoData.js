@@ -44,21 +44,33 @@ class Preferences extends React.Component {
                               <h4>Adresa zgrade:  {apartment.building.address}</h4>
                             </Col>
                           </Row>
-                          <Row>
-                            <Col>
-                              <h4>Predstavnik stanara:
-                                {" "+apartment.building.landlord.firstName
-                                + " "
-                                +apartment.building.landlord.lastName
-                                +" (" + apartment.building.landlord.mail + ")"}
-                              </h4>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <h4>Upravitelj: {apartment.building.manager}</h4>
-                            </Col>
-                          </Row>
+                          <Choose>
+                            <When condition={apartment.building.landlord !== null}>
+                              <Row>
+                                <Col>
+                                  <h4>Predstavnik stanara:
+                                    {" "+apartment.building.landlord.firstName
+                                    + " "
+                                    +apartment.building.landlord.lastName
+                                    +" (" + apartment.building.landlord.mail + ")"}
+                                  </h4>
+                                </Col>
+                              </Row>
+                            </When>
+                          </Choose>
+                          <Choose>
+                            <When condition={apartment.building.manager !== null}>
+                              <Row>
+                                <Col>
+                                  <h4>Upravitelj:
+                                    {" "+apartment.building.manager.firstName
+                                  + " "
+                                  +apartment.building.manager.lastName
+                                  +" (" + apartment.building.manager.mail + ")"}</h4>
+                                </Col>
+                              </Row>
+                            </When>
+                          </Choose>
                         </div>)
                   }
 
