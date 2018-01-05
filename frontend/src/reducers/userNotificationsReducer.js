@@ -7,6 +7,10 @@ export default function userNotificationsReducer(state = initialState.userNotifi
       return action.data;
     case types.FETCH_USER_NOTIFICATIONS_FAILURE:
       return state;
+    case types.READ_USER_NOTIFICATIONS_SUCCESS:
+      return action.data;
+    case types.READ_USER_NOTIFICATIONS_FAILURE:
+      return state;
     default:
       return state;
   }

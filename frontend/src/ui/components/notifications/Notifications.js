@@ -5,12 +5,13 @@ import {withRouter} from 'react-router-dom';
 import styles from './notifications.css';
 import fetchUserNotificationsForUser from "../../../actionCreators/userNotificationsActionCreators";
 import fetchUserData from "../../../actionCreators/userDataActionCreators";
-import readNotificationsForUser from "../../../actionCreators/userNotificationsActionCreators";
+import {readNotificationsForUser} from "../../../actionCreators/userNotificationsActionCreators";
 
 class Notifications extends Component {
 
   componentDidMount() {
     this.props.fetchUserNotificationsForUser();
+    this.checkForNotifications();
   }
 
   constructor(props) {
