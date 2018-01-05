@@ -31,4 +31,8 @@ public class ApartmentController {
   public Apartment addNewApartment(@RequestBody final Apartment apartment) {
     return apartmentService.add(apartment);
   }
+
+  @GetMapping("/api/apartments/user/{id}")
+  public Apartment getApartmentForCurrentUser(@PathVariable Long id) {
+    return apartmentService.getByUserId(id); }
 }

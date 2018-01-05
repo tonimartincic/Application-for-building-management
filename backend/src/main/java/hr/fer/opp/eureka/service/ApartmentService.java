@@ -11,4 +11,6 @@ public interface ApartmentService {
   Apartment getById(Long id);
 
   Apartment add(Apartment apartment);
+
+  Apartment getByUserId(Long id);
 }

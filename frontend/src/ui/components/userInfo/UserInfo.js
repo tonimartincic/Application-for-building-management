@@ -6,6 +6,7 @@ import SettingsContainer from './SettingsContainer';
 import {toggleUserInfo} from "../../../actions/userInfoActions";
 import {toggleUserSettings} from "../../../actions/userSettingsActions";
 import {withRouter} from 'react-router-dom';
+import { fetchApartmentForCurrentUser } from '../../../actionCreators/apartmentsActionCreators';
 
 class UserInfo extends Component {
   logout = () => {
@@ -19,7 +20,10 @@ class UserInfo extends Component {
         <UserInfoData />
         <SettingsContainer />
         <NavDropdown title = {this.props.userData.firstName + ' ' + this.props.userData.lastName} id='nav-dropdown'>
-          <MenuItem onClick={() => this.props.toggleUserInfo(true)}>
+          <MenuItem onClick={() => {
+            this.props.toggleUserInfo(true);
+            this.props.fetchApartmentForCurrentUser(this.props.userData.id)
+          }}>
             <span className='glyphicon glyphicon-info-sign' /> &nbsp;&nbsp; Informacije
           </MenuItem>
           <MenuItem divider />
@@ -46,6 +50,7 @@ function mapDispatchToProps(dispatch) {
   return {
     toggleUserInfo: (value) => dispatch(toggleUserInfo(value)),
     toggleUserSettings: (value) => dispatch(toggleUserSettings(value)),
+    fetchApartmentForCurrentUser: id => dispatch(fetchApartmentForCurrentUser(id)),
   };
 }
 

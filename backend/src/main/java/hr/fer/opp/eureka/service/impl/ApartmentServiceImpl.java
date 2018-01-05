@@ -33,4 +33,17 @@ public class ApartmentServiceImpl implements ApartmentService {
   public Apartment add(Apartment apartment) {
     return this.apartmentRepository.save(apartment);
   }
+
+  @Override
+  public Apartment getByUserId(Long id) {
+    Iterable<Apartment> apartments = apartmentRepository.findAll();
+
+    for(Apartment apartment : apartments) {
+      if(apartment.getOwner() != null) {
+        if(apartment.getOwner().getId() == id)
+          return apartment;
+      }
+    }
+    return null;
+  }
 }
