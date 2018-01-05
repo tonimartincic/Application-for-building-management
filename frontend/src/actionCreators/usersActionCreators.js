@@ -20,7 +20,6 @@ export default async function fetchBuildingUsersById(id) {
 
 export async function fetchUsers() {
   try {
-
     const response = await axios.get('/api/users');
 
     return {

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Row, Col, Checkbox } from 'react-bootstrap';
+import { Modal, Row, Col, Checkbox, Button} from 'react-bootstrap';
 import { toggleUserSettings } from "../../../actions/userSettingsActions";
 import { toggleReminderValue } from "../../../actionCreators/userDataActionCreators";
+import {editUserInfo} from "../../../actionCreators/usersActionCreators"
+import ChangePersonalInfo from "./ChangePersonalInfo";
+import ChangePassword from "./ChangePassword";
 
 class Settings extends Component {
   render (){
@@ -25,6 +28,40 @@ class Settings extends Component {
                 </Checkbox>
               </Col>
             </Row>
+            <Row>
+              <Col mdOffset={1}>
+                <Button onClick={() => this.props.toggleUpdateUserInfoClicked()}>Promijeni osobne podatke</Button>
+              </Col>
+            </Row>
+            <br />
+            <ChangePersonalInfo
+              currentUser={this.props.currentUser}
+              updateUserInfoClicked={this.props.updateUserInfoClicked}
+              lastNameChange={this.props.lastNameChange}
+              handleChangeMail={this.props.handleChangeMail}
+              changeFirstName={this.props.changeFirstName}
+              handleSubmit={this.props.handleSubmit}
+            />
+            <Row>
+              <Col mdOffset={1}>
+                <Button onClick={() => this.props.toggleUpdatePasswordClicked()}>Promijeni lozinku</Button>
+              </Col>
+            </Row>
+            <br />
+            <ChangePassword
+              updatePasswordClicked={this.props.updatePasswordClicked}
+              toggleUpdatePasswordClicked={this.props.toggleUpdatePasswordClicked}
+              oldPasswordChange={this.props.oldPasswordChange}
+              newPasswordChange={this.props.newPasswordChange}
+              newPasswordChangeRepeat={this.props.newPasswordChangeRepeat}
+              oldPassword={this.props.oldPassword}
+              newPassword={this.props.newPassword}
+              newPasswordRepeat={this.props.newPasswordRepeat}
+              handleSubmitPassword={this.props.handleSubmitPassword}
+              correctOldPasswordValidation={this.props.correctOldPasswordValidation}
+              matchingNewPasswordsValidation={this.props.matchingNewPasswordsValidation}
+              emptyPasswordFieldsValidation={this.props.emptyPasswordFieldsValidation}
+            />
           </Modal.Body>
         </Modal>
       </div>
@@ -35,6 +72,7 @@ class Settings extends Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
+    users: state.users,
     userSettingsClicked: state.userSettingsClicked,
   };
 }
@@ -42,7 +80,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     toggleUserSettings: value => dispatch(toggleUserSettings(value)),
-    toggleReminderValue: () => dispatch(toggleReminderValue())
+    toggleReminderValue: () => dispatch(toggleReminderValue()),
+    editUserInfo: user => dispatch(editUserInfo()),
   };
 }
 
