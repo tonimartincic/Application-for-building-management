@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as types from '../actions/actionTypes';
+import {ADMINISTRATOR} from "../constants/values";
 
 export default async function fetchBuildingUsersById(id) {
   try {
@@ -65,7 +66,7 @@ export async function addNewAdministrator(firstName, lastName, eMail) {
       firstName: firstName,
       lastName: lastName,
       mail: eMail,
-      privilege: "ADMINISTRATOR"
+      privilege: ADMINISTRATOR
     };
 
     const response = await axios.post('/api/users/administrator', user);

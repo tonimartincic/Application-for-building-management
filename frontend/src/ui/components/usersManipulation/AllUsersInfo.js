@@ -145,7 +145,7 @@ class AllUsersInfo extends Component {
         </Row>
         <Col md={8} mdOffset={3}>
           <AddNewUserContainer
-            addNewAdministratorClicked={this.state.addNewAdministratorClicked}
+            addNewUserClicked={this.state.addNewUserClicked}
             toggleAddNewUser={this.toggleAddNewUser}
             buildingId={this.state.buildingId}/>
           <UpdateUserInfoContainer

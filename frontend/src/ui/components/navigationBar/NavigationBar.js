@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import styles from './navigationBar.css';
 import UserInfo from '../userInfo/UserInfo';
+import Notifications from '../notifications/Notifications';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../../../actionCreators/userDataActionCreators';
 
@@ -39,7 +40,7 @@ class NavigationBar extends Component {
             href='/planning-future-costs'
           >
             <span className={styles.span}>
-              <span className='glyphicon glyphicon-file' />    Planiranje budućih troškova
+              <span className='glyphicon glyphicon-file' />    Troškovi
             </span>
           </NavItem>
           <NavItem
@@ -48,7 +49,7 @@ class NavigationBar extends Component {
             href='/payments'
           >
             <span className={styles.span}>
-              <span className='glyphicon glyphicon-euro' />    Zajednički novac
+              <span className='glyphicon glyphicon-euro' />    Nalozi
             </span>
           </NavItem>
           <NavItem
@@ -62,6 +63,9 @@ class NavigationBar extends Component {
           </NavItem >
           <NavItem >
             <UserInfo />
+          </NavItem>
+          <NavItem >
+            <Notifications />
           </NavItem>
           <Choose>
             <When condition={this.props.userData.privilege === 'Administrator'}>

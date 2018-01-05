@@ -1,6 +1,8 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
+import hr.fer.opp.eureka.domain.apartment.Apartment;
+import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.cost.CostRequest;
 import hr.fer.opp.eureka.domain.cost.CostResponse;
@@ -31,8 +33,19 @@ public class CostServiceImpl implements CostService {
   }
 
   @Override
-  public List<CostResponse> getAll() {
-    return getCostResponses(Lists.newArrayList(costRepository.findAll()));
+  public List<CostResponse> getAllForCurrentUser(Long currentUserId) {
+    Building currentUserBuilding = ((Apartment) this.userRepository.findById(currentUserId).getApartments().toArray()[0]).getBuilding();
+
+    List<Cost> allCosts = Lists.newArrayList(this.costRepository.findAll());
+    List<CostResponse> costResponsesForBuilding = new ArrayList<>();
+
+    for(Cost cost : allCosts) {
+      if(((Apartment) cost.getCreator().getApartments().toArray()[0]).getBuilding().getId() == currentUserBuilding.getId()) {
+        costResponsesForBuilding.add(getCostResponse(cost));
+      }
+    }
+
+    return costResponsesForBuilding;
   }
 
   @Override

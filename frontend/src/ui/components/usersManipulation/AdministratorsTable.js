@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, PageHeader, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import styles from './userInfo.css';
+import {ADMINISTRATOR} from "../../../constants/values";
 
 class AdministratorsTable extends Component {
   render(){
@@ -21,7 +22,7 @@ class AdministratorsTable extends Component {
               {
                 this.props.users
                   .filter(user => user !== null)
-                  .filter(user => user.privilege === 'ADMINISTRATOR' || user.privilege === 'Administrator')
+                  .filter(user => user.privilege === ADMINISTRATOR)
                   .map((user, index) => {
                     return (
                       <tr key={index}>

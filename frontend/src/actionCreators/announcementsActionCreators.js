@@ -3,7 +3,8 @@ import * as types from '../actions/actionTypes';
 
 export default async function fetchAnnouncements() {
   try {
-    const response = await axios.get('/api/announcements');
+    const currentUserId = JSON.parse(localStorage.getItem('user')).id;
+    const response = await axios.get('/api/announcements/current-user/' + currentUserId);
 
     return {
       type: types.FETCH_ANNOUNCEMENTS_SUCCESS,

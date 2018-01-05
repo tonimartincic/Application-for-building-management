@@ -43,15 +43,12 @@ public class BuildingServiceImpl implements BuildingService {
 
   @Override
   public List<UserResponse> getAllUsersByBuildingId(Long id) {
-
     Iterable<Apartment> apartmentList = apartmentRepository.findAll();
-
     List<UserResponse> users = new ArrayList<>();
 
     for(Apartment apartment : apartmentList){
-      if (apartment.getBuilding().getId() == id) {
-        if(apartment.getOwner() != null)
-          users.add(new UserResponse(apartment.getOwner()));
+      if (apartment.getBuilding().getId() == id && apartment.getOwner() != null) {
+        users.add(new UserResponse(apartment.getOwner()));
       }
     }
 
