@@ -1,6 +1,5 @@
 package hr.fer.opp.eureka.controller;
 
-import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.domain.user.UserRequest;
 import hr.fer.opp.eureka.domain.user.UserResponse;
 import hr.fer.opp.eureka.service.UserService;
@@ -34,9 +33,14 @@ public class UserController {
     return userService.add(userRequest, apartmentId);
   }
 
-  @PostMapping("/api/users/edit")
+  @PutMapping("/api/users/edit")
   public UserResponse editUser(@RequestBody final UserRequest userRequest) {
     return this.userService.edit(userRequest);
+  }
+
+  @PutMapping("/api/users/edit-password")
+  public UserResponse editUserPassword(@RequestBody final UserRequest userRequest) {
+    return this.userService.editPassword(userRequest);
   }
 
   @DeleteMapping("/api/users/{id}")

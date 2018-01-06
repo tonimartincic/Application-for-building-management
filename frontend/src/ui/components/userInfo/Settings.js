@@ -7,6 +7,7 @@ import {editUserInfo} from "../../../actionCreators/usersActionCreators"
 import ChangePersonalInfo from "./ChangePersonalInfo";
 import ChangePassword from "./ChangePassword";
 import { ADMINISTRATOR } from "../../../constants/values";
+import * as styles from './settings.css';
 
 class Settings extends Component {
   render (){
@@ -33,40 +34,42 @@ class Settings extends Component {
                 </Row>
               </When>
             </Choose>
-            <Row>
-              <Col mdOffset={1}>
-                <Button onClick={() => this.props.toggleUpdateUserInfoClicked()}>Promijeni osobne podatke</Button>
-              </Col>
-            </Row>
-            <br />
-            <ChangePersonalInfo
-              currentUser={this.props.currentUser}
-              updateUserInfoClicked={this.props.updateUserInfoClicked}
-              lastNameChange={this.props.lastNameChange}
-              handleChangeMail={this.props.handleChangeMail}
-              changeFirstName={this.props.changeFirstName}
-              handleSubmit={this.props.handleSubmit}
-            />
-            <Row>
-              <Col mdOffset={1}>
-                <Button onClick={() => this.props.toggleUpdatePasswordClicked()}>Promijeni lozinku</Button>
-              </Col>
-            </Row>
-            <br />
-            <ChangePassword
-              updatePasswordClicked={this.props.updatePasswordClicked}
-              toggleUpdatePasswordClicked={this.props.toggleUpdatePasswordClicked}
-              oldPasswordChange={this.props.oldPasswordChange}
-              newPasswordChange={this.props.newPasswordChange}
-              newPasswordChangeRepeat={this.props.newPasswordChangeRepeat}
-              oldPassword={this.props.oldPassword}
-              newPassword={this.props.newPassword}
-              newPasswordRepeat={this.props.newPasswordRepeat}
-              handleSubmitPassword={this.props.handleSubmitPassword}
-              correctOldPasswordValidation={this.props.correctOldPasswordValidation}
-              matchingNewPasswordsValidation={this.props.matchingNewPasswordsValidation}
-              emptyPasswordFieldsValidation={this.props.emptyPasswordFieldsValidation}
-            />
+            <section className={styles.sectionButtons}>
+              <Row>
+                <Col mdOffset={1}>
+                  <Button onClick={() => this.props.toggleUpdateUserInfoClicked()}>Promijeni osobne podatke</Button>
+                </Col>
+              </Row>
+              <br />
+              <ChangePersonalInfo
+                currentUser={this.props.currentUser}
+                updateUserInfoClicked={this.props.updateUserInfoClicked}
+                lastNameChange={this.props.lastNameChange}
+                handleChangeMail={this.props.handleChangeMail}
+                changeFirstName={this.props.changeFirstName}
+                handleSubmit={this.props.handleSubmit}
+              />
+              <Row>
+                <Col mdOffset={1}>
+                  <Button onClick={() => this.props.toggleUpdatePasswordClicked()}>Promijeni lozinku</Button>
+                </Col>
+              </Row>
+              <br />
+              <ChangePassword
+                updatePasswordClicked={this.props.updatePasswordClicked}
+                toggleUpdatePasswordClicked={this.props.toggleUpdatePasswordClicked}
+                oldPasswordChange={this.props.oldPasswordChange}
+                newPasswordChange={this.props.newPasswordChange}
+                newPasswordChangeRepeat={this.props.newPasswordChangeRepeat}
+                oldPassword={this.props.oldPassword}
+                newPassword={this.props.newPassword}
+                newPasswordRepeat={this.props.newPasswordRepeat}
+                handleSubmitPassword={this.props.handleSubmitPassword}
+                correctOldPasswordValidation={this.props.correctOldPasswordValidation}
+                matchingNewPasswordsValidation={this.props.matchingNewPasswordsValidation}
+                emptyPasswordFieldsValidation={this.props.emptyPasswordFieldsValidation}
+              />
+            </section>
           </Modal.Body>
         </Modal>
       </div>

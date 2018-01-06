@@ -85,7 +85,8 @@ export async function addNewAdministrator(firstName, lastName, eMail) {
 
 export async function editUserInfo(user) {
   try {
-    const response = await axios.post('/api/users/edit', user);
+    const response = await axios.put('/api/users/edit', user);
+    localStorage.setItem('user', JSON.stringify(response.data));
 
     return {
       type: types.EDIT_USER_INFO_SUCCESS,
@@ -94,6 +95,23 @@ export async function editUserInfo(user) {
   } catch (err) {
     return {
       type: types.EDIT_USER_INFO_FAILURE,
+      data: err,
+    };
+  }
+}
+
+export async function editUserPassword(user) {
+  try {
+    const response = await axios.put('/api/users/edit-password', user);
+    localStorage.setItem('user', JSON.stringify(response.data));
+
+    return {
+      type: types.EDIT_USER_PASSWORD_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.EDIT_USER_PASSWORD_FAILURE,
       data: err,
     };
   }

@@ -27,6 +27,7 @@ class UpdateUserInfoContainer extends React.Component {
       emailValidationNotCorrectFormat: null,
       privilegeValidationEmpty: null,
       privilegeValidationAlreadyExists: null,
+      updatingPersonalInfoValidation: null,
     };
 
     this.handleChangeUser = this.handleChangeUser.bind(this);
@@ -36,6 +37,7 @@ class UpdateUserInfoContainer extends React.Component {
     this.handleChangePrivilege = this.handleChangePrivilege.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
+    this.handleUpdatingPersonalInfoDismiss = this.handleUpdatingPersonalInfoDismiss.bind(this);
   }
 
   resetState = () => {
@@ -57,6 +59,7 @@ class UpdateUserInfoContainer extends React.Component {
       emailValidationNotCorrectFormat: null,
       privilegeValidationEmpty: null,
       privilegeValidationAlreadyExists: null,
+      updatingPersonalInfoValidation: null,
     });
   };
 
@@ -120,36 +123,41 @@ class UpdateUserInfoContainer extends React.Component {
   };
 
   handleSubmit() {
-    if(this.state.userPrivilege !== 'select' && this.state.userPrivilege !== null) {
-      const userTemp = this.state.user;
-      userTemp.privilege = this.state.userPrivilege;
+    if (this.state.user.id === this.props.userData.id) {
       this.setState({
-        user: userTemp,
+        updatingPersonalInfoValidation: true,
       });
-    }
-
-    if(!this.checkFirstName() || !this.checkLastName() || !this.checkEmail() || !this.checkPrivilege()) {
-      if(!this.checkFirstName()) {
-        this.setState({
-          firstNameValidation: true,
-        });
-      }
-      if(!this.checkLastName() ) {
-        this.setState({
-          lastNameValidation: true,
-        });
-      }
-      this.checkPrivilege();
-      this.checkEmail();
     } else {
-      this.props.editUserFromBuildingInfo(this.state.user);
-      this.resetState();
-      this.props.toggleUpdateUserInfo();
+      if (this.state.userPrivilege !== 'select' && this.state.userPrivilege !== null) {
+        const userTemp = this.state.user;
+        userTemp.privilege = this.state.userPrivilege;
+        this.setState({
+          user: userTemp,
+        });
+      }
+
+      if (!this.checkFirstName() || !this.checkLastName() || !this.checkEmail() || !this.checkPrivilege()) {
+        if (!this.checkFirstName()) {
+          this.setState({
+            firstNameValidation: true,
+          });
+        }
+        if (!this.checkLastName()) {
+          this.setState({
+            lastNameValidation: true,
+          });
+        }
+        this.checkPrivilege();
+        this.checkEmail();
+      } else {
+        this.props.editUserFromBuildingInfo(this.state.user);
+        this.resetState();
+        this.props.toggleUpdateUserInfo();
+      }
     }
   }
 
   checkFirstName() {
-    debugger;
     if(this.state.user.firstName !== '' && this.state.user.firstName !== null)
       return true;
     return false;
@@ -225,6 +233,11 @@ class UpdateUserInfoContainer extends React.Component {
     });
   };
 
+  handleUpdatingPersonalInfoDismiss() {
+    this.setState({
+      updatingPersonalInfoValidation: false,
+    })
+  }
 
   render() {
     return (
@@ -253,6 +266,9 @@ class UpdateUserInfoContainer extends React.Component {
         emailValidationNotCorrectFormat={this.state.emailValidationNotCorrectFormat}
         privilegeValidationEmpty={this.state.privilegeValidationEmpty}
         privilegeValidationAlreadyExists={this.state.privilegeValidationAlreadyExists}
+        handleUpdatingPersonalInfoDismiss={this.handleUpdatingPersonalInfoDismiss}
+        updatingPersonalInfoValidation={this.state.updatingPersonalInfoValidation}
+
       />
     );
   }

@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import styles from './userInfo.css';
 import {ADMINISTRATOR} from "../../../constants/values";
 
-class AdministratorsTable extends Component {
-  render(){
-    return(
+const AdministratorsTable = props => (
       <div>
         <Row>
           <Col mdOffset={1} md={6}>
@@ -20,7 +18,7 @@ class AdministratorsTable extends Component {
               </thead>
               <tbody>
               {
-                this.props.users
+                props.users
                   .filter(user => user !== null)
                   .filter(user => user.privilege === ADMINISTRATOR)
                   .map((user, index) => {
@@ -37,9 +35,7 @@ class AdministratorsTable extends Component {
           </Col>
         </Row>
       </div>
-    );
-  }
-}
+)
 
 function mapStateToProps(state) {
   return {

@@ -56,5 +56,4 @@ const ChangePersonalInfo = props => (
   </Collapse>
 );
 
-
 export default ChangePersonalInfo;
