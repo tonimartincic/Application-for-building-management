@@ -22,7 +22,7 @@ Insert into app_user (first_name, last_name, mail, privilege, reminder, password
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Predstavnik5678_ime','Predstavnik5678_prezime','predstavnik5678@fer.hr','TENANT_REPRESENTATIVE',false, 'pass');
 
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj1234_ime','Upravitelj1234_prezime','upravitelj5678@fer.hr','MANAGER',false, 'pass');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj567_ime','Upravitelj568_prezime','upravitelj567@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj5678_ime','Upravitelj5678_prezime','upravitelj5678@fer.hr','MANAGER',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj568_ime','Upravitelj578_prezime','upravitelj568@fer.hr','MANAGER',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj578_ime','Upravitelj567_prezime','upravitelj578@fer.hr','MANAGER',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj678_ime','Upravitelj678_prezime','upravitelj678@fer.hr','MANAGER',false, 'pass');
