@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
-import {withRouter} from 'react-router-dom';
 import styles from './notifications.css';
 import fetchUserNotificationsForUser from "../../../actionCreators/userNotificationsActionCreators";
 import fetchUserData from "../../../actionCreators/userDataActionCreators";
@@ -11,37 +10,42 @@ class Notifications extends Component {
 
   componentDidMount() {
     this.props.fetchUserNotificationsForUser();
-    this.checkForNotifications();
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {newNotifications:true};
-  }
-
-    checkForNotifications(){
-      var noNewNotifications=true;
-
-      for(let i = 0; i < this.props.userNotifications.length; i++) {
-        if(this.props.userNotifications[i].read==false){
-          noNewNotifications=false;
-          break;
-        }
-      }
-      if(!noNewNotifications){
-        this.props.readNotificationsForUser();
-        this.setState({newNotifications: true});
-      }else{
-        this.setState({newNotifications: false});
+  areThereUnreadNotifications() {
+    for(let i = 0; i < this.props.userNotifications.length; i++) {
+      if(this.props.userNotifications[i].read == false){
+        return true;
       }
     }
 
+    return false;
+  }
+
+  getColor(){
+    if(this.areThereUnreadNotifications()) {
+      return 'red';
+    } else {
+      return 'white';
+    }
+  }
+
+  checkForNotifications() {
+    if(this.areThereUnreadNotifications()) {
+      this.props.readNotificationsForUser();
+    }
+  }
+
   render() {
-  let bellColor = this.state.newNotifications ? "red" : "white"
+    let bellColor = this.getColor();
+
     return (
       <div>
-        <NavDropdown title = {<span class="glyphicon glyphicon-bell" style={{color: bellColor}} />} pullRight id='nav-dropdown2'
-         onClick={() => this.checkForNotifications()}>
+        <NavDropdown
+          title = {<span class="glyphicon glyphicon-bell" style={{color: bellColor}} />}
+          pullRight id='nav-dropdown2'
+          onClick={() => this.checkForNotifications()}
+        >
           {
             [...this.props.userNotifications]
               .reverse()
@@ -61,6 +65,7 @@ class Notifications extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     userData: state.userData,
