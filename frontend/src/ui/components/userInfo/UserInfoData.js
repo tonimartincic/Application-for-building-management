@@ -2,7 +2,6 @@ import React from 'react';
 import { Modal, Row, Col, Well } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import {toggleUserInfo} from '../../../actions/userInfoActions';
-import * as constants from '../../../constants/values';
 
 class Preferences extends React.Component {
   render() {
@@ -12,11 +11,37 @@ class Preferences extends React.Component {
         continue;
       }
 
-      if(this.props.apartments[i].owner.privilege == 'TENANT_REPRESENTATIVE') {
+      if(this.props.apartments[i].owner.privilege === 'TENANT_REPRESENTATIVE') {
         tenantRepresentative =
-          " "  + this.props.apartments[i].owner.firstName
-          + " " + this.props.apartments[i].owner.lastName
-          + " (" + this.props.apartments[i].owner.mail + ")"
+          <span>
+            {
+              " " + this.props.apartments[i].owner.firstName
+              + " " + this.props.apartments[i].owner.lastName
+              + " (" + this.props.apartments[i].owner.mail + ")"
+            }
+          </span>
+      }
+    }
+
+    let tenants = [];
+    for(let i = 0; i < this.props.apartments.length; i++) {
+      if(this.props.apartments[i].owner === null) {
+        continue;
+      }
+
+      if(this.props.apartments[i].owner.privilege === 'TENANT') {
+        tenants[i] =
+          <Row>
+            <Col mdOffset={2}>
+              <span>
+                {
+                  " " + this.props.apartments[i].owner.firstName
+                  + " " + this.props.apartments[i].owner.lastName
+                  + " (" + this.props.apartments[i].owner.mail + ")"
+                }
+              </span>
+            </Col>
+          </Row>;
       }
     }
 
@@ -31,17 +56,29 @@ class Preferences extends React.Component {
             <Well>
               <Row>
                 <Col md={8} mdOffset={1}>
-                  <h4>Ime:  {this.props.userData.firstName}</h4>
+                  <h4>Ime:
+                    {
+                      ' ' + this.props.userData.firstName
+                    }
+                  </h4>
                 </Col>
               </Row>
               <Row>
                 <Col md={8} mdOffset={1}>
-                  <h4>Prezime:  {this.props.userData.lastName}</h4>
+                  <h4>Prezime:
+                    {
+                      ' ' + this.props.userData.lastName
+                    }
+                  </h4>
                 </Col>
               </Row>
               <Row>
                 <Col md={8} mdOffset={1}>
-                  <h4>Mail:  {this.props.userData.mail}</h4>
+                  <h4>Mail:
+                    {
+                      ' ' + this.props.userData.mail
+                    }
+                  </h4>
                 </Col>
               </Row>
             </Well>
@@ -56,9 +93,29 @@ class Preferences extends React.Component {
                         <div>
                           <Row>
                             <Col>
-                              <h4>Adresa zgrade:  {apartment.building.address}</h4>
+                              <h4>Adresa zgrade:
+                                {
+                                  ' ' + apartment.building.address
+                                }
+                             </h4>
                             </Col>
                           </Row>
+                          <Choose>
+                            <When condition={apartment.building.manager !== null}>
+                              <Row>
+                                <Col>
+                                  <h4>Upravitelj:
+                                    {
+                                      " "+apartment.building.manager.firstName
+                                      + " "
+                                      +apartment.building.manager.lastName
+                                      +" (" + apartment.building.manager.mail + ")"
+                                    }
+                                  </h4>
+                                </Col>
+                              </Row>
+                            </When>
+                          </Choose>
                           <Choose>
                             <When condition={tenantRepresentative !== null}>
                               <Row>
@@ -71,14 +128,12 @@ class Preferences extends React.Component {
                             </When>
                           </Choose>
                           <Choose>
-                            <When condition={apartment.building.manager !== null}>
+                            <When condition={tenants !== null}>
                               <Row>
                                 <Col>
-                                  <h4>Upravitelj:
-                                    {" "+apartment.building.manager.firstName
-                                  + " "
-                                  +apartment.building.manager.lastName
-                                  +" (" + apartment.building.manager.mail + ")"}</h4>
+                                  <h4>Ostali stanari:
+                                    { tenants }
+                                  </h4>
                                 </Col>
                               </Row>
                             </When>
