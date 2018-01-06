@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExpiredAnnouncementsScheduler {
 
+  private static final Integer NUM_OF_MILIS_IN_ONE_DAY = 86400000;
+
   private final AnnouncementService announcementService;
 
   @Autowired
@@ -15,7 +17,7 @@ public class ExpiredAnnouncementsScheduler {
     this.announcementService = announcementService;
   }
 
-  @Scheduled(cron = "0 0/2 0 * * ?")
+  @Scheduled(fixedDelay = NUM_OF_MILIS_IN_ONE_DAY)
   public void syncAnnouncements() {
     this.announcementService.deleteExpiredAnnouncements();
   }
