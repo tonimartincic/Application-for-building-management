@@ -20,11 +20,22 @@ class NavigationBar extends Component {
       <Navbar className={styles.navBar}>
         <Navbar.Header className={styles.navCenter}>
           <Navbar.Brand>
-            <Link to='/'>
-              <span className={styles.spanEureka}>
-                Eureka
-              </span>
-            </Link>
+            <Choose>
+              <When condition={this.props.userData.privilege !== ADMINISTRATOR}>
+                <Link to='/'>
+                  <span className={styles.spanEureka}>
+                    Eureka
+                  </span>
+                </Link>
+              </When>
+              <Otherwise>
+                <Link to='/all-users'>
+                  <span className={styles.spanEureka}>
+                    Eureka
+                  </span>
+                </Link>
+              </Otherwise>
+            </Choose>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav className={styles.navCenter}>
