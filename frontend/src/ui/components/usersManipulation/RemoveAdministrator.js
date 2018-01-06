@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {deleteUser, editUserInfo} from '../../../actionCreators/usersActionCreators';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, ListGroupItem, Alert} from 'react-bootstrap';
 import * as styles from './removeAdministrator.css';
+import {ADMINISTRATOR} from "../../../constants/values";
 
 class RemoveAdministrator extends React.Component {
   constructor(props) {
@@ -102,7 +103,7 @@ class RemoveAdministrator extends React.Component {
                 {
                   this.props.users
                     .filter(user => user !== null)
-                    .filter(user => user.privilege === "ADMINISTRATOR" || user.privilege === "Administrator")
+                    .filter(user => user.privilege === ADMINISTRATOR)
                     .map(userTemp => {
                       const fullName = userTemp.firstName + " " + userTemp.lastName + " - " + userTemp.mail;
                       return (

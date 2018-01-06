@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface SnowClearingDateService {
 
-  List<SnowClearingDate> getAll();
+  List<SnowClearingDate> getAllForCurrentBuilding(Long currentUserId);
 
-  void createSchedule(LocalDate from, LocalDate to);
+  List<SnowClearingDate> createScheduleForCurrentBuilding(LocalDate from, LocalDate to, Long currentUserId);
 
   SnowClearingDate add(SnowClearingDate snowClearingDate);
 
-  SnowClearingDate askChange(LocalDate clearingDate);
+  SnowClearingDate askChangeForCurrentBuilding(LocalDate clearingDate, Long currentUserId);
 
-  void approveChanges(LocalDate firstDate, LocalDate secondDate);
+  List<SnowClearingDate> approveChangesForCurrentBuilding(LocalDate firstDate, LocalDate secondDate, Long currentUserId);
 }

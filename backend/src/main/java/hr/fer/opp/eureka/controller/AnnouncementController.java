@@ -18,9 +18,9 @@ public class AnnouncementController {
     this.announcementService = announcementService;
   }
 
-  @GetMapping("/api/announcements")
-  public List<Announcement> getAllAnnouncements(){
-    return announcementService.getAll();
+  @GetMapping("/api/announcements/current-user/{currentUserId}")
+  public List<Announcement> getAllAnnouncementsForCurrentUser(@PathVariable Long currentUserId){
+    return announcementService.getAllForCurrentUser(currentUserId);
   }
 
   @GetMapping("api/announcements/{id}")

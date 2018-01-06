@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 import UserInfoData from './UserInfoData';
-import Settings from './Settings';
+import SettingsContainer from './SettingsContainer';
 import {toggleUserInfo} from "../../../actions/userInfoActions";
 import {toggleUserSettings} from "../../../actions/userSettingsActions";
 import {withRouter} from 'react-router-dom';
+import { fetchApartmentForCurrentUser } from '../../../actionCreators/apartmentsActionCreators';
 
 class UserInfo extends Component {
   logout = () => {
@@ -17,9 +18,11 @@ class UserInfo extends Component {
     return (
       <div>
         <UserInfoData />
-        <Settings />
+        <SettingsContainer />
         <NavDropdown title = {this.props.userData.firstName + ' ' + this.props.userData.lastName} id='nav-dropdown'>
-          <MenuItem onClick={() => this.props.toggleUserInfo(true)}>
+          <MenuItem onClick={() => {
+            this.props.toggleUserInfo(true);
+          }}>
             <span className='glyphicon glyphicon-info-sign' /> &nbsp;&nbsp; Informacije
           </MenuItem>
           <MenuItem divider />

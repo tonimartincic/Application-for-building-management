@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import DatePicker from 'react-bootstrap-date-picker';
 import styles from './announcementInputForm.css';
 import * as constants from '../../../constants/values';
+import * as dateUtils from '../../../utils/DateUtil';
 import {addNewAnnouncement} from '../../../actionCreators/announcementsActionCreators';
 
 class AnnouncementInputForm extends Component {
@@ -32,7 +33,7 @@ class AnnouncementInputForm extends Component {
 
     let expirationDate = null;
     if(this.state.announcementHasExpirationDate) {
-      expirationDate = `${this.state.expirationDate.substring(8, 10)}-${this.state.expirationDate.substring(5, 7)}-${this.state.expirationDate.substring(0, 4)}`;
+      expirationDate =  dateUtils.constructDateFromDatePickerForBackend(this.state.expirationDate);
     }
 
     this.props.addNewAnnouncement(

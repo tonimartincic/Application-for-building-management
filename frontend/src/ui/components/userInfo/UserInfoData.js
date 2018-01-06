@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Row, Col } from 'react-bootstrap';
+import { Modal, Row, Col, Well, Button, Collapse } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import {toggleUserInfo} from '../../../actions/userInfoActions';
 
@@ -13,29 +13,86 @@ class Preferences extends React.Component {
             <Modal.Title>Info</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Row>
-              <Col md={8}>
-                <h4>Ime:  {this.props.userData.firstName}</h4>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={8}>
-                <h4>Prezime:  {this.props.userData.lastName}</h4>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={8}>
-                <h4>Mail:  {this.props.userData.mail}</h4>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={5} mdOffset={1}>
+            <Well>
+              <Row>
+                <Col md={8} mdOffset={1}>
+                  <h4>Ime:  {this.props.userData.firstName}</h4>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={8} mdOffset={1}>
+                  <h4>Prezime:  {this.props.userData.lastName}</h4>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={8} mdOffset={1}>
+                  <h4>Mail:  {this.props.userData.mail}</h4>
+                </Col>
+              </Row>
+            </Well>
+            <Well>
+              <Row>
+                <Col md={11} mdOffset={1}>
+                  {
+                    this.props.apartments
+                      .filter(apartment => apartment.owner !== null)
+                      .filter(apartment => apartment.owner.id === this.props.userData.id)
+                      .map(apartment =>
+                        <div>
+                          <Row>
+                            <Col>
+                              <h4>Adresa zgrade:  {apartment.building.address}</h4>
+                            </Col>
+                          </Row>
+                          <Choose>
+                            <When condition={apartment.building.landlord !== null}>
+                              <Row>
+                                <Col>
+                                  <h4>Predstavnik stanara:
+                                    {" "+apartment.building.landlord.firstName
+                                    + " "
+                                    +apartment.building.landlord.lastName
+                                    +" (" + apartment.building.landlord.mail + ")"}
+                                  </h4>
+                                </Col>
+                              </Row>
+                            </When>
+                          </Choose>
+                          <Choose>
+                            <When condition={apartment.building.manager !== null}>
+                              <Row>
+                                <Col>
+                                  <h4>Upravitelj:
+                                    {" "+apartment.building.manager.firstName
+                                  + " "
+                                  +apartment.building.manager.lastName
+                                  +" (" + apartment.building.manager.mail + ")"}</h4>
+                                </Col>
+                              </Row>
+                            </When>
+                          </Choose>
+                        </div>)
+                  }
 
-              </Col>
-              <Col md={3}>
+                </Col>
+              </Row>
+            </Well>
+            <Well>
+              <Row>
+                <Col md={11} mdOffset={1}>
+                  {
+                    this.props.apartments
+                      .filter(apartment => apartment.owner !== null)
+                      .filter(apartment => apartment.owner.id === this.props.userData.id)
+                      .map(apartment =>
+                        <div>
+                          <h4>Površina stana:  {apartment.area}</h4>
+                        </div>)
+                  }
 
-              </Col>
-            </Row>
+                </Col>
+              </Row>
+            </Well>
           </Modal.Body>
         </Modal>
       </div>
@@ -47,6 +104,7 @@ function mapStateToProps(state) {
   return {
     userData: state.userData,
     userInfoClicked: state.userInfoClicked,
+    apartments: state.apartments
   };
 }
 

@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {Col, Grid, Row } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Col, Grid, Row } from 'react-bootstrap';
 import fetchAnnouncements from '../../../actionCreators/announcementsActionCreators';
-import {deleteAnnouncement} from '../../../actionCreators/announcementsActionCreators';
+import { deleteAnnouncement } from '../../../actionCreators/announcementsActionCreators';
 import Announcement from "./Announcement";
 import AnnouncementInputForm from "./AnnouncementInputForm";
 import * as sortUtils from '../../../utils/SortUtil';
@@ -52,7 +52,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchAnnouncements: () => dispatch(fetchAnnouncements()),
-    deleteAnnouncement: (id) => dispatch(deleteAnnouncement(id))
+    deleteAnnouncement: id => dispatch(deleteAnnouncement(id))
   };
 }
 
