@@ -162,6 +162,14 @@ const UpdateUserInfo = props => (
                   </Alert>
                 </When>
               </Choose>
+              <Choose>
+                <When condition={props.updatingPersonalInfoValidation}>
+                  <Alert bsStyle="danger" onDismiss={() => props.handleUpdatingPersonalInfoDismiss()}>
+                    <h4>Promjena podataka onemogućena za odabranog korisnika.</h4>
+                    <p>Vlastite podatke je moguće promijeniti u postavkama osobnog računa.</p>
+                  </Alert>
+                </When>
+              </Choose>
               <Row>
                 <Col mdOffset={1} md={3}>
                   <Button onClick={() => props.handleSubmit()}>Promijeni podatke</Button>
