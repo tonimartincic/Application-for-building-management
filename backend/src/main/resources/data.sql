@@ -59,11 +59,12 @@ Insert into apartment (building_id, area, owner_id) values (7, 56.50, 17);
 Insert into apartment (building_id, area, owner_id) values (7, 56.50, 18);
 Insert into apartment (building_id, area, owner_id) values (7, 56.50, 20);
 
-Insert into user_notification (description, user_id) values ('Sutra ste na rasporedu za čišćenje snijega',1);
-Insert into user_notification (description, user_id) values ('Niste podmirili dugovanje za prošli mjesec',2);
-Insert into user_notification (description, user_id) values ('Danas ste na rasporedu za čišćenje snijega',3);
-Insert into user_notification (description, user_id) values ('Imate nepodmirene račune',6);
-Insert into user_notification (description, user_id) values ('Termin čišćenja snijega uspješno zamijenjen',4);
+Insert into user_notification (description, user_id, is_read) values ('Sutra ste na rasporedu za čišćenje snijega',1, false);
+Insert into user_notification (description, user_id, is_read) values ('Niste podmirili dugovanje za prošli mjesec',2, false);
+Insert into user_notification (description, user_id, is_read) values ('Danas ste na rasporedu za čišćenje snijega',4, false);
+Insert into user_notification (description, user_id, is_read) values ('Imate nepodmirene račune',6, false);
+Insert into user_notification (description, user_id, is_read) values ('Termin čišćenja snijega uspješno zamijenjen',4, false);
+
 
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('01.10.17', 'dd.MM.yy'), parsedatetime('02.10.17', 'dd.MM.yy'), 4, 'Pronađeni ključevi');
 Insert into announcement (creation_date, creator, content) values (parsedatetime('29.09.17', 'dd.MM.yy'), 2, 'Izgubio ključeve');
