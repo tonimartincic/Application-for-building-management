@@ -6,7 +6,6 @@ import SettingsContainer from './SettingsContainer';
 import {toggleUserInfo} from "../../../actions/userInfoActions";
 import {toggleUserSettings} from "../../../actions/userSettingsActions";
 import {withRouter} from 'react-router-dom';
-import { fetchApartmentForCurrentUser } from '../../../actionCreators/apartmentsActionCreators';
 
 class UserInfo extends Component {
   logout = () => {
