@@ -10,6 +10,7 @@ import GenerateScheduleInputForm from './GenerateScheduleInputForm';
 import AskChangeForm from './AskChangeForm';
 import ApproveChangeRequest from './ApproveChangeRequest';
 import * as styles from './snowClearingScheduleView.css';
+import * as constants from '../../../constants/values';
 
 class SnowClearingScheduleView extends Component {
 
@@ -30,7 +31,7 @@ class SnowClearingScheduleView extends Component {
               <AskChangeForm />
             </Row>
             <Choose>
-              <When condition = {this.props.userData.privilege === 'Upravitelj'}>
+              <When condition = {this.props.userData.privilege === constants.TENANT_REPRESENTATIVE}>
                 <Well>
                   <Row>
                     <Col mdOffset={1}>
