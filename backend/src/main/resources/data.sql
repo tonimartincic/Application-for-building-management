@@ -23,9 +23,12 @@ Insert into app_user (first_name, last_name, mail, privilege, reminder, password
 
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj1234_ime','Upravitelj1234_prezime','upravitelj5678@fer.hr','MANAGER',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj5678_ime','Upravitelj5678_prezime','upravitelj5678@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj568_ime','Upravitelj578_prezime','upravitelj568@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj578_ime','Upravitelj567_prezime','upravitelj578@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj678_ime','Upravitelj678_prezime','upravitelj678@fer.hr','MANAGER',false, 'pass');
 
-Insert into building (address, landlord, funds) values ('Ilica 256', 1, 100532.52);
-Insert into building (address, landlord, funds) values ('Ožujska BB', 2, 54625.32);
+Insert into building (address, landlord, manager,  funds) values ('Ilica 256', 1, 23, 100532.52);
+Insert into building (address, landlord, manager, funds) values ('Ožujska BB', 2, 24, 54625.32);
 Insert into building (address, landlord, funds) values ('Savska 56', 3, 15456.23);
 Insert into building (address, landlord, funds) values ('Vukovarska 1a', 4, -5947.65);
 Insert into building (address, landlord, funds) values ('Lastovska 23', 4, 15.01);
