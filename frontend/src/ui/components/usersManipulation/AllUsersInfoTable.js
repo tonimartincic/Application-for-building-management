@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import styles from './userInfo.css';
+import * as constants from '../../../constants/values';
 
 class AllUsersInfoTable extends Component {
   render(){
@@ -21,11 +22,12 @@ class AllUsersInfoTable extends Component {
             this.props.buildings
               .filter(building => building.id == this.props.buildingId)
               .filter(building => building.manager !== null)
-              .map((building, index) => <tr key={index}>
+              .map((building, index) =>
+                <tr key={index}>
                   <td className={styles.tableColumn}>{building.manager.firstName}</td>
                   <td className={styles.tableColumn}>{building.manager.lastName}</td>
                   <td className={styles.tableColumn}>{building.manager.mail}</td>
-                  <td className={styles.tableColumn}>{building.manager.privilege}</td>
+                  <td className={styles.tableColumn}>{constants.MANAGER}</td>
                 </tr>)
           }
           {
