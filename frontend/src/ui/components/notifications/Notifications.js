@@ -55,15 +55,26 @@ class Notifications extends Component {
     const notifications = [];
     const length = this.props.userNotifications.length;
     for(let i = 0; i < length; i++) {
-      notifications[i] =
-        <MenuItem key={i}>
-          <span
-            onClick={() => this.checkForNotifications()}
-            className={!this.props.userNotifications[length - 1 - i].read ? styles.notificationUnRead: styles.notificationRead}
-          >
-            {this.props.userNotifications[length - 1 - i].description}
-          </span>
-        </MenuItem>
+      if(!this.props.userNotifications[length - 1 - i].read) {
+        notifications[i] =
+          <MenuItem key={i}>
+            <span
+              onClick={() => this.checkForNotifications()}
+              className={!this.props.userNotifications[length - 1 - i].read ? styles.notificationUnRead: styles.notificationRead}
+            >
+              {this.props.userNotifications[length - 1 - i].description}
+            </span>
+          </MenuItem>
+      } else {
+        notifications[i] =
+          <MenuItem key={i}>
+            <span
+              className={!this.props.userNotifications[length - 1 - i].read ? styles.notificationUnRead: styles.notificationRead}
+            >
+              {this.props.userNotifications[length - 1 - i].description}
+            </span>
+          </MenuItem>
+      }
     }
 
     return (

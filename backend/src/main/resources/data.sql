@@ -64,6 +64,8 @@ Insert into user_notification (description, user_id, is_read, creation_date) val
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Danas ste na rasporedu za čišćenje snijega',4, false, parsedatetime('02.11.17', 'dd.MM.yy'));
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Imate nepodmirene račune',6, false, parsedatetime('01.10.17', 'dd.MM.yy'));
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Termin čišćenja snijega uspješno zamijenjen',4, false, parsedatetime('30.12.17', 'dd.MM.yy'));
+Insert into user_notification (description, user_id, is_read, creation_date) values ('Inicijalno pročitano',11, true, parsedatetime('03.11.17', 'dd.MM.yy'));
+Insert into user_notification (description, user_id, is_read, creation_date) values ('Još nešto inicijalno pročitano',11, true, parsedatetime('03.11.17', 'dd.MM.yy'));
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Sutra ste na rasporedu za čišćenje snijega',11, false, parsedatetime('28.12.17', 'dd.MM.yy'));
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Danas ste na rasporedu za čišćenje snijega',11, false, parsedatetime('03.11.17', 'dd.MM.yy'));
 
