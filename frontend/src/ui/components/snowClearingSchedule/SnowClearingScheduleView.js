@@ -30,7 +30,7 @@ class SnowClearingScheduleView extends Component {
               <AskChangeForm />
             </Row>
             <Choose>
-              <When condition = {this.props.userData.privilege === 'Administrator'}>
+              <When condition = {this.props.userData.privilege === 'Upravitelj'}>
                 <Well>
                   <Row>
                     <Col mdOffset={1}>
