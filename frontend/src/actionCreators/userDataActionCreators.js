@@ -19,7 +19,7 @@ export default async function validateUser(userId, password) {
     if(response.data !== '') {
       localStorage.setItem('user', JSON.stringify(response.data));
       if (response.data.privilege !== ADMINISTRATOR) {
-        history.push('/');
+        history.push('/board');
       } else {
         history.push('/all-users');
       }

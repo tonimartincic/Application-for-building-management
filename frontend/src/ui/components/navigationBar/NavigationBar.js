@@ -22,7 +22,7 @@ class NavigationBar extends Component {
           <Navbar.Brand>
             <Choose>
               <When condition={this.props.userData.privilege !== ADMINISTRATOR}>
-                <Link to='/'>
+                <Link to='/board'>
                   <span className={styles.spanEureka}>
                     Eureka
                   </span>
