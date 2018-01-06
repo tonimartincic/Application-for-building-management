@@ -2,9 +2,24 @@ import React from 'react';
 import { Modal, Row, Col, Well } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import {toggleUserInfo} from '../../../actions/userInfoActions';
+import * as constants from '../../../constants/values';
 
 class Preferences extends React.Component {
   render() {
+    let tenantRepresentative = null;
+    for(let i = 0; i < this.props.apartments.length; i++) {
+      if(this.props.apartments[i].owner === null) {
+        continue;
+      }
+
+      if(this.props.apartments[i].owner.privilege == 'TENANT_REPRESENTATIVE') {
+        tenantRepresentative =
+          " "  + this.props.apartments[i].owner.firstName
+          + " " + this.props.apartments[i].owner.lastName
+          + " (" + this.props.apartments[i].owner.mail + ")"
+      }
+    }
+
     return (
       <div>
         <Modal show = {this.props.userInfoClicked}
@@ -45,14 +60,11 @@ class Preferences extends React.Component {
                             </Col>
                           </Row>
                           <Choose>
-                            <When condition={apartment.building.landlord !== null}>
+                            <When condition={tenantRepresentative !== null}>
                               <Row>
                                 <Col>
                                   <h4>Predstavnik stanara:
-                                    {" "+apartment.building.landlord.firstName
-                                    + " "
-                                    +apartment.building.landlord.lastName
-                                    +" (" + apartment.building.landlord.mail + ")"}
+                                    { tenantRepresentative }
                                   </h4>
                                 </Col>
                               </Row>
