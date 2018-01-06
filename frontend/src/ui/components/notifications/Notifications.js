@@ -32,7 +32,6 @@ class Notifications extends Component {
         return true;
       }
     }
-
     return false;
   }
 
