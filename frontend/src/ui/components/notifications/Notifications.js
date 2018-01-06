@@ -1,27 +1,55 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
-//import {toggleUserNotification} from "../../../actions/userNotificationsActions";
-import {withRouter} from 'react-router-dom';
 import styles from './notifications.css';
-import fetchUserNotifications from "../../../actionCreators/userNotificationsActionCreators";
+import fetchUserNotificationsForUser from "../../../actionCreators/userNotificationsActionCreators";
+import fetchUserData from "../../../actionCreators/userDataActionCreators";
+import {readNotificationsForUser} from "../../../actionCreators/userNotificationsActionCreators";
 
 class Notifications extends Component {
-  componentDidMount() {
-    this.props.fetchUserNotifications();
-  }
-  constructor(props) {
-    super(props);
-  }
-    //console.log(notifications);
-  render() {
 
+  componentDidMount() {
+    this.props.fetchUserNotificationsForUser();
+  }
+
+  areThereUnreadNotifications() {
+    for(let i = 0; i < this.props.userNotifications.length; i++) {
+      if(this.props.userNotifications[i].read == false){
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  getColor(){
+    if(this.areThereUnreadNotifications()) {
+      return 'red';
+    } else {
+      return 'white';
+    }
+  }
+
+  checkForNotifications() {
+    if(this.areThereUnreadNotifications()) {
+      this.props.readNotificationsForUser();
+    }
+  }
+
+  render() {
+    let bellColor = this.getColor();
 
     return (
       <div>
-        <NavDropdown title = {<span class="glyphicon glyphicon-bell" />} pullRight id='nav-dropdown2'>
+        <NavDropdown
+          title = {<span class="glyphicon glyphicon-bell" style={{color: bellColor}} />}
+          pullRight id='nav-dropdown2'
+          onClick={() => this.checkForNotifications()}
+        >
           {
-            this.props.userNotifications
+            [...this.props.userNotifications]
+              .reverse()
+              .slice(0, 5)
               .map((notification, index) => {
                 return (
                   <MenuItem key={index}>
@@ -37,15 +65,19 @@ class Notifications extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
+    userData: state.userData,
     userNotifications: state.userNotifications,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchUserNotifications: () => dispatch(fetchUserNotifications()),
+    fetchUserData: () => dispatch(fetchUserData()),
+    fetchUserNotificationsForUser: () => dispatch(fetchUserNotificationsForUser()),
+    readNotificationsForUser: () => dispatch(readNotificationsForUser()),
   };
 }
 

@@ -18,13 +18,16 @@ public class UserNotification {
   @JoinColumn (name="user_id")
   private User user;
 
+  private Boolean isRead;
+
   public UserNotification() {
   }
 
-  public UserNotification(Long id, String description, User user) {
+  public UserNotification(Long id, String description, User user, Boolean isRead) {
     this.id = id;
     this.description = description;
     this.user = user;
+    this.isRead = isRead;
   }
 
   public Long getId() {
@@ -49,5 +52,13 @@ public class UserNotification {
 
   public void setUser(User user) {
     this.user = user;
+  }
+
+  public Boolean getRead() {
+    return isRead;
+  }
+
+  public void setRead(Boolean read) {
+    this.isRead = read;
   }
 }

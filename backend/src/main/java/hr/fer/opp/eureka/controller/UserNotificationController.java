@@ -31,4 +31,9 @@ public class UserNotificationController {
   public UserNotification addNewUserNotification(@RequestBody final UserNotification userNotification) {
     return userNotificationService.add(userNotification);
   }
+
+  @PutMapping("/api/user-notifications-read/{id}")
+  public List<UserNotification> readNotificationsForUser(@PathVariable Long id) {
+    return userNotificationService.readNotificationsForUser(id);
+  }
 }

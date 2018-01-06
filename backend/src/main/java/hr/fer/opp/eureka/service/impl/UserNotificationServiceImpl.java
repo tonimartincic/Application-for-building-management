@@ -39,4 +39,16 @@ public class UserNotificationServiceImpl implements UserNotificationService {
   public UserNotification add(UserNotification userNotification) {
     return this.userNotificationRepository.save(userNotification);
   }
+
+  @Override
+  public List<UserNotification> readNotificationsForUser(Long userId) {
+    User user = userRepository.findById(userId);
+    List<UserNotification> notificationsFromDatabase = this.userNotificationRepository.findByUser(user);
+    for (UserNotification notification:notificationsFromDatabase) {
+      notification.setRead(true);
+      this.userNotificationRepository.save(notification);
+    }
+    return notificationsFromDatabase;
+
+  }
 }
