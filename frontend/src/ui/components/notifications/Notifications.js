@@ -12,19 +12,32 @@ class Notifications extends Component {
     this.props.fetchUserNotificationsForUser();
   }
 
+  countUnreadNotifications(){
+    let unreadNotificationsNumber = 0;
+
+    for(let i = 0; i < this.props.userNotifications.length; i++) {
+      if(this.props.userNotifications[i].read == false){
+        unreadNotificationsNumber++;
+      }
+    }
+
+    if(unreadNotificationsNumber != 0){
+      return unreadNotificationsNumber;
+    }
+  }
+
   areThereUnreadNotifications() {
     for(let i = 0; i < this.props.userNotifications.length; i++) {
       if(this.props.userNotifications[i].read == false){
         return true;
       }
     }
-
     return false;
   }
 
   getColor(){
     if(this.areThereUnreadNotifications()) {
-      return 'red';
+      return '#C30808';
     } else {
       return 'white';
     }
@@ -39,27 +52,27 @@ class Notifications extends Component {
   render() {
     let bellColor = this.getColor();
 
+    const notifications = [];
+    const length = this.props.userNotifications.length;
+    for(let i = 0; i < length; i++) {
+      notifications[i] =
+        <MenuItem key={i}>
+          <span
+            onClick={() => this.checkForNotifications()}
+            className={!this.props.userNotifications[length - 1 - i].read ? styles.notificationUnRead: styles.notificationRead}
+          >
+            {this.props.userNotifications[length - 1 - i].description}
+          </span>
+        </MenuItem>
+    }
+
     return (
       <div>
         <NavDropdown
-          title = {<span class="glyphicon glyphicon-bell" style={{color: bellColor}} />}
+          title = {<span class="glyphicon glyphicon-bell"  style={{color: bellColor}}>{this.countUnreadNotifications()} </span>}
           pullRight id='nav-dropdown2'
-          onClick={() => this.checkForNotifications()}
         >
-          {
-            [...this.props.userNotifications]
-              .reverse()
-              .slice(0, 5)
-              .map((notification, index) => {
-                return (
-                  <MenuItem key={index}>
-                    <section className={styles.notification}>
-                      {notification.description}
-                    </section>
-                  </MenuItem>
-                 )}
-              )
-          }
+          { notifications }
         </NavDropdown>
       </div>
     );
