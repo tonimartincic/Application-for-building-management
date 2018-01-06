@@ -118,6 +118,15 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public UserResponse editPassword(UserRequest userRequest) {
+    User userFromDatabase = this.userRepository.findById(userRequest.getId());
+
+    userFromDatabase.setPassword(userRequest.getPassword());
+
+    return getUserResponse(this.userRepository.save(userFromDatabase));
+  }
+
+  @Override
   public UserResponse toggleReminderValue(Long id) {
     User user = this.userRepository.findById(id);
     user.setReminder(!user.getReminder());

@@ -4,13 +4,16 @@ import Settings from './Settings';
 import {toggleUserSettings} from "../../../actions/userSettingsActions";
 import {toggleReminderValue} from "../../../actionCreators/userDataActionCreators";
 import {editUserInfo} from "../../../actionCreators/usersActionCreators";
+import {editUserPassword} from "../../../actionCreators/usersActionCreators";
 
 class SettingsContainer extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       updateUserInfoClicked: false,
       updatePasswordClicked: false,
+
       user: {
         id: null,
         firstName: "",
@@ -18,9 +21,11 @@ class SettingsContainer extends Component {
         mail: "",
         privilege: null,
       },
+
       oldPassword: "",
       newPassword: "",
       newPasswordRepeat: "",
+
       firstNameValidation: null,
       lastNameValidation: null,
       emailValidationEmptyString: null,
@@ -69,25 +74,42 @@ class SettingsContainer extends Component {
   };
 
   handleSubmitPassword = () => {
-    if (this.state.oldPassword === "" || this.state.oldPassword === null
-      || this.state.newPassword === "" || this.state.newPassword === null
-      || this.state.newPasswordRepeat === "" || this.state.newPasswordRepeat === null) {
+    if (this.state.oldPassword === "" || this.state.oldPassword === null ||
+      this.state.newPassword === "" || this.state.newPassword === null ||
+      this.state.newPasswordRepeat === "" || this.state.newPasswordRepeat === null) {
+
       this.setState({
         emptyPasswordFieldsValidation: true,
-      })
-    } else if (this.state.oldPassword !== this.props.userData.password) {
+      });
+
+      return;
+    }
+
+    if (this.state.oldPassword !== this.props.userData.password) {
       this.setState({
         correctOldPasswordValidation: true,
       });
-    } else if (this.state.newPassword === this.state.newPasswordRepeat) {
+
+      return;
+    }
+
+    if (this.state.newPassword !== this.state.newPasswordRepeat) {
       this.setState({
         matchingNewPasswordsValidation: true,
       });
-    } else {
 
+      return;
     }
-  };
 
+    const user = {
+      id: this.state.user.id,
+      password: this.state.newPassword,
+    };
+
+    this.props.editUserPassword(user);
+    this.toggleUpdatePasswordClicked();
+    this.resetState();
+  }
 
   changeFirstName = (event) => {
     const userTemp = this.state.user;
@@ -191,6 +213,7 @@ class SettingsContainer extends Component {
   resetState() {
     this.setState({
       updateUserInfoClicked: false,
+      updatePasswordClicked: false,
       user: {
         id: null,
         firstName: "",
@@ -198,6 +221,9 @@ class SettingsContainer extends Component {
         mail: "",
         privilege: null,
       },
+      oldPassword: "",
+      newPassword: "",
+      newPasswordRepeat: "",
       firstNameValidation: null,
       lastNameValidation: null,
       emailValidationEmptyString: null,
@@ -205,6 +231,9 @@ class SettingsContainer extends Component {
       emailValidationNotCorrectFormat: null,
       privilegeValidationEmpty: null,
       privilegeValidationAlreadyExists: null,
+      correctOldPasswordValidation: null,
+      matchingNewPasswordsValidation: null,
+      emptyPasswordFieldsValidation: null,
     })
   }
 
@@ -219,6 +248,7 @@ class SettingsContainer extends Component {
   toggleUpdatePasswordClicked() {
     const updatePasswordClickedTemp = this.state.updatePasswordClicked;
     this.setState({
+      user: this.props.userData,
       updatePasswordClicked: !updatePasswordClickedTemp,
     });
   }
@@ -268,6 +298,7 @@ function mapDispatchToProps(dispatch) {
     toggleUserSettings: value => dispatch(toggleUserSettings(value)),
     toggleReminderValue: () => dispatch(toggleReminderValue()),
     editUserInfo: user => dispatch(editUserInfo(user)),
+    editUserPassword: user => dispatch(editUserPassword(user)),
   };
 }
 

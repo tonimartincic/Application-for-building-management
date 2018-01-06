@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Row, Col, Well, Button, Collapse } from 'react-bootstrap';
+import { Modal, Row, Col, Well } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import {toggleUserInfo} from '../../../actions/userInfoActions';
 
