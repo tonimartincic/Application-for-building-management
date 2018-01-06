@@ -8,10 +8,25 @@ import {readNotificationsForUser} from "../../../actionCreators/userNotification
 
 class Notifications extends Component {
 
+  constructor(props) {
+      super(props);
+      this.state = {unreadNotificationsNumber : this.countUnreadNotifications()};
+    }
   componentDidMount() {
     this.props.fetchUserNotificationsForUser();
   }
+  countUnreadNotifications(){
+  var unreadNotificationsNumber=0;
+   for(let i = 0; i < this.props.userNotifications.length; i++) {
+     if(this.props.userNotifications[i].read == false){
+        unreadNotificationsNumber++;
+      }
+   }
+   if(unreadNotificationsNumber!=0){
+     return unreadNotificationsNumber;
+   }
 
+  }
   areThereUnreadNotifications() {
     for(let i = 0; i < this.props.userNotifications.length; i++) {
       if(this.props.userNotifications[i].read == false){
@@ -24,7 +39,7 @@ class Notifications extends Component {
 
   getColor(){
     if(this.areThereUnreadNotifications()) {
-      return 'red';
+      return '#C30808';
     } else {
       return 'white';
     }
@@ -42,7 +57,7 @@ class Notifications extends Component {
     return (
       <div>
         <NavDropdown
-          title = {<span class="glyphicon glyphicon-bell" style={{color: bellColor}} />}
+          title = {<span class="glyphicon glyphicon-bell"  style={{color: bellColor}}>{this.countUnreadNotifications()} </span>}
           pullRight id='nav-dropdown2'
           onClick={() => this.checkForNotifications()}
         >
@@ -53,8 +68,8 @@ class Notifications extends Component {
               .map((notification, index) => {
                 return (
                   <MenuItem key={index}>
-                    <section className={styles.notification}>
-                      {notification.description}
+                    <section className={index < this.state.unreadNotificationsNumber ? styles.notificationUnRead: styles.notificationRead}>
+                      {notification.description}{index}
                     </section>
                   </MenuItem>
                  )}
@@ -63,6 +78,8 @@ class Notifications extends Component {
         </NavDropdown>
       </div>
     );
+  if(!areThereUnreadNotifications()){this.setState({unreadNotificationsNumber: 0});}
+
   }
 }
 

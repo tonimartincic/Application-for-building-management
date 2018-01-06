@@ -1,4 +1,11 @@
 .notification{
   font-size: 17px;
 }
+.notificationRead{
+  font-size: 17px;
+}
+.notificationUnRead{
+  font-size: 17px;
+  color:#C30808;
+}
 
