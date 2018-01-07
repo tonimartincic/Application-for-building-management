@@ -1,13 +1,10 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.cost.CostRequest;
 import hr.fer.opp.eureka.domain.cost.CostResponse;
-import hr.fer.opp.eureka.domain.user.User;
-import hr.fer.opp.eureka.enumeration.UserPrivilege;
 import hr.fer.opp.eureka.repository.CostRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.BuildingService;
@@ -41,18 +38,28 @@ public class CostServiceImpl implements CostService {
 
   @Override
   public List<CostResponse> getAllForCurrentUser(Long currentUserId) {
-    Building currentUserBuilding = this.buildingService.getCurrentUserBuilding(currentUserId);
+    Building currentUserBuilding = this.buildingService.getBuildingForUser(currentUserId);
 
     List<Cost> allCosts = Lists.newArrayList(this.costRepository.findAll());
     List<CostResponse> costResponsesForBuilding = new ArrayList<>();
 
     for(Cost cost : allCosts) {
-      if(((Apartment) cost.getCreator().getApartments().toArray()[0]).getBuilding().getId() == currentUserBuilding.getId()) {
+      if(isNeededToAddCost(currentUserBuilding, cost)) {
         costResponsesForBuilding.add(getCostResponse(cost));
       }
     }
 
     return costResponsesForBuilding;
+  }
+
+  private boolean isNeededToAddCost(Building currentUserBuilding, Cost cost) {
+    Building building = this.buildingService.getBuildingForUser(cost.getCreator().getId());
+
+    if(building == null) {
+      return false;
+    }
+
+    return building.equals(currentUserBuilding);
   }
 
   @Override

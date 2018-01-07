@@ -66,15 +66,20 @@ public class BuildingServiceImpl implements BuildingService {
   }
 
   @Override
-  public Building getCurrentUserBuilding(Long currentUserId) {
+  public Building getBuildingForUser(Long currentUserId) {
     User currentUser = this.userRepository.findById(currentUserId);
     Building currentUserBuilding;
 
     if(currentUser.getPrivilege().equals(UserPrivilege.MANAGER)) {
       currentUserBuilding = (Building) currentUser.getManagerBuildingSet().toArray()[0];
     } else {
+      if(currentUser.getApartments().isEmpty()) {
+        return null;
+      }
+
       currentUserBuilding = ((Apartment) currentUser.getApartments().toArray()[0]).getBuilding();
     }
+
     return currentUserBuilding;
   }
 }

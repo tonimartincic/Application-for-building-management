@@ -15,5 +15,5 @@ public interface BuildingService {
 
   List<UserResponse> getAllUsersByBuildingId(Long id);
 
-  Building getCurrentUserBuilding(Long currentUserId);
+  Building getBuildingForUser(Long currentUserId);
 }

@@ -1,14 +1,9 @@
 package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
-import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.building.Building;
-import hr.fer.opp.eureka.domain.cost.Cost;
-import hr.fer.opp.eureka.domain.cost.CostResponse;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderRequest;
-import hr.fer.opp.eureka.domain.user.User;
-import hr.fer.opp.eureka.enumeration.UserPrivilege;
 import hr.fer.opp.eureka.repository.PaymentOrderRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.BuildingService;
@@ -41,19 +36,33 @@ public class PaymentOrderImpl implements PaymentOrderService {
 
   @Override
   public List<PaymentOrder> getAllForCurrentUser(Long currentUserId) {
-    Building currentUserBuilding = this.buildingService.getCurrentUserBuilding(currentUserId);
+    Building currentUserBuilding = this.buildingService.getBuildingForUser(currentUserId);
 
     List<PaymentOrder> allPaymentOrders = Lists.newArrayList(this.paymentOrderRepository.findAll());
     List<PaymentOrder> paymentOrdersForBuilding = new ArrayList<>();
 
     for(PaymentOrder paymentOrder : allPaymentOrders) {
-      if((((Apartment) paymentOrder.getPayer().getApartments().toArray()[0]).getBuilding().getId() == currentUserBuilding.getId()) ||
-        (((Apartment) paymentOrder.getReceiver().getApartments().toArray()[0]).getBuilding().getId() == currentUserBuilding.getId())) {
+      if(isNeededToAddPaymentOrder(currentUserBuilding, paymentOrder)) {
         paymentOrdersForBuilding.add(paymentOrder);
       }
     }
 
     return paymentOrdersForBuilding;
+  }
+
+  private boolean isNeededToAddPaymentOrder(Building currentUserBuilding, PaymentOrder paymentOrder) {
+    Building payerBuilding = this.buildingService.getBuildingForUser(paymentOrder.getPayer().getId());
+    Building receiverBuilding = this.buildingService.getBuildingForUser(paymentOrder.getReceiver().getId());
+
+    if(payerBuilding != null && payerBuilding.equals(currentUserBuilding)) {
+      return true;
+    }
+
+    if(receiverBuilding != null && receiverBuilding.equals(currentUserBuilding)) {
+      return true;
+    }
+
+    return false;
   }
 
   @Override
