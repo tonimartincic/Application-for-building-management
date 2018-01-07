@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Table, PageHeader, Row, Col } from 'react-bootstrap';
+import { Table, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import styles from './userInfo.css';
-import {ADMINISTRATOR} from "../../../constants/values";
+import styles from './administratorsTable.css';
+import {ADMINISTRATOR} from "../../../../constants/values";
 
 const AdministratorsTable = props => (
       <div>

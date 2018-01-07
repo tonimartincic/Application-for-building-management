@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import styles from './userInfo.css';
-import * as constants from '../../../constants/values';
+import styles from './allUsersInfoTable.css';
+import * as constants from '../../../../constants/values';
 
 class AllUsersInfoTable extends Component {
   render(){

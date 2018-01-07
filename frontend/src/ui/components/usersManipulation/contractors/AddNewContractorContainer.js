@@ -1,19 +1,19 @@
 import React from 'react';
-import AddNewAdministrator from './AddNewAdministrator';
+import AddNewContractor from './AddNewContractor';
 import { connect } from 'react-redux';
-import {addNewUser} from "../../../actionCreators/usersActionCreators";
-import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
-import { addNewAdministrator } from "../../../actionCreators/usersActionCreators";
+import { addNewContractor } from "../../../../actionCreators/usersActionCreators";
 
-class AddNewAdministratorContainer extends React.Component {
+class AddNewContractorContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       firstName: null,
       lastName: null,
       email: null,
+
       firstNameValidation: null,
       lastNameValidation: null,
+
       emailValidationEmptyString: null,
       emailValidationAlreadyExists: null,
       emailValidationNotCorrectFormat: null,
@@ -41,8 +41,8 @@ class AddNewAdministratorContainer extends React.Component {
       }
       this.checkEmail();
     } else {
-      this.props.addNewAdministrator(this.state.firstName, this.state.lastName, this.state.email);
-      this.props.toggleNewAdministratorClicked();
+      this.props.addNewContractor(this.state.firstName, this.state.lastName, this.state.email);
+      this.props.toggleNewContractorClicked();
 
       this.setState({
         firstName: null,
@@ -108,8 +108,10 @@ class AddNewAdministratorContainer extends React.Component {
       lastName: null,
       email: null,
       privilege: '',
+
       firstNameValidation: null,
       lastNameValidation: null,
+
       emailValidationEmptyString: null,
       emailValidationAlreadyExists: null,
       emailValidationNotCorrectFormat: null,
@@ -120,9 +122,9 @@ class AddNewAdministratorContainer extends React.Component {
 
   render() {
     return(
-      <AddNewAdministrator
-        addNewAdministratorClicked={this.props.addNewAdministratorClicked}
-        toggleNewAdministratorClicked={this.props.toggleNewAdministratorClicked}
+      <AddNewContractor
+        addNewContractorClicked={this.props.addNewContractorClicked}
+        toggleNewContractorClicked={this.props.toggleNewContractorClicked}
         firstName={this.state.firstName}
         lastName={this.state.lastName}
         email={this.state.email}
@@ -152,10 +154,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNewUser: (firstName, lastName, eMail, privilege, id) => (dispatch(addNewUser(firstName, lastName, eMail, privilege, id))),
-    fetchApartments: () => dispatch(fetchApartments()),
-    addNewAdministrator: (firstName, lastName, eMail) => dispatch(addNewAdministrator(firstName, lastName, eMail)),
+    addNewContractor: (firstName, lastName, eMail) => dispatch(addNewContractor(firstName, lastName, eMail)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewAdministratorContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewContractorContainer);

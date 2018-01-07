@@ -1,9 +1,9 @@
 import React from 'react';
 import AddNewUser from './AddNewUser';
 import { connect } from 'react-redux';
-import {addNewUser} from "../../../actionCreators/usersActionCreators";
-import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
-import {thereCanOnlyBeOne} from "../../../constants/values";
+import {addNewUser} from "../../../../actionCreators/usersActionCreators";
+import fetchApartments from "../../../../actionCreators/apartmentsActionCreators";
+import {thereCanOnlyBeOne} from "../../../../constants/values";
 
 class AddNewUserContainer extends React.Component {
   constructor(props) {
