@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteUserFromBuilding, editUserFromBuildingInfo} from '../../../actionCreators/usersActionCreators';
+import {deleteUserFromBuilding, editUserFromBuildingInfo} from '../../../../actionCreators/usersActionCreators';
 import UpdateUserInfo from './UpdateUserInfo';
-import {thereCanOnlyBeOne} from "../../../constants/values";
+import {thereCanOnlyBeOne} from "../../../../constants/values";
 
 class UpdateUserInfoContainer extends React.Component {
   constructor(props) {
