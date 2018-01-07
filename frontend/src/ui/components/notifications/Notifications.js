@@ -53,30 +53,21 @@ class Notifications extends Component {
     let bellColor = this.getColor();
 
     const notifications = [];
-    const length = this.props.userNotifications.length;
-    for(let i = 0; i < length; i++) {
-      if(!this.props.userNotifications[length - 1 - i].read) {
-        notifications[i] =
-          <MenuItem key={i}>
-            <span
-              onClick={() => this.checkForNotifications()}
-              className={!this.props.userNotifications[length - 1 - i].read ? styles.notificationUnRead: styles.notificationRead}
-            >
-              {this.props.userNotifications[length - 1 - i].description}
-            </span>
-          </MenuItem>
-      } else {
-        notifications[i] =
-          <MenuItem key={i}>
-            <span
-              className={!this.props.userNotifications[length - 1 - i].read ? styles.notificationUnRead: styles.notificationRead}
-            >
-              {this.props.userNotifications[length - 1 - i].description}
-            </span>
-          </MenuItem>
-      }
-    }
+    const length = this.props.userNotifications.length<=7?this.props.userNotifications.length:7;
 
+    for(let i = 0; i < length; i++) {
+      notifications[i] =
+        <MenuItem key={i}>
+          <span
+            onClick={() => this.checkForNotifications()}
+            className={!this.props.userNotifications[this.props.userNotifications.length - 1 - i].read ? styles.notificationUnRead: styles.notificationRead}
+          >
+            {this.props.userNotifications[this.props.userNotifications.length- 1 - i].description}
+            &nbsp;&nbsp;&nbsp;
+            {this.props.userNotifications[this.props.userNotifications.length- 1 - i].creationDate}
+          </span>
+        </MenuItem>
+    }
     return (
       <div>
         <NavDropdown

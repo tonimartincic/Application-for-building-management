@@ -9,14 +9,14 @@ Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) v
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivan','Horvat','ivan.horvat@fer.hr','TENANT',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Maja','Majic','maja.majic@fer.hr','TENANT',false, 'pass');
 
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar1_ime','Stanar1_prezime','stanar1@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar1_ime','Stanar1_prezime','stanar1@fer.hr','TENANT',true, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar2_ime','Stanar2_prezime','stanar2@fer.hr','TENANT',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar3_ime','Stanar3_prezime','stanar3@fer.hr','TENANT',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar4_ime','Stanar4_prezime','stanar4@fer.hr','TENANT',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar5_ime','Stanar5_prezime','stanar5@fer.hr','TENANT',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar6_ime','Stanar6_prezime','stanar6@fer.hr','TENANT',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar7_ime','Stanar7_prezime','stanar7@fer.hr','TENANT',false, 'pass');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar8_ime','Stanar8_prezime','stanar8@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar8_ime','Stanar8_prezime','stanar8@fer.hr','TENANT',true, 'pass');
 
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Predstavnik1234_ime','Predstavnik1234_prezime','predstavnik1234@fer.hr','TENANT_REPRESENTATIVE',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Predstavnik5678_ime','Predstavnik5678_prezime','predstavnik5678@fer.hr','TENANT_REPRESENTATIVE',false, 'pass');
@@ -67,7 +67,9 @@ Insert into user_notification (description, user_id, is_read, creation_date) val
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Inicijalno pročitano',11, true, parsedatetime('03.11.17', 'dd.MM.yy'));
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Još nešto inicijalno pročitano',11, true, parsedatetime('03.11.17', 'dd.MM.yy'));
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Sutra ste na rasporedu za čišćenje snijega',11, false, parsedatetime('28.12.17', 'dd.MM.yy'));
-Insert into user_notification (description, user_id, is_read, creation_date) values ('Danas ste na rasporedu za čišćenje snijega',11, false, parsedatetime('03.11.17', 'dd.MM.yy'));
+Insert into user_notification (description, user_id, is_read, creation_date) values ('Danas ste na rasporedu za čišćenje snijega',11, false, parsedatetime('29.12.17', 'dd.MM.yy'));
+Insert into user_notification (description, user_id, is_read, creation_date) values ('Sutra ste na rasporedu za čišćenje snijega',11, false, parsedatetime('03.01.18', 'dd.MM.yy'));
+Insert into user_notification (description, user_id, is_read, creation_date) values ('Danas ste na rasporedu za čišćenje snijega',11, false, parsedatetime('04.01.18', 'dd.MM.yy'));
 
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('01.10.17', 'dd.MM.yy'), parsedatetime('02.10.17', 'dd.MM.yy'), 4, 'Pronađeni ključevi');
 Insert into announcement (creation_date, creator, content) values (parsedatetime('29.09.17', 'dd.MM.yy'), 2, 'Izgubio ključeve');
