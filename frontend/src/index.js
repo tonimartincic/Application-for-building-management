@@ -18,7 +18,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <div>
-          <PrivateRoute exact path='/'><AnnouncementBoard/></PrivateRoute>
+          <PrivateRoute exact path='/'><Login/></PrivateRoute>
           <PrivateRoute exact path='/board'><AnnouncementBoard/></PrivateRoute>
           <PrivateRoute exact path='/planning-future-costs'><PlanningFutureCosts/></PrivateRoute>
           <PrivateRoute exact path='/snow-clearing-schedule'><SnowClearingScheduleView/></PrivateRoute>

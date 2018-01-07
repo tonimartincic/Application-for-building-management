@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Row, Well, Button} from 'react-bootstrap';
+import {Col, Row, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import styles from './announcement.css';
 import ConfirmationMessage from './ConfirmationMessage';

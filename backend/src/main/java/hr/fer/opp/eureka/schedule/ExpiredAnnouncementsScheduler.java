@@ -15,7 +15,7 @@ public class ExpiredAnnouncementsScheduler {
     this.announcementService = announcementService;
   }
 
-  @Scheduled(cron = "0 0/2 0 * * ?")
+  @Scheduled(fixedDelay = 86400000)
   public void syncAnnouncements() {
     this.announcementService.deleteExpiredAnnouncements();
   }
