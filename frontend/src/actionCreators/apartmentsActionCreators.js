@@ -33,9 +33,9 @@ export async function fetchApartmentForCurrentUser(id) {
   }
 }
 
-export async function addNewApartment(apartment) {
+export async function addNewApartment(apartment, id) {
   try {
-    const response = await axios.post('/api/apartments', apartment);
+    const response = await axios.post('/api/apartments/'+id, apartment);
 
     return {
       type: types.ADD_NEW_APARTMENT_SUCCESS,

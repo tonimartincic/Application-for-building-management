@@ -6,9 +6,8 @@ import AddNewApartment from './AddNewApartment';
 import UpdateApartment from './UpdateApartment';
 import {Col, Button, Row, PageHeader, ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
-import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
-import { fetchUsers } from "../../../actionCreators/usersActionCreators";
-import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
+import {fetchUsers} from "../../../actionCreators/usersActionCreators";
+import fetchApartments, {addNewApartment} from "../../../actionCreators/apartmentsActionCreators";
 
 class AllApartmentsInfo extends Component {
   componentDidMount() {
@@ -30,11 +29,14 @@ class AllApartmentsInfo extends Component {
         funds: null,
       },
       buildingSelected: null,
+      apartmentAreaValidation: null,
+      apartmentArea: null,
     };
 
     this.toggleAddNewApartment = this.toggleAddNewApartment.bind(this);
     this.toggleUpdateApartmentClicked = this.toggleUpdateApartmentClicked.bind(this);
     this.handleSubmitNewApartment = this.handleSubmitNewApartment.bind(this);
+    this.handleChangeArea = this.handleChangeArea.bind(this);
   }
 
   toggleUpdateApartmentClicked() {
@@ -55,6 +57,25 @@ class AllApartmentsInfo extends Component {
   }
 
   handleSubmitNewApartment() {
+    debugger;
+    if(this.state.apartmentArea===null || this.state.apartmentArea==="") {
+      this.setState({
+        apartmentAreaValidation: 'error',
+      })
+    } else {
+      const apartment = {
+        area: this.state.apartmentArea,
+      };
+
+      this.props.addNewApartment(apartment, this.state.buildingSelected);
+    }
+  }
+
+  handleChangeArea(e) {
+    this.setState({
+      apartmentArea: e.target.value,
+      apartmentAreaValidation: null,
+    })
   }
 
   resetApartmentViewState() {
@@ -118,37 +139,43 @@ class AllApartmentsInfo extends Component {
         <Row>
           <Col md={8} mdOffset={2}>
             <ApartmentTable
-            buildingSelected={this.state.buildingSelected}
-            apartments={this.props.apartments}/>
+              buildingSelected={this.state.buildingSelected}
+              apartments={this.props.apartments}/>
           </Col>
         </Row>
-        <Row>
-          <div>
-            <Col md={8} mdOffset={3}>
-              <Row>
-                <Col md={1} mdOffset={2}>
-                  <Button
-                    onClick={() => this.toggleAddNewApartment()}
-                  >Dodaj stan</Button>
+        <Choose>
+          <When condition={this.state.buildingSelected !== null && this.state.buildingSelected !== 'select'}>
+            <Row>
+              <div>
+                <Col md={8} mdOffset={3}>
+                  <Row>
+                    <Col md={1} mdOffset={2}>
+                      <Button
+                        onClick={() => this.toggleAddNewApartment()}
+                      >Dodaj stan</Button>
+                    </Col>
+                    <Col md={1} mdOffset={1}>
+                      <Button
+                        onClick={() => this.toggleUpdateApartmentClicked()}
+                      >Obriši stan</Button>
+                    </Col>
+                  </Row>
                 </Col>
-                <Col md={1} mdOffset={1}>
-                  <Button
-                    onClick={() => this.toggleUpdateApartmentClicked()}
-                  >Obriši stan</Button>
-                </Col>
-              </Row>
-            </Col>
-          </div>
-          <AddNewApartment
-            addNewApartmentClicked={this.state.addNewApartmentClicked}
-            toggleAddNewApartment={this.toggleAddNewApartment}
-            handleSubmitNewApartment={this.handleSubmitNewApartment}
-          />
-          <UpdateApartment
-            updateApartmentClicked={this.state.updateApartmentClicked}
-            toggleUpdateApartmentClicked={this.toggleUpdateApartmentClicked}
-          />
-        </Row>
+              </div>
+              <AddNewApartment
+                addNewApartmentClicked={this.state.addNewApartmentClicked}
+                toggleAddNewApartment={this.toggleAddNewApartment}
+                handleSubmitNewApartment={this.handleSubmitNewApartment}
+                apartmentAreaValidation={this.state.apartmentAreaValidation}
+                handleChangeArea={this.handleChangeArea}
+              />
+              <UpdateApartment
+                updateApartmentClicked={this.state.updateApartmentClicked}
+                toggleUpdateApartmentClicked={this.toggleUpdateApartmentClicked}
+              />
+            </Row>
+          </When>
+        </Choose>
       </div>
     );
   }
@@ -167,9 +194,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchBuildings: () => dispatch(fetchBuildings()),
-    fetchBuildingUsersById: id => dispatch(fetchBuildingUsersById(id)),
     fetchApartments: () => dispatch(fetchApartments()),
     fetchUsers: () => dispatch(fetchUsers()),
+    addNewApartment: (apartment, id) => dispatch(addNewApartment(apartment,id)),
   };
 }
 

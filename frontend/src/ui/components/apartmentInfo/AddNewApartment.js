@@ -13,7 +13,7 @@ class AddNewApartment extends React.Component {
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Dodaj novu zgradu</Modal.Title>
+            <Modal.Title>Dodaj novi stan</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
@@ -21,21 +21,18 @@ class AddNewApartment extends React.Component {
                 controlId="formBasicText"
                 validationState={this.props.buildingAddressValidation || this.props.addressAlreadyExists}
               >
-                <ControlLabel>Adresa</ControlLabel>
+                <ControlLabel>Površina</ControlLabel>
                 <FormControl
                   type="text"
-                  placeholder="Unesi adresu zgrade"
-                  onChange={this.props.handleChangeAddress}
+                  placeholder="Unesi površinu stana"
+                  onChange={this.props.handleChangeArea}
                 />
               </FormGroup>
               <Row>
                 <Col md={7}>
                   <section>
-                    <Collapse in={this.props.buildingAddressValidation==='error'}>
+                    <Collapse in={this.props.apartmentAreaValidation==='error'}>
                       <p>Morate unijeti adresu zgrade.</p>
-                    </Collapse>
-                    <Collapse in={this.props.addressAlreadyExists==='error'}>
-                      <p>Zgrada na odabranoj adresi već postoji.</p>
                     </Collapse>
                   </section>
                 </Col>

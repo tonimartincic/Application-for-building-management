@@ -32,7 +32,6 @@ export default function buildingsReducer(state = initialState.buildings, action)
     case types.DELETE_BUILDING_FAILURE:
       return state;
 
-
     default:
       return state;
   }

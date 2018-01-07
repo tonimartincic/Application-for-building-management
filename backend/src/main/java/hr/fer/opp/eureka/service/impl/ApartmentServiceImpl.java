@@ -2,7 +2,9 @@ package hr.fer.opp.eureka.service.impl;
 
 import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.apartment.Apartment;
+import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.repository.ApartmentRepository;
+import hr.fer.opp.eureka.repository.BuildingRepository;
 import hr.fer.opp.eureka.service.ApartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,12 @@ import java.util.List;
 public class ApartmentServiceImpl implements ApartmentService {
 
   private final ApartmentRepository apartmentRepository;
+  private final BuildingRepository buildingRepository;
 
   @Autowired
-  public ApartmentServiceImpl(ApartmentRepository apartmentRepository) {
+  public ApartmentServiceImpl(ApartmentRepository apartmentRepository, BuildingRepository buildingRepository) {
     this.apartmentRepository = apartmentRepository;
+    this.buildingRepository = buildingRepository;
   }
 
   @Override
@@ -30,7 +34,12 @@ public class ApartmentServiceImpl implements ApartmentService {
   }
 
   @Override
-  public Apartment add(Apartment apartment) {
+  public Apartment add(Apartment apartment, Long buildingId) {
+
+    Building building = buildingRepository.findById(buildingId);
+
+    apartment.setBuilding(building);
+
     return this.apartmentRepository.save(apartment);
   }
 

@@ -27,9 +27,9 @@ public class ApartmentController {
     return apartmentService.getById(id);
   }
 
-  @PostMapping("/api/apartments")
-  public Apartment addNewApartment(@RequestBody final Apartment apartment) {
-    return apartmentService.add(apartment);
+  @PostMapping("/api/apartments/{buildingId}")
+  public Apartment addNewApartment(@RequestBody final Apartment apartment, @PathVariable Long buildingId) {
+    return apartmentService.add(apartment, buildingId);
   }
 
   @GetMapping("/api/apartments/user/{id}")
