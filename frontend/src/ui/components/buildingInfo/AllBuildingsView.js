@@ -5,7 +5,7 @@ import BuildingTable from './BuildingTable';
 import AddNewBuilding from './AddNewBuilding';
 import UpdateBuilding from './UpdateBuilding';
 import {Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader, Well} from 'react-bootstrap';
-import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
+import fetchBuildings, {addNewBuilding} from "../../../actionCreators/buildingsActionCreators";
 import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
 import { fetchUsers } from "../../../actionCreators/usersActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
@@ -30,6 +30,8 @@ class AllBuildingsView extends Component {
 
     this.toggleAddNewBuilding = this.toggleAddNewBuilding.bind(this);
     this.toggleUpdateBuildingClicked = this.toggleUpdateBuildingClicked.bind(this);
+    this.handleChangeAddress = this.handleChangeAddress.bind(this);
+    this.handleSubmitNewBuilding = this.handleSubmitNewBuilding.bind(this);
   }
 
   toggleUpdateBuildingClicked() {
@@ -64,13 +66,16 @@ class AllBuildingsView extends Component {
         addressAlreadyExists: 'error'
       });
     } else {
-
+      const building = {
+        address: this.state.buildingAddress,
+      };
+      this.props.addNewBuilding(building);
     }
   }
 
   addressExists() {
     for (let i  = 0 ; i < this.props.buildings.length ; i++ ) {
-      if(this.props.buildings.address === this.state.buildingAddress)
+      if(this.props.buildings[i].address === this.state.buildingAddress)
         return true;
     }
     return false;
@@ -109,7 +114,7 @@ class AllBuildingsView extends Component {
             buildingNameValidation={this.state.buildingNameValidation}
             handleChangeAddress={this.handleChangeAddress}
             handleSubmitNewBuilding={this.handleSubmitNewBuilding}
-            addressAlreadyExists={this.addressAlreadyExists}
+            addressAlreadyExists={this.state.addressAlreadyExists}
           />
           <UpdateBuilding
             updateBuildingClicked={this.state.updateBuildingClicked}
@@ -136,6 +141,7 @@ function mapDispatchToProps(dispatch) {
     fetchBuildingUsersById: id => dispatch(fetchBuildingUsersById(id)),
     fetchApartments: () => dispatch(fetchApartments()),
     fetchUsers: () => dispatch(fetchUsers()),
+    addNewBuilding: building => dispatch(addNewBuilding(building)),
   };
 }
 

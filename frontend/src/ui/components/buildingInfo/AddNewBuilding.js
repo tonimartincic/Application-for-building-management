@@ -44,7 +44,7 @@ class AddNewBuilding extends React.Component {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.props.handleSubmitNewBuilding} >Potvrdi</Button>
+            <Button onClick={() => this.props.handleSubmitNewBuilding()} >Potvrdi</Button>
           </Modal.Footer>
         </Modal>
       </div>
