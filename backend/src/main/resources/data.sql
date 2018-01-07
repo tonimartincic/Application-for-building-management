@@ -21,11 +21,17 @@ Insert into app_user (first_name, last_name, mail, privilege, reminder, password
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Predstavnik1234_ime','Predstavnik1234_prezime','predstavnik1234@fer.hr','TENANT_REPRESENTATIVE',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Predstavnik5678_ime','Predstavnik5678_prezime','predstavnik5678@fer.hr','TENANT_REPRESENTATIVE',false, 'pass');
 
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj1234_ime','Upravitelj1234_prezime','upravitelj5678@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj1234_ime','Upravitelj1234_prezime','upravitelj1234@fer.hr','MANAGER',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj5678_ime','Upravitelj5678_prezime','upravitelj5678@fer.hr','MANAGER',false, 'pass');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj568_ime','Upravitelj578_prezime','upravitelj568@fer.hr','MANAGER',false, 'pass');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj578_ime','Upravitelj567_prezime','upravitelj578@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj568_ime','Upravitelj568_prezime','upravitelj568@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj578_ime','Upravitelj578_prezime','upravitelj578@fer.hr','MANAGER',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj678_ime','Upravitelj678_prezime','upravitelj678@fer.hr','MANAGER',false, 'pass');
+
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac1_ime','Izvodac1_prezime','izvodac1@fer.hr','CONTRACTOR',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac2_ime','Izvodac2_prezime','izvodac2@fer.hr','CONTRACTOR',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac3_ime','Izvodac3_prezime','izvodac3@fer.hr','CONTRACTOR',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac4_ime','Izvodac4_prezime','izvodac4@fer.hr','CONTRACTOR',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac5_ime','Izvodac5_prezime','izvodac5@fer.hr','CONTRACTOR',false, 'pass');
 
 Insert into building (address, landlord, manager,  funds) values ('Ilica 256', 1, 23, 100532.52);
 Insert into building (address, landlord, manager, funds) values ('Ožujska BB', 2, 24, 54625.32);
@@ -96,13 +102,13 @@ Insert into announcement (creation_date, expiration_date, creator, content) valu
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
 101.25, 1, 'pričuva', parsedatetime('02.10.17', 'dd.MM.yy'),parsedatetime('01.10.17', 'dd.MM.yy'), 2);
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-595.05, 4, 'čišćenje', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('02.08.16', 'dd.MM.yy'), 3);
+595.05, 4, 'čišćenje', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('02.08.16', 'dd.MM.yy'), 27);
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
 68.10, 1, 'pričuva', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('28.09.17', 'dd.MM.yy'), 6);
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
 1582.00, 3, 'pričuva', parsedatetime('28.09.17', 'dd.MM.yy'),parsedatetime('11.10.17', 'dd.MM.yy'), 4);
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 5, 'popravak', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 2);
+99.99, 5, 'popravak', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 26);
 
 Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
 99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19);
