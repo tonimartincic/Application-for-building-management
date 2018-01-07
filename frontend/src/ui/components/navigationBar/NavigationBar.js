@@ -101,6 +101,18 @@ class NavigationBar extends Component {
               </NavItem>
             </When>
           </Choose>
+          <Choose>
+            <When condition={this.props.userData.privilege === ADMINISTRATOR}>
+              <NavItem
+                componentClass={Link}
+                to='/building-info'
+                href='/building-info'>
+                <span className={styles.span}>
+                  <span className='glyphicon glyphicon-home' />    Zgrade
+                </span>
+              </NavItem>
+            </When>
+          </Choose>
         </Nav>
       </Navbar>
     );
