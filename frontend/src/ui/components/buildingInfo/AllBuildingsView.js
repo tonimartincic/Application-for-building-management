@@ -4,7 +4,7 @@ import NavigationBar from '../navigationBar/NavigationBar';
 import BuildingTable from './BuildingTable';
 import AddNewBuilding from './AddNewBuilding';
 import UpdateBuilding from './UpdateBuilding';
-import {Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader, Well} from 'react-bootstrap';
+import {Col, Button, Row, PageHeader} from 'react-bootstrap';
 import fetchBuildings, {addNewBuilding} from "../../../actionCreators/buildingsActionCreators";
 import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
 import { fetchUsers } from "../../../actionCreators/usersActionCreators";
@@ -46,6 +46,9 @@ class AllBuildingsView extends Component {
     this.setState({
       addNewBuildingClicked: !addNewBuildingClickedTemp,
     });
+    if (addNewBuildingClickedTemp === true) {
+      this.resetAddress();
+    }
   }
 
   handleChangeAddress(e) {
@@ -70,6 +73,7 @@ class AllBuildingsView extends Component {
         address: this.state.buildingAddress,
       };
       this.props.addNewBuilding(building);
+      this.toggleAddNewBuilding();
     }
   }
 
@@ -81,6 +85,13 @@ class AllBuildingsView extends Component {
     return false;
   }
 
+  resetAddress() {
+    this.setState({
+      buildingAddress: null,
+      buildingAddressValidation: null,
+      addressAlreadyExists: null,
+    })
+  }
 
   render() {
     return (
@@ -111,7 +122,7 @@ class AllBuildingsView extends Component {
           <AddNewBuilding
             addNewBuildingClicked={this.state.addNewBuildingClicked}
             toggleAddNewBuilding={this.toggleAddNewBuilding}
-            buildingNameValidation={this.state.buildingNameValidation}
+            buildingNameValidation={this.state.buildingAddressValidation}
             handleChangeAddress={this.handleChangeAddress}
             handleSubmitNewBuilding={this.handleSubmitNewBuilding}
             addressAlreadyExists={this.state.addressAlreadyExists}

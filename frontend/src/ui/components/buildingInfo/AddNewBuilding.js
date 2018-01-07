@@ -1,6 +1,5 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, Button, Col, Modal, Collapse, Row} from 'react-bootstrap';
-import { connect } from 'react-redux';
 
 class AddNewBuilding extends React.Component {
   render() {
@@ -52,14 +51,4 @@ class AddNewBuilding extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    users: state.users,
-  };
-}
-
-function mapDispatchToProps() {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewBuilding);
+export default AddNewBuilding;

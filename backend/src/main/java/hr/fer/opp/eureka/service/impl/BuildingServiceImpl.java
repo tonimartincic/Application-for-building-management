@@ -54,4 +54,9 @@ public class BuildingServiceImpl implements BuildingService {
 
     return users;
   }
+
+  @Override
+  public void deleteById(Long id) {
+    buildingRepository.delete(id);
+  }
 }
