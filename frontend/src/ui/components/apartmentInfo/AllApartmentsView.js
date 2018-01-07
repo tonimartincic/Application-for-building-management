@@ -118,7 +118,8 @@ class AllApartmentsInfo extends Component {
         <Row>
           <Col md={8} mdOffset={2}>
             <ApartmentTable
-            buildingSelected={this.state.buildingSelected}/>
+            buildingSelected={this.state.buildingSelected}
+            apartments={this.props.apartments}/>
           </Col>
         </Row>
         <Row>
@@ -159,6 +160,7 @@ function mapStateToProps(state) {
     buildings: state.buildings,
     users: state.users,
     buildingUsers: state.buildingUsers,
+    apartments: state.apartments,
   };
 }
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import { connect } from 'react-redux';
 
 class ApartmentTable extends Component {
   render(){
@@ -52,15 +51,4 @@ class ApartmentTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    apartments: state.apartments,
-  };
-}
-
-function mapDispatchToProps() {
-  return {
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ApartmentTable);
+export default ApartmentTable;

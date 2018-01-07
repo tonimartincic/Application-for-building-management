@@ -13,4 +13,6 @@ public interface ApartmentService {
   Apartment add(Apartment apartment);
 
   Apartment getByUserId(Long id);
+
+  void deleteById(Long id);
 }

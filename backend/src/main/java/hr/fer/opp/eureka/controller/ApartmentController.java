@@ -35,4 +35,9 @@ public class ApartmentController {
   @GetMapping("/api/apartments/user/{id}")
   public Apartment getApartmentForCurrentUser(@PathVariable Long id) {
     return apartmentService.getByUserId(id); }
+
+  @DeleteMapping("/api/apartment/{id}")
+  public void deleteApartmentById(@PathVariable Long id) {
+    this.apartmentService.deleteById(id);
+  }
 }

@@ -46,4 +46,9 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
     return null;
   }
+
+  @Override
+  public void deleteById(Long id) {
+    this.apartmentRepository.delete(id);
+  }
 }
