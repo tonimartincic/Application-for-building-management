@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import styles from './userInfo.css';
 import * as constants from '../../../constants/values';
 
-class AllUsersInfoTable extends Component {
-  render(){
-    return(
+const AllUsersInfoTable = props => (
       <div>
         <Table striped bordered condensed hover className={styles.myTable}>
           <thead>
@@ -19,8 +17,8 @@ class AllUsersInfoTable extends Component {
           </thead>
           <tbody>
           {
-            this.props.buildings
-              .filter(building => building.id == this.props.buildingId)
+            props.buildings
+              .filter(building => building.id == props.buildingId)
               .filter(building => building.manager !== null)
               .map((building, index) =>
                 <tr key={index}>
@@ -31,7 +29,7 @@ class AllUsersInfoTable extends Component {
                 </tr>)
           }
           {
-            this.props.buildingUsers
+            props.buildingUsers
               .filter(user => user !== null)
               .map((user, index) => {
                 return (
@@ -46,9 +44,9 @@ class AllUsersInfoTable extends Component {
           </tbody>
         </Table>
       </div>
-    );
-  }
-}
+);
+
+
 
 function mapStateToProps(state) {
   return {
