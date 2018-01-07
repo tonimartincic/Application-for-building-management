@@ -40,7 +40,7 @@ class AddNewUserContainer extends React.Component {
   handleSubmit() {
     let hasError = false;
 
-    if(this.state.firstName === null || this.state.firstName === '') {
+    if(this.state.firstName === null || this.state.firstName.trim() === '') {
       this.setState({
         firstNameValidation: 'error',
       });
@@ -48,7 +48,7 @@ class AddNewUserContainer extends React.Component {
       hasError = true;
     }
 
-    if(this.state.lastName === null || this.state.lastName === '') {
+    if(this.state.lastName === null || this.state.lastName.trim() === '') {
       this.setState({
         lastNameValidation: 'error',
       });
@@ -75,7 +75,7 @@ class AddNewUserContainer extends React.Component {
     }
 
     if(!hasError) {
-      this.props.addNewUser(this.state.firstName, this.state.lastName, this.state.email, this.state.privilege, this.state.currentApartment);
+      this.props.addNewUser(this.state.firstName.trim(), this.state.lastName.trim(), this.state.email.trim(), this.state.privilege, this.state.currentApartment);
       this.props.toggleAddNewUser();
 
       this.setState({
@@ -133,7 +133,7 @@ class AddNewUserContainer extends React.Component {
   }
 
   checkEmail() {
-    if(this.state.email === null || this.state.email === '') {
+    if(this.state.email === null || this.state.email.trim() === '') {
       this.setState({
         emailValidationEmptyString: 'error',
       });
@@ -143,7 +143,7 @@ class AddNewUserContainer extends React.Component {
 
     for(let i = 0 ; i < this.props.users.length; i = i + 1) {
       if(this.props.users[i] !== null) {
-        if (this.props.users[i].mail === this.state.email) {
+        if (this.props.users[i].mail === this.state.email.trim()) {
           this.setState({
             emailValidationAlreadyExists: 'error',
           });
@@ -154,7 +154,7 @@ class AddNewUserContainer extends React.Component {
     }
 
     let re = /\S+@\S+\.\S+/;
-    if (!re.test(this.state.email)) {
+    if (!re.test(this.state.email.trim())) {
       this.setState({
         emailValidationNotCorrectFormat: 'error',
       });
