@@ -33,3 +33,18 @@ export async function addNewBuilding(building) {
   }
 }
 
+export async function deleteBuildingById(id) {
+  try {
+    const response = await axios.delete('/api/building/'+id);
+
+    return {
+      type: types.DELETE_BUILDING_SUCCESS,
+      id,
+    }
+  } catch (err) {
+    return {
+      type: types.DELETE_BUILDING_FAILURE,
+      data: err,
+    }
+  }
+}

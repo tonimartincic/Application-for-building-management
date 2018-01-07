@@ -16,6 +16,23 @@ export default function buildingsReducer(state = initialState.buildings, action)
     case types.ADD_NEW_BUILDING_FAILURE:
       return state;
 
+    case types.DELETE_BUILDING_SUCCESS:
+      const buildingsWithoutDeletedOne = [];
+      for(let i = 0, j = 0; i < state.length; i++) {
+        if(state[i].id === action.id) {
+          continue;
+        }
+
+        buildingsWithoutDeletedOne[j] = state[i];
+        j++;
+      }
+
+      return buildingsWithoutDeletedOne;
+
+    case types.DELETE_BUILDING_FAILURE:
+      return state;
+
+
     default:
       return state;
   }

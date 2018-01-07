@@ -35,9 +35,9 @@ class AllBuildingsView extends Component {
   }
 
   toggleUpdateBuildingClicked() {
-    const updateBuildingClickedTemp = this.state.updateBuildingClickedTemp;
+    const updateBuildingClickedTemp = this.state.updateBuildingClicked;
     this.setState({
-      updateBuildingClickedTemp: !updateBuildingClickedTemp,
+      updateBuildingClicked: !updateBuildingClickedTemp,
     });
   }
 
@@ -116,7 +116,7 @@ class AllBuildingsView extends Component {
 
               <Button
                 onClick={() => this.toggleUpdateBuildingClicked()}
-              >Ažuriraj zgradu</Button>
+              >Obriši zgradu</Button>
             </Col>
           </div>
           <AddNewBuilding
