@@ -35,7 +35,7 @@ const AdministratorsTable = props => (
           </Col>
         </Row>
       </div>
-)
+);
 
 function mapStateToProps(state) {
   return {
