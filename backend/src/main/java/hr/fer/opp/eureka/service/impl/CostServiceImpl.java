@@ -10,6 +10,7 @@ import hr.fer.opp.eureka.domain.user.User;
 import hr.fer.opp.eureka.enumeration.UserPrivilege;
 import hr.fer.opp.eureka.repository.CostRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
+import hr.fer.opp.eureka.service.BuildingService;
 import hr.fer.opp.eureka.service.CostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,18 +26,22 @@ public class CostServiceImpl implements CostService {
 
   private final UserRepository userRepository;
 
+  private final BuildingService buildingService;
+
   @Autowired
   public CostServiceImpl(
     CostRepository costRepository,
-    UserRepository userRepository) {
+    UserRepository userRepository,
+    BuildingService buildingService) {
 
     this.costRepository = costRepository;
     this.userRepository = userRepository;
+    this.buildingService = buildingService;
   }
 
   @Override
   public List<CostResponse> getAllForCurrentUser(Long currentUserId) {
-    Building currentUserBuilding = getCurrentUserBuilding(currentUserId);
+    Building currentUserBuilding = this.buildingService.getCurrentUserBuilding(currentUserId);
 
     List<Cost> allCosts = Lists.newArrayList(this.costRepository.findAll());
     List<CostResponse> costResponsesForBuilding = new ArrayList<>();
@@ -48,18 +53,6 @@ public class CostServiceImpl implements CostService {
     }
 
     return costResponsesForBuilding;
-  }
-
-  private Building getCurrentUserBuilding(Long currentUserId) {
-    User currentUser = this.userRepository.findById(currentUserId);
-    Building currentUserBuilding;
-
-    if(currentUser.getPrivilege().equals(UserPrivilege.MANAGER)) {
-      currentUserBuilding = (Building) currentUser.getManagerBuildingSet().toArray()[0];
-    } else {
-      currentUserBuilding = ((Apartment) currentUser.getApartments().toArray()[0]).getBuilding();
-    }
-    return currentUserBuilding;
   }
 
   @Override

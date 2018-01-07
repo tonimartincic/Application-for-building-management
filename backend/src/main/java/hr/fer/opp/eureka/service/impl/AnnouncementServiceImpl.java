@@ -10,6 +10,7 @@ import hr.fer.opp.eureka.enumeration.UserPrivilege;
 import hr.fer.opp.eureka.repository.AnnouncementRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.AnnouncementService;
+import hr.fer.opp.eureka.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,18 +25,22 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
   private final UserRepository userRepository;
 
+  private final BuildingService buildingService;
+
   @Autowired
   public AnnouncementServiceImpl(
     AnnouncementRepository announcementRepository,
-    UserRepository userRepository) {
+    UserRepository userRepository,
+    BuildingService buildingService) {
 
     this.announcementRepository = announcementRepository;
     this.userRepository = userRepository;
+    this.buildingService = buildingService;
   }
 
   @Override
   public List<Announcement> getAllForCurrentUser(Long currentUserId) {
-    Building currentUserBuilding = getCurrentUserBuilding(currentUserId);
+    Building currentUserBuilding = this.buildingService.getCurrentUserBuilding(currentUserId);
 
     List<Announcement> allAnnouncements = Lists.newArrayList(this.announcementRepository.findAll());
     List<Announcement> allAnnouncementsForBuilding = new ArrayList<>();
@@ -47,18 +52,6 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     return allAnnouncementsForBuilding;
-  }
-
-  private Building getCurrentUserBuilding(Long currentUserId) {
-    User currentUser = this.userRepository.findById(currentUserId);
-    Building currentUserBuilding;
-
-    if(currentUser.getPrivilege().equals(UserPrivilege.MANAGER)) {
-      currentUserBuilding = (Building) currentUser.getManagerBuildingSet().toArray()[0];
-    } else {
-      currentUserBuilding = ((Apartment) currentUser.getApartments().toArray()[0]).getBuilding();
-    }
-    return currentUserBuilding;
   }
 
   @Override
