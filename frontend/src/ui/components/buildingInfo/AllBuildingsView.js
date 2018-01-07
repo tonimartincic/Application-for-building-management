@@ -110,13 +110,18 @@ class AllBuildingsView extends Component {
         <Row>
           <div>
             <Col md={8} mdOffset={3}>
-              <Button
-                onClick={() => this.toggleAddNewBuilding()}
-              >Dodaj zgradu</Button>
-
-              <Button
-                onClick={() => this.toggleUpdateBuildingClicked()}
-              >Obriši zgradu</Button>
+              <Row>
+                <Col md={1} mdOffset={2}>
+                  <Button
+                    onClick={() => this.toggleAddNewBuilding()}
+                  >Dodaj zgradu</Button>
+                </Col>
+                <Col md={1} mdOffset={1}>
+                  <Button
+                    onClick={() => this.toggleUpdateBuildingClicked()}
+                  >Obriši zgradu</Button>
+                </Col>
+              </Row>
             </Col>
           </div>
           <AddNewBuilding
