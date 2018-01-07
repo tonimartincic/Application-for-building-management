@@ -103,7 +103,7 @@ public class UserNotificationServiceImpl implements UserNotificationService {
             boolean alreadyExists=false;
             for (UserNotification userNotification:currentUserNotifications) {
               if(userNotification.getCreationDate().equals(LocalDate.now())
-                && userNotification.getDescription().equals("Sutra je zadnji dan za plaćanje naloga"))  {
+                && userNotification.getDescription().equals("Sutra je zadnji dan za plaćanje naloga!"))  {
                 alreadyExists=true;
               }
             }
@@ -119,13 +119,15 @@ public class UserNotificationServiceImpl implements UserNotificationService {
             todayPaymentOrderDueNotification.setRead(false);
             todayPaymentOrderDueNotification.setCreationDate(LocalDate.now());
 
+            boolean alreadyExists=false;
             for (UserNotification userNotification:currentUserNotifications) {
               if(userNotification.getCreationDate().equals(LocalDate.now())
                 && userNotification.getDescription().equals("Danas je zadnji dan za plaćanje naloga!"))  {
-
-              }else{
-                userNotificationRepository.save(todayPaymentOrderDueNotification);
+                alreadyExists=true;
               }
+            }
+            if(!alreadyExists){
+              userNotificationRepository.save(todayPaymentOrderDueNotification);
             }
           }
         }
