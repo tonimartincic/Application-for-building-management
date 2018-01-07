@@ -5,6 +5,8 @@ import hr.fer.opp.eureka.domain.announcement.Announcement;
 import hr.fer.opp.eureka.domain.announcement.AnnouncementRequest;
 import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.building.Building;
+import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.enumeration.UserPrivilege;
 import hr.fer.opp.eureka.repository.AnnouncementRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.AnnouncementService;
@@ -33,7 +35,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
   @Override
   public List<Announcement> getAllForCurrentUser(Long currentUserId) {
-    Building currentUserBuilding = ((Apartment) this.userRepository.findById(currentUserId).getApartments().toArray()[0]).getBuilding();
+    Building currentUserBuilding = getCurrentUserBuilding(currentUserId);
 
     List<Announcement> allAnnouncements = Lists.newArrayList(this.announcementRepository.findAll());
     List<Announcement> allAnnouncementsForBuilding = new ArrayList<>();
@@ -45,6 +47,18 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     return allAnnouncementsForBuilding;
+  }
+
+  private Building getCurrentUserBuilding(Long currentUserId) {
+    User currentUser = this.userRepository.findById(currentUserId);
+    Building currentUserBuilding;
+
+    if(currentUser.getPrivilege().equals(UserPrivilege.MANAGER)) {
+      currentUserBuilding = (Building) currentUser.getManagerBuildingSet().toArray()[0];
+    } else {
+      currentUserBuilding = ((Apartment) currentUser.getApartments().toArray()[0]).getBuilding();
+    }
+    return currentUserBuilding;
   }
 
   @Override

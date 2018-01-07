@@ -6,6 +6,8 @@ import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.cost.CostRequest;
 import hr.fer.opp.eureka.domain.cost.CostResponse;
+import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.enumeration.UserPrivilege;
 import hr.fer.opp.eureka.repository.CostRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.CostService;
@@ -34,7 +36,7 @@ public class CostServiceImpl implements CostService {
 
   @Override
   public List<CostResponse> getAllForCurrentUser(Long currentUserId) {
-    Building currentUserBuilding = ((Apartment) this.userRepository.findById(currentUserId).getApartments().toArray()[0]).getBuilding();
+    Building currentUserBuilding = getCurrentUserBuilding(currentUserId);
 
     List<Cost> allCosts = Lists.newArrayList(this.costRepository.findAll());
     List<CostResponse> costResponsesForBuilding = new ArrayList<>();
@@ -46,6 +48,18 @@ public class CostServiceImpl implements CostService {
     }
 
     return costResponsesForBuilding;
+  }
+
+  private Building getCurrentUserBuilding(Long currentUserId) {
+    User currentUser = this.userRepository.findById(currentUserId);
+    Building currentUserBuilding;
+
+    if(currentUser.getPrivilege().equals(UserPrivilege.MANAGER)) {
+      currentUserBuilding = (Building) currentUser.getManagerBuildingSet().toArray()[0];
+    } else {
+      currentUserBuilding = ((Apartment) currentUser.getApartments().toArray()[0]).getBuilding();
+    }
+    return currentUserBuilding;
   }
 
   @Override

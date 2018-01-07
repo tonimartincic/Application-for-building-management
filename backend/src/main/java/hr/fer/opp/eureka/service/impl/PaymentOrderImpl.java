@@ -7,6 +7,8 @@ import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.cost.CostResponse;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderRequest;
+import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.enumeration.UserPrivilege;
 import hr.fer.opp.eureka.repository.PaymentOrderRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.PaymentOrderService;
@@ -34,7 +36,7 @@ public class PaymentOrderImpl implements PaymentOrderService {
 
   @Override
   public List<PaymentOrder> getAllForCurrentUser(Long currentUserId) {
-    Building currentUserBuilding = ((Apartment) this.userRepository.findById(currentUserId).getApartments().toArray()[0]).getBuilding();
+    Building currentUserBuilding = getCurrentUserBuilding(currentUserId);
 
     List<PaymentOrder> allPaymentOrders = Lists.newArrayList(this.paymentOrderRepository.findAll());
     List<PaymentOrder> paymentOrdersForBuilding = new ArrayList<>();
@@ -47,6 +49,18 @@ public class PaymentOrderImpl implements PaymentOrderService {
     }
 
     return paymentOrdersForBuilding;
+  }
+
+  private Building getCurrentUserBuilding(Long currentUserId) {
+    User currentUser = this.userRepository.findById(currentUserId);
+    Building currentUserBuilding;
+
+    if(currentUser.getPrivilege().equals(UserPrivilege.MANAGER)) {
+      currentUserBuilding = (Building) currentUser.getManagerBuildingSet().toArray()[0];
+    } else {
+      currentUserBuilding = ((Apartment) currentUser.getApartments().toArray()[0]).getBuilding();
+    }
+    return currentUserBuilding;
   }
 
   @Override
