@@ -1,62 +1,59 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, Alert, Well} from 'react-bootstrap';
-import {deleteBuildingById} from '../../../actionCreators/buildingsActionCreators';
+import {deleteApartmentById} from '../../../actionCreators/apartmentsActionCreators';
 
 class UpdateApartment extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      building: {
+      apartment: {
         id: null,
-        address: null,
-        landlord: null,
-        manager: null,
-        funds: null,
+        building: null,
+        owner: null,
+        area: null,
       },
-      buildingSelected: null,
+      apartmentSelected: null,
     };
 
-    this.handleChangeBuilding = this.handleChangeBuilding.bind(this);
+    this.handleChangeApartment = this.handleChangeApartment.bind(this);
   }
 
 
-  handleChangeBuilding = (event) => {
-    for (let i = 0; i < this.props.buildings.length; ++i) {
-      if (this.props.buildings[i].id == event.target.value)
+  handleChangeApartment = (event) => {
+    for (let i = 0; i < this.props.apartments.length; ++i) {
+      if (this.props.apartments[i].id == event.target.value)
         this.setState({
-          building: {
-            id: this.props.buildings[i].id,
-            address: this.props.buildings[i].address,
-            landlord: this.props.buildings[i].landlord,
-            manager: this.props.buildings[i].manager,
-            funds: this.props.buildings[i].funds,
+          apartment: {
+            id: this.props.apartments[i].id,
+            building: this.props.apartments[i].building,
+            owner: this.props.apartments[i].owner,
+            area: this.props.apartments[i].area,
           }
         });
     }
 
     this.setState({
-      buildingSelected: event.target.value,
+      apartmentSelected: event.target.value,
     });
   };
 
-  resetUpdateBuildingState() {
+  resetUpdateApartmentState() {
     this.setState({
-      building: {
+      apartment: {
         id: null,
-        address: null,
-        landlord: null,
-        manager: null,
-        funds: null,
+        building: null,
+        owner: null,
+        area: null,
       },
-      buildingSelected: null,
+      apartmentSelected: null,
     });
   }
 
-  handleDeleteBuilding() {
-    if(this.state.buildingSelected) {
-      this.props.deleteBuildingById(this.state.building.id);
+  handleDeleteApartment() {
+    if(this.state.apartmentSelected) {
+      this.props.deleteApartmentById(this.state.apartment.id);
     }
   }
 
@@ -64,71 +61,57 @@ class UpdateApartment extends React.Component {
     return (
       <div>
         <Modal
-          show={this.props.updateBuildingClicked}
+          show={this.props.updateApartmentClicked}
           onHide={() => {
-            this.props.toggleUpdateBuildingClicked();
+            this.props.toggleUpdateApartmentClicked();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Obriši zgradu</Modal.Title>
+            <Modal.Title>Obriši stan</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ControlLabel>Odaberi zgradu</ControlLabel>
+            <ControlLabel>Odaberi stan</ControlLabel>
             <FormGroup controlId="formControlsSelect">
               <FormControl
                 componentClass='select'
                 placeholder='Odaberi'
-                onChange={this.handleChangeBuilding}
+                onChange={this.handleChangeApartment}
               >
                 <option value="select">Odaberi</option>
                 {
-                  this.props.buildings
-                    .map(building => {
+                  this.props.apartments
+                    .filter(apartment => apartment.building.id == this.props.buildingSelectedId)
+                    .map((apartment, index) => {
+                      const owner = apartment.owner !== null ? apartment.owner.firstName + " " + apartment.owner.lastName : "";
+                      let apartmentTemp;
+                      if(owner !== "") {
+                        apartmentTemp = index + 1 + '. Vlasnik: ' + owner + ', površina: ' + apartment.area;
+                      } else {
+                        apartmentTemp = index + 1 + '. nema vlasnika, površina: ' + apartment.area;
+                      }
                       return (
-                        <option key={building.id} value={building.id}>
-                          {building.address}
+                        <option key={apartment.id} value={apartment.id}>
+                          {apartmentTemp}
                         </option>)
                     })
                 }
               </FormControl>
             </FormGroup>
             <Choose>
-              <When condition={this.state.buildingSelected !== null || this.state.buildingSelected !== 'select'}>
+              <When condition={this.state.apartmentSelected !== null || this.state.apartmentSelected !== 'select'}>
                 {
-                  this.props.buildings
-                    .filter(building => building.id == this.state.buildingSelected)
-                    .map(building =>
+                  this.props.apartments
+                    .filter(apartment => apartment.id == this.state.apartmentSelected)
+                    .map(apartment =>
                       <Well>
-                        <Row>
-                          <Col md={8} mdOffset={1}>
-                            <h4>Adresa:
-                              {
-                                ' ' + building.address
-                              }
-                            </h4>
-                          </Col>
-                        </Row>
                         <Choose>
-                          <When condition={building.landlord !== null}>
+                          <When condition={apartment.owner !== null}>
                             <Row>
                               <Col md={8} mdOffset={1}>
-                                <h4>Predstavnik stanara:
+                                <h4>Vlasnik stana:
                                   {
-                                    ' ' + building.landlord.mail
-                                  }
-                                </h4>
-                              </Col>
-                            </Row>
-                          </When>
-                        </Choose>
-                        <Choose>
-                          <When condition={building.manager !== null}>
-                            <Row>
-                              <Col md={8} mdOffset={1}>
-                                <h4>Upravitelj:
-                                  {
-                                    ' ' + building.manager.mail
+                                    ' ' + apartment.owner.mail
                                   }
                                 </h4>
                               </Col>
@@ -142,15 +125,15 @@ class UpdateApartment extends React.Component {
             </Choose>
           </Modal.Body>
           <Choose>
-            <When condition={this.state.buildingSelected !== null && this.state.buildingSelected !== 'select'}>
+            <When condition={this.state.apartmentSelected !== null && this.state.apartmentSelected !== 'select'}>
               <Modal.Footer>
                 <Button onClick={() => {
-                  this.handleDeleteBuilding();
-                  this.resetUpdateBuildingState();
-                }}>Obriši zgradu</Button>
+                  this.handleDeleteApartment();
+                  this.resetUpdateApartmentState();
+                }}>Obriši stan</Button>
                 <Button onClick={() => {
                   this.props.toggleUpdateBuildingClicked();
-                  this.resetUpdateBuildingState();
+                  this.resetUpdateApartmentState();
                 }}>Odustani</Button>
               </Modal.Footer>
             </When>
@@ -164,14 +147,13 @@ class UpdateApartment extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    buildings: state.buildings,
+    apartments: state.apartments,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteBuildingById: id => dispatch(deleteBuildingById(id)),
-    editUserInfo: user => dispatch(editUserInfo(user)),
+    deleteApartmentById: id => dispatch(deleteApartmentById(id)),
   };
 }
 

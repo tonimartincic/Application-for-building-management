@@ -172,6 +172,7 @@ class AllApartmentsInfo extends Component {
               <UpdateApartment
                 updateApartmentClicked={this.state.updateApartmentClicked}
                 toggleUpdateApartmentClicked={this.toggleUpdateApartmentClicked}
+                buildingSelectedId={this.state.buildingSelected}
               />
             </Row>
           </When>
