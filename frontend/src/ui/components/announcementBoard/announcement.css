@@ -1,0 +1,28 @@
+.sectionAnnouncement {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: solid black 0.15em;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.sectionFooter {
+  margin-top: 20px;
+  color: gray;
+}
+
+.sectionHeader {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  float: right;
+}
+
+.creationDateSpan {
+  float: right;
+}
+
+.button {
+  background-color: white;
+  color: black;
+  margin: 0.1em;
+}

@@ -1,0 +1,17 @@
+.myTable {
+  width: 70%;
+}
+
+.tableColumn {
+  width: 20%;
+}
+
+
+.tableColumnCurrentUser {
+  width: 20%;
+  font-weight: bold;
+}
+
+.pastDates {
+  color: gray;
+}

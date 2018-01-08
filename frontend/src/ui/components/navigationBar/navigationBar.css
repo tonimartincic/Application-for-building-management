@@ -1,0 +1,24 @@
+.navCenter {
+  margin-top: 0.7em;
+}
+
+.navBar {
+  background-color: black;
+}
+
+.a {
+  color: white;
+}
+
+.span {
+  color: white;
+}
+
+.spanEureka {
+  color: white;
+  font-size: 26px;
+}
+
+.span:hover {
+  color: silver;
+}

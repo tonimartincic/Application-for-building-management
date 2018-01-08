@@ -1,0 +1,40 @@
+.sectionMain {
+  margin-top: 1em;
+}
+
+.textarea {
+  width: 90%;
+}
+
+.sectionButtons {
+  display: grid;
+  grid-template-columns: 60% 20% 20%;
+  width: 90%;
+}
+
+.sectionDatePickerCheckboxAndLabel {
+  display: grid;
+  grid-template-columns: 45% 5% 50%;
+}
+
+.sectionDatePicker {
+  margin-top: 5%;
+}
+
+.button {
+  margin-top: 5%;
+  height: 75%;
+  margin-left: 10px;
+}
+
+.sectionHeader {
+  margin-bottom: 10px;
+}
+
+.controlLabelAnnouncementExpirationDate {
+  margin-top: 10%;
+}
+
+.sectionCheckboxAnnouncementExpirationDate {
+  padding-top: 40%;
+}
