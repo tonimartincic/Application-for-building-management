@@ -68,6 +68,7 @@ public class BuildingServiceImpl implements BuildingService {
   @Override
   public void deleteById(Long id) {
     buildingRepository.delete(id);
+  }
 
   @Override
   public Building getBuildingForUser(Long currentUserId) {
