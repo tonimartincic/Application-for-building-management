@@ -11,6 +11,8 @@ import { history } from './ui/components/history/history';
 import SnowClearingScheduleView from "./ui/components/snowClearingSchedule/SnowClearingScheduleView";
 import AllUsersInfo from './ui/components/usersManipulation/AllUsersInfo';
 import AllPaymentsView from './ui/components/paymentFlow/AllPaymentsView';
+import AllBuildingsView from './ui/components/buildingInfo/AllBuildingsView';
+import AllApartmentsView from './ui/components/apartmentInfo/AllApartmentsView';
 
 const store = configureStore();
 
@@ -24,6 +26,8 @@ ReactDOM.render(
           <PrivateRoute exact path='/snow-clearing-schedule'><SnowClearingScheduleView/></PrivateRoute>
           <PrivateRoute exact path='/all-users'><AllUsersInfo /></PrivateRoute>
           <PrivateRoute exact path='/payments'><AllPaymentsView /></PrivateRoute>
+          <PrivateRoute exact path='/building-info'><AllBuildingsView /></PrivateRoute>
+          <PrivateRoute exact path='/apartment-info'><AllApartmentsView /></PrivateRoute>
           <Route exact path='/login' component={Login} />
       </div>
     </Router>

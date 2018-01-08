@@ -17,3 +17,34 @@ export default async function fetchBuildings() {
   }
 }
 
+export async function addNewBuilding(building) {
+  try {
+    const response = await axios.post('/api/buildings', building);
+
+    return {
+      type: types.ADD_NEW_BUILDING_SUCCESS,
+      data: response.data,
+    }
+  } catch (err) {
+    return {
+      type: types.ADD_NEW_BUILDING_FAILURE,
+      data: err,
+    }
+  }
+}
+
+export async function deleteBuildingById(id) {
+  try {
+    const response = await axios.delete('/api/building/'+id);
+
+    return {
+      type: types.DELETE_BUILDING_SUCCESS,
+      id,
+    }
+  } catch (err) {
+    return {
+      type: types.DELETE_BUILDING_FAILURE,
+      data: err,
+    }
+  }
+}

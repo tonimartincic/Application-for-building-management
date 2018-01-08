@@ -37,4 +37,9 @@ public class BuildingController {
   public List<UserResponse> getAllUsersInBuilding(@PathVariable final Long id) {
     return this.buildingService.getAllUsersByBuildingId(id);
   }
+
+  @DeleteMapping("/api/building/{id}")
+  public void deleteBuildingById(@PathVariable Long id) {
+    this.buildingService.deleteById(id);
+  }
 }
