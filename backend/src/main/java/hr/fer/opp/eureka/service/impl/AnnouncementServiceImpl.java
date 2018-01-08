@@ -3,11 +3,11 @@ package hr.fer.opp.eureka.service.impl;
 import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.announcement.Announcement;
 import hr.fer.opp.eureka.domain.announcement.AnnouncementRequest;
-import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.repository.AnnouncementRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.service.AnnouncementService;
+import hr.fer.opp.eureka.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,29 +22,43 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
   private final UserRepository userRepository;
 
+  private final BuildingService buildingService;
+
   @Autowired
   public AnnouncementServiceImpl(
     AnnouncementRepository announcementRepository,
-    UserRepository userRepository) {
+    UserRepository userRepository,
+    BuildingService buildingService) {
 
     this.announcementRepository = announcementRepository;
     this.userRepository = userRepository;
+    this.buildingService = buildingService;
   }
 
   @Override
   public List<Announcement> getAllForCurrentUser(Long currentUserId) {
-    Building currentUserBuilding = ((Apartment) this.userRepository.findById(currentUserId).getApartments().toArray()[0]).getBuilding();
+    Building currentUserBuilding = this.buildingService.getBuildingForUser(currentUserId);
 
     List<Announcement> allAnnouncements = Lists.newArrayList(this.announcementRepository.findAll());
     List<Announcement> allAnnouncementsForBuilding = new ArrayList<>();
 
     for (Announcement announcement : allAnnouncements) {
-      if (((Apartment) announcement.getUser().getApartments().toArray()[0]).getBuilding().getId() == currentUserBuilding.getId()) {
+      if (isNeededToAddAnnouncement(currentUserBuilding, announcement)) {
         allAnnouncementsForBuilding.add(announcement);
       }
     }
 
     return allAnnouncementsForBuilding;
+  }
+
+  private boolean isNeededToAddAnnouncement(Building currentUserBuilding, Announcement announcement) {
+    Building building = this.buildingService.getBuildingForUser(announcement.getUser().getId());
+
+    if(building == null) {
+      return false;
+    }
+
+    return building.equals(currentUserBuilding);
   }
 
   @Override

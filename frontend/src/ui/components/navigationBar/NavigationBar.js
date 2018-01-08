@@ -6,7 +6,7 @@ import UserInfo from '../userInfo/UserInfo';
 import Notifications from '../notifications/Notifications';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../../../actionCreators/userDataActionCreators';
-import { ADMINISTRATOR } from "../../../constants/values";
+import { ADMINISTRATOR, MANAGER } from "../../../constants/values";
 import fetchApartments from '../../../actionCreators/apartmentsActionCreators';
 
 class NavigationBar extends Component {
@@ -68,6 +68,10 @@ class NavigationBar extends Component {
                   <span className='glyphicon glyphicon-euro' />    Nalozi
                 </span>
               </NavItem>
+            </When>
+          </Choose>
+          <Choose>
+            <When condition={this.props.userData.privilege !== ADMINISTRATOR && this.props.userData.privilege !== MANAGER}>
               <NavItem
                 componentClass={Link}
                 to='/snow-clearing-schedule'
@@ -83,7 +87,7 @@ class NavigationBar extends Component {
             <UserInfo />
           </NavItem>
           <Choose>
-            <When condition={this.props.userData.privilege !== ADMINISTRATOR}>
+            <When condition={this.props.userData.privilege !== ADMINISTRATOR && this.props.userData.privilege !== MANAGER}>
               <NavItem >
                 <Notifications />
               </NavItem>

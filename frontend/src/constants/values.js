@@ -18,8 +18,10 @@ export const TENANT_REPRESENTATIVE = 'Predstavnik stanara';
 
 export const TENANT = 'Stanar';
 
+export const CONTRACTOR = 'Izvodac';
+
 export const userPrivileges = [
-  ADMINISTRATOR, MANAGER, TENANT_REPRESENTATIVE, TENANT
+  ADMINISTRATOR, MANAGER, TENANT_REPRESENTATIVE, TENANT, CONTRACTOR
 ];
 
 export const canEditAnnouncement = [

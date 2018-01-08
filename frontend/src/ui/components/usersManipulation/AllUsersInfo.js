@@ -1,25 +1,23 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import NavigationBar from '../navigationBar/NavigationBar';
-import AllUsersInfoTable from './AllUsersInfoTable';
-import AddNewUserContainer from './AddNewUserContainer';
-import {Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader, Well} from 'react-bootstrap';
-import UpdateUserInfoContainer from './UpdateUserInfoContainer';
+import AllUsersInfoTable from './otherUsers/AllUsersInfoTable';
+import AddNewUserContainer from './otherUsers/AddNewUserContainer';
+import { Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader } from 'react-bootstrap';
+import UpdateUserInfoContainer from './otherUsers/UpdateUserInfoContainer';
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
 import { fetchUsers } from "../../../actionCreators/usersActionCreators";
 import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
-import AdministratorsTable from "./AdministratorsTable";
-import AddNewAdministratorContainer from './AddNewAdministratorContainer';
-import RemoveAdministrator from './RemoveAdministrator';
+import AdministratorsTable from "./administrators/AdministratorsTable";
+import ContractorsTable from "./contractors/ContractorsTable";
+import AddNewAdministratorContainer from './administrators/AddNewAdministratorContainer';
+import AddNewContractorContainer from './contractors/AddNewContractorContainer';
+import RemoveAdministrator from './administrators/RemoveAdministrator';
+import RemoveContractor from './contractors/RemoveContractor';
 import * as styles from './allUsersInfo.css';
 
 class AllUsersInfo extends Component {
-  componentDidMount() {
-    this.props.fetchBuildings();
-    this.props.fetchUsers();
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -27,22 +25,24 @@ class AllUsersInfo extends Component {
       updateUserInfoClicked: false,
       addNewAdministratorClicked: false,
       updateAdministratorInfoClicked: false,
+      addNewContractorClicked: false,
+      updateContractorInfoClicked: false,
+
       buildingId: null,
       buildingSelected: null,
     };
 
     this.toggleAddNewUser = this.toggleAddNewUser.bind(this);
-    this.toggleNewAdministratorClicked = this.toggleNewAdministratorClicked.bind(this);
     this.toggleUpdateUserInfo = this.toggleUpdateUserInfo.bind(this);
-    this.toggleAdministratorInfoClicked = this.toggleAdministratorInfoClicked.bind(this);
+    this.toggleNewAdministratorClicked = this.toggleNewAdministratorClicked.bind(this);
+    this.toggleAdministratorInfoClicked = this.toggleAdministratorInfoClicked.bind(this)
+    this.toggleNewContractorClicked = this.toggleNewContractorClicked.bind(this);
+    this.toggleContractorInfoClicked = this.toggleContractorInfoClicked.bind(this);
   }
 
-  toggleNewAdministratorClicked() {
-    debugger;
-    const addNewAdministratorClickedTemp = this.state.addNewAdministratorClicked;
-    this.setState({
-      addNewAdministratorClicked: !addNewAdministratorClickedTemp,
-    });
+  componentDidMount() {
+    this.props.fetchBuildings();
+    this.props.fetchUsers();
   }
 
   toggleAddNewUser() {
@@ -59,10 +59,32 @@ class AllUsersInfo extends Component {
       updateUserInfoClicked: !updateUserInfoClickedTemp,
     });
   }
+
+  toggleNewAdministratorClicked() {
+    const addNewAdministratorClickedTemp = this.state.addNewAdministratorClicked;
+    this.setState({
+      addNewAdministratorClicked: !addNewAdministratorClickedTemp,
+    });
+  }
+
   toggleAdministratorInfoClicked() {
     const updateAdministratorInfoClickedTemp = this.state.updateAdministratorInfoClicked;
     this.setState({
       updateAdministratorInfoClicked: !updateAdministratorInfoClickedTemp,
+    });
+  }
+
+  toggleNewContractorClicked() {
+    const addNewContractorClickedTemp = this.state.addNewContractorClicked;
+    this.setState({
+      addNewContractorClicked: !addNewContractorClickedTemp,
+    });
+  }
+
+  toggleContractorInfoClicked() {
+    const updateContractorInfoClickedTemp = this.state.updateContractorInfoClicked;
+    this.setState({
+      updateContractorInfoClicked: !updateContractorInfoClickedTemp,
     });
   }
 
@@ -178,6 +200,39 @@ class AllUsersInfo extends Component {
             </Col>
           </When>
         </Choose>
+        <Row>
+          <Col md={8} mdOffset={2}>
+            <PageHeader>Izvođači</PageHeader>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={8} mdOffset={2}>
+            <ContractorsTable />
+          </Col>
+        </Row>
+        <Row>
+          <div>
+            <Col md={8} mdOffset={3}>
+              <Button
+                className={styles.button}
+                onClick={() => this.toggleNewContractorClicked()}
+              >Dodaj izvođača</Button>
+
+              <Button
+                className={styles.button}
+                onClick={() => this.toggleContractorInfoClicked()}
+              >Obriši izvođača</Button>
+            </Col>
+          </div>
+          <AddNewContractorContainer
+            addNewContractorClicked={this.state.addNewContractorClicked}
+            toggleNewContractorClicked={this.toggleNewContractorClicked}
+          />
+          <RemoveContractor
+            updateContractorInfoClicked={this.state.updateContractorInfoClicked}
+            toggleContractorInfoClicked={this.toggleContractorInfoClicked}
+          />
+        </Row>
       </div>
     );
   }

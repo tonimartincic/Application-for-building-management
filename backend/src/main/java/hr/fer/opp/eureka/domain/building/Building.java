@@ -1,6 +1,7 @@
 package hr.fer.opp.eureka.domain.building;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
 import hr.fer.opp.eureka.domain.apartment.Apartment;
 import hr.fer.opp.eureka.domain.announcement.Announcement;
 import hr.fer.opp.eureka.domain.user.User;
@@ -100,5 +101,18 @@ public class Building {
 
   public void setManager(User manager) {
     this.manager = manager;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Building building = (Building) o;
+    return Objects.equal(id, building.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(id);
   }
 }

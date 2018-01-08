@@ -16,4 +16,6 @@ public interface BuildingService {
   List<UserResponse> getAllUsersByBuildingId(Long id);
 
   void deleteById(Long id);
+
+  Building getBuildingForUser(Long currentUserId);
 }
