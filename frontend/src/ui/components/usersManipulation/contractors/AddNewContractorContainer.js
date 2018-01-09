@@ -27,21 +27,21 @@ class AddNewContractorContainer extends React.Component {
   }
 
   handleSubmit() {
-    if(this.state.firstName === null || this.state.firstName === '' ||
-      this.state.lastName === null || this.state.lastName === '' || !this.checkEmail()) {
-      if(this.state.firstName === null || this.state.firstName === '') {
+    if(this.state.firstName === null || this.state.firstName.trim() === '' ||
+      this.state.lastName === null || this.state.lastName.trim() === '' || !this.checkEmail()) {
+      if(this.state.firstName === null || this.state.firstName.trim() === '') {
         this.setState({
           firstNameValidation: 'error',
         });
       }
-      if(this.state.lastName === null || this.state.lastName === '') {
+      if(this.state.lastName === null || this.state.lastName.trim() === '') {
         this.setState({
           lastNameValidation: 'error',
         });
       }
       this.checkEmail();
     } else {
-      this.props.addNewContractor(this.state.firstName, this.state.lastName, this.state.email);
+      this.props.addNewContractor(this.state.firstName.trim(), this.state.lastName.trim(), this.state.email.trim());
       this.props.toggleNewContractorClicked();
 
       this.setState({
@@ -76,7 +76,7 @@ class AddNewContractorContainer extends React.Component {
   }
 
   checkEmail() {
-    if(this.state.email === null || this.state.email === '') {
+    if(this.state.email === null || this.state.email.trim() === '') {
       this.setState({
         emailValidationEmptyString: 'error',
       });
@@ -84,7 +84,7 @@ class AddNewContractorContainer extends React.Component {
     }
     for(let i = 0 ; i < this.props.users.length; i = i + 1) {
       if(this.props.users[i] !== null) {
-        if (this.props.users[i].mail === this.state.email) {
+        if (this.props.users[i].mail === this.state.email.trim()) {
           this.setState({
             emailValidationAlreadyExists: 'error',
           });
