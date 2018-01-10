@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.devtools.restart.Restarter;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.zeroturnaround.exec.ProcessExecutor;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
+@Profile("dev")
 public class NodeRunner implements CommandLineRunner {
 
   private final Environment environment;

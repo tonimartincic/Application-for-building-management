@@ -83,9 +83,6 @@ class NavigationBar extends Component {
               </NavItem>
             </When>
           </Choose>
-          <NavItem >
-            <UserInfo />
-          </NavItem>
           <Choose>
             <When condition={this.props.userData.privilege !== ADMINISTRATOR && this.props.userData.privilege !== MANAGER}>
               <NavItem >
@@ -129,6 +126,9 @@ class NavigationBar extends Component {
               </NavItem>
             </When>
           </Choose>
+          <NavItem >
+            <UserInfo />
+          </NavItem>
         </Nav>
       </Navbar>
     );
