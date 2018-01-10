@@ -1,6 +1,6 @@
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivan','Biška','ivan.biska@fer.hr','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivan','Biškup','ivan.biska@fer.hr','ADMINISTRATOR',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivana','Mršić','ivana.mrsic@fer.hr','ADMINISTRATOR',false, 'pass');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Luka','Hrgović','luka.hrgovic@fer.hr','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Luka','Hrgović','luka.hrgovic2@fer.hr','ADMINISTRATOR',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Cavalli','marko.cavalli@fer.hr','ADMINISTRATOR',true, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Ćurlin','marko.curlin@fer.hr','ADMINISTRATOR',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Toni','Martinčić','toni.martincic@fer.hr','ADMINISTRATOR',false, 'pass');
