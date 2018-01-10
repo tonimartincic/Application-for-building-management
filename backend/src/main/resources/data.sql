@@ -33,6 +33,10 @@ Insert into app_user (first_name, last_name, mail, privilege, reminder, password
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac4_ime','Izvodac4_prezime','izvodac4@fer.hr','CONTRACTOR',false, 'pass');
 Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac5_ime','Izvodac5_prezime','izvodac5@fer.hr','CONTRACTOR',false, 'pass');
 
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Hrvoje','Šimić','hrvoje.simic@croz.net','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Katarina','Potkonjak','ksismanovic@croz.net','ADMINISTRATOR',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Sara','Ćurić','sara.curic@croz.net','ADMINISTRATOR',false, 'pass');
+
 Insert into building (address, landlord, manager,  funds) values ('Ilica 256', 1, 23, 100532.52);
 Insert into building (address, landlord, manager, funds) values ('Ožujska BB', 2, 24, 54625.32);
 Insert into building (address, landlord, funds) values ('Savska 56', 3, 15456.23);
