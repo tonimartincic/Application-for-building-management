@@ -72,7 +72,6 @@ public class PaymentOrder {
     this.paymentDue = paymentOrderRequest.getPaymentDue();
     this.dayOfPayment = paymentOrderRequest.getDayOfPayment();
     this.status = paymentOrderRequest.getStatus();
-    this.cost = paymentOrderRequest.getCost();
   }
 
   public Long getId() {

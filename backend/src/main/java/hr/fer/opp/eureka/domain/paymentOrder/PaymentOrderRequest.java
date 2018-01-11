@@ -30,7 +30,7 @@ public class PaymentOrderRequest {
   @Enumerated(EnumType.STRING)
   private PaymentOrderStatus status;
 
-  private Cost cost;
+  private Long costId;
 
   public Long getId() {
     return id;
@@ -96,11 +96,11 @@ public class PaymentOrderRequest {
     this.status = status;
   }
 
-  public Cost getCost() {
-    return cost;
+  public Long getCostId() {
+    return costId;
   }
 
-  public void setCost(Cost cost) {
-    this.cost = cost;
+  public void setCostId(Long costId) {
+    this.costId = costId;
   }
 }

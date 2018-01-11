@@ -6,8 +6,10 @@ import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderRequest;
 import hr.fer.opp.eureka.repository.PaymentOrderRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
+import hr.fer.opp.eureka.repository.CostRepository;
 import hr.fer.opp.eureka.service.BuildingService;
 import hr.fer.opp.eureka.service.PaymentOrderService;
+import hr.fer.opp.eureka.service.CostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +25,19 @@ public class PaymentOrderImpl implements PaymentOrderService {
 
   private final BuildingService buildingService;
 
+  private final CostRepository costRepository;
+
   @Autowired
   public PaymentOrderImpl(
     PaymentOrderRepository paymentOrderRepository,
     UserRepository userRepository,
-    BuildingService buildingService) {
+    BuildingService buildingService,
+    CostRepository costRepository) {
 
     this.paymentOrderRepository = paymentOrderRepository;
     this.userRepository = userRepository;
     this.buildingService = buildingService;
+    this.costRepository = costRepository;
   }
 
   @Override
@@ -76,7 +82,7 @@ public class PaymentOrderImpl implements PaymentOrderService {
 
     paymentOrder.setPayer(this.userRepository.findById(paymentOrderRequest.getPayerId()));
     paymentOrder.setReceiver(this.userRepository.findById(paymentOrderRequest.getReceiverId()));
-
+    paymentOrder.setCost(this.costRepository.findById(paymentOrderRequest.getCostId()));
     return this.paymentOrderRepository.save(paymentOrder);
   }
 

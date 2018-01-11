@@ -5,11 +5,15 @@ import { deleteCost, editCost } from '../../../actionCreators/costsActionCreator
 import { fetchUsers } from "../../../actionCreators/usersActionCreators";
 import { fetchBuildingForUser } from "../../../actionCreators/buildingsActionCreators";
 import { editBuildingFunds } from "../../../actionCreators/buildingsActionCreators";
+import { addNewPaymentOrder } from "../../../actionCreators/paymentOrdersActionCreators";
+import { CONTRACTOR } from "../../../constants/values";
 import * as styles from './updateFutureCost.css';
 
 class UpdateFutureCost extends React.Component {
   constructor(props) {
     super(props);
+
+    this.props.fetchUsers();
 
     this.state = {
       futureCostSelectedValidation: null,
@@ -37,6 +41,7 @@ class UpdateFutureCost extends React.Component {
     this.handleChangeIsUrgent = this.handleChangeIsUrgent.bind(this);
     this.handleChangeStatus = this.handleChangeStatus.bind(this);
     this.handleChangeContractor = this.handleChangeContractor.bind(this);
+
   }
 
   resetState = () => {
@@ -160,26 +165,28 @@ class UpdateFutureCost extends React.Component {
         status: this.state.cost.status,
       }
 
-      if(this.state.cost.status=== 'Plaćeno'){
-        var date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-        console.log(date)
+      if(this.state.cost.status === 'Plaćeno'){
+        var date = new Date().toJSON().slice(0,10);
         const paymentOrder = {
-                id,
+                id: this.state.cost.id,
                 amount: this.state.cost.amount,
                 description: this.state.cost.description,
                 paymentDue: date,
                 dayOfPayment: date,
                 payerId: this.props.userData.id,
-                receiverId: this.state.contractor,
+                receiverId: parseInt(this.state.contractor),
                 status:'PAID',
-                cost: this.state.cost
+                costId: this.state.cost.id
               };
+        console.log(paymentOrder);
+        debugger;
         this.props.addNewPaymentOrder(paymentOrder);
-         const building = {
-              funds: this.props.fetchBuildingForUser.funds-this.state.cost
-            };
-
-            this.props.editBuildingFunds(building);
+        var id=this.state.cost.creatorId;
+        var newFunds=this.props.fetchBuildingForUser(id).funds-this.state.cost.amount;
+        const building = {
+              funds: newFunds
+           };
+        this.props.editBuildingFunds(building);
       }
       this.props.editCost(cost);
 
@@ -333,6 +340,8 @@ class UpdateFutureCost extends React.Component {
                         </Col>
                       </Row>
                     </FormGroup>
+                  <Choose>
+                   <When condition={this.state.cost.status === 'Plaćeno'}>
                     <FormGroup
                        controlId="chooseContractor"
                     >
@@ -340,8 +349,6 @@ class UpdateFutureCost extends React.Component {
                          <Col md={2} mdOffset={1}>
                              <p>Odabir izvođača: </p>
                          </Col>
-                        <Choose>
-                          <When condition={this.state.cost.status === "Plaćeno"}>
                             <Col md={6}>
                               <FormControl
                                 componentClass='select'
@@ -362,10 +369,11 @@ class UpdateFutureCost extends React.Component {
                                 }
                               </FormControl>
                             </Col>
-                          </When>
-                        </Choose>
+
                       </Row>
                     </FormGroup>
+                   </When>
+                  </Choose>
                   </ListGroup>
                   <Row>
                     <Col mdOffset={1} md={3}>
@@ -410,6 +418,8 @@ function mapDispatchToProps(dispatch) {
     editCost: (cost) => (dispatch(editCost(cost))),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchBuildings: () => dispatch(fetchBuildings()),
+    addNewPaymentOrder: (paymentOrder) => dispatch(addNewPaymentOrder(paymentOrder)),
+    fetchBuildingForUser: (id) => dispatch(fetchBuildingForUser(id)),
   };
 }
 
