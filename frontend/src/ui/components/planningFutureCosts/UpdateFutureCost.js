@@ -2,6 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, Collapse} from 'react-bootstrap';
 import { deleteCost, editCost } from '../../../actionCreators/costsActionCreators';
+import { fetchUsers } from "../../../actionCreators/usersActionCreators";
+import { fetchBuildingForUser } from "../../../actionCreators/buildingsActionCreators";
+import { editBuildingFunds } from "../../../actionCreators/buildingsActionCreators";
 import * as styles from './updateFutureCost.css';
 
 class UpdateFutureCost extends React.Component {
@@ -20,6 +23,7 @@ class UpdateFutureCost extends React.Component {
         createdOn: null,
         urgent: null,
         status: null,
+        contractor: null
       },
 
       amountValidation: null,
@@ -32,6 +36,7 @@ class UpdateFutureCost extends React.Component {
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleChangeIsUrgent = this.handleChangeIsUrgent.bind(this);
     this.handleChangeStatus = this.handleChangeStatus.bind(this);
+    this.handleChangeContractor = this.handleChangeContractor.bind(this);
   }
 
   resetState = () => {
@@ -112,11 +117,17 @@ class UpdateFutureCost extends React.Component {
   handleChangeStatus = (event) => {
     const costTemp = this.state.cost;
     costTemp.status = event.target.value;
-
     this.setState({
-      cost: costTemp,
+      status: costTemp.status,
     });
   };
+  handleChangeContractor = (event) => {
+      const costTemp = this.state.cost;
+      costTemp.contractor = event.target.value;
+      this.setState({
+        contractor: costTemp.contractor,
+      });
+    };
 
   handleSubmit() {
     let hasError = false;
@@ -148,6 +159,27 @@ class UpdateFutureCost extends React.Component {
         status: this.state.cost.status,
       }
 
+      if(this.state.cost.status=== 'Plaćeno'){
+        var date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+        console.log(date)
+        const paymentOrder = {
+                id,
+                amount: this.state.cost.amount,
+                description: this.state.cost.description,
+                paymentDue: date,
+                dayOfPayment: date,
+                payerId: this.props.userData.id,
+                receiverId: this.state.contractor,
+                status:'PAID',
+                cost: this.state.cost
+              };
+        this.props.addNewPaymentOrder(paymentOrder);
+         const building = {
+              funds: this.props.fetchBuildingForUser.funds-this.state.cost
+            };
+
+            this.props.editBuildingFunds(building);
+      }
       this.props.editCost(cost);
 
       this.props.toggleUpdateFutureCost();
@@ -298,6 +330,30 @@ class UpdateFutureCost extends React.Component {
                             <option value="Sredstva skupljena">Sredstva skupljena</option>
                           </FormControl>
                         </Col>
+                        <Choose>
+                          <When condition={this.state.status == 'Plaćeno'}>
+                            <Col md={6}>
+                              <FormControl
+                                componentClass='select'
+                                placeholder='select'
+                                onChange={this.handleChangeContractor}
+                               >
+                                <option value="select">Odaberi izvođača radova</option>
+                                {
+                                  this.props.users
+                                  .filter(user => user !== null)
+                                  .filter(user => user.privilege === CONTRACTOR)
+                                  .map((user, index) => {
+                                    const record = user.firstName + " - " + user.lastName;
+                                    return (
+                                     <option value={user.id}>{user.firstName}</option>
+                                    )}
+                                  )
+                                }
+                              </FormControl>
+                            </Col>
+                          </When>
+                        </Choose>
                       </Row>
                     </FormGroup>
                   </ListGroup>
@@ -331,13 +387,19 @@ class UpdateFutureCost extends React.Component {
 function mapStateToProps(state) {
   return {
     costs: state.costs,
+    userData: state.userData,
+    users: state.users
+
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    fetchUserData: () => dispatch(fetchUserData()),
     deleteCost: (id) => (dispatch(deleteCost(id))),
     editCost: (cost) => (dispatch(editCost(cost))),
+    fetchUsers: () => dispatch(fetchUsers()),
+    fetchBuildings: () => dispatch(fetchBuildings()),
   };
 }
 

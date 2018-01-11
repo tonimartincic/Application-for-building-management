@@ -37,4 +37,12 @@ public class BuildingController {
   public List<UserResponse> getAllUsersInBuilding(@PathVariable final Long id) {
     return this.buildingService.getAllUsersByBuildingId(id);
   }
+  @PostMapping("/api/buildings/edit_funds")
+  public Building editAnnouncement(@RequestBody final Building building) {
+    return this.buildingService.editFunds(building);
+  }
+  @GetMapping("/api/building-by-user-id/{id}")
+  public Building getBuildingForUser(@PathVariable final Long id) {
+    return this.buildingService.getBuildingForUser(id);
+  }
 }

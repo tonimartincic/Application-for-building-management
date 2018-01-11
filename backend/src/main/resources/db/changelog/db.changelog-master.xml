@@ -128,6 +128,12 @@
       <column name="receiver" type="bigint">
         <constraints nullable="false"/>
       </column>
+      <column name="status" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="cost_id" type="bigint">
+        <constraints nullable="true"/>
+      </column>
     </createTable>
 
     <addForeignKeyConstraint
@@ -150,6 +156,8 @@
       constraintName="fk_user_notification_user_id"
       referencedTableName="app_user"
       referencedColumnNames="id"/>
+
+
   </changeSet>
 
   <changeSet id="5" author="mcavalli">
@@ -181,6 +189,13 @@
       baseColumnNames="creator_id"
       constraintName="fk_cost_app_user_id"
       referencedTableName="app_user"
+      referencedColumnNames="id"/>
+
+    <addForeignKeyConstraint
+      baseTableName="payment_order"
+      baseColumnNames="cost_id"
+      constraintName="fk_payment_order_cost_id"
+      referencedTableName="cost"
       referencedColumnNames="id"/>
   </changeSet>
 

@@ -82,4 +82,11 @@ public class BuildingServiceImpl implements BuildingService {
 
     return currentUserBuilding;
   }
+  @Override
+  public Building editFunds(Building building) {
+    Building buildingFromDatabase = this.buildingRepository.findById(building.getId());
+    buildingFromDatabase.setFunds(building.getFunds());
+
+    return this.buildingRepository.save(buildingFromDatabase);
+  }
 }
