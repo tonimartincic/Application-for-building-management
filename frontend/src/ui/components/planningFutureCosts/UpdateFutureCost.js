@@ -117,8 +117,9 @@ class UpdateFutureCost extends React.Component {
   handleChangeStatus = (event) => {
     const costTemp = this.state.cost;
     costTemp.status = event.target.value;
+
     this.setState({
-      status: costTemp.status,
+      cost: costTemp,
     });
   };
   handleChangeContractor = (event) => {
@@ -330,8 +331,17 @@ class UpdateFutureCost extends React.Component {
                             <option value="Sredstva skupljena">Sredstva skupljena</option>
                           </FormControl>
                         </Col>
+                      </Row>
+                    </FormGroup>
+                    <FormGroup
+                       controlId="chooseContractor"
+                    >
+                       <Row>
+                         <Col md={2} mdOffset={1}>
+                             <p>Odabir izvođača: </p>
+                         </Col>
                         <Choose>
-                          <When condition={this.state.status == 'Plaćeno'}>
+                          <When condition={this.state.cost.status === "Plaćeno"}>
                             <Col md={6}>
                               <FormControl
                                 componentClass='select'
@@ -346,7 +356,7 @@ class UpdateFutureCost extends React.Component {
                                   .map((user, index) => {
                                     const record = user.firstName + " - " + user.lastName;
                                     return (
-                                     <option value={user.id}>{user.firstName}</option>
+                                     <option value={user.id}>{record}</option>
                                     )}
                                   )
                                 }
