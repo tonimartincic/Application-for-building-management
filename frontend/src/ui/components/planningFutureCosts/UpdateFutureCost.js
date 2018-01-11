@@ -121,7 +121,7 @@ class UpdateFutureCost extends React.Component {
   handleSubmit() {
     let hasError = false;
 
-    if(this.state.cost.amount === null || this.state.cost.amount === '') {
+    if(this.state.cost.amount === null || this.state.cost.amount.trim() === '') {
       this.setState({
         amountValidation: 'error',
       });
@@ -129,7 +129,7 @@ class UpdateFutureCost extends React.Component {
       hasError = true;
     }
 
-    if(this.state.cost.description === null || this.state.cost.description === '') {
+    if(this.state.cost.description === null || this.state.cost.description.trim() === '') {
       this.setState({
         descriptionValidation: 'error',
       });

@@ -156,7 +156,7 @@ class UpdatePaymentOrder extends React.Component {
   handleSubmit() {
     let hasError = false;
 
-    if(this.state.paymentOrder.amount === null || this.state.paymentOrder.amount === '') {
+    if(this.state.paymentOrder.amount === null || this.state.paymentOrder.amount.trim() === '') {
       this.setState({
         amountValidation: 'error',
       });
@@ -164,7 +164,7 @@ class UpdatePaymentOrder extends React.Component {
       hasError = true;
     }
 
-    if(this.state.paymentOrder.description === null || this.state.paymentOrder.description === '') {
+    if(this.state.paymentOrder.description === null || this.state.paymentOrder.description.trim() === '') {
       this.setState({
         descriptionValidation: 'error',
       });

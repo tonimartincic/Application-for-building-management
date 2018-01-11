@@ -74,9 +74,9 @@ class SettingsContainer extends Component {
   };
 
   handleSubmitPassword = () => {
-    if (this.state.oldPassword === null || this.state.oldPassword.trim() === "" ||
-      this.state.newPassword === null || this.state.newPassword.trim() === "" ||
-      this.state.newPasswordRepeat === null || this.state.newPasswordRepeat.trim() === "") {
+    if (this.state.oldPassword === null || this.state.oldPassword.trim() === '' ||
+      this.state.newPassword === null || this.state.newPassword.trim() === ''||
+      this.state.newPasswordRepeat === null || this.state.newPasswordRepeat.trim() === '') {
 
       this.setState({
         emptyPasswordFieldsValidation: true,
