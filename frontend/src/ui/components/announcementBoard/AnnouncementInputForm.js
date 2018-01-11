@@ -24,8 +24,36 @@ class AnnouncementInputForm extends Component {
     this.onChangeExpirationDate = this.onChangeExpirationDate.bind(this);
   }
 
+  resetState = () => {
+      this.setState({
+        content: '',
+        expirationDate: null,
+        announcementHasExpirationDate: false,
+        invalidExpirationDate: null,
+      });
+    };
+
   handleSubmit(event) {
-    event.preventDefault();
+    let hasError = false;
+
+    if(this.state.content === null || this.state.content.trim() === '') {
+      this.setState({
+        contentValidation : 'error',
+      });
+
+      hasError = true;
+        }
+
+    if(!hasError){
+      this.props.addNewAnnouncement(
+            this.props.userData.id,
+            this.state.content,
+            expirationDate
+      );
+
+      event.preventDefault();
+      this.resetState()
+      }
 
     if(!this.calculateValidationExpirationDate()) {
       return;
@@ -36,11 +64,7 @@ class AnnouncementInputForm extends Component {
       expirationDate =  dateUtils.constructDateFromDatePickerForBackend(this.state.expirationDate);
     }
 
-    this.props.addNewAnnouncement(
-      this.props.userData.id,
-      this.state.content,
-      expirationDate
-    );
+
 
     this.setState({
       content: '',
@@ -132,8 +156,8 @@ class AnnouncementInputForm extends Component {
                   <section className={styles.sectionHeader}>
                     <span>Nova objava:</span>
                   </section>
-
                   <textarea
+                    validationState={ this.state.contentValidation}
                     className={styles.textarea}
                     type='text'
                     value={this.state.content}
