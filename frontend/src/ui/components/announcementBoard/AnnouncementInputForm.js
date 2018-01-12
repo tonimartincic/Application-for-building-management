@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button,  Col, Grid, Row, ControlLabel, Checkbox, FormGroup, FormControl, Collapse, TextArea } from 'react-bootstrap';
+import { Button,  Col, Grid, Row, ControlLabel, Checkbox, FormGroup, FormControl, Collapse } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import DatePicker from 'react-bootstrap-date-picker';
 import styles from './announcementInputForm.css';
