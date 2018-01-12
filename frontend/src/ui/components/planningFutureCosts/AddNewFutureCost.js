@@ -36,7 +36,7 @@ class AddNewFutureCost extends React.Component {
   handleSubmit() {
     let hasError = false;
 
-    if(this.state.amount === null || this.state.amount === '') {
+    if(this.state.amount === null || this.state.amount.trim() === '') {
       this.setState({
         amountValidation: 'error',
       });
@@ -44,7 +44,7 @@ class AddNewFutureCost extends React.Component {
       hasError = true;
     }
 
-    if(this.state.description === null || this.state.description === '') {
+    if(this.state.description === null || this.state.description.trim() === '') {
       this.setState({
         descriptionValidation: 'error',
       });
