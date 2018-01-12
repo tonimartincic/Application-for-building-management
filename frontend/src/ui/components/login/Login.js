@@ -53,7 +53,7 @@ class Login extends Component {
   render() {
     return (
       <section className={styles.sectionMain}>
-        <Grid>
+        <Grid className={styles.container}>
           <Row>
             <Col md={4} mdOffset={4}>
               <h1 className={styles.h1ElegantShadow}>Eureka</h1>
@@ -76,7 +76,7 @@ class Login extends Component {
                 </Row>
                 <Row>
                   <Col>
-                    <section className={styles.section}>
+                    <section className={styles.sectionSpacing}>
                       <FormControl
                         type="password"
                         value={this.state.password}
