@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Grid, Row, ControlLabel, Checkbox, FormGroup } from 'react-bootstrap';
+import { Button,  Col, Grid, Row, ControlLabel, Checkbox, FormGroup, FormControl, Collapse, TextArea } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import DatePicker from 'react-bootstrap-date-picker';
 import styles from './announcementInputForm.css';
@@ -50,10 +50,9 @@ class AnnouncementInputForm extends Component {
             this.state.content,
             expirationDate
       );
-
-      event.preventDefault();
       this.resetState()
       }
+    event.preventDefault();
 
     if(!this.calculateValidationExpirationDate()) {
       return;
@@ -77,6 +76,7 @@ class AnnouncementInputForm extends Component {
   handleChange = (event) => {
     this.setState({
       content: event.target.value,
+      contentValidation: null,
     });
   }
 
@@ -149,20 +149,29 @@ class AnnouncementInputForm extends Component {
     return (
       <section className={styles.sectionMain}>
         <Grid>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} >
             <Row>
               <Col md={8}>
                 <section>
                   <section className={styles.sectionHeader}>
                     <span>Nova objava:</span>
                   </section>
-                  <textarea
-                    validationState={ this.state.contentValidation}
+                   <textarea
+                    validationState={this.state.contentValidation}
                     className={styles.textarea}
                     type='text'
                     value={this.state.content}
                     onChange={this.handleChange}
                   />
+                  <Row>
+                    <Col md={4}>
+                      <section>
+                        <Collapse in={this.state.contentValidation === 'error'}>
+                          <p className={styles.pInvalid}>Objava ne smije biti prazna.</p>
+                        </Collapse>
+                      </section>
+                    </Col>
+                  </Row>
                 </section>
               </Col>
             </Row>
