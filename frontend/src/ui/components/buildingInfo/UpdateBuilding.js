@@ -58,6 +58,8 @@ class UpdateBuilding extends React.Component {
     if(this.state.buildingSelected) {
       this.props.deleteBuildingById(this.state.building.id);
     }
+
+    this.props.toggleUpdateBuildingClicked();
   }
 
   render() {

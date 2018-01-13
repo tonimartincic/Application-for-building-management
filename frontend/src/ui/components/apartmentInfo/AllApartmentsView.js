@@ -51,13 +51,13 @@ class AllApartmentsInfo extends Component {
     this.setState({
       addNewApartmentClicked: !addNewApartmentClickedTemp,
     });
+
     if (addNewApartmentClickedTemp === true) {
       this.resetApartmentViewState();
     }
   }
 
   handleSubmitNewApartment() {
-    debugger;
     if(this.state.apartmentArea===null || this.state.apartmentArea==="") {
       this.setState({
         apartmentAreaValidation: 'error',
@@ -68,6 +68,7 @@ class AllApartmentsInfo extends Component {
       };
 
       this.props.addNewApartment(apartment, this.state.buildingSelected);
+      this.toggleAddNewApartment();
     }
   }
 

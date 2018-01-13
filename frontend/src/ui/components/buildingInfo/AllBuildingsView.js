@@ -70,8 +70,9 @@ class AllBuildingsView extends Component {
       });
     } else {
       const building = {
-        address: this.state.buildingAddress,
+        address: this.state.buildingAddress.trim(),
       };
+
       this.props.addNewBuilding(building);
       this.toggleAddNewBuilding();
     }

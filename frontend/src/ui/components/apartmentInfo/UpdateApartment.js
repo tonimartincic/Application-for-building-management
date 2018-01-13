@@ -55,6 +55,8 @@ class UpdateApartment extends React.Component {
     if(this.state.apartmentSelected) {
       this.props.deleteApartmentById(this.state.apartment.id);
     }
+
+    this.props.toggleUpdateApartmentClicked();
   }
 
   render() {
