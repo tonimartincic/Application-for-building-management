@@ -1,8 +1,12 @@
 package hr.fer.opp.eureka.domain.paymentOrder;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.enumeration.PaymentOrderStatus;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
 public class PaymentOrderRequest {
@@ -22,6 +26,10 @@ public class PaymentOrderRequest {
   private Long payerId;
 
   private Long receiverId;
+
+  private String status;
+
+  private Long costId;
 
   public Long getId() {
     return id;
@@ -77,5 +85,21 @@ public class PaymentOrderRequest {
 
   public void setReceiverId(Long receiverId) {
     this.receiverId = receiverId;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  public Long getCostId() {
+    return costId;
+  }
+
+  public void setCostId(Long costId) {
+    this.costId = costId;
   }
 }

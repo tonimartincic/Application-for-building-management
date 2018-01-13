@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import fetchPaymentOrders from '../../../actionCreators/paymentOrdersActionCreators';
+import { PAID, NOT_PAID } from "../../../constants/values";
 
 class PaymentsTable extends Component {
 
@@ -20,6 +21,7 @@ class PaymentsTable extends Component {
           <th>Opis</th>
           <th>Datum dospijeća</th>
           <th>Dan plaćanja</th>
+          <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -37,6 +39,7 @@ class PaymentsTable extends Component {
                   <td>{payment.description}</td>
                   <td>{payment.paymentDue}</td>
                   <td>{payment.dayOfPayment}</td>
+                  <td>{payment.status}</td>
                 </tr> )}
             )
         }

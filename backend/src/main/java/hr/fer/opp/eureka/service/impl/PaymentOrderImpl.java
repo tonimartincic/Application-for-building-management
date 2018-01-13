@@ -4,13 +4,17 @@ import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderRequest;
+import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderResponse;
 import hr.fer.opp.eureka.repository.PaymentOrderRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
+import hr.fer.opp.eureka.repository.CostRepository;
 import hr.fer.opp.eureka.service.BuildingService;
 import hr.fer.opp.eureka.service.PaymentOrderService;
+import hr.fer.opp.eureka.service.CostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,27 +27,31 @@ public class PaymentOrderImpl implements PaymentOrderService {
 
   private final BuildingService buildingService;
 
+  private final CostRepository costRepository;
+
   @Autowired
   public PaymentOrderImpl(
     PaymentOrderRepository paymentOrderRepository,
     UserRepository userRepository,
-    BuildingService buildingService) {
+    BuildingService buildingService,
+    CostRepository costRepository) {
 
     this.paymentOrderRepository = paymentOrderRepository;
     this.userRepository = userRepository;
     this.buildingService = buildingService;
+    this.costRepository = costRepository;
   }
 
   @Override
-  public List<PaymentOrder> getAllForCurrentUser(Long currentUserId) {
+  public List<PaymentOrderResponse> getAllForCurrentUser(Long currentUserId) {
     Building currentUserBuilding = this.buildingService.getBuildingForUser(currentUserId);
 
     List<PaymentOrder> allPaymentOrders = Lists.newArrayList(this.paymentOrderRepository.findAll());
-    List<PaymentOrder> paymentOrdersForBuilding = new ArrayList<>();
+    List<PaymentOrderResponse> paymentOrdersForBuilding = new ArrayList<>();
 
     for(PaymentOrder paymentOrder : allPaymentOrders) {
       if(isNeededToAddPaymentOrder(currentUserBuilding, paymentOrder)) {
-        paymentOrdersForBuilding.add(paymentOrder);
+        paymentOrdersForBuilding.add(getPaymentOrdersResponse(paymentOrder));
       }
     }
 
@@ -66,32 +74,37 @@ public class PaymentOrderImpl implements PaymentOrderService {
   }
 
   @Override
-  public PaymentOrder getById(Long id) {
-    return paymentOrderRepository.findById(id);
+  public PaymentOrderResponse getById(Long id) {
+    return getPaymentOrdersResponse(paymentOrderRepository.findById(id));
   }
 
   @Override
-  public PaymentOrder add(PaymentOrderRequest paymentOrderRequest) {
+  public PaymentOrderResponse add(PaymentOrderRequest paymentOrderRequest) {
+    PaymentOrder paymentOrder = new PaymentOrder(paymentOrderRequest);
+
+    paymentOrder.setPayer(this.userRepository.findById(paymentOrderRequest.getPayerId()));
+    paymentOrder.setReceiver(this.userRepository.findById(paymentOrderRequest.getReceiverId()));
+    paymentOrder.setCost(this.costRepository.findById(paymentOrderRequest.getCostId()));
+    return getPaymentOrdersResponse(paymentOrderRepository.save(paymentOrder));
+  }
+
+  @Override
+  public PaymentOrderResponse edit(PaymentOrderRequest paymentOrderRequest) {
     PaymentOrder paymentOrder = new PaymentOrder(paymentOrderRequest);
 
     paymentOrder.setPayer(this.userRepository.findById(paymentOrderRequest.getPayerId()));
     paymentOrder.setReceiver(this.userRepository.findById(paymentOrderRequest.getReceiverId()));
 
-    return this.paymentOrderRepository.save(paymentOrder);
-  }
-
-  @Override
-  public PaymentOrder edit(PaymentOrderRequest paymentOrderRequest) {
-    PaymentOrder paymentOrder = new PaymentOrder(paymentOrderRequest);
-
-    paymentOrder.setPayer(this.userRepository.findById(paymentOrderRequest.getPayerId()));
-    paymentOrder.setReceiver(this.userRepository.findById(paymentOrderRequest.getReceiverId()));
-
-    return this.paymentOrderRepository.save(paymentOrder);
+    return getPaymentOrdersResponse(paymentOrderRepository.save(paymentOrder));
   }
 
   @Override
   public void deleteById(Long id) {
     this.paymentOrderRepository.delete(id);
   }
+
+  private PaymentOrderResponse getPaymentOrdersResponse(PaymentOrder paymentOrder) {
+    return new PaymentOrderResponse(paymentOrder);
+  }
+
 }

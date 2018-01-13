@@ -66,6 +66,23 @@ public class BuildingServiceImpl implements BuildingService {
   }
 
   @Override
+  public List<UserResponse> getAllUsersForCurrentUser(Long id) {
+   Building currentUserBuilding = this.getBuildingForUser(id);
+
+    List<UserResponse> users = new ArrayList<>();
+
+    for(Apartment apartment : currentUserBuilding.getApartments()) {
+      if(apartment.getOwner() == null) {
+        continue;
+      }
+
+      users.add(new UserResponse(apartment.getOwner()));
+    }
+
+    return users;
+  }
+
+  @Override
   public void deleteById(Long id) {
     buildingRepository.delete(id);
   }
@@ -87,5 +104,22 @@ public class BuildingServiceImpl implements BuildingService {
 
     return currentUserBuilding;
 
+  }
+  
+  @Override
+  public Building editFunds(Building building) {
+    Building buildingFromDatabase = this.buildingRepository.findById(building.getId());
+    buildingFromDatabase.setFunds(buildingFromDatabase.getFunds()-building.getFunds());
+
+    return this.buildingRepository.save(buildingFromDatabase);
+  }
+  
+  @Override
+  public Building editFundsForUser(Long amount, Long userId) {
+    Building userBuilding = getBuildingForUser(userId);
+    Building buildingFromDatabase = this.buildingRepository.findById(userBuilding.getId());
+    buildingFromDatabase.setFunds(buildingFromDatabase.getFunds()+amount);
+
+    return this.buildingRepository.save(buildingFromDatabase);
   }
 }

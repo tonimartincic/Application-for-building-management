@@ -1,7 +1,12 @@
 .section {
   width: 80%;
   margin-left: 10%;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.6em;
+}
+.sectionSpacing {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 1.5em;
 }
 
 .sectionMain {
@@ -23,7 +28,7 @@
 
 .h1ElegantShadow {
   font-family: serif;
-  font-size: 92px;
+  font-size: 6.6vw;
   padding-bottom: 10px;
   text-align: center;
   text-transform: uppercase;
