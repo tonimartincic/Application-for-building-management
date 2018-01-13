@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import hr.fer.opp.eureka.domain.building.Building;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrder;
 import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderRequest;
+import hr.fer.opp.eureka.domain.paymentOrder.PaymentOrderResponse;
 import hr.fer.opp.eureka.repository.PaymentOrderRepository;
 import hr.fer.opp.eureka.repository.UserRepository;
 import hr.fer.opp.eureka.repository.CostRepository;
@@ -42,15 +43,15 @@ public class PaymentOrderImpl implements PaymentOrderService {
   }
 
   @Override
-  public List<PaymentOrder> getAllForCurrentUser(Long currentUserId) {
+  public List<PaymentOrderResponse> getAllForCurrentUser(Long currentUserId) {
     Building currentUserBuilding = this.buildingService.getBuildingForUser(currentUserId);
 
     List<PaymentOrder> allPaymentOrders = Lists.newArrayList(this.paymentOrderRepository.findAll());
-    List<PaymentOrder> paymentOrdersForBuilding = new ArrayList<>();
+    List<PaymentOrderResponse> paymentOrdersForBuilding = new ArrayList<>();
 
     for(PaymentOrder paymentOrder : allPaymentOrders) {
       if(isNeededToAddPaymentOrder(currentUserBuilding, paymentOrder)) {
-        paymentOrdersForBuilding.add(paymentOrder);
+        paymentOrdersForBuilding.add(getPaymentOrdersResponse(paymentOrder));
       }
     }
 
@@ -73,32 +74,37 @@ public class PaymentOrderImpl implements PaymentOrderService {
   }
 
   @Override
-  public PaymentOrder getById(Long id) {
-    return paymentOrderRepository.findById(id);
+  public PaymentOrderResponse getById(Long id) {
+    return getPaymentOrdersResponse(paymentOrderRepository.findById(id));
   }
 
   @Override
-  public PaymentOrder add(PaymentOrderRequest paymentOrderRequest) {
+  public PaymentOrderResponse add(PaymentOrderRequest paymentOrderRequest) {
     PaymentOrder paymentOrder = new PaymentOrder(paymentOrderRequest);
 
     paymentOrder.setPayer(this.userRepository.findById(paymentOrderRequest.getPayerId()));
     paymentOrder.setReceiver(this.userRepository.findById(paymentOrderRequest.getReceiverId()));
     paymentOrder.setCost(this.costRepository.findById(paymentOrderRequest.getCostId()));
-    return this.paymentOrderRepository.save(paymentOrder);
+    return getPaymentOrdersResponse(paymentOrderRepository.save(paymentOrder));
   }
 
   @Override
-  public PaymentOrder edit(PaymentOrderRequest paymentOrderRequest) {
+  public PaymentOrderResponse edit(PaymentOrderRequest paymentOrderRequest) {
     PaymentOrder paymentOrder = new PaymentOrder(paymentOrderRequest);
 
     paymentOrder.setPayer(this.userRepository.findById(paymentOrderRequest.getPayerId()));
     paymentOrder.setReceiver(this.userRepository.findById(paymentOrderRequest.getReceiverId()));
 
-    return this.paymentOrderRepository.save(paymentOrder);
+    return getPaymentOrdersResponse(paymentOrderRepository.save(paymentOrder));
   }
 
   @Override
   public void deleteById(Long id) {
     this.paymentOrderRepository.delete(id);
   }
+
+  private PaymentOrderResponse getPaymentOrdersResponse(PaymentOrder paymentOrder) {
+    return new PaymentOrderResponse(paymentOrder);
+  }
+
 }

@@ -181,8 +181,7 @@ class UpdateFutureCost extends React.Component {
                 status:'Plaćeno',
                 costId: this.state.cost.id
               };
-        console.log(paymentOrder);
-        debugger;
+
         this.props.addNewPaymentOrder(paymentOrder);
         var id=this.state.cost.creatorId;
         this.props.editBuildingFundsForUser(-this.state.cost.amount,id);
