@@ -16,8 +16,6 @@ public class UserResponse {
 
   private String password;
 
-  private String IBAN;
-
   public UserResponse(User user) {
     this.id = user.getId();
     this.firstName = user.getFirstName();
@@ -26,7 +24,6 @@ public class UserResponse {
     this.privilege = user.getPrivilege().getName();
     this.reminder = user.getReminder();
     this.password = user.getPassword();
-    this.IBAN = user.getIBAN();
   }
 
   public Long getId() {
@@ -83,13 +80,5 @@ public class UserResponse {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getIBAN() {
-    return IBAN;
-  }
-
-  public void setIBAN(String IBAN) {
-    this.IBAN = IBAN;
   }
 }

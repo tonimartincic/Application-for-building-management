@@ -81,15 +81,6 @@ class Preferences extends React.Component {
                   </h4>
                 </Col>
               </Row>
-              <Row>
-                <Col md={8} mdOffset={1}>
-                  <h4>IBAN:
-                    {
-                      ' ' + this.props.userData.iban
-                    }
-                  </h4>
-                </Col>
-              </Row>
             </Well>
             <Well>
               <Row>

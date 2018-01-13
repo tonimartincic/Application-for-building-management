@@ -4,43 +4,43 @@ Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) v
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Cavalli','marko.cavalli@fer.hr','ADMINISTRATOR',true, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Marko','Ćurlin','marko.curlin@fer.hr','ADMINISTRATOR',false, 'pass');
 Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Toni','Martinčić','toni.martincic@fer.hr','ADMINISTRATOR',false, 'pass');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password, IBAN) values ('Pero','Peric','pero.peric@fer.hr','TENANT',false, 'pass', 'IBAN Pere Perica');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password, IBAN) values ('Iva','Ivic','iva.ivic@fer.hr','TENANT',false, 'pass', 'IBAN Ive Ivic');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password, IBAN) values ('Ivan','Horvat','ivan.horvat@fer.hr','TENANT',false, 'pass', 'IBAN Ivana Horvata');
-Insert into app_user (first_name,last_name,mail,privilege,reminder, password, IBAN) values ('Maja','Majic','maja.majic@fer.hr','TENANT',false, 'pass', 'IBAN Maje Majic');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Pero','Peric','pero.peric@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Iva','Ivic','iva.ivic@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Ivan','Horvat','ivan.horvat@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name,last_name,mail,privilege,reminder, password ) values ('Maja','Majic','maja.majic@fer.hr','TENANT',false, 'pass');
 
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Stanar1_ime','Stanar1_prezime','stanar1@fer.hr','TENANT',true, 'pass', 'IBAN stanara 1');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Stanar2_ime','Stanar2_prezime','stanar2@fer.hr','TENANT',false, 'pass', 'IBAN stanara 2');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Stanar3_ime','Stanar3_prezime','stanar3@fer.hr','TENANT',false, 'pass', 'IBAN stanara 3');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Stanar4_ime','Stanar4_prezime','stanar4@fer.hr','TENANT',false, 'pass', 'IBAN stanara 4');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Stanar5_ime','Stanar5_prezime','stanar5@fer.hr','TENANT',false, 'pass', 'IBAN stanara 5');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Stanar6_ime','Stanar6_prezime','stanar6@fer.hr','TENANT',false, 'pass', 'IBAN stanara 6');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Stanar7_ime','Stanar7_prezime','stanar7@fer.hr','TENANT',false, 'pass', 'IBAN stanara 7');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Stanar8_ime','Stanar8_prezime','stanar8@fer.hr','TENANT',true, 'pass', 'IBAN stanara 8');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar1_ime','Stanar1_prezime','stanar1@fer.hr','TENANT',true, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar2_ime','Stanar2_prezime','stanar2@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar3_ime','Stanar3_prezime','stanar3@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar4_ime','Stanar4_prezime','stanar4@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar5_ime','Stanar5_prezime','stanar5@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar6_ime','Stanar6_prezime','stanar6@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar7_ime','Stanar7_prezime','stanar7@fer.hr','TENANT',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Stanar8_ime','Stanar8_prezime','stanar8@fer.hr','TENANT',true, 'pass');
 
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Predstavnik1234_ime','Predstavnik1234_prezime','predstavnik1234@fer.hr','TENANT_REPRESENTATIVE',false, 'pass', 'IBAN predstavnika 1234');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Predstavnik5678_ime','Predstavnik5678_prezime','predstavnik5678@fer.hr','TENANT_REPRESENTATIVE',false, 'pass', 'IBAN predstavnika 5678');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Predstavnik1234_ime','Predstavnik1234_prezime','predstavnik1234@fer.hr','TENANT_REPRESENTATIVE',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Predstavnik5678_ime','Predstavnik5678_prezime','predstavnik5678@fer.hr','TENANT_REPRESENTATIVE',false, 'pass');
 
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Upravitelj1234_ime','Upravitelj1234_prezime','upravitelj1234@fer.hr','MANAGER',false, 'pass', 'IBAN upravitelja 1234');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Upravitelj5678_ime','Upravitelj5678_prezime','upravitelj5678@fer.hr','MANAGER',false, 'pass', 'IBAN upravitelja 5678');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Upravitelj568_ime','Upravitelj568_prezime','upravitelj568@fer.hr','MANAGER',false, 'pass', 'IBAN upravitelja 568');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Upravitelj578_ime','Upravitelj578_prezime','upravitelj578@fer.hr','MANAGER',false, 'pass', 'IBAN upravitelja 578');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Upravitelj678_ime','Upravitelj678_prezime','upravitelj678@fer.hr','MANAGER',false, 'pass', 'IBAN upravitelja 678');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj1234_ime','Upravitelj1234_prezime','upravitelj1234@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj5678_ime','Upravitelj5678_prezime','upravitelj5678@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj568_ime','Upravitelj568_prezime','upravitelj568@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj578_ime','Upravitelj578_prezime','upravitelj578@fer.hr','MANAGER',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Upravitelj678_ime','Upravitelj678_prezime','upravitelj678@fer.hr','MANAGER',false, 'pass');
 
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Izvodac1_ime','Izvodac1_prezime','izvodac1@fer.hr','CONTRACTOR',false, 'pass', 'IBAN izvodaca 1');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Izvodac2_ime','Izvodac2_prezime','izvodac2@fer.hr','CONTRACTOR',false, 'pass', 'IBAN izvodaca 2');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Izvodac3_ime','Izvodac3_prezime','izvodac3@fer.hr','CONTRACTOR',false, 'pass', 'IBAN izvodaca 3');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Izvodac4_ime','Izvodac4_prezime','izvodac4@fer.hr','CONTRACTOR',false, 'pass', 'IBAN izvodaca 4');
-Insert into app_user (first_name, last_name, mail, privilege, reminder, password, IBAN) values ('Izvodac5_ime','Izvodac5_prezime','izvodac5@fer.hr','CONTRACTOR',false, 'pass', 'IBAN izvodaca 5');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac1_ime','Izvodac1_prezime','izvodac1@fer.hr','CONTRACTOR',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac2_ime','Izvodac2_prezime','izvodac2@fer.hr','CONTRACTOR',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac3_ime','Izvodac3_prezime','izvodac3@fer.hr','CONTRACTOR',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac4_ime','Izvodac4_prezime','izvodac4@fer.hr','CONTRACTOR',false, 'pass');
+Insert into app_user (first_name, last_name, mail, privilege, reminder, password) values ('Izvodac5_ime','Izvodac5_prezime','izvodac5@fer.hr','CONTRACTOR',false, 'pass');
 
-Insert into building (address, landlord, manager, funds, IBAN) values ('Ilica 256', 1, 23, 100532.52, 'IBAN Ilice 256');
-Insert into building (address, landlord, manager, funds, IBAN) values ('Ožujska BB', 2, 24, 54625.32, 'IBAN Ožujske BB');
-Insert into building (address, landlord, funds, IBAN) values ('Savska 56', 3, 15456.23, 'IBAN Savske 56');
-Insert into building (address, landlord, funds, IBAN) values ('Vukovarska 1a', 4, -5947.65, 'IBAN Vukovarske 1a');
-Insert into building (address, landlord, funds, IBAN) values ('Lastovska 23', 4, 15.01, 'IBAN Lastovske 23');
+Insert into building (address, landlord, manager,  funds) values ('Ilica 256', 1, 23, 100532.52);
+Insert into building (address, landlord, manager, funds) values ('Ožujska BB', 2, 24, 54625.32);
+Insert into building (address, landlord, funds) values ('Savska 56', 3, 15456.23);
+Insert into building (address, landlord, funds) values ('Vukovarska 1a', 4, -5947.65);
+Insert into building (address, landlord, funds) values ('Lastovska 23', 4, 15.01);
 
-Insert into building (address, manager, funds, IBAN) values ('Prva zgrada', 21, 100000, 'IBAN prve zgrade');
-Insert into building (address, manager, funds, IBAN) values ('Druga zgrada', 22, 50000, 'IBAN druge zgrade');
+Insert into building (address, manager, funds) values ('Prva zgrada', 21, 100000);
+Insert into building (address, manager, funds) values ('Druga zgrada', 22, 50000);
 
 Insert into apartment (building_id, area, owner_id) values (1, 25.23, 7);
 Insert into apartment (building_id, area, owner_id) values (1, 25.23, 8);

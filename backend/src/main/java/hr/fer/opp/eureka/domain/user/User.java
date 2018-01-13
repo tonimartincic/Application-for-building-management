@@ -35,8 +35,6 @@ public class User {
 
   private String password;
 
-  private String IBAN;
-
   @JsonIgnore
   @OneToMany(mappedBy = "user")
   private Set<Announcement> announcementSet;
@@ -83,8 +81,7 @@ public class User {
     String mail,
     UserPrivilege privilege,
     Boolean reminder,
-    String password,
-    String IBAN) {
+    String password) {
 
     this.id = id;
     this.firstName = firstName;
@@ -94,7 +91,6 @@ public class User {
     this.reminder = reminder;
     this.mail = mail;
     this.password = password;
-    this.IBAN = IBAN;
   }
 
   public User(UserRequest userRequest) {
@@ -105,7 +101,6 @@ public class User {
     this.privilege = UserPrivilege.getByName(userRequest.getPrivilege());
     this.password = userRequest.getPassword();
     this.reminder = userRequest.getReminder();
-    this.IBAN = userRequest.getIBAN();
   }
 
   public Long getId() {
@@ -234,13 +229,5 @@ public class User {
 
   public void setSnowClearingDates(Set<SnowClearingDate> snowClearingDates) {
     this.snowClearingDates = snowClearingDates;
-  }
-
-  public String getIBAN() {
-    return IBAN;
-  }
-
-  public void setIBAN(String IBAN) {
-    this.IBAN = IBAN;
   }
 }

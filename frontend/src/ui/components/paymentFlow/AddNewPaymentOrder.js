@@ -278,7 +278,7 @@ class AddNewPaymentOrder extends React.Component {
                 >
                   <option value="select">Odaberi</option>
                   {
-                    this.props.buildingUsers
+                    this.props.users
                       .map(user => {
                         return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                       })
@@ -337,7 +337,6 @@ class AddNewPaymentOrder extends React.Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
-    buildingUsers: state.buildingUsers,
     users: state.users,
   };
 }

@@ -16,8 +16,6 @@ public class UserRequest {
 
   private String password;
 
-  private String IBAN;
-
   public Long getId() {
     return id;
   }
@@ -72,13 +70,5 @@ public class UserRequest {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getIBAN() {
-    return IBAN;
-  }
-
-  public void setIBAN(String IBAN) {
-    this.IBAN = IBAN;
   }
 }
