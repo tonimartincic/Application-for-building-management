@@ -17,23 +17,9 @@ export default async function fetchBuildings() {
   }
 }
 
-export async function editBuildingFunds(building) {
+export async function fetchBuildingForCurrentUser() {
   try {
-    const response = await axios.post('/api/buildings/edit-funds', building);
-
-    return {
-      type: types.EDIT_BUILDING_FUNDS_SUCCESS,
-      data: response.data,
-    };
-  } catch (err) {
-    return {
-      type: types.EDIT_BUILDING_FUNDS_FAILURE,
-      data: err,
-    };
-  }
-}
-export async function fetchBuildingForUser(id) {
-  try {
+    const id = JSON.parse(localStorage.getItem('user')).id;
     const response = await axios.get('/api/building-by-user-id/'+id);
 
     return {

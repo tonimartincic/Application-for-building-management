@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {Button, Col, Row, Well} from 'react-bootstrap';
+import {Button, Col, Row } from 'react-bootstrap';
 import NavigationBar from "../navigationBar/NavigationBar";
 import AddNewPaymentOrder from "./AddNewPaymentOrder";
 import UpdatePaymentOrder from "./UpdatePaymentOrder";

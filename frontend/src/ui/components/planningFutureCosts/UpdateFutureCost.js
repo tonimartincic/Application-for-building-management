@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, Collapse} from 'react-bootstrap';
 import { deleteCost, editCost } from '../../../actionCreators/costsActionCreators';
 import { fetchUsers } from "../../../actionCreators/usersActionCreators";
-import { fetchBuildingForUser } from "../../../actionCreators/buildingsActionCreators";
-import { editBuildingFunds } from "../../../actionCreators/buildingsActionCreators";
+import { fetchBuildingForCurrentUser } from "../../../actionCreators/buildingsActionCreators";
 import { editBuildingFundsForUser } from "../../../actionCreators/buildingsActionCreators";
 import { addNewPaymentOrder } from "../../../actionCreators/paymentOrdersActionCreators";
 import { CONTRACTOR } from "../../../constants/values";
@@ -14,8 +13,6 @@ import * as styles from './updateFutureCost.css';
 class UpdateFutureCost extends React.Component {
   constructor(props) {
     super(props);
-
-    this.props.fetchUsers();
 
     this.state = {
       futureCostSelectedValidation: null,
@@ -44,6 +41,11 @@ class UpdateFutureCost extends React.Component {
     this.handleChangeStatus = this.handleChangeStatus.bind(this);
     this.handleChangeContractor = this.handleChangeContractor.bind(this);
 
+  }
+
+  componentDidMount() {
+    this.props.fetchUsers();
+    this.props.fetchBuildingForCurrentUser();
   }
 
   resetState = () => {
@@ -415,9 +417,8 @@ function mapDispatchToProps(dispatch) {
     deleteCost: (id) => (dispatch(deleteCost(id))),
     editCost: (cost) => (dispatch(editCost(cost))),
     fetchUsers: () => dispatch(fetchUsers()),
-    fetchBuildings: () => dispatch(fetchBuildings()),
     addNewPaymentOrder: (paymentOrder) => dispatch(addNewPaymentOrder(paymentOrder)),
-    fetchBuildingForUser: (id) => dispatch(fetchBuildingForUser(id)),
+    fetchBuildingForCurrentUser: (id) => dispatch(fetchBuildingForCurrentUser(id)),
     editBuildingFundsForUser: (amount, id) => dispatch(editBuildingFundsForUser(amount, id)),
   };
 }

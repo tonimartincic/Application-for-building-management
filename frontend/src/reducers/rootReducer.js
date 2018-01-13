@@ -14,6 +14,7 @@ import generateScheduleReducer from './generateScheduleReducer';
 import approveChangeRequestReducer from "./approveChangeRequestReducer";
 import buildingUsersReducer from "./buildingUsersReducer";
 import userApartmentReducer from "./userApartmentReducer";
+import userBuildingReducer from "./userBuildingReducer";
 
 const rootReducer = combineReducers({
   userData: userDataReducer,
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   approveChangeRequestClicked: approveChangeRequestReducer,
   buildingUsers: buildingUsersReducer,
   userApartment: userApartmentReducer,
+  userBuilding: userBuildingReducer,
 });
 
 export default rootReducer;
