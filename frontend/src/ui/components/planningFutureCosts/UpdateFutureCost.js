@@ -145,7 +145,8 @@ class UpdateFutureCost extends React.Component {
 
   handleSubmit() {
     let hasError = false;
-    if(this.state.cost.amount === null || this.state.cost.amount === '') {
+    var reg = /^\s*[1-9]\d*(\.\d{1,2})?\s*$/;
+    if(this.state.cost.amount === null || this.state.cost.amount === ''|| !reg.test(this.state.cost.amount)) {
       this.setState({
         amountValidation: 'error',
       });

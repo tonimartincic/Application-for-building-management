@@ -156,8 +156,8 @@ class UpdatePaymentOrder extends React.Component {
 
   handleSubmit() {
     let hasError = false;
-
-    if(this.state.paymentOrder.amount === null || this.state.paymentOrder.amount === '') {
+    var reg = /^\s*[1-9]\d*(\.\d{1,2})?\s*$/;
+    if(this.state.paymentOrder.amount === null || this.state.paymentOrder.amount === ''|| !reg.test(this.state.paymentOrder.amount)) {
       this.setState({
         amountValidation: 'error',
       });
