@@ -19,6 +19,8 @@ public class Building {
 
   private String address;
 
+  private String IBAN;
+
   @ManyToOne
   @JoinColumn (name = "landlord")
   private User landlord;
@@ -101,6 +103,14 @@ public class Building {
 
   public void setManager(User manager) {
     this.manager = manager;
+  }
+
+  public String getIBAN() {
+    return IBAN;
+  }
+
+  public void setIBAN(String IBAN) {
+    this.IBAN = IBAN;
   }
 
   @Override

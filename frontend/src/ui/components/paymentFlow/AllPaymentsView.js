@@ -6,8 +6,8 @@ import NavigationBar from "../navigationBar/NavigationBar";
 import AddNewPaymentOrder from "./AddNewPaymentOrder";
 import UpdatePaymentOrder from "./UpdatePaymentOrder";
 import PaymentsTable from "./PaymentsTable";
-import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
-import { fetchUsers } from '../../../actionCreators/usersActionCreators';
+import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";
+import fetchUsers from "../../../actionCreators/usersActionCreators";
 import * as styles from './allPaymentsView.css';
 
 class AllPaymentsView extends Component {
@@ -24,6 +24,7 @@ class AllPaymentsView extends Component {
   }
 
   componentWillMount() {
+    this.props.fetchBuildingUsersById();
     this.props.fetchUsers();
   }
 
@@ -90,12 +91,13 @@ function mapStateToProps(state) {
   return {
     userData: state.userData,
     paymentOrders: state.paymentOrders,
+    buildingUsers: state.buildingUsers,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBuildings: () => (dispatch(fetchBuildings())),
+    fetchBuildingUsersById: () => (dispatch(fetchBuildingUsersById())),
     fetchUsers: () => (dispatch(fetchUsers())),
   };
 }

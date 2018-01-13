@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import NavigationBar from '../navigationBar/NavigationBar';
 import AllUsersInfoTable from './AllUsersInfoTable';
 import AddNewUserContainer from './AddNewUserContainer';
-import {Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader, Well} from 'react-bootstrap';
+import {Col, Button, Row, FormGroup, FormControl, ControlLabel, PageHeader } from 'react-bootstrap';
 import UpdateUserInfoContainer from './UpdateUserInfoContainer';
 import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
 import fetchBuildingUsersById from "../../../actionCreators/usersActionCreators";

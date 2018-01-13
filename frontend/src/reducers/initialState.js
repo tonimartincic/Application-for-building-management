@@ -8,6 +8,7 @@ const initialState = {
     reminder: false,
     password: null,
     invalidUserNameAndPassword: false,
+    iban: null
   },
 
   userInfoClicked: false,
