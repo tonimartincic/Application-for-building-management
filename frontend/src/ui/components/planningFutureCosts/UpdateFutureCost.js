@@ -31,6 +31,7 @@ class UpdateFutureCost extends React.Component {
 
       amountValidation: null,
       descriptionValidation: null,
+      contractorValidation: null,
     };
 
     this.handleChangeCost = this.handleChangeCost.bind(this);
@@ -52,6 +53,7 @@ class UpdateFutureCost extends React.Component {
     this.setState({
       futureCostSelectedValidation: null,
       futureCostSelected: null,
+      contractor: null,
 
       cost: {
         id: null,
@@ -65,6 +67,7 @@ class UpdateFutureCost extends React.Component {
 
       amountValidation: null,
       descriptionValidation: null,
+      contractorValidation: null,
     });
   };
 
@@ -136,12 +139,12 @@ class UpdateFutureCost extends React.Component {
       costTemp.contractor = event.target.value;
       this.setState({
         contractor: costTemp.contractor,
+        contractorValidation: null,
       });
     };
 
   handleSubmit() {
     let hasError = false;
-
     if(this.state.cost.amount === null || this.state.cost.amount === '') {
       this.setState({
         amountValidation: 'error',
@@ -153,6 +156,16 @@ class UpdateFutureCost extends React.Component {
     if(this.state.cost.description === null || this.state.cost.description === '') {
       this.setState({
         descriptionValidation: 'error',
+      });
+
+      hasError = true;
+    }
+
+    if(this.state.contractor === null || this.state.contractor === '' ||
+     this.state.contractor === 'select'|| this.state.contractor === 'Odaberi izvođača radova' ||
+     typeof this.state.contractor === "undefined") {
+      this.setState({
+        contractorValidation: 'error',
       });
 
       hasError = true;
@@ -172,7 +185,6 @@ class UpdateFutureCost extends React.Component {
       if(this.state.cost.status === 'Plaćeno'){
         var date = new Date().toJSON().slice(0,10);
         var dayOfPayment =  dateUtils.constructDateFromDatePickerForBackend(date);
-
         const paymentOrder = {
                 amount: this.state.cost.amount,
                 description: this.state.cost.description,
@@ -344,7 +356,7 @@ class UpdateFutureCost extends React.Component {
                    <When condition={this.state.cost.status === 'Plaćeno'}>
                     <FormGroup
                        controlId="chooseContractor"
-                    >
+                       validationState={this.state.contractorValidation}>
                        <Row>
                          <Col md={2} mdOffset={1}>
                              <p>Odabir izvođača: </p>
@@ -370,6 +382,15 @@ class UpdateFutureCost extends React.Component {
                               </FormControl>
                             </Col>
 
+                      </Row>
+                      <Row>
+                        <Col md={4} mdOffset={3}>
+                          <section>
+                            <Collapse in={this.state.contractorValidation === 'error'}>
+                              <p className={styles.pInvalid}>Morate odabrati izvođača.</p>
+                            </Collapse>
+                          </section>
+                        </Col>
                       </Row>
                     </FormGroup>
                    </When>
