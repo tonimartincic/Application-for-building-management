@@ -6,6 +6,7 @@ import DatePicker from 'react-bootstrap-date-picker';
 import styles from './updatePaymentOrder.css';
 import * as constants from '../../../constants/values';
 import * as dateUtils from '../../../utils/DateUtil';
+import { CONTRACTOR } from "../../../constants/values";
 
 class UpdatePaymentOrder extends React.Component {
   constructor(props) {
@@ -374,11 +375,16 @@ class UpdatePaymentOrder extends React.Component {
                       >
                         <option value="select">Odaberi</option>
                         {
-                          this.props.users
+                          this.props.buildingUsers
                             .map(user => {
                               return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                             })
                         }
+                        <Choose>
+                          <When condition={this.props.userBuilding !== null}>
+                            <option value={this.props.userBuilding.manager.id}>{this.props.userBuilding.manager.firstName} {this.props.userBuilding.manager.lastName}</option>
+                          </When>
+                        </Choose>
                       </FormControl>
                       <Row>
                         <Col md={4}>
@@ -404,7 +410,19 @@ class UpdatePaymentOrder extends React.Component {
                       >
                         <option value="select">Odaberi</option>
                         {
+                          this.props.buildingUsers
+                            .map(user => {
+                              return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
+                            })
+                        }
+                        <Choose>
+                          <When condition={this.props.userBuilding !== null}>
+                            <option value={this.props.userBuilding.manager.id}>{this.props.userBuilding.manager.firstName} {this.props.userBuilding.manager.lastName}</option>
+                          </When>
+                        </Choose>
+                        {
                           this.props.users
+                            .filter(user => user.privilege === CONTRACTOR)
                             .map(user => {
                               return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                             })
@@ -451,7 +469,10 @@ class UpdatePaymentOrder extends React.Component {
 function mapStateToProps(state) {
   return {
     paymentOrders: state.paymentOrders,
+    userData: state.userData,
     users: state.users,
+    buildingUsers: state.buildingUsers,
+    userBuilding: state.userBuilding,
   };
 }
 

@@ -18,6 +18,23 @@ export default async function fetchBuildingUsersById(id) {
   }
 }
 
+export async function fetchBuildingUsersForCurrentUser() {
+  try {
+    const id = JSON.parse(localStorage.getItem('user')).id;
+    const response = await axios.get('/api/building-users-current/' + id);
+
+    return {
+      type: types.FETCH_BUILDING_USERS_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.FETCH_BUILDING_USERS_FAILURE,
+      data: err,
+    }
+  }
+}
+
 export async function fetchUsers() {
   try {
     const response = await axios.get('/api/users');

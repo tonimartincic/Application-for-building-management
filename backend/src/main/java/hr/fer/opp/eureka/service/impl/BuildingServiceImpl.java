@@ -66,6 +66,23 @@ public class BuildingServiceImpl implements BuildingService {
   }
 
   @Override
+  public List<UserResponse> getAllUsersForCurrentUser(Long id) {
+   Building currentUserBuilding = this.getBuildingForUser(id);
+
+    List<UserResponse> users = new ArrayList<>();
+
+    for(Apartment apartment : currentUserBuilding.getApartments()) {
+      if(apartment.getOwner() == null) {
+        continue;
+      }
+
+      users.add(new UserResponse(apartment.getOwner()));
+    }
+
+    return users;
+  }
+
+  @Override
   public Building getBuildingForUser(Long currentUserId) {
     User currentUser = this.userRepository.findById(currentUserId);
     Building currentUserBuilding;
