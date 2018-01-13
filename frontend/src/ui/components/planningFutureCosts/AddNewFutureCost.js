@@ -44,7 +44,7 @@ class AddNewFutureCost extends React.Component {
       hasError = true;
     }
 
-    if(this.state.description === null || this.state.description === '') {
+    if(this.state.description === null || this.state.description.trim() === '') {
       this.setState({
         descriptionValidation: 'error',
       });

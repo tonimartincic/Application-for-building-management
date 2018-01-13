@@ -49,7 +49,7 @@
 .container::before{
   top: 10%;
   left: 33%;
-  height: 26em;
+  height: 45%;
   width: 33.5%;
   content: "";
   position: absolute;

@@ -1,17 +1,16 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {deleteUser, editUserInfo} from '../../../actionCreators/usersActionCreators';
+import { connect } from 'react-redux';
+import { deleteUser, editUserInfo } from '../../../../actionCreators/usersActionCreators';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, ListGroupItem, Alert} from 'react-bootstrap';
-import * as styles from './removeAdministrator.css';
-import {ADMINISTRATOR} from "../../../constants/values";
+import { CONTRACTOR } from "../../../../constants/values";
 
-class RemoveAdministrator extends React.Component {
+class RemoveContractor extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userSelectedValidation: null,
       userSelected: null,
+
       user: {
         id: null,
         firstName: null,
@@ -27,6 +26,7 @@ class RemoveAdministrator extends React.Component {
     this.setState({
       userSelectedValidation: null,
       userSelected: null,
+
       user: {
         id: null,
         firstName: null,
@@ -34,6 +34,7 @@ class RemoveAdministrator extends React.Component {
         mail: null,
         privilege: null,
       },
+
       userPrivilege: null,
     });
   };
@@ -60,39 +61,27 @@ class RemoveAdministrator extends React.Component {
   };
 
   handleDelete = () => {
-    if (this.state.user.id === this.props.userData.id) {
-      this.setState ({
-        userSelectedValidation: true,
-      });
-    } else {
-      this.props.deleteUser(this.state.user.id);
-      this.props.toggleAdministratorInfoClicked();
-      this.resetState();
-    }
-  };
-
-  handleAlertDismiss() {
-    this.setState({
-      userSelectedValidation: false,
-    });
+    this.props.deleteUser(this.state.user.id);
+    this.props.toggleContractorInfoClicked();
+    this.resetState();
   };
 
   render() {
     return (
       <div>
         <Modal
-          show={this.props.updateAdministratorInfoClicked}
+          show={this.props.updateContractorInfoClicked}
           onHide={() => {
-            this.props.toggleAdministratorInfoClicked();
+            this.props.toggleContractorInfoClicked();
             this.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Obriši administratora</Modal.Title>
+            <Modal.Title>Obriši izvođača</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ControlLabel>Odaberi korisnika</ControlLabel>
+            <ControlLabel>Odaberi izvođača</ControlLabel>
             <FormGroup controlId="formControlsSelect">
               <FormControl
                 componentClass='select'
@@ -103,7 +92,7 @@ class RemoveAdministrator extends React.Component {
                 {
                   this.props.users
                     .filter(user => user !== null)
-                    .filter(user => user.privilege === ADMINISTRATOR)
+                    .filter(user => user.privilege === CONTRACTOR)
                     .map(userTemp => {
                       const fullName = userTemp.firstName + " " + userTemp.lastName + " - " + userTemp.mail;
                       return (
@@ -141,21 +130,13 @@ class RemoveAdministrator extends React.Component {
                       </Row>
                     </ListGroupItem>
                   </ListGroup>
-                  <Choose>
-                    <When condition={this.state.userSelectedValidation}>
-                      <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss()}>
-                        <h4>Ne možete obrisati sami sebe</h4>
-                        <p>Samo vas drugi administrator može obrisati.</p>
-                      </Alert>
-                    </When>
-                  </Choose>
                   <Row>
                     <Col mdOffset={1} md={3}>
-                      <Button onClick={() => this.handleDelete()}>Obriši korisnika</Button>
+                      <Button onClick={() => this.handleDelete()}>Obriši izviđača</Button>
                     </Col>
                     <Col md={4}>
                       <Button onClick={() => {
-                        this.props.toggleAdministratorInfoClicked();
+                        this.props.toggleContractorInfoClicked();
                         this.resetState();
                       }}>Odustani</Button>
                     </Col>
@@ -185,5 +166,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RemoveAdministrator);
+export default connect(mapStateToProps, mapDispatchToProps)(RemoveContractor);
 

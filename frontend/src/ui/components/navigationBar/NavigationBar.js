@@ -83,16 +83,6 @@ class NavigationBar extends Component {
               </NavItem>
             </When>
           </Choose>
-          <NavItem >
-            <UserInfo />
-          </NavItem>
-          <Choose>
-            <When condition={this.props.userData.privilege !== ADMINISTRATOR && this.props.userData.privilege !== MANAGER}>
-              <NavItem >
-                <Notifications />
-              </NavItem>
-            </When>
-          </Choose>
           <Choose>
             <When condition={this.props.userData.privilege === ADMINISTRATOR}>
               <NavItem
@@ -102,6 +92,40 @@ class NavigationBar extends Component {
                 <span className={styles.span}>
                   <span className='glyphicon glyphicon-user' />    Korisnici
                 </span>
+              </NavItem>
+            </When>
+          </Choose>
+          <Choose>
+            <When condition={this.props.userData.privilege === ADMINISTRATOR}>
+              <NavItem
+                componentClass={Link}
+                to='/building-info'
+                href='/building-info'>
+                <span className={styles.span}>
+                  <span className='glyphicon glyphicon-home' />    Zgrade
+                </span>
+              </NavItem>
+            </When>
+          </Choose>
+          <Choose>
+            <When condition={this.props.userData.privilege === ADMINISTRATOR}>
+              <NavItem
+                componentClass={Link}
+                to='/apartment-info'
+                href='/apartment-info'>
+                <span className={styles.span}>
+                  <span className='glyphicon glyphicon-home' />    Stanovi
+                </span>
+              </NavItem>
+            </When>
+          </Choose>
+          <NavItem >
+            <UserInfo />
+          </NavItem>
+          <Choose>
+            <When condition={this.props.userData.privilege !== ADMINISTRATOR && this.props.userData.privilege !== MANAGER}>
+              <NavItem >
+                <Notifications />
               </NavItem>
             </When>
           </Choose>

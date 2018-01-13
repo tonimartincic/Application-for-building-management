@@ -47,12 +47,19 @@ public class BuildingController {
   public Building editFunds(@RequestBody final Building building) {
     return this.buildingService.editFunds(building);
   }
+  
   @PutMapping("/api/buildings/edit-funds-for-user")
   public Building editFundsForUser(@RequestParam Long amount,@RequestParam Long userId) {
     return this.buildingService.editFundsForUser(amount, userId);
   }
+  
   @GetMapping("/api/building-by-user-id/{id}")
   public Building getBuildingForUser(@PathVariable final Long id) {
     return this.buildingService.getBuildingForUser(id);
+  }
+  
+  @DeleteMapping("/api/building/{id}")
+  public void deleteBuildingById(@PathVariable Long id) {
+    this.buildingService.deleteById(id);
   }
 }

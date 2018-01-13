@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as types from '../actions/actionTypes';
-import {ADMINISTRATOR} from "../constants/values";
+import { ADMINISTRATOR, CONTRACTOR} from "../constants/values";
 
 export default async function fetchBuildingUsersById(id) {
   try {
@@ -95,6 +95,29 @@ export async function addNewAdministrator(firstName, lastName, eMail) {
   } catch (err) {
     return {
       type: types.ADD_NEW_ADMINISTRATOR_FAILURE,
+      data: err,
+    }
+  }
+}
+
+export async function addNewContractor(firstName, lastName, eMail) {
+  try {
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      mail: eMail,
+      privilege: CONTRACTOR
+    };
+
+    const response = await axios.post('/api/users/contractor', user);
+
+    return {
+      type: types.ADD_NEW_CONTRACTOR_SUCCESS,
+      data: response.data,
+    }
+  } catch (err) {
+    return {
+      type: types.ADD_NEW_CONTRACTOR_FAILURE,
       data: err,
     }
   }

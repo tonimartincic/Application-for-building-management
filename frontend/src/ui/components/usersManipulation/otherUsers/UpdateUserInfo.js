@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormGroup, ControlLabel, FormControl, Button, Col, Modal, Row, ListGroup, Alert} from 'react-bootstrap';
-import * as constants from '../../../constants/values';
+import * as constants from '../../../../constants/values';
 
 const UpdateUserInfo = props => (
   <div>

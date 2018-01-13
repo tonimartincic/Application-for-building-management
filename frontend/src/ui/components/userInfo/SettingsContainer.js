@@ -53,14 +53,14 @@ class SettingsContainer extends Component {
   }
 
   handleSubmit = () => {
-    if (this.state.user.firstName === null || this.state.user.firstName === '' ||
-      this.state.user.lastName === null || this.state.user.lastName === '' || !this.checkEmail()) {
-      if (this.state.user.firstName === null || this.state.user.firstName === '') {
+    if (this.state.user.firstName === null || this.state.user.firstName.trim() === '' ||
+      this.state.user.lastName === null || this.state.user.lastName.trim() === '' || !this.checkEmail()) {
+      if (this.state.user.firstName === null || this.state.user.firstName.trim() === '') {
         this.setState({
           firstNameValidation: 'error',
         });
       }
-      if (this.state.user.lastName === null || this.state.user.lastName === '') {
+      if (this.state.user.lastName === null || this.state.user.lastName.trim() === '') {
         this.setState({
           lastNameValidation: 'error',
         });
@@ -74,9 +74,9 @@ class SettingsContainer extends Component {
   };
 
   handleSubmitPassword = () => {
-    if (this.state.oldPassword === "" || this.state.oldPassword === null ||
-      this.state.newPassword === "" || this.state.newPassword === null ||
-      this.state.newPasswordRepeat === "" || this.state.newPasswordRepeat === null) {
+    if (this.state.oldPassword === null || this.state.oldPassword.trim() === '' ||
+      this.state.newPassword === null || this.state.newPassword.trim() === ''||
+      this.state.newPasswordRepeat === null || this.state.newPasswordRepeat.trim() === '') {
 
       this.setState({
         emptyPasswordFieldsValidation: true,
@@ -184,7 +184,7 @@ class SettingsContainer extends Component {
   };
 
   checkEmail() {
-    if (this.state.user.mail === null || this.state.user.mail === '') {
+    if (this.state.user.mail === null || this.state.user.mail.trim() === '') {
       this.setState({
         emailValidationEmptyString: 'error',
       });
@@ -192,7 +192,7 @@ class SettingsContainer extends Component {
     }
     for (let i = 0; i < this.props.users.length; i = i + 1) {
       if (this.props.users[i] !== null) {
-        if (this.props.users[i].mail === this.state.user.mail && this.state.user.id !== this.props.users[i].id) {
+        if (this.props.users[i].mail === this.state.user.mail.trim() && this.state.user.id !== this.props.users[i].id) {
           this.setState({
             emailValidationAlreadyExists: 'error',
           });

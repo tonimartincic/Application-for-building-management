@@ -83,6 +83,11 @@ public class BuildingServiceImpl implements BuildingService {
   }
 
   @Override
+  public void deleteById(Long id) {
+    buildingRepository.delete(id);
+  }
+
+  @Override
   public Building getBuildingForUser(Long currentUserId) {
     User currentUser = this.userRepository.findById(currentUserId);
     Building currentUserBuilding;
@@ -98,7 +103,9 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     return currentUserBuilding;
+
   }
+  
   @Override
   public Building editFunds(Building building) {
     Building buildingFromDatabase = this.buildingRepository.findById(building.getId());
@@ -106,6 +113,7 @@ public class BuildingServiceImpl implements BuildingService {
 
     return this.buildingRepository.save(buildingFromDatabase);
   }
+  
   @Override
   public Building editFundsForUser(Long amount, Long userId) {
     Building userBuilding = getBuildingForUser(userId);

@@ -33,6 +33,23 @@ export async function fetchBuildingForCurrentUser() {
     }
   }
 }
+
+export async function addNewBuilding(building) {
+  try {
+    const response = await axios.post('/api/buildings', building);
+
+    return {
+      type: types.ADD_NEW_BUILDING_SUCCESS,
+      data: response.data,
+    }
+  } catch (err) {
+    return {
+      type: types.ADD_NEW_BUILDING_FAILURE,
+      data: err,
+    }
+  }
+}
+
 export async function editBuildingFundsForUser(amount,userId) {
   try {
     const response = await axios.put(`/api/buildings/edit-funds-for-user?amount=${amount}&userId=${userId}`);
@@ -49,3 +66,18 @@ export async function editBuildingFundsForUser(amount,userId) {
   }
 }
 
+export async function deleteBuildingById(id) {
+  try {
+    const response = await axios.delete('/api/building/'+id);
+
+    return {
+      type: types.DELETE_BUILDING_SUCCESS,
+      id,
+    }
+  } catch (err) {
+    return {
+      type: types.DELETE_BUILDING_FAILURE,
+      data: err,
+    }
+  }
+}

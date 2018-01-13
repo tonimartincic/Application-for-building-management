@@ -57,4 +57,9 @@ public class UserController {
   public UserResponse addNewAdministrator(@RequestBody final UserRequest userRequest) {
     return userService.add(userRequest);
   }
+
+  @PostMapping("/api/users/contractor")
+  public UserResponse addNewContractor(@RequestBody final UserRequest userRequest) {
+    return userService.add(userRequest);
+  }
 }

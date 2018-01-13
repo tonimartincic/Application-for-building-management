@@ -32,3 +32,35 @@ export async function fetchApartmentForCurrentUser(id) {
     }
   }
 }
+
+export async function addNewApartment(apartment, id) {
+  try {
+    const response = await axios.post('/api/apartments/'+id, apartment);
+
+    return {
+      type: types.ADD_NEW_APARTMENT_SUCCESS,
+      data: response.data,
+    }
+  } catch (err) {
+    return {
+      type: types.ADD_NEW_APARTMENT_FAILURE,
+      data: err,
+    }
+  }
+}
+
+export async function deleteApartmentById(id) {
+  try {
+    const response = await axios.delete('/api/apartment/'+id);
+
+    return {
+      type: types.DELETE_APARTMENT_SUCCESS,
+      id,
+    }
+  } catch (err) {
+    return {
+      type: types.DELETE_APARTMENT_FAILURE,
+      data: err,
+    }
+  }
+}

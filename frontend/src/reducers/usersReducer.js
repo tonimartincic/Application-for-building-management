@@ -5,7 +5,6 @@ export default function usersReducer(state = initialState.users, action) {
   const newUsers = [];
 
   switch (action.type) {
-
     case types.FETCH_USERS_SUCCESS:
       return action.data;
 
@@ -22,6 +21,12 @@ export default function usersReducer(state = initialState.users, action) {
       return [...state, action.data];
 
     case types.ADD_NEW_ADMINISTRATOR_FAILURE:
+      return state;
+
+    case types.ADD_NEW_CONTRACTOR_SUCCESS:
+      return [...state, action.data];
+
+    case types.ADD_NEW_CONTRACTOR_FAILURE:
       return state;
 
     case types.EDIT_USER_INFO_SUCCESS:

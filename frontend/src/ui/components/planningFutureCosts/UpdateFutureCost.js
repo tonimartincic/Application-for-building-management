@@ -154,7 +154,7 @@ class UpdateFutureCost extends React.Component {
       hasError = true;
     }
 
-    if(this.state.cost.description === null || this.state.cost.description === '') {
+    if(this.state.cost.description === null || this.state.cost.description.trim() === '') {
       this.setState({
         descriptionValidation: 'error',
       });

@@ -1,23 +1,22 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, Button, Col, Modal, Collapse, Row} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import * as styles from './userInfo.css';
-import {TENANT_REPRESENTATIVE, TENANT, MANAGER} from "../../../constants/values";
+import * as styles from './addNewContractor.css';
 
-class AddNewUser extends React.Component {
+class AddNewContractor extends React.Component {
   render() {
     return (
       <div>
         <Modal
-          show={this.props.addNewUserClicked}
+          show={this.props.addNewContractorClicked}
           onHide={() => {
-            this.props.toggleAddNewUser();
+            this.props.toggleNewContractorClicked();
             this.props.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Dodaj novog korisnika</Modal.Title>
+            <Modal.Title>Dodaj novog izvođača</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
@@ -83,50 +82,6 @@ class AddNewUser extends React.Component {
                   </Col>
                 </Row>
               </FormGroup>
-              <FormGroup validationState={this.props.privilegeValidationAlreadyExists || this.props.privilegeValidationEmpty}>
-                <ControlLabel>Odaberi privilegiju</ControlLabel>
-                <FormControl componentClass="select" placeholder="select" onChange={this.props.handleChangePrivilege}>
-                  <option value="select">Odaberi</option>
-                  <option value={TENANT}>Stanar</option>
-                  <option value={TENANT_REPRESENTATIVE}>Predstavnik stanara</option>
-                  <option value={MANAGER}>Upravitelj</option>
-                </FormControl>
-                <Row>
-                  <Col md={4}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.props.privilegeValidationEmpty==='error'}>
-                        <p className={styles.pInvalid}>Morate odabrati privilegiju.</p>
-                      </Collapse>
-                      <Collapse in={this.props.privilegeValidationAlreadyExists==='error'}>
-                        <p className={styles.pInvalid}>Postoji korisnik s odabranom privilegijom (max. 1).</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup validationState={this.props.apartmentSelectedValidation}>
-                <ControlLabel>Odaberi jedan od praznih stanova:</ControlLabel>
-                <FormControl componentClass="select" placeholder="select" onChange={this.props.handleChangeApartment}>
-                  <option value="select">Odaberi</option>
-                  {
-                    this.props.apartments
-                      .filter(apartment => apartment.owner === null && apartment.building.id == this.props.buildingId)
-                      .map(apartment => {
-
-                        return (<option value={apartment.id}>{apartment.id}</option>);
-                  })
-                  }
-                </FormControl>
-                <Row>
-                  <Col md={4}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.props.apartmentSelectedValidation==='error'}>
-                        <p className={styles.pInvalid}>Morate odabrati stan.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
             </form>
           </Modal.Body>
           <Modal.Footer>
@@ -148,4 +103,4 @@ function mapDispatchToProps() {
   return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewUser);
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewContractor);

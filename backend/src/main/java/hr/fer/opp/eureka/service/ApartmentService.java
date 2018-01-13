@@ -10,7 +10,9 @@ public interface ApartmentService {
 
   Apartment getById(Long id);
 
-  Apartment add(Apartment apartment);
+  Apartment add(Apartment apartment, Long buildingId);
 
   Apartment getByUserId(Long id);
+
+  void deleteById(Long id);
 }

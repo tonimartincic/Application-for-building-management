@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Button} from 'react-bootstrap';
+import {Button, Collapse} from 'react-bootstrap';
 import {setEditAnnouncementButtonClicked} from '../../../actions/announcementsActions';
 import {editAnnouncement} from '../../../actionCreators/announcementsActionCreators';
 import styles from './editAnnouncementForm.css';
@@ -26,9 +26,21 @@ class EditAnnouncementForm extends Component {
       id: this.props.announcement.id,
       content: content
     };
+    let hasError = false;
 
-    this.props.editAnnouncement(announcement);
-    this.props.setEditAnnouncementButtonClicked(this.props.announcement.id, false);
+    if(this.state.content === null || this.state.content.trim() === '') {
+      this.setState({
+        contentValidation : 'error',
+      });
+
+      hasError = true;
+        }
+
+    if(!hasError){
+      this.props.editAnnouncement(announcement);
+      this.props.setEditAnnouncementButtonClicked(this.props.announcement.id, false);
+      }
+    event.preventDefault();
   }
 
   handleChange = (event) => {
@@ -47,12 +59,17 @@ class EditAnnouncementForm extends Component {
       <section className={styles.section}>
         <form onSubmit={this.handleSubmit}>
           <textarea
+            validationState = {this.state.contentValidation}
             className={styles.textArea}
             type='text'
             value={this.state.content}
             onChange={this.handleChange}
           />
-
+          <section>
+            <Collapse in={this.state.contentValidation === 'error'}>
+              <p className={styles.pInvalid}>Objava ne smije biti prazna.</p>
+            </Collapse>
+          </section>
           <section className={styles.sectionButtons}>
             <Button className={styles.button} type='submit'><span className='glyphicon glyphicon-ok' /></Button>
             <Button className={styles.button} type='button' onClick={this.handleCancel}><span className='glyphicon glyphicon-remove' /></Button>
