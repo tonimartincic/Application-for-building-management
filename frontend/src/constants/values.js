@@ -20,6 +20,10 @@ export const TENANT = 'Stanar';
 
 export const CONTRACTOR = 'Izvodac';
 
+export const PAID = 'Plaćeno';
+
+export const NOT_PAID = 'Nije plaćeno';
+
 export const userPrivileges = [
   ADMINISTRATOR, MANAGER, TENANT_REPRESENTATIVE, TENANT, CONTRACTOR
 ];
