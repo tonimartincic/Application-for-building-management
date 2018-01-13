@@ -19,7 +19,7 @@ export default async function fetchBuildings() {
 
 export async function editBuildingFunds(building) {
   try {
-    const response = await axios.post('/api/buildings/edit_funds', building);
+    const response = await axios.post('/api/buildings/edit-funds', building);
 
     return {
       type: types.EDIT_BUILDING_FUNDS_SUCCESS,
@@ -43,6 +43,21 @@ export async function fetchBuildingForUser(id) {
   } catch (err) {
     return {
       type: types.FETCH_BUILDING_FOR_USER_FAILURE,
+      data: err,
+    }
+  }
+}
+export async function editBuildingFundsForUser(amount,userId) {
+  try {
+    const response = await axios.put(`/api/buildings/edit-funds-for-user?amount=${amount}&userId=${userId}`);
+
+    return {
+      type: types.EDIT_BUILDING_FUNDS_FOR_USER_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.EDIT_BUILDING_FUNDS_FOR_USER_FAILURE,
       data: err,
     }
   }

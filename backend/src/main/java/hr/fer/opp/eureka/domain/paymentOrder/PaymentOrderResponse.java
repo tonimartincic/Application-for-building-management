@@ -3,17 +3,11 @@ package hr.fer.opp.eureka.domain.paymentOrder;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.user.User;
-import hr.fer.opp.eureka.enumeration.PaymentOrderStatus;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table (name = "payment_order")
-public class PaymentOrder {
+public class PaymentOrderResponse {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private Double amount;
@@ -26,54 +20,25 @@ public class PaymentOrder {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate dayOfPayment;
 
-  @ManyToOne
-  @JoinColumn (name = "payer")
   private User payer;
 
-  @ManyToOne
-  @JoinColumn (name = "receiver")
   private User receiver;
 
-  @Enumerated(EnumType.STRING)
-  private PaymentOrderStatus status;
+  private String status;
 
-  @ManyToOne
-  @JoinColumn (name = "cost_id")
   private Cost cost;
 
-  public PaymentOrder() {
+  public PaymentOrderResponse(PaymentOrder paymentOrder) {
+    this.id = paymentOrder.getId();
+    this.amount = paymentOrder.getAmount();
+    this.description = paymentOrder.getDescription();
+    this.paymentDue = paymentOrder.getPaymentDue();
+    this.dayOfPayment = paymentOrder.getDayOfPayment();
+    this.payer = paymentOrder.getPayer();
+    this.receiver = paymentOrder.getReceiver();
+    this.status = paymentOrder.getStatus().getName();
+    this.cost = paymentOrder.getCost();
   }
-
-  public PaymentOrder(
-    Double amount,
-    String description,
-    LocalDate paymentDue,
-    LocalDate dayOfPayment,
-    User payer,
-    User receiver,
-    PaymentOrderStatus status,
-    Cost cost
-    ) {
-  
-    this.amount = amount;
-    this.description = description;
-    this.paymentDue = paymentDue;
-    this.dayOfPayment = dayOfPayment;
-    this.payer = payer;
-    this.receiver = receiver;
-    this.status = status;
-    this.cost = cost;
-  }
-
-  public PaymentOrder(PaymentOrderRequest paymentOrderRequest) {
-    this.id = paymentOrderRequest.getId();
-    this.amount = paymentOrderRequest.getAmount();
-    this.description = paymentOrderRequest.getDescription();
-    this.paymentDue = paymentOrderRequest.getPaymentDue();
-    this.dayOfPayment = paymentOrderRequest.getDayOfPayment();
-    this.status = PaymentOrderStatus.getByName(paymentOrderRequest.getStatus());
-  }
-
   public Long getId() {
     return id;
   }
@@ -130,11 +95,11 @@ public class PaymentOrder {
     this.receiver = receiver;
   }
 
-  public PaymentOrderStatus getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(PaymentOrderStatus status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 

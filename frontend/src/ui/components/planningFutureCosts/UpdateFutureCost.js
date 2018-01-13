@@ -5,8 +5,10 @@ import { deleteCost, editCost } from '../../../actionCreators/costsActionCreator
 import { fetchUsers } from "../../../actionCreators/usersActionCreators";
 import { fetchBuildingForUser } from "../../../actionCreators/buildingsActionCreators";
 import { editBuildingFunds } from "../../../actionCreators/buildingsActionCreators";
+import { editBuildingFundsForUser } from "../../../actionCreators/buildingsActionCreators";
 import { addNewPaymentOrder } from "../../../actionCreators/paymentOrdersActionCreators";
 import { CONTRACTOR } from "../../../constants/values";
+import * as dateUtils from '../../../utils/DateUtil';
 import * as styles from './updateFutureCost.css';
 
 class UpdateFutureCost extends React.Component {
@@ -167,26 +169,23 @@ class UpdateFutureCost extends React.Component {
 
       if(this.state.cost.status === 'Plaćeno'){
         var date = new Date().toJSON().slice(0,10);
+        var dayOfPayment =  dateUtils.constructDateFromDatePickerForBackend(date);
+
         const paymentOrder = {
-                id: this.state.cost.id,
                 amount: this.state.cost.amount,
                 description: this.state.cost.description,
-                paymentDue: date,
-                dayOfPayment: date,
+                paymentDue: dayOfPayment,
+                dayOfPayment: dayOfPayment,
                 payerId: this.props.userData.id,
                 receiverId: parseInt(this.state.contractor),
-                status:'PAID',
+                status:'Plaćeno',
                 costId: this.state.cost.id
               };
         console.log(paymentOrder);
         debugger;
         this.props.addNewPaymentOrder(paymentOrder);
         var id=this.state.cost.creatorId;
-        var newFunds=this.props.fetchBuildingForUser(id).funds-this.state.cost.amount;
-        const building = {
-              funds: newFunds
-           };
-        this.props.editBuildingFunds(building);
+        this.props.editBuildingFundsForUser(-this.state.cost.amount,id);
       }
       this.props.editCost(cost);
 
@@ -420,6 +419,7 @@ function mapDispatchToProps(dispatch) {
     fetchBuildings: () => dispatch(fetchBuildings()),
     addNewPaymentOrder: (paymentOrder) => dispatch(addNewPaymentOrder(paymentOrder)),
     fetchBuildingForUser: (id) => dispatch(fetchBuildingForUser(id)),
+    editBuildingFundsForUser: (amount, id) => dispatch(editBuildingFundsForUser(amount, id)),
   };
 }
 

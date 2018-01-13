@@ -18,4 +18,6 @@ public interface BuildingService {
   Building getBuildingForUser(Long currentUserId);
 
   Building editFunds(Building building);
+
+  Building editFundsForUser(Long amount, Long userId);
 }

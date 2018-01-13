@@ -27,8 +27,7 @@ public class PaymentOrderRequest {
 
   private Long receiverId;
 
-  @Enumerated(EnumType.STRING)
-  private PaymentOrderStatus status;
+  private String status;
 
   private Long costId;
 
@@ -88,11 +87,11 @@ public class PaymentOrderRequest {
     this.receiverId = receiverId;
   }
 
-  public PaymentOrderStatus getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(PaymentOrderStatus status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 

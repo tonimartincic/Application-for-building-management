@@ -15,6 +15,15 @@ export default function buildingsReducer(state = initialState.buildings, action)
       return action.data;
     case types.FETCH_BUILDING_FOR_USER_FAILURE:
       return state;
+    case types.EDIT_BUILDING_FUNDS_SUCCESS:
+      return action.data;
+    case types.EDIT_BUILDING_FUNDS_FAILURE:
+      return state;
+    case types.EDIT_BUILDING_FUNDS_FOR_USER_SUCCESS:
+      return action.data;
+    case types.EDIT_BUILDING_FUNDS_FOR_USER_FAILURE:
+      return state;
+
     default:
       return state;
   }
