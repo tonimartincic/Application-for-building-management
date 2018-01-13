@@ -176,7 +176,7 @@ class UpdateFutureCost extends React.Component {
       const cost = {
         id: this.state.cost.id,
         creatorId: this.state.cost.creatorId,
-        amount: this.state.cost.amount,
+        amount: this.state.cost.amount.trim(),
         description: this.state.cost.description,
         createdOn: this.state.cost.createdOn,
         urgent: this.state.cost.urgent === 'Hitno',

@@ -65,7 +65,7 @@ class AllApartmentsInfo extends Component {
       })
     } else {
       const apartment = {
-        area: this.state.apartmentArea,
+        area: this.state.apartmentArea.trim(),
       };
 
       this.props.addNewApartment(apartment, this.state.buildingSelected);
