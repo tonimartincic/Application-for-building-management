@@ -6,7 +6,7 @@ import { fetchUsers } from "../../../actionCreators/usersActionCreators";
 import { fetchBuildingForCurrentUser } from "../../../actionCreators/buildingsActionCreators";
 import { editBuildingFundsForUser } from "../../../actionCreators/buildingsActionCreators";
 import { addNewPaymentOrder } from "../../../actionCreators/paymentOrdersActionCreators";
-import { CONTRACTOR } from "../../../constants/values";
+import { CONTRACTOR, PAID } from "../../../constants/values";
 import * as dateUtils from '../../../utils/DateUtil';
 import * as styles from './updateFutureCost.css';
 
@@ -235,7 +235,7 @@ class UpdateFutureCost extends React.Component {
                 <option value="select">Odaberi</option>
                 {
                   this.props.costs
-                    .filter(cost => cost !== null)
+                    .filter(cost => cost !== null && cost.status != PAID)
                     .map(costTemp => {
                       const record = costTemp.description + " - " + costTemp.amount + " kn";
                       return (
