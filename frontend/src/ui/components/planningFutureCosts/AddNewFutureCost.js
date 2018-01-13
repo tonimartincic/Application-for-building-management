@@ -58,7 +58,7 @@ class AddNewFutureCost extends React.Component {
         this.props.userData.id,
         this.state.description,
         this.state.isUrgent === 'Hitno',
-        this.state.status,
+        'Prikupljanje sredstava',
       );
 
       this.props.toggleAddNewFutureCost();
@@ -160,22 +160,6 @@ class AddNewFutureCost extends React.Component {
                 >
                   <option value="Hitno">Hitno</option>
                   <option value="Nije hitno">Nije hitno</option>
-                </FormControl>
-              </FormGroup>
-              <FormGroup
-                controlId="statusInput"
-              >
-                <ControlLabel>Status</ControlLabel>
-                <FormControl
-                  componentClass="select"
-                  placeholder="select"
-                  defaultValue="Odabir ponude"
-                  onChange={this.handleChangeStatus}
-                >
-                  <option value="Odabir ponude">Odabir ponude</option>
-                  <option value="Plaćeno">Plaćeno</option>
-                  <option value="Prikupljanje sredstava">Prikupljanje sredstava</option>
-                  <option value="Sredstva skupljena">Sredstva skupljena</option>
                 </FormControl>
               </FormGroup>
             </form>
