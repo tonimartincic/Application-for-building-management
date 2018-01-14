@@ -6,6 +6,7 @@ import NavigationBar from "../navigationBar/NavigationBar";
 import AddNewPaymentOrder from "./AddNewPaymentOrder";
 import UpdatePaymentOrder from "./UpdatePaymentOrder";
 import PaymentsTable from "./PaymentsTable";
+import { MANAGER } from "../../../constants/values";
 import { fetchUsers } from '../../../actionCreators/usersActionCreators';
 import { fetchBuildingUsersForCurrentUser } from '../../../actionCreators/usersActionCreators';
 import { fetchBuildingForCurrentUser } from "../../../actionCreators/buildingsActionCreators";
@@ -56,21 +57,25 @@ class AllPaymentsView extends Component {
              </section>
             </Col>
           </Row>
-          <Row>
-            <Col md={8} mdOffset={2}>
-              <section className={styles.sectionButtons}>
-                <Button
-                  className={styles.button}
-                  onClick={() => this.toggleAddNewPaymentOrder()}
-                >Dodaj novi nalog</Button>
+          <Choose>
+            <When condition={this.props.userData.privilege === MANAGER}>
+              <Row>
+                <Col md={8} mdOffset={2}>
+                  <section className={styles.sectionButtons}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.toggleAddNewPaymentOrder()}
+                    >Dodaj novi nalog</Button>
 
-                <Button
-                  className={styles.button}
-                  onClick={() => this.toggleUpdatePaymentOrder()}
-                >Ažuriraj podatke</Button>
-              </section>
-            </Col>
-          </Row>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.toggleUpdatePaymentOrder()}
+                    >Ažuriraj podatke</Button>
+                  </section>
+                </Col>
+              </Row>
+            </When>
+          </Choose>
           <Row>
             <Col>
               <AddNewPaymentOrder
