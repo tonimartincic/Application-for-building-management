@@ -23,5 +23,5 @@ public interface BuildingService {
 
   Building editFunds(Building building);
 
-  Building editFundsForUser(Long amount, Long userId);
+  Building editFundsForUser(Float amount, Long userId);
 }

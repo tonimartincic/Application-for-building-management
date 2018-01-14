@@ -162,9 +162,9 @@ class UpdateFutureCost extends React.Component {
       hasError = true;
     }
 
-    if(this.state.contractor === null || this.state.contractor === '' ||
+    if(this.state.cost.status === 'Plaćeno' && (this.state.contractor === null || this.state.contractor === '' ||
      this.state.contractor === 'select'|| this.state.contractor === 'Odaberi izvođača radova' ||
-     typeof this.state.contractor === "undefined") {
+     typeof this.state.contractor === "undefined")) {
       this.setState({
         contractorValidation: 'error',
       });
