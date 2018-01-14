@@ -214,7 +214,7 @@ class UpdatePaymentOrder extends React.Component {
     if(!hasError) {
       const paymentOrder = {
         id: this.state.paymentOrder.id,
-        amount: this.state.paymentOrder.amount,
+        amount: this.state.paymentOrder.amount.trim(),
         description: this.state.paymentOrder.description,
         paymentDue,
         dayOfPayment,
