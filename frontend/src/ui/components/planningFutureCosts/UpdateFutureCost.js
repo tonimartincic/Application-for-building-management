@@ -145,7 +145,7 @@ class UpdateFutureCost extends React.Component {
 
   handleSubmit() {
     let hasError = false;
-    var reg = /^\s*[1-9]\d*(\.\d{1,2})?\s*$/;
+    var reg = /^[1-9]\d*(\.\d{1,2})?$/;
     if(this.state.cost.amount === null || this.state.cost.amount === ''|| !reg.test(this.state.cost.amount)) {
       this.setState({
         amountValidation: 'error',
@@ -176,7 +176,7 @@ class UpdateFutureCost extends React.Component {
       const cost = {
         id: this.state.cost.id,
         creatorId: this.state.cost.creatorId,
-        amount: this.state.cost.amount.trim(),
+        amount: this.state.cost.amount,
         description: this.state.cost.description,
         createdOn: this.state.cost.createdOn,
         urgent: this.state.cost.urgent === 'Hitno',

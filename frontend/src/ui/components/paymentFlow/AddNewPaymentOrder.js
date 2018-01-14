@@ -58,7 +58,7 @@ class AddNewPaymentOrder extends React.Component {
   handleSubmit() {
     let hasError = false;
 
-    var reg = /^\s*[1-9]\d*(\.\d{1,2})?\s*$/;
+    var reg = /^[1-9]\d*(\.\d{1,2})?$/;
     if(this.state.amount === null || this.state.amount === ''|| !reg.test(this.state.amount)) {
       this.setState({
         amountValidation: 'error',
@@ -116,7 +116,7 @@ class AddNewPaymentOrder extends React.Component {
     if(!hasError) {
       const paymentOrder = {
         id: this.state.id,
-        amount: this.state.amount.trim(),
+        amount: this.state.amount,
         description: this.state.description,
         paymentDue,
         dayOfPayment,
