@@ -54,7 +54,7 @@ class AddNewFutureCost extends React.Component {
 
     if(!hasError) {
       this.props.addNewCost(
-        this.state.amount.trim(),
+        this.state.amount,
         this.props.userData.id,
         this.state.description,
         this.state.isUrgent === 'Hitno',

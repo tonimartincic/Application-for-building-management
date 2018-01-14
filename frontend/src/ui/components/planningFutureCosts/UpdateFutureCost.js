@@ -162,9 +162,9 @@ class UpdateFutureCost extends React.Component {
       hasError = true;
     }
 
-    if(this.state.contractor === null || this.state.contractor === '' ||
+    if(this.state.cost.status === 'Plaćeno' && (this.state.contractor === null || this.state.contractor === '' ||
      this.state.contractor === 'select'|| this.state.contractor === 'Odaberi izvođača radova' ||
-     typeof this.state.contractor === "undefined") {
+     typeof this.state.contractor === "undefined")) {
       this.setState({
         contractorValidation: 'error',
       });
@@ -176,7 +176,7 @@ class UpdateFutureCost extends React.Component {
       const cost = {
         id: this.state.cost.id,
         creatorId: this.state.cost.creatorId,
-        amount: this.state.cost.amount.trim(),
+        amount: this.state.cost.amount,
         description: this.state.cost.description,
         createdOn: this.state.cost.createdOn,
         urgent: this.state.cost.urgent === 'Hitno',

@@ -109,19 +109,22 @@ class AddNewPaymentOrder extends React.Component {
     }
 
     let dayOfPayment = null;
+    let status = 'Nije plaćeno';
     if(this.state.dayOfPayment !== null && this.state.dayOfPayment !== '') {
       dayOfPayment = dateUtils.constructDateFromDatePickerForBackend(this.state.dayOfPayment);
+      status = 'Plaćeno';
     }
 
     if(!hasError) {
       const paymentOrder = {
         id: this.state.id,
-        amount: this.state.amount.trim(),
+        amount: this.state.amount,
         description: this.state.description,
         paymentDue,
         dayOfPayment,
         payerId: this.state.payerId,
         receiverId: this.state.receiverId,
+        status,
       };
 
       this.props.addNewPaymentOrder(paymentOrder);
