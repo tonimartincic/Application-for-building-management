@@ -60,7 +60,7 @@ class AllBuildingsView extends Component {
   }
 
   handleSubmitNewBuilding() {
-    if (this.state.buildingAddress === null || this.state.buildingAddress === "") {
+    if (this.state.buildingAddress === null || this.state.buildingAddress.trim() === '') {
       this.setState({
         buildingAddressValidation: 'error'
       });
@@ -70,8 +70,9 @@ class AllBuildingsView extends Component {
       });
     } else {
       const building = {
-        address: this.state.buildingAddress,
+        address: this.state.buildingAddress.trim(),
       };
+
       this.props.addNewBuilding(building);
       this.toggleAddNewBuilding();
     }
@@ -79,7 +80,7 @@ class AllBuildingsView extends Component {
 
   addressExists() {
     for (let i  = 0 ; i < this.props.buildings.length ; i++ ) {
-      if(this.props.buildings[i].address === this.state.buildingAddress)
+      if(this.props.buildings[i].address === this.state.buildingAddress.trim())
         return true;
     }
     return false;
@@ -127,7 +128,7 @@ class AllBuildingsView extends Component {
           <AddNewBuilding
             addNewBuildingClicked={this.state.addNewBuildingClicked}
             toggleAddNewBuilding={this.toggleAddNewBuilding}
-            buildingNameValidation={this.state.buildingAddressValidation}
+            buildingAddressValidation={this.state.buildingAddressValidation}
             handleChangeAddress={this.handleChangeAddress}
             handleSubmitNewBuilding={this.handleSubmitNewBuilding}
             addressAlreadyExists={this.state.addressAlreadyExists}

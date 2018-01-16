@@ -76,7 +76,7 @@ class Login extends Component {
                 </Row>
                 <Row>
                   <Col>
-                    <section className={styles.section}>
+                    <section className={styles.sectionSpacing}>
                       <FormControl
                         type="password"
                         value={this.state.password}

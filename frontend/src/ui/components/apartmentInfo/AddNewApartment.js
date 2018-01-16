@@ -32,7 +32,7 @@ class AddNewApartment extends React.Component {
                 <Col md={7}>
                   <section>
                     <Collapse in={this.props.apartmentAreaValidation==='error'}>
-                      <p>Morate unijeti adresu zgrade.</p>
+                      <p>Morate unijeti površinu stana.</p>
                     </Collapse>
                   </section>
                 </Col>

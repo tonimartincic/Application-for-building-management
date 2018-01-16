@@ -3,7 +3,7 @@ import { Grid, Row, Col, Table, Button, Well } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import fetchFutureCosts from '../../../actionCreators/costsActionCreators';
-import fetchApartments from "../../../actionCreators/apartmentsActionCreators";
+import { fetchBuildingForCurrentUser } from "../../../actionCreators/buildingsActionCreators";
 import NavigationBar from "../navigationBar/NavigationBar";
 import AddNewFutureCost from "./AddNewFutureCost";
 import UpdateFutureCost from "./UpdateFutureCost";
@@ -24,7 +24,7 @@ class PlanningFutureCosts extends Component {
 
   componentDidMount() {
     this.props.fetchFutureCosts();
-    this.props.fetchApartments();
+    this.props.fetchBuildingForCurrentUser();
   }
 
   toggleAddNewFutureCost() {
@@ -42,6 +42,11 @@ class PlanningFutureCosts extends Component {
   }
 
   render() {
+    let buildingFunds = null;
+    if(this.props.userBuilding !== null) {
+      buildingFunds = 'Trenutni iznos zajedničkog novca zgrade "' + this.props.userBuilding.address + '":  ' + this.props.userBuilding.funds + ' kn';
+    }
+
     return (
       <section>
         <NavigationBar/>
@@ -52,19 +57,9 @@ class PlanningFutureCosts extends Component {
                 <Well>
                   <Row>
                     <Col md={8}>
-                      {
-                        this.props.apartments
-                          .filter(apartment => apartment.owner !== null)
-                          .filter(apartment => apartment.owner.id === this.props.userData.id)
-                          .map(apartment => {
-                            const tmp = 'Trenutni iznos zajedničkog novca zgrade "' + apartment.building.address + '":  ' + apartment.building.funds + ' kn';
-                            return(
-                              <p key={apartment.id}>
-                                {tmp}
-                              </p>
-                            )
-                          })
-                      }
+                      <p>
+                        { buildingFunds }
+                      </p>
                     </Col>
                   </Row>
                 </Well>
@@ -149,7 +144,7 @@ class PlanningFutureCosts extends Component {
 function mapStateToProps(state) {
   return {
     costs: state.costs,
-    apartments: state.apartments,
+    userBuilding: state.userBuilding,
     userData: state.userData,
   };
 }
@@ -157,7 +152,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchFutureCosts: () => dispatch(fetchFutureCosts()),
-    fetchApartments: () => (dispatch(fetchApartments())),
+    fetchBuildingForCurrentUser: () => (dispatch(fetchBuildingForCurrentUser())),
   };
 }
 

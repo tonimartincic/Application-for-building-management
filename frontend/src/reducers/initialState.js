@@ -37,6 +37,8 @@ const initialState = {
   announcements: [],
 
   userApartment: [],
+
+  userBuilding: null,
 };
 
 export default initialState;

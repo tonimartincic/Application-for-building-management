@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {Button, Col, Row, Well} from 'react-bootstrap';
+import {Button, Col, Row } from 'react-bootstrap';
 import NavigationBar from "../navigationBar/NavigationBar";
 import AddNewPaymentOrder from "./AddNewPaymentOrder";
 import UpdatePaymentOrder from "./UpdatePaymentOrder";
 import PaymentsTable from "./PaymentsTable";
-import fetchBuildings from "../../../actionCreators/buildingsActionCreators";
+import { MANAGER } from "../../../constants/values";
 import { fetchUsers } from '../../../actionCreators/usersActionCreators';
+import { fetchBuildingUsersForCurrentUser } from '../../../actionCreators/usersActionCreators';
+import { fetchBuildingForCurrentUser } from "../../../actionCreators/buildingsActionCreators";
 import * as styles from './allPaymentsView.css';
 
 class AllPaymentsView extends Component {
@@ -25,6 +27,8 @@ class AllPaymentsView extends Component {
 
   componentWillMount() {
     this.props.fetchUsers();
+    this.props.fetchBuildingUsersForCurrentUser();
+    this.props.fetchBuildingForCurrentUser();
   }
 
   toggleAddNewPaymentOrder() {
@@ -53,21 +57,25 @@ class AllPaymentsView extends Component {
              </section>
             </Col>
           </Row>
-          <Row>
-            <Col md={8} mdOffset={2}>
-              <section className={styles.sectionButtons}>
-                <Button
-                  className={styles.button}
-                  onClick={() => this.toggleAddNewPaymentOrder()}
-                >Dodaj novi nalog</Button>
+          <Choose>
+            <When condition={this.props.userData.privilege === MANAGER}>
+              <Row>
+                <Col md={8} mdOffset={2}>
+                  <section className={styles.sectionButtons}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.toggleAddNewPaymentOrder()}
+                    >Dodaj novi nalog</Button>
 
-                <Button
-                  className={styles.button}
-                  onClick={() => this.toggleUpdatePaymentOrder()}
-                >Ažuriraj podatke</Button>
-              </section>
-            </Col>
-          </Row>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.toggleUpdatePaymentOrder()}
+                    >Ažuriraj podatke</Button>
+                  </section>
+                </Col>
+              </Row>
+            </When>
+          </Choose>
           <Row>
             <Col>
               <AddNewPaymentOrder
@@ -95,8 +103,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBuildings: () => (dispatch(fetchBuildings())),
     fetchUsers: () => (dispatch(fetchUsers())),
+    fetchBuildingUsersForCurrentUser: () => (dispatch(fetchBuildingUsersForCurrentUser())),
+    fetchBuildingForCurrentUser: () => (dispatch(fetchBuildingForCurrentUser())),
   };
 }
 

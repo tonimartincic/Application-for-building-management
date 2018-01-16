@@ -15,7 +15,13 @@ public interface BuildingService {
 
   List<UserResponse> getAllUsersByBuildingId(Long id);
 
+  List<UserResponse> getAllUsersForCurrentUser(Long id);
+
   void deleteById(Long id);
 
   Building getBuildingForUser(Long currentUserId);
+
+  Building editFunds(Building building);
+
+  Building editFundsForUser(Float amount, Long userId);
 }

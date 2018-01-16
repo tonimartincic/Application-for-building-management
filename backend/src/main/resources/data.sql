@@ -102,35 +102,6 @@ Insert into announcement (creation_date, expiration_date, creator, content) valu
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('28.12.17', 'dd.MM.yy'), parsedatetime('30.10.17', 'dd.MM.yy'), 18, 'Objava stanara 8');
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('28.12.17', 'dd.MM.yy'), parsedatetime('30.10.17', 'dd.MM.yy'), 19, 'Objava predstavnika 1234');
 Insert into announcement (creation_date, expiration_date, creator, content) values (parsedatetime('28.12.17', 'dd.MM.yy'), parsedatetime('30.10.17', 'dd.MM.yy'), 20, 'Objava predstavnika 5678');
-
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-101.25, 1, 'pričuva', parsedatetime('02.10.17', 'dd.MM.yy'),parsedatetime('01.10.17', 'dd.MM.yy'), 2);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-595.05, 4, 'čišćenje', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('02.08.16', 'dd.MM.yy'), 27);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-68.10, 1, 'pričuva', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('28.09.17', 'dd.MM.yy'), 6);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-1582.00, 3, 'pričuva', parsedatetime('28.09.17', 'dd.MM.yy'),parsedatetime('11.10.17', 'dd.MM.yy'), 4);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 5, 'popravak', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 26);
-
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 12, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 13, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 14, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 15, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 20);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 16, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 20);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 17, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 20);
-Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver) values (
-99.99, 18, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 20);
-
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
 150000.23, true, 'popravak krova', 'OFFER_SELECTION', 1, parsedatetime('01.12.15', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
@@ -162,6 +133,34 @@ Insert into cost (amount, is_urgent, description, status, creator_id, created_on
 1500, true, 'Nova garažna vrata', 'FUNDS_COLLECTED', 19, parsedatetime('02.08.16', 'dd.MM.yy'));
 Insert into cost (amount, is_urgent, description, status, creator_id, created_on) values (
 1500, true, 'Nova garažna vrata', 'FUNDS_COLLECTED', 20, parsedatetime('02.08.16', 'dd.MM.yy'));
+
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+101.25, 1, 'pričuva', parsedatetime('02.10.17', 'dd.MM.yy'),parsedatetime('01.10.17', 'dd.MM.yy'), 2, 'NOT_PAID', 1);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+595.05, 4, 'čišćenje', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('02.08.16', 'dd.MM.yy'), 27, 'PAID',2);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+68.10, 1, 'pričuva', parsedatetime('08.06.16', 'dd.MM.yy'),parsedatetime('28.09.17', 'dd.MM.yy'), 6, 'PAID', 3);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+1582.00, 3, 'pričuva', parsedatetime('28.09.17', 'dd.MM.yy'),parsedatetime('11.10.17', 'dd.MM.yy'), 4, 'PAID', 2);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 5, 'popravak', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 26, 'NOT_PAID', 5);
+
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19, 'NOT_PAID', 1);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19, 'PAID', 2);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19, 'NOT_PAID', 3);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19, 'PAID', 4);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19, 'NOT_PAID', 5);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19, 'PAID', 6);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 11, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 19, 'NOT_PAID', 7);
+Insert into payment_order (amount, payer, description, payment_due, day_of_payment, receiver, status, cost_id) values (
+99.99, 18, 'Režije', parsedatetime('30.10.15', 'dd.MM.yy'),parsedatetime('01.12.15', 'dd.MM.yy'), 20, 'PAID', 7);
 
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('02.01.16', 'dd.MM.yy'), 1, false);
 Insert into snow_clearing_date (clearing_date, clearing_id, ask_change) values (parsedatetime('03.02.17', 'dd.MM.yy'), 2, false);

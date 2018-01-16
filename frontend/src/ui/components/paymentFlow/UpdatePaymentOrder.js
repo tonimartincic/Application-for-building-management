@@ -6,6 +6,7 @@ import DatePicker from 'react-bootstrap-date-picker';
 import styles from './updatePaymentOrder.css';
 import * as constants from '../../../constants/values';
 import * as dateUtils from '../../../utils/DateUtil';
+import { CONTRACTOR } from "../../../constants/values";
 
 class UpdatePaymentOrder extends React.Component {
   constructor(props) {
@@ -155,8 +156,8 @@ class UpdatePaymentOrder extends React.Component {
 
   handleSubmit() {
     let hasError = false;
-
-    if(this.state.paymentOrder.amount === null || this.state.paymentOrder.amount === '') {
+    var reg = /^[1-9]\d*(\.\d{1,2})?$/;
+    if(this.state.paymentOrder.amount === null || this.state.paymentOrder.amount === ''|| !reg.test(this.state.paymentOrder.amount)) {
       this.setState({
         amountValidation: 'error',
       });
@@ -164,7 +165,7 @@ class UpdatePaymentOrder extends React.Component {
       hasError = true;
     }
 
-    if(this.state.paymentOrder.description === null || this.state.paymentOrder.description === '') {
+    if(this.state.paymentOrder.description === null || this.state.paymentOrder.description.trim() === '') {
       this.setState({
         descriptionValidation: 'error',
       });
@@ -204,10 +205,11 @@ class UpdatePaymentOrder extends React.Component {
     if(this.state.paymentOrder.paymentDue !== null && this.state.paymentOrder.paymentDue !== '') {
       paymentDue = dateUtils.constructDateFromDatePickerForBackend(this.state.paymentOrder.paymentDue);
     }
-
     let dayOfPayment = null;
+    let status = 'Nije plaćeno';
     if(this.state.paymentOrder.dayOfPayment !== null && this.state.paymentOrder.dayOfPayment !== '') {
       dayOfPayment = dateUtils.constructDateFromDatePickerForBackend(this.state.paymentOrder.dayOfPayment);
+      status = 'Plaćeno';
     }
 
     if(!hasError) {
@@ -219,6 +221,7 @@ class UpdatePaymentOrder extends React.Component {
         dayOfPayment,
         payerId: this.state.paymentOrder.payerId,
         receiverId: this.state.paymentOrder.receiverId,
+        status,
       };
 
       this.props.editPaymentOrder(paymentOrder);
@@ -374,11 +377,16 @@ class UpdatePaymentOrder extends React.Component {
                       >
                         <option value="select">Odaberi</option>
                         {
-                          this.props.users
+                          this.props.buildingUsers
                             .map(user => {
                               return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                             })
                         }
+                        <Choose>
+                          <When condition={this.props.userBuilding !== null}>
+                            <option value={this.props.userBuilding.manager.id}>{this.props.userBuilding.manager.firstName} {this.props.userBuilding.manager.lastName}</option>
+                          </When>
+                        </Choose>
                       </FormControl>
                       <Row>
                         <Col md={4}>
@@ -404,7 +412,19 @@ class UpdatePaymentOrder extends React.Component {
                       >
                         <option value="select">Odaberi</option>
                         {
+                          this.props.buildingUsers
+                            .map(user => {
+                              return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
+                            })
+                        }
+                        <Choose>
+                          <When condition={this.props.userBuilding !== null}>
+                            <option value={this.props.userBuilding.manager.id}>{this.props.userBuilding.manager.firstName} {this.props.userBuilding.manager.lastName}</option>
+                          </When>
+                        </Choose>
+                        {
                           this.props.users
+                            .filter(user => user.privilege === CONTRACTOR)
                             .map(user => {
                               return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                             })
@@ -451,7 +471,10 @@ class UpdatePaymentOrder extends React.Component {
 function mapStateToProps(state) {
   return {
     paymentOrders: state.paymentOrders,
+    userData: state.userData,
     users: state.users,
+    buildingUsers: state.buildingUsers,
+    userBuilding: state.userBuilding,
   };
 }
 

@@ -1,7 +1,9 @@
 package hr.fer.opp.eureka.domain.paymentOrder;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import hr.fer.opp.eureka.domain.cost.Cost;
 import hr.fer.opp.eureka.domain.user.User;
+import hr.fer.opp.eureka.enumeration.PaymentOrderStatus;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,6 +34,13 @@ public class PaymentOrder {
   @JoinColumn (name = "receiver")
   private User receiver;
 
+  @Enumerated(EnumType.STRING)
+  private PaymentOrderStatus status;
+
+  @ManyToOne
+  @JoinColumn (name = "cost_id")
+  private Cost cost;
+
   public PaymentOrder() {
   }
 
@@ -41,7 +50,10 @@ public class PaymentOrder {
     LocalDate paymentDue,
     LocalDate dayOfPayment,
     User payer,
-    User receiver) {
+    User receiver,
+    PaymentOrderStatus status,
+    Cost cost
+    ) {
   
     this.amount = amount;
     this.description = description;
@@ -49,6 +61,8 @@ public class PaymentOrder {
     this.dayOfPayment = dayOfPayment;
     this.payer = payer;
     this.receiver = receiver;
+    this.status = status;
+    this.cost = cost;
   }
 
   public PaymentOrder(PaymentOrderRequest paymentOrderRequest) {
@@ -57,6 +71,7 @@ public class PaymentOrder {
     this.description = paymentOrderRequest.getDescription();
     this.paymentDue = paymentOrderRequest.getPaymentDue();
     this.dayOfPayment = paymentOrderRequest.getDayOfPayment();
+    this.status = PaymentOrderStatus.getByName(paymentOrderRequest.getStatus());
   }
 
   public Long getId() {
@@ -113,5 +128,21 @@ public class PaymentOrder {
 
   public void setReceiver(User receiver) {
     this.receiver = receiver;
+  }
+
+  public PaymentOrderStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(PaymentOrderStatus status) {
+    this.status = status;
+  }
+
+  public Cost getCost() {
+    return cost;
+  }
+
+  public void setCost(Cost cost) {
+    this.cost = cost;
   }
 }

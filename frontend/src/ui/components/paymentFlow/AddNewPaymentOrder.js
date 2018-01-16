@@ -6,6 +6,7 @@ import DatePicker from 'react-bootstrap-date-picker';
 import styles from './addNewPaymentOrder.css';
 import * as constants from '../../../constants/values';
 import * as dateUtils from '../../../utils/DateUtil';
+import { CONTRACTOR } from "../../../constants/values";
 
 class AddNewPaymentOrder extends React.Component {
   constructor(props) {
@@ -57,7 +58,8 @@ class AddNewPaymentOrder extends React.Component {
   handleSubmit() {
     let hasError = false;
 
-    if(this.state.amount === null || this.state.amount === '') {
+    var reg = /^[1-9]\d*(\.\d{1,2})?$/;
+    if(this.state.amount === null || this.state.amount === ''|| !reg.test(this.state.amount)) {
       this.setState({
         amountValidation: 'error',
       });
@@ -65,7 +67,7 @@ class AddNewPaymentOrder extends React.Component {
       hasError = true;
     }
 
-    if(this.state.description === null || this.state.description === '') {
+    if(this.state.description === null || this.state.description.trim() === '') {
       this.setState({
         descriptionValidation: 'error',
       });
@@ -107,8 +109,10 @@ class AddNewPaymentOrder extends React.Component {
     }
 
     let dayOfPayment = null;
+    let status = 'Nije plaćeno';
     if(this.state.dayOfPayment !== null && this.state.dayOfPayment !== '') {
       dayOfPayment = dateUtils.constructDateFromDatePickerForBackend(this.state.dayOfPayment);
+      status = 'Plaćeno';
     }
 
     if(!hasError) {
@@ -120,6 +124,7 @@ class AddNewPaymentOrder extends React.Component {
         dayOfPayment,
         payerId: this.state.payerId,
         receiverId: this.state.receiverId,
+        status,
       };
 
       this.props.addNewPaymentOrder(paymentOrder);
@@ -278,11 +283,16 @@ class AddNewPaymentOrder extends React.Component {
                 >
                   <option value="select">Odaberi</option>
                   {
-                    this.props.users
+                    this.props.buildingUsers
                       .map(user => {
                         return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                       })
                   }
+                  <Choose>
+                    <When condition={this.props.userBuilding !== null}>
+                       <option value={this.props.userBuilding.manager.id}>{this.props.userBuilding.manager.firstName} {this.props.userBuilding.manager.lastName}</option>
+                    </When>
+                  </Choose>
                 </FormControl>
                 <Row>
                   <Col md={4}>
@@ -307,7 +317,19 @@ class AddNewPaymentOrder extends React.Component {
                 >
                   <option value="select">Odaberi</option>
                   {
+                    this.props.buildingUsers
+                      .map(user => {
+                        return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
+                      })
+                  }
+                  <Choose>
+                    <When condition={this.props.userBuilding !== null}>
+                      <option value={this.props.userBuilding.manager.id}>{this.props.userBuilding.manager.firstName} {this.props.userBuilding.manager.lastName}</option>
+                    </When>
+                  </Choose>
+                  {
                     this.props.users
+                      .filter(user => user.privilege === CONTRACTOR)
                       .map(user => {
                         return (<option value={user.id}>{user.firstName} {user.lastName}</option>);
                       })
@@ -338,6 +360,8 @@ function mapStateToProps(state) {
   return {
     userData: state.userData,
     users: state.users,
+    buildingUsers: state.buildingUsers,
+    userBuilding: state.userBuilding,
   };
 }
 
