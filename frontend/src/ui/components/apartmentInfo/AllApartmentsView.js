@@ -58,7 +58,8 @@ class AllApartmentsInfo extends Component {
   }
 
   handleSubmitNewApartment() {
-    if(this.state.apartmentArea===null || this.state.apartmentArea==="") {
+    var reg = /^[1-9]\d*(\.\d{1,2})?$/;
+    if(this.state.apartmentArea===null || this.state.apartmentArea===""|| !reg.test(this.state.apartmentArea)) {
       this.setState({
         apartmentAreaValidation: 'error',
       })

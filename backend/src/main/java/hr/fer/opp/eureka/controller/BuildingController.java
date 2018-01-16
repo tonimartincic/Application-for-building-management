@@ -49,7 +49,7 @@ public class BuildingController {
   }
   
   @PutMapping("/api/buildings/edit-funds-for-user")
-  public Building editFundsForUser(@RequestParam Long amount,@RequestParam Long userId) {
+  public Building editFundsForUser(@RequestParam Float amount,@RequestParam Long userId) {
     return this.buildingService.editFundsForUser(amount, userId);
   }
   

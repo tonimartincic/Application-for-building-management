@@ -58,7 +58,7 @@ class AddNewPaymentOrder extends React.Component {
   handleSubmit() {
     let hasError = false;
 
-    var reg = /^\s*[1-9]\d*(\.\d{1,2})?\s*$/;
+    var reg = /^[1-9]\d*(\.\d{1,2})?$/;
     if(this.state.amount === null || this.state.amount === ''|| !reg.test(this.state.amount)) {
       this.setState({
         amountValidation: 'error',
@@ -109,8 +109,10 @@ class AddNewPaymentOrder extends React.Component {
     }
 
     let dayOfPayment = null;
+    let status = 'Nije plaćeno';
     if(this.state.dayOfPayment !== null && this.state.dayOfPayment !== '') {
       dayOfPayment = dateUtils.constructDateFromDatePickerForBackend(this.state.dayOfPayment);
+      status = 'Plaćeno';
     }
 
     if(!hasError) {
@@ -122,6 +124,7 @@ class AddNewPaymentOrder extends React.Component {
         dayOfPayment,
         payerId: this.state.payerId,
         receiverId: this.state.receiverId,
+        status,
       };
 
       this.props.addNewPaymentOrder(paymentOrder);

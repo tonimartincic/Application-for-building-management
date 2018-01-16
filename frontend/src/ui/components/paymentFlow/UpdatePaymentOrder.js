@@ -156,7 +156,7 @@ class UpdatePaymentOrder extends React.Component {
 
   handleSubmit() {
     let hasError = false;
-    var reg = /^\s*[1-9]\d*(\.\d{1,2})?\s*$/;
+    var reg = /^[1-9]\d*(\.\d{1,2})?$/;
     if(this.state.paymentOrder.amount === null || this.state.paymentOrder.amount === ''|| !reg.test(this.state.paymentOrder.amount)) {
       this.setState({
         amountValidation: 'error',
@@ -205,10 +205,11 @@ class UpdatePaymentOrder extends React.Component {
     if(this.state.paymentOrder.paymentDue !== null && this.state.paymentOrder.paymentDue !== '') {
       paymentDue = dateUtils.constructDateFromDatePickerForBackend(this.state.paymentOrder.paymentDue);
     }
-
     let dayOfPayment = null;
+    let status = 'Nije plaćeno';
     if(this.state.paymentOrder.dayOfPayment !== null && this.state.paymentOrder.dayOfPayment !== '') {
       dayOfPayment = dateUtils.constructDateFromDatePickerForBackend(this.state.paymentOrder.dayOfPayment);
+      status = 'Plaćeno';
     }
 
     if(!hasError) {
@@ -220,6 +221,7 @@ class UpdatePaymentOrder extends React.Component {
         dayOfPayment,
         payerId: this.state.paymentOrder.payerId,
         receiverId: this.state.paymentOrder.receiverId,
+        status,
       };
 
       this.props.editPaymentOrder(paymentOrder);

@@ -34,9 +34,9 @@ export async function addNewPaymentOrder(paymentOrder) {
   }
 }
 
-export async function editPaymentOrder(cost) {
+export async function editPaymentOrder(paymentOrder) {
   try {
-    const response = await axios.put('/api/payment-orders/edit', cost);
+    const response = await axios.put('/api/payment-orders/edit', paymentOrder);
 
     return {
       type: types.EDIT_PAYMENT_ORDER_SUCCESS,

@@ -145,7 +145,7 @@ class UpdateFutureCost extends React.Component {
 
   handleSubmit() {
     let hasError = false;
-    var reg = /^\s*[1-9]\d*(\.\d{1,2})?\s*$/;
+    var reg = /^[1-9]\d*(\.\d{1,2})?$/;
     if(this.state.cost.amount === null || this.state.cost.amount === ''|| !reg.test(this.state.cost.amount)) {
       this.setState({
         amountValidation: 'error',
@@ -162,9 +162,9 @@ class UpdateFutureCost extends React.Component {
       hasError = true;
     }
 
-    if(this.state.contractor === null || this.state.contractor === '' ||
+    if(this.state.cost.status === 'Plaćeno' && (this.state.contractor === null || this.state.contractor === '' ||
      this.state.contractor === 'select'|| this.state.contractor === 'Odaberi izvođača radova' ||
-     typeof this.state.contractor === "undefined") {
+     typeof this.state.contractor === "undefined")) {
       this.setState({
         contractorValidation: 'error',
       });
