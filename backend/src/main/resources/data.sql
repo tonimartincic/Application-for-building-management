@@ -67,7 +67,7 @@ Insert into apartment (building_id, area, owner_id) values (7, 56.50, 15);
 Insert into apartment (building_id, area, owner_id) values (7, 56.50, 16);
 Insert into apartment (building_id, area, owner_id) values (7, 56.50, 17);
 Insert into apartment (building_id, area, owner_id) values (7, 56.50, 18);
-Insert into apartment (building_id, area, owner_id) values (7, 56.50, 20);
+Insert into apartment (building_id, area, owner_id) values (7, 56, 20);
 
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Sutra ste na rasporedu za čišćenje snijega',1, false, parsedatetime('01.12.17', 'dd.MM.yy'));
 Insert into user_notification (description, user_id, is_read, creation_date) values ('Niste podmirili dugovanje za prošli mjesec',2, false, parsedatetime('02.06.17', 'dd.MM.yy'));
